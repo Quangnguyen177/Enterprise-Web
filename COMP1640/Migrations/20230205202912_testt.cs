@@ -3,10 +3,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
-    public partial class apptest : Migration
+    public partial class testt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    AdId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ad_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ad_phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ad_email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.AdId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -47,22 +62,48 @@ namespace COMP1640.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Staffs",
+                name: "Departments",
                 columns: table => new
                 {
-                    StaffId = table.Column<int>(type: "int", nullable: false)
+                    DepId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    staff_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_phone = table.Column<int>(type: "int", nullable: false),
-                    staff_email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_DoB = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    staff_gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_avatar = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    dep_name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Staffs", x => x.StaffId);
+                    table.PrimaryKey("PK_Departments", x => x.DepId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QACoordinators",
+                columns: table => new
+                {
+                    QacId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    qac_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    qac_phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    qac_gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    qac_email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QACoordinators", x => x.QacId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QAManagers",
+                columns: table => new
+                {
+                    QamId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    qam_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    qam_phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    qam_email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    qam_gender = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QAManagers", x => x.QamId);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,6 +226,33 @@ namespace COMP1640.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Staffs",
+                columns: table => new
+                {
+                    StaffId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    staff_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_DoB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    staff_gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DepId = table.Column<int>(type: "int", nullable: false),
+                    DepartmentDepId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Staffs", x => x.StaffId);
+                    table.ForeignKey(
+                        name: "FK_Staffs_Departments_DepartmentDepId",
+                        column: x => x.DepartmentDepId,
+                        principalTable: "Departments",
+                        principalColumn: "DepId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Ideas",
                 columns: table => new
                 {
@@ -192,8 +260,6 @@ namespace COMP1640.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     idea_title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     idea_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    idea_document = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    idea_image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     first_closure = table.Column<DateTime>(type: "datetime2", nullable: true),
                     last_closure = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StaffId = table.Column<int>(type: "int", nullable: false),
@@ -216,10 +282,78 @@ namespace COMP1640.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    ComId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    com_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    IdeaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.ComId);
+                    table.ForeignKey(
+                        name: "FK_Comments_Ideas_IdeaId",
+                        column: x => x.IdeaId,
+                        principalTable: "Ideas",
+                        principalColumn: "IdeaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_Staffs_StaffId",
+                        column: x => x.StaffId,
+                        principalTable: "Staffs",
+                        principalColumn: "StaffId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Documents",
+                columns: table => new
+                {
+                    DocId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    doc_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    doc_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdeaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Documents", x => x.DocId);
+                    table.ForeignKey(
+                        name: "FK_Documents_Ideas_IdeaId",
+                        column: x => x.IdeaId,
+                        principalTable: "Ideas",
+                        principalColumn: "IdeaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Admins",
+                columns: new[] { "AdId", "ad_email", "ad_name", "ad_phone" },
+                values: new object[] { 1, "admin@gmail.com", "Truong", "0983337621" });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "DepId", "dep_name" },
+                values: new object[] { 1, "Academic" });
+
+            migrationBuilder.InsertData(
+                table: "QACoordinators",
+                columns: new[] { "QacId", "qac_email", "qac_gender", "qac_name", "qac_phone" },
+                values: new object[] { 1, "qac@gmail.com", "female", "Duc", "0927652226" });
+
+            migrationBuilder.InsertData(
+                table: "QAManagers",
+                columns: new[] { "QamId", "qam_email", "qam_gender", "qam_name", "qam_phone" },
+                values: new object[] { 1, "qam@gmail.com", "male", "Duong", "0293872618" });
+
             migrationBuilder.InsertData(
                 table: "Staffs",
-                columns: new[] { "StaffId", "staff_DoB", "staff_address", "staff_avatar", "staff_email", "staff_gender", "staff_name", "staff_phone" },
-                values: new object[] { 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Somewhere in the big gray sky", "", "Test@123.com", "Male", "Test", 329226528 });
+                columns: new[] { "StaffId", "DepId", "DepartmentDepId", "staff_DoB", "staff_address", "staff_avatar", "staff_email", "staff_gender", "staff_name", "staff_phone" },
+                values: new object[] { 1, 1, null, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Somewhere in the big gray sky", "", "Test@123.com", "Male", "Test", "0329226528" });
 
             migrationBuilder.InsertData(
                 table: "Tags",
@@ -228,8 +362,18 @@ namespace COMP1640.Migrations
 
             migrationBuilder.InsertData(
                 table: "Ideas",
-                columns: new[] { "IdeaId", "StaffId", "TagId", "first_closure", "idea_content", "idea_document", "idea_image", "idea_title", "last_closure" },
-                values: new object[] { 1, 1, 1, null, "This is a Test", "", "Test", "Test", null });
+                columns: new[] { "IdeaId", "StaffId", "TagId", "first_closure", "idea_content", "idea_title", "last_closure" },
+                values: new object[] { 1, 1, 1, null, "This is a Test", "Test", null });
+
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "ComId", "IdeaId", "StaffId", "com_content" },
+                values: new object[] { 1, 1, 1, "This is a great idea" });
+
+            migrationBuilder.InsertData(
+                table: "Documents",
+                columns: new[] { "DocId", "IdeaId", "doc_content", "doc_type" },
+                values: new object[] { 1, 1, "This is a word or pdf, it can be a file", "Word" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -271,6 +415,21 @@ namespace COMP1640.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_IdeaId",
+                table: "Comments",
+                column: "IdeaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_StaffId",
+                table: "Comments",
+                column: "StaffId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Documents_IdeaId",
+                table: "Documents",
+                column: "IdeaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Ideas_StaffId",
                 table: "Ideas",
                 column: "StaffId");
@@ -279,10 +438,18 @@ namespace COMP1640.Migrations
                 name: "IX_Ideas_TagId",
                 table: "Ideas",
                 column: "TagId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Staffs_DepartmentDepId",
+                table: "Staffs",
+                column: "DepartmentDepId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Admins");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -299,7 +466,16 @@ namespace COMP1640.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Ideas");
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Documents");
+
+            migrationBuilder.DropTable(
+                name: "QACoordinators");
+
+            migrationBuilder.DropTable(
+                name: "QAManagers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -308,10 +484,16 @@ namespace COMP1640.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Ideas");
+
+            migrationBuilder.DropTable(
                 name: "Staffs");
 
             migrationBuilder.DropTable(
                 name: "Tags");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
         }
     }
 }

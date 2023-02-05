@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
@@ -7,15 +8,15 @@ namespace COMP1640.Models
 {
     public class Idea
     {
+        [Key]
         public int IdeaId { get; set; }
 
         public string idea_title { get; set; }
 
         public string idea_content { get; set; }
 
-        public string idea_document { get; set; }
-
-        public string idea_image { get; set; }
+        [DataType(DataType.Date)] 
+        public Nullable<DateTime> created_date { get;}
 
         [DataType(DataType.Date)]
         public Nullable<DateTime> first_closure { get; set; }
@@ -30,6 +31,10 @@ namespace COMP1640.Models
         // FK2: Tag id
         public int TagId { get; set; }
         public Tag Tag { get; set; }
+
+        //---------------
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Document> Documents { get; set; }
 
         // FK2: Comment id ???
         //public int cmt_id { get; set; }

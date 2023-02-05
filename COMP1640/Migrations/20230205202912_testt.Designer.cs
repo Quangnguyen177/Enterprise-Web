@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230205080454_apptest")]
-    partial class apptest
+    [Migration("20230205202912_testt")]
+    partial class testt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,124 @@ namespace COMP1640.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("COMP1640.Models.Admin", b =>
+                {
+                    b.Property<int>("AdId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ad_email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ad_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ad_phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdId");
+
+                    b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            AdId = 1,
+                            ad_email = "admin@gmail.com",
+                            ad_name = "Truong",
+                            ad_phone = "0983337621"
+                        });
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Comment", b =>
+                {
+                    b.Property<int>("ComId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdeaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("com_content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ComId");
+
+                    b.HasIndex("IdeaId");
+
+                    b.HasIndex("StaffId");
+
+                    b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            ComId = 1,
+                            IdeaId = 1,
+                            StaffId = 1,
+                            com_content = "This is a great idea"
+                        });
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Department", b =>
+                {
+                    b.Property<int>("DepId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("dep_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DepId");
+
+                    b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            DepId = 1,
+                            dep_name = "Academic"
+                        });
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Document", b =>
+                {
+                    b.Property<int>("DocId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdeaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("doc_content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("doc_type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DocId");
+
+                    b.HasIndex("IdeaId");
+
+                    b.ToTable("Documents");
+
+                    b.HasData(
+                        new
+                        {
+                            DocId = 1,
+                            IdeaId = 1,
+                            doc_content = "This is a word or pdf, it can be a file",
+                            doc_type = "Word"
+                        });
+                });
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
@@ -38,12 +156,6 @@ namespace COMP1640.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("idea_content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("idea_document")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("idea_image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("idea_title")
@@ -67,9 +179,75 @@ namespace COMP1640.Migrations
                             StaffId = 1,
                             TagId = 1,
                             idea_content = "This is a Test",
-                            idea_document = "",
-                            idea_image = "Test",
                             idea_title = "Test"
+                        });
+                });
+
+            modelBuilder.Entity("COMP1640.Models.QACoordinator", b =>
+                {
+                    b.Property<int>("QacId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("qac_email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qac_gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qac_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qac_phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QacId");
+
+                    b.ToTable("QACoordinators");
+
+                    b.HasData(
+                        new
+                        {
+                            QacId = 1,
+                            qac_email = "qac@gmail.com",
+                            qac_gender = "female",
+                            qac_name = "Duc",
+                            qac_phone = "0927652226"
+                        });
+                });
+
+            modelBuilder.Entity("COMP1640.Models.QAManager", b =>
+                {
+                    b.Property<int>("QamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("qam_email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qam_gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qam_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qam_phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QamId");
+
+                    b.ToTable("QAManagers");
+
+                    b.HasData(
+                        new
+                        {
+                            QamId = 1,
+                            qam_email = "qam@gmail.com",
+                            qam_gender = "male",
+                            qam_name = "Duong",
+                            qam_phone = "0293872618"
                         });
                 });
 
@@ -79,6 +257,12 @@ namespace COMP1640.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DepId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DepartmentDepId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("staff_DoB")
                         .HasColumnType("datetime2");
@@ -98,10 +282,12 @@ namespace COMP1640.Migrations
                     b.Property<string>("staff_name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("staff_phone")
-                        .HasColumnType("int");
+                    b.Property<string>("staff_phone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StaffId");
+
+                    b.HasIndex("DepartmentDepId");
 
                     b.ToTable("Staffs");
 
@@ -109,13 +295,14 @@ namespace COMP1640.Migrations
                         new
                         {
                             StaffId = 1,
+                            DepId = 1,
                             staff_DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             staff_address = "Somewhere in the big gray sky",
                             staff_avatar = "",
                             staff_email = "Test@123.com",
                             staff_gender = "Male",
                             staff_name = "Test",
-                            staff_phone = 329226528
+                            staff_phone = "0329226528"
                         });
                 });
 
@@ -341,6 +528,36 @@ namespace COMP1640.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("COMP1640.Models.Comment", b =>
+                {
+                    b.HasOne("COMP1640.Models.Idea", "Idea")
+                        .WithMany("Comments")
+                        .HasForeignKey("IdeaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("COMP1640.Models.Staff", "Staff")
+                        .WithMany("Comments")
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Idea");
+
+                    b.Navigation("Staff");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Document", b =>
+                {
+                    b.HasOne("COMP1640.Models.Idea", "Idea")
+                        .WithMany("Documents")
+                        .HasForeignKey("IdeaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Idea");
+                });
+
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
                     b.HasOne("COMP1640.Models.Staff", "Staff")
@@ -358,6 +575,15 @@ namespace COMP1640.Migrations
                     b.Navigation("Staff");
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Staff", b =>
+                {
+                    b.HasOne("COMP1640.Models.Department", "Department")
+                        .WithMany("Staffs")
+                        .HasForeignKey("DepartmentDepId");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -411,8 +637,22 @@ namespace COMP1640.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("COMP1640.Models.Department", b =>
+                {
+                    b.Navigation("Staffs");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Idea", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Documents");
+                });
+
             modelBuilder.Entity("COMP1640.Models.Staff", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Ideas");
                 });
 
