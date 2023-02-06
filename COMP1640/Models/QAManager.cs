@@ -10,6 +10,7 @@ namespace COMP1640.Models
         public string qam_phone { get; set;}
         public string qam_email { get; set;}
         public string qam_gender { get; set;}
+        public virtual Account account { get; set; }
     }
     
 }

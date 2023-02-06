@@ -32,6 +32,6 @@ namespace COMP1640.Models
         public ICollection<Idea> Ideas { get; set; }
         public ICollection<Comment> Comments { get; set; }
 
-        
+        public virtual Account account { get; set; }
     }
 }
