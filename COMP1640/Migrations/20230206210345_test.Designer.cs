@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230206010635_test")]
+    [Migration("20230206210345_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,12 +21,53 @@ namespace COMP1640.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("COMP1640.Models.Account", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Password")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Role")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("Accounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Email = "admin@gmail.com",
+                            Password = "admin1",
+                            Role = "ADMIN"
+                        },
+                        new
+                        {
+                            Email = "Test@123.com",
+                            Password = "staff1",
+                            Role = "STAFF"
+                        },
+                        new
+                        {
+                            Email = "qam@gmail.com",
+                            Password = "qam1",
+                            Role = "QAM"
+                        });
+                });
+
             modelBuilder.Entity("COMP1640.Models.Admin", b =>
                 {
                     b.Property<int>("AdId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ad_email")
                         .HasColumnType("nvarchar(max)");
@@ -39,12 +80,15 @@ namespace COMP1640.Migrations
 
                     b.HasKey("AdId");
 
+                    b.HasIndex("Email");
+
                     b.ToTable("Admins");
 
                     b.HasData(
                         new
                         {
                             AdId = 1,
+                            Email = "admin@gmail.com",
                             ad_email = "admin@gmail.com",
                             ad_name = "Truong",
                             ad_phone = "0983337621"
@@ -146,9 +190,6 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommentComId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StaffId")
                         .HasColumnType("int");
 
@@ -168,8 +209,6 @@ namespace COMP1640.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdeaId");
-
-                    b.HasIndex("CommentComId");
 
                     b.HasIndex("StaffId");
 
@@ -195,6 +234,9 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("accountEmail")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("qac_email")
                         .HasColumnType("nvarchar(max)");
 
@@ -208,6 +250,8 @@ namespace COMP1640.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QacId");
+
+                    b.HasIndex("accountEmail");
 
                     b.ToTable("QACoordinators");
 
@@ -229,6 +273,9 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("qam_email")
                         .HasColumnType("nvarchar(max)");
 
@@ -243,12 +290,15 @@ namespace COMP1640.Migrations
 
                     b.HasKey("QamId");
 
+                    b.HasIndex("Email");
+
                     b.ToTable("QAManagers");
 
                     b.HasData(
                         new
                         {
                             QamId = 1,
+                            Email = "qam@gmail.com",
                             qam_email = "qam@gmail.com",
                             qam_gender = "male",
                             qam_name = "Duong",
@@ -263,14 +313,11 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommentComId")
-                        .HasColumnType("int");
-
                     b.Property<int>("DepId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentDepId")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("staff_DoB")
                         .HasColumnType("datetime2");
@@ -295,9 +342,9 @@ namespace COMP1640.Migrations
 
                     b.HasKey("StaffId");
 
-                    b.HasIndex("CommentComId");
+                    b.HasIndex("DepId");
 
-                    b.HasIndex("DepartmentDepId");
+                    b.HasIndex("Email");
 
                     b.ToTable("Staffs");
 
@@ -306,6 +353,7 @@ namespace COMP1640.Migrations
                         {
                             StaffId = 1,
                             DepId = 1,
+                            Email = "Test@123.com",
                             staff_DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             staff_address = "Somewhere in the big gray sky",
                             staff_avatar = "",
@@ -538,6 +586,15 @@ namespace COMP1640.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("COMP1640.Models.Admin", b =>
+                {
+                    b.HasOne("COMP1640.Models.Account", "Account")
+                        .WithMany("Admins")
+                        .HasForeignKey("Email");
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
@@ -568,10 +625,6 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
-                    b.HasOne("COMP1640.Models.Comment", null)
-                        .WithMany("Ideas")
-                        .HasForeignKey("CommentComId");
-
                     b.HasOne("COMP1640.Models.Staff", "Staff")
                         .WithMany("Ideas")
                         .HasForeignKey("StaffId")
@@ -589,15 +642,37 @@ namespace COMP1640.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("COMP1640.Models.QACoordinator", b =>
+                {
+                    b.HasOne("COMP1640.Models.Account", "account")
+                        .WithMany()
+                        .HasForeignKey("accountEmail");
+
+                    b.Navigation("account");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.QAManager", b =>
+                {
+                    b.HasOne("COMP1640.Models.Account", "Account")
+                        .WithMany("QAManagers")
+                        .HasForeignKey("Email");
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("COMP1640.Models.Staff", b =>
                 {
-                    b.HasOne("COMP1640.Models.Comment", null)
-                        .WithMany("Staffs")
-                        .HasForeignKey("CommentComId");
-
                     b.HasOne("COMP1640.Models.Department", "Department")
                         .WithMany("Staffs")
-                        .HasForeignKey("DepartmentDepId");
+                        .HasForeignKey("DepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("COMP1640.Models.Account", "Account")
+                        .WithMany("Staffs")
+                        .HasForeignKey("Email");
+
+                    b.Navigation("Account");
 
                     b.Navigation("Department");
                 });
@@ -653,9 +728,11 @@ namespace COMP1640.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("COMP1640.Models.Comment", b =>
+            modelBuilder.Entity("COMP1640.Models.Account", b =>
                 {
-                    b.Navigation("Ideas");
+                    b.Navigation("Admins");
+
+                    b.Navigation("QAManagers");
 
                     b.Navigation("Staffs");
                 });
