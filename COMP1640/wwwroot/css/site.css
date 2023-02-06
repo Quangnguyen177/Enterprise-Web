@@ -251,13 +251,14 @@ form .input_idea {
 .information_idea {
     background-color: var(--text-color);
     width: 600px;
-    height: 800px;
+    height: 390px;
     text-align: center;
     margin: 34px -17px;
     border-radius: 7px;
     padding-bottom: 200px;
     display: flex;
     padding-right: 20px;
+    transform: translate(-273px, 200px)
 }
 
 .avata_information_idea {
@@ -360,4 +361,8 @@ footer {
     width: 100%;
     position: relative;
     display: inline-block;
+}
+section{
+   width: 1520px;
+   margin-left: -200px;
 }
