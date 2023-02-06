@@ -17,8 +17,9 @@ ul {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     list-style: none;
     display: inline-block;
-    padding-left: 350px;
-    padding-top: 7px;
+    padding-left: 349.9px;
+    transform: translateX(20px);
+    padding-top: -40px;
     letter-spacing: 1.1px;
     text-decoration: none
 }
@@ -53,6 +54,7 @@ ul a:active {
     padding-right: 350px;
     font-weight: 600;
     color: darkslategray;
+    transform: translate(10px, -65px);
 }
 
 .logo img {
@@ -66,7 +68,7 @@ ul a:active {
 
 header {
     height: 60px;
-    display: block;
+    display: inline-block;
     background-color: var(--text-color);
     width: 1500px;
 }
@@ -84,21 +86,25 @@ nav li {
 nav {
     display: flex;
     justify-content: space-around;
-    margin-top: -50px;
-    margin-right: 50px;
+    margin-top: -46px;
+    margin-right: 200px;
 }
 
-
+/*
 input[type="search" i] {
     width: 300px;
-    height: 24px;
+    height: 34px;
     padding-left: 300px;
-}
+}*/
 
 .ul_icon {
     font-size: 20px;
     text-decoration: none;
     color: #373b3f;
+    transform: translate(0px, -65px);
+}
+dl, ol, ul {
+    transform: translate(930px, -108px);
 }
 
     .ul_icon:hover {
@@ -125,8 +131,37 @@ section {
     display: flex;
     padding-right: 20px;
 }
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    height: 32px;
+    transform: translate(930px, -46px);
+    display: inline-block;
 
-.avata_post img {
+}
+.form-control {
+    transform: translate(925px, -46px);
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    display: inline-block;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    transform: translate(928px, -75px);
+    display: inline-block;
+}
+    .avata_post img {
     width: 68px;
     height: 68px;
     border-radius: 50%;
@@ -141,7 +176,7 @@ section {
 .attachments ul {
     display: inline-block;
     /* transform: translateY(-30px); */
-    transform: translate(70px, 10px );
+    transform: translate(70px, 16px );
     width: 12px;
     height: 0.1px;
     margin-left: 30px;
@@ -152,7 +187,6 @@ section {
     justify-content: space-around;
     margin-left: -40px;
 }
-
 .post button {
     /* background-color: #9ABF4E;*/
     background-color: green;
@@ -162,7 +196,7 @@ section {
     height: 38px;
     border-radius: 5px;
     color: white;
-    transform: translate(-56px, -36px);
+    transform: translate(-56px, -32px);
 }
 /*.post button
 nav .avata_header img {
