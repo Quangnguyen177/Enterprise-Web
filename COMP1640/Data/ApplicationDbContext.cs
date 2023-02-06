@@ -23,6 +23,7 @@ namespace COMP1640
         public DbSet<Document> Documents { get; set; }
         public DbSet<QACoordinator> QACoordinators { get; set; }
         public DbSet<QAManager> QAManagers { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -45,6 +46,7 @@ namespace COMP1640
             SeedQACoordinator(builder);
 
             SeedQAManager(builder);
+            //SeedAccount(builder);
 
         }
 
@@ -58,6 +60,7 @@ namespace COMP1640
                     qam_gender= "male",
                     qam_name= "Duong",
                     qam_phone= "0293872618"
+                    
                 }
             );
         }
@@ -139,6 +142,17 @@ namespace COMP1640
                 }
             );
         }
+        //private void SeedAccount(ModelBuilder builder)
+        //{
+        //    builder.Entity<Account>().HasData(
+        //        new Account
+        //        {
+        //            Email = "admin@gmail.com",
+        //            Password = "admin1",
+        //            Role = "ADMIN"
+        //        }
+        //    );
+        //}
 
         private void SeedAdmin(ModelBuilder builder)
         {
@@ -148,7 +162,13 @@ namespace COMP1640
                     AdId = 1,
                     ad_email= "admin@gmail.com",
                     ad_name= "Truong",
-                    ad_phone= "0983337621"
+                    ad_phone= "0983337621",
+                    account = new Account
+                    {
+                        Email = "admin@gmail.com",
+                        Password = "admin1",
+                        Role = "ADMIN"
+                    }
                 }
             );
         }
@@ -182,5 +202,7 @@ namespace COMP1640
                 }
             );
         }
+
+        
     }
 }

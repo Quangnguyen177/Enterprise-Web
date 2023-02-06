@@ -10,5 +10,6 @@ namespace COMP1640.Models
         public string qac_phone { get;set;}
         public string qac_gender { get;set;}
         public string qac_email { get;set;}
+        public virtual Account account { get; set; }
     }
 }
