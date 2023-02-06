@@ -30,28 +30,45 @@ namespace COMP1640
             base.OnModelCreating(builder);
 
             // tam thoi
+
+            //70
             SeedStaff(builder);
 
+            //183
             SeedTag(builder);
 
+            //194
             SeedIdea(builder);
 
+            //161
             SeedAdmin(builder);
 
+            //124
             SeedComment(builder);
 
+            //113
             SeedDepartment(builder);
+
+            //100
             SeedDocument(builder);
 
+            //87
             SeedQACoordinator(builder);
 
+            //56
             SeedQAManager(builder);
-            //SeedAccount(builder);
+
+            //149
+            SeedAccount(builder);
 
         }
 
         private void SeedQAManager(ModelBuilder builder)
         {
+            builder.Entity<QAManager>()
+                .HasOne(x => x.Account)
+                .WithMany(y => y.QAManagers)
+                .HasForeignKey(z => z.Email);
             builder.Entity<QAManager>().HasData(
                 new QAManager
                 {
@@ -59,13 +76,25 @@ namespace COMP1640
                     qam_email= "qam@gmail.com",
                     qam_gender= "male",
                     qam_name= "Duong",
-                    qam_phone= "0293872618"
-                    
+                    qam_phone= "0293872618",
+                    Email = "qam@gmail.com"
                 }
             );
         }
+
         private void SeedStaff(ModelBuilder builder)
         {
+            builder.Entity<Staff>()
+                .HasOne(x => x.Department)
+                .WithMany(y => y.Staffs)
+                .HasForeignKey(z => z.DepId);
+            builder.Entity<Staff>()
+                .HasOne(x => x.Account)
+                .WithMany(y => y.Staffs)
+                .HasForeignKey(z => z.Email);
+
+            //.OnDelete(DeleteBehavior.ClientSetNull);
+
             builder.Entity<Staff>().HasData(
                 new Staff
                 {
@@ -77,10 +106,12 @@ namespace COMP1640
                     staff_gender = "Male",
                     staff_address = "Somewhere in the big gray sky",
                     staff_avatar = "",
-                    DepId= 1
+                    DepId= 1,
+                    Email = "Test@123.com"
                 }
             );
         }
+
         private void SeedQACoordinator(ModelBuilder builder)
         {
             builder.Entity<QACoordinator>().HasData(
@@ -110,6 +141,8 @@ namespace COMP1640
 
         private void SeedDepartment(ModelBuilder builder)
         {
+            builder.Entity<Department>()
+                .HasMany(x => x.Staffs);
             builder.Entity<Department>().HasData(
                 new Department
                 {
@@ -123,12 +156,12 @@ namespace COMP1640
         {
             builder.Entity<Comment>()
                 .HasOne(x => x.Staff)
-                .WithMany(x => x.Comments)
+                .WithMany(y => y.Comments)
                 .HasForeignKey(z => z.StaffId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
             builder.Entity<Comment>()
                 .HasOne(x => x.Idea)
-                .WithMany(x => x.Comments)
+                .WithMany(y => y.Comments)
                 .HasForeignKey(z => z.IdeaId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
             builder.Entity<Comment>().HasData(
@@ -142,33 +175,57 @@ namespace COMP1640
                 }
             );
         }
-        //private void SeedAccount(ModelBuilder builder)
-        //{
-        //    builder.Entity<Account>().HasData(
-        //        new Account
-        //        {
-        //            Email = "admin@gmail.com",
-        //            Password = "admin1",
-        //            Role = "ADMIN"
-        //        }
-        //    );
-        //}
+
+        private void SeedAccount(ModelBuilder builder)
+        {
+            builder.Entity<Account>()
+                .HasMany(x => x.Staffs);
+            builder.Entity<Account>()
+                .HasMany(x => x.Admins);
+            builder.Entity<Account>()
+                .HasMany(x => x.QAManagers);
+            builder.Entity<Account>().HasData(
+                new Account
+                {
+                    Email = "admin@gmail.com",
+                    Password = "admin1",
+                    Role = "ADMIN"
+                },
+                new Account
+                {
+                    Email = "Test@123.com",
+                    Password = "staff1",
+                    Role = "STAFF"
+                },
+                new Account
+                {
+                    Email = "qam@gmail.com",
+                    Password = "qam1",
+                    Role = "QAM"
+                }
+            );
+        }
 
         private void SeedAdmin(ModelBuilder builder)
         {
+            builder.Entity<Admin>()
+                .HasOne(x => x.Account)
+                .WithMany(y => y.Admins)
+                .HasForeignKey(z => z.Email);
             builder.Entity<Admin>().HasData(
                 new Admin
                 {
                     AdId = 1,
-                    ad_email= "admin@gmail.com",
-                    ad_name= "Truong",
-                    ad_phone= "0983337621",
-                    account = new Account
-                    {
-                        Email = "admin@gmail.com",
-                        Password = "admin1",
-                        Role = "ADMIN"
-                    }
+                    ad_email = "admin@gmail.com",
+                    ad_name = "Truong",
+                    ad_phone = "0983337621",
+                    Email = "admin@gmail.com"
+                    //Account = new Account
+                    //{
+                    //    Email = "admin@gmail.com",
+                    //    Password = "admin1",
+                    //    Role = "ADMIN"
+                    //}
                 }
             );
         }
@@ -188,7 +245,9 @@ namespace COMP1640
 
         private void SeedIdea(ModelBuilder builder)
         {
-            _ = builder.Entity<Idea>().HasData(
+            builder.Entity<Idea>()
+                .HasMany(x => x.Comments);
+            builder.Entity<Idea>().HasData(
                 new Idea
                 {
                     IdeaId = 1,

@@ -17,12 +17,12 @@ namespace COMP1640.Models
         public int StaffId { get; set; }
         public Staff Staff { get; set; }
 
-        // FK1: Idea Id
+        // FK2: Idea Id
         public int IdeaId { get; set; }
         public Idea Idea { get; set; }
 
         //------------------------
-        public ICollection<Staff> Staffs { get; set; }
-        public ICollection<Idea> Ideas { get; set; }
+        //public ICollection<Staff> Staffs { get; set; }
+        //public ICollection<Idea> Ideas { get; set; }
     }
 }
