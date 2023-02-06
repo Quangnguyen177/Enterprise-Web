@@ -24,13 +24,14 @@ namespace COMP1640.Models
 
         public string staff_avatar { get; set; }
 
+        //FK: Department ID
+        public int DepId { get; set; }
+        public Department Department { get; set; }
 
         //-------------------------
         public ICollection<Idea> Ideas { get; set; }
         public ICollection<Comment> Comments { get; set; }
 
-        //FK: Department ID
-        public int DepId { get; set; }
-        public Department Department { get; set; }
+        
     }
 }

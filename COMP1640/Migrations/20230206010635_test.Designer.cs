@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230205202912_testt")]
-    partial class testt
+    [Migration("20230206010635_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -146,6 +146,9 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CommentComId")
+                        .HasColumnType("int");
+
                     b.Property<int>("StaffId")
                         .HasColumnType("int");
 
@@ -165,6 +168,8 @@ namespace COMP1640.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdeaId");
+
+                    b.HasIndex("CommentComId");
 
                     b.HasIndex("StaffId");
 
@@ -258,6 +263,9 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CommentComId")
+                        .HasColumnType("int");
+
                     b.Property<int>("DepId")
                         .HasColumnType("int");
 
@@ -286,6 +294,8 @@ namespace COMP1640.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StaffId");
+
+                    b.HasIndex("CommentComId");
 
                     b.HasIndex("DepartmentDepId");
 
@@ -533,13 +543,11 @@ namespace COMP1640.Migrations
                     b.HasOne("COMP1640.Models.Idea", "Idea")
                         .WithMany("Comments")
                         .HasForeignKey("IdeaId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("COMP1640.Models.Staff", "Staff")
                         .WithMany("Comments")
                         .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Idea");
@@ -560,6 +568,10 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
+                    b.HasOne("COMP1640.Models.Comment", null)
+                        .WithMany("Ideas")
+                        .HasForeignKey("CommentComId");
+
                     b.HasOne("COMP1640.Models.Staff", "Staff")
                         .WithMany("Ideas")
                         .HasForeignKey("StaffId")
@@ -579,6 +591,10 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Staff", b =>
                 {
+                    b.HasOne("COMP1640.Models.Comment", null)
+                        .WithMany("Staffs")
+                        .HasForeignKey("CommentComId");
+
                     b.HasOne("COMP1640.Models.Department", "Department")
                         .WithMany("Staffs")
                         .HasForeignKey("DepartmentDepId");
@@ -635,6 +651,13 @@ namespace COMP1640.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Comment", b =>
+                {
+                    b.Navigation("Ideas");
+
+                    b.Navigation("Staffs");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Department", b =>

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
-    public partial class testt : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -226,33 +226,6 @@ namespace COMP1640.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Staffs",
-                columns: table => new
-                {
-                    StaffId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    staff_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_DoB = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    staff_gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    staff_avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DepId = table.Column<int>(type: "int", nullable: false),
-                    DepartmentDepId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Staffs", x => x.StaffId);
-                    table.ForeignKey(
-                        name: "FK_Staffs_Departments_DepartmentDepId",
-                        column: x => x.DepartmentDepId,
-                        principalTable: "Departments",
-                        principalColumn: "DepId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Ideas",
                 columns: table => new
                 {
@@ -263,49 +236,17 @@ namespace COMP1640.Migrations
                     first_closure = table.Column<DateTime>(type: "datetime2", nullable: true),
                     last_closure = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StaffId = table.Column<int>(type: "int", nullable: false),
-                    TagId = table.Column<int>(type: "int", nullable: false)
+                    TagId = table.Column<int>(type: "int", nullable: false),
+                    CommentComId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ideas", x => x.IdeaId);
                     table.ForeignKey(
-                        name: "FK_Ideas_Staffs_StaffId",
-                        column: x => x.StaffId,
-                        principalTable: "Staffs",
-                        principalColumn: "StaffId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Ideas_Tags_TagId",
                         column: x => x.TagId,
                         principalTable: "Tags",
                         principalColumn: "TagId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    ComId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    com_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffId = table.Column<int>(type: "int", nullable: false),
-                    IdeaId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.ComId);
-                    table.ForeignKey(
-                        name: "FK_Comments_Ideas_IdeaId",
-                        column: x => x.IdeaId,
-                        principalTable: "Ideas",
-                        principalColumn: "IdeaId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_Staffs_StaffId",
-                        column: x => x.StaffId,
-                        principalTable: "Staffs",
-                        principalColumn: "StaffId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -330,6 +271,61 @@ namespace COMP1640.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Staffs",
+                columns: table => new
+                {
+                    StaffId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    staff_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_DoB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    staff_gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    staff_avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DepId = table.Column<int>(type: "int", nullable: false),
+                    DepartmentDepId = table.Column<int>(type: "int", nullable: true),
+                    CommentComId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Staffs", x => x.StaffId);
+                    table.ForeignKey(
+                        name: "FK_Staffs_Departments_DepartmentDepId",
+                        column: x => x.DepartmentDepId,
+                        principalTable: "Departments",
+                        principalColumn: "DepId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    ComId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    com_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    IdeaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.ComId);
+                    table.ForeignKey(
+                        name: "FK_Comments_Ideas_IdeaId",
+                        column: x => x.IdeaId,
+                        principalTable: "Ideas",
+                        principalColumn: "IdeaId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Staffs_StaffId",
+                        column: x => x.StaffId,
+                        principalTable: "Staffs",
+                        principalColumn: "StaffId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Admins",
                 columns: new[] { "AdId", "ad_email", "ad_name", "ad_phone" },
@@ -352,8 +348,8 @@ namespace COMP1640.Migrations
 
             migrationBuilder.InsertData(
                 table: "Staffs",
-                columns: new[] { "StaffId", "DepId", "DepartmentDepId", "staff_DoB", "staff_address", "staff_avatar", "staff_email", "staff_gender", "staff_name", "staff_phone" },
-                values: new object[] { 1, 1, null, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Somewhere in the big gray sky", "", "Test@123.com", "Male", "Test", "0329226528" });
+                columns: new[] { "StaffId", "CommentComId", "DepId", "DepartmentDepId", "staff_DoB", "staff_address", "staff_avatar", "staff_email", "staff_gender", "staff_name", "staff_phone" },
+                values: new object[] { 1, null, 1, null, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Somewhere in the big gray sky", "", "Test@123.com", "Male", "Test", "0329226528" });
 
             migrationBuilder.InsertData(
                 table: "Tags",
@@ -362,8 +358,8 @@ namespace COMP1640.Migrations
 
             migrationBuilder.InsertData(
                 table: "Ideas",
-                columns: new[] { "IdeaId", "StaffId", "TagId", "first_closure", "idea_content", "idea_title", "last_closure" },
-                values: new object[] { 1, 1, 1, null, "This is a Test", "Test", null });
+                columns: new[] { "IdeaId", "CommentComId", "StaffId", "TagId", "first_closure", "idea_content", "idea_title", "last_closure" },
+                values: new object[] { 1, null, 1, 1, null, "This is a Test", "Test", null });
 
             migrationBuilder.InsertData(
                 table: "Comments",
@@ -430,6 +426,11 @@ namespace COMP1640.Migrations
                 column: "IdeaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ideas_CommentComId",
+                table: "Ideas",
+                column: "CommentComId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Ideas_StaffId",
                 table: "Ideas",
                 column: "StaffId");
@@ -440,13 +441,50 @@ namespace COMP1640.Migrations
                 column: "TagId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Staffs_CommentComId",
+                table: "Staffs",
+                column: "CommentComId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Staffs_DepartmentDepId",
                 table: "Staffs",
                 column: "DepartmentDepId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Ideas_Comments_CommentComId",
+                table: "Ideas",
+                column: "CommentComId",
+                principalTable: "Comments",
+                principalColumn: "ComId",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Ideas_Staffs_StaffId",
+                table: "Ideas",
+                column: "StaffId",
+                principalTable: "Staffs",
+                principalColumn: "StaffId",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Staffs_Comments_CommentComId",
+                table: "Staffs",
+                column: "CommentComId",
+                principalTable: "Comments",
+                principalColumn: "ComId",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comments_Ideas_IdeaId",
+                table: "Comments");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comments_Staffs_StaffId",
+                table: "Comments");
+
             migrationBuilder.DropTable(
                 name: "Admins");
 
@@ -464,9 +502,6 @@ namespace COMP1640.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Documents");
@@ -487,10 +522,13 @@ namespace COMP1640.Migrations
                 name: "Ideas");
 
             migrationBuilder.DropTable(
+                name: "Tags");
+
+            migrationBuilder.DropTable(
                 name: "Staffs");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Departments");

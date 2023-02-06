@@ -118,13 +118,23 @@ namespace COMP1640
 
         private void SeedComment(ModelBuilder builder)
         {
+            builder.Entity<Comment>()
+                .HasOne(x => x.Staff)
+                .WithMany(x => x.Comments)
+                .HasForeignKey(z => z.StaffId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            builder.Entity<Comment>()
+                .HasOne(x => x.Idea)
+                .WithMany(x => x.Comments)
+                .HasForeignKey(z => z.IdeaId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             builder.Entity<Comment>().HasData(
                 new Comment
                 {
                     ComId = 1,
-                    StaffId= 1,
-                    IdeaId= 1,
-                    com_content ="This is a great idea",
+                    StaffId = 1,
+                    IdeaId = 1,
+                    com_content = "This is a great idea",
                     //created_date null
                 }
             );
