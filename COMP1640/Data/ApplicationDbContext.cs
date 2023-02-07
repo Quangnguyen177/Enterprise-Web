@@ -177,7 +177,7 @@ namespace COMP1640
                     IdeaId = 1,
                     com_content = "This is a great idea",
                     //created_date null
-                    com_anomymous = false
+                    com_anonymous = false
                 }
             );
         }
@@ -266,7 +266,7 @@ namespace COMP1640
                     //created_date = ,
                     //first_closure = ,
                     //last_closure = ,
-                    idea_anomymous = false
+                    idea_anonymous = false
                 }
             );
         }
