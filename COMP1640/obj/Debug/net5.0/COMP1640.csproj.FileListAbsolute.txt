@@ -1593,3 +1593,7 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SignUp.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs
+C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
+C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SignUp.cshtml.g.cs
+C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs
