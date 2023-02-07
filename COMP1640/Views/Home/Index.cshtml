@@ -1,4 +1,8 @@
-﻿ <section>
+﻿@{
+    Layout = "_Layout";
+}
+
+<section>
     <div class="section_container">
         <div class="container">
             <div class="row">
@@ -35,7 +39,7 @@
                                             <div class="avata_post">
                                                 <figure>
                                                     <img src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                                            alt="" />
+                                                         alt="" />
                                                 </figure>
                                             </div>
 
@@ -54,71 +58,77 @@
                                             </form>
                                         </div>
                                     </div>
-                                      <div class="central-meta new-post">
-                                                    <div class="information_idea">
-                                                        <div class="detail_idea">
-                                                            <div class="avata_information_idea">
-                                                                <figure>
-                                                                    <a asp-action="index" asp-controller="HTML">
-                                                                        <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                                                             alt="avata" />
-                                                                        <div class="name_account">
-                                                                            <h4 style="font-size: 14px; font-weight:800; letter-spacing: 1.1px; padding-top: -600px; width: 230px">Minh Lưu Thị</h4>
-                                                                        </div>
-                                                                    </a>
-                                                                </figure>
+                                    <div class="central-meta new-post">
+                                        <div class="information_idea">
+                                            <div class="detail_idea">
+                                                <div class="avata_information_idea">
+                                                    <figure>
+                                                        <a asp-action="index" asp-controller="HTML">
+                                                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
+                                                                 alt="avata" />
+                                                            <div class="name_account">
+                                                                <h4 style="font-size: 14px; font-weight:800; letter-spacing: 1.1px; padding-top: -600px; width: 230px">Minh Lưu Thị</h4>
+                                                            </div>
+                                                        </a>
+                                                    </figure>
+                                                </div>
 
-                                                            </div>
-                                                            <div class="content">
-                                                                <div class="img_idea">
-                                                                    @*    <h1 class="Title">@ViewBag.Title</h1>*@
-                                                                    <h1 style="text-align: left;margin-top: -40px; padding: 10px; font-size: 14px" class="Title">Spring is wonderful</h1>
-                                                                    <h1 class="Tag">@ViewBag.Tag</h1>
-                                                                    <div class="image_idea">
-                                                                        <img style="width: 450px; height: 251px; display: block" src="http://cdn.reatimes.vn/mediav2/media_old/upload/3GgKYQB7Ou7S2zd4qk3WXA/files/2020/M%C3%B9a%20%C4%91%C3%A1%20%C4%91%C6%A1m%20b%C3%B4ng/%E1%BA%A2nh%20ti%C3%AAu%20%C4%91%E1%BB%81.JPG"
-                                                                             title="Image_idea" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="felling">
-                                                                <ul class="felling_idea">
-                                                                    <li><i style="color:green" class="fa-solid fa-heart"></i></li>
-                                                                    <li><i style="color:green" class="fa-regular fa-heart"></i></li>
-                                                                </ul>
-                                                            </div>
+                                                <div class="content">
+                                                    <div class="img_idea">
+                                                        <h1 style="text-align: left;margin-top: -40px; padding: 10px; font-size: 14px" class="Title">Spring is wonderful</h1>
+                                                        <h1 class="Tag">@ViewBag.Tag</h1>
+                                                        <div class="image_idea">
+                                                            <img style="width: 450px; height: 251px" src="http://cdn.reatimes.vn/mediav2/media_old/upload/3GgKYQB7Ou7S2zd4qk3WXA/files/2020/M%C3%B9a%20%C4%91%C3%A1%20%C4%91%C6%A1m%20b%C3%B4ng/%E1%BA%A2nh%20ti%C3%AAu%20%C4%91%E1%BB%81.JPG"
+                                                                 title="Image_idea" />
                                                         </div>
-                                                       @* <div class="comment_idea">
-                                                            <div class="com_idea_avata">
-                                                                <figure class="avata_comment">
-                                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                                                         alt="avata" />
-                                                                </figure>
-                                                            </div>
-                                                            <div class="form_comment">
-                                                            </div>
-                                                        </div>*@
                                                     </div>
                                                 </div>
 
-                                      </div>
+                                                <div class="felling">
+                                                    <ul class="felling_idea">
+                                                        <li><i style="color:green" class="fa-solid fa-heart"></i></li>
+                                                        <li><i style="color:green" class="fa-regular fa-heart"></i></li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="comment_idea">
+
+                                                <div class="com_idea_avata">
+                                                    <figure class="avata_comment">
+                                                        <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
+                                                             alt="avata" />
+                                                    </figure>
+                                                </div>
+
+                                                <div class="form_comment">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-lg-3">
                             <aside class="QC">
-                            <div class="QC_aside">
-                                <div class="col-lg-3">
-                                    <img src="https://target.scene7.com/is/image/Target/GUEST_607f5128-b2f4-4645-886f-1401c82a742b?wid=488&hei=488&fmt=pjpeg" title="QC" />
+                                <div class="QC_aside">
+                                    <div class="col-lg-3">
+                                        <img src="https://target.scene7.com/is/image/Target/GUEST_607f5128-b2f4-4645-886f-1401c82a742b?wid=488&hei=488&fmt=pjpeg" title="QC" />
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-3">
+                                        <img src="https://thumbs.dreamstime.com/b/smiling-young-man-blank-white-t-shirt-design-education-school-advertising-people-concept-over-green-board-44074794.jpg"
+                                             title="QC" />
+                                    </div>
                                 </div>
-                                <br>
-                                <div class="col-lg-3">
-                                    <img src="https://thumbs.dreamstime.com/b/smiling-young-man-blank-white-t-shirt-design-education-school-advertising-people-concept-over-green-board-44074794.jpg"
-                                            title="QC" />
-                                </div>
-                            </div>
                             </aside>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- </section>
+</section>

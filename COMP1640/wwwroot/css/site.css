@@ -296,7 +296,12 @@ form .input_idea {
     border-radius: 7px;
     margin-bottom: 171px;
 }
-
+/*dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    transform: translate(10px, 10px);
+}
+*/
 section h4 {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     color: #424242;
