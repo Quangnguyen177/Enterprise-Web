@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
+    "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
   },
   "projects": {
-    "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
+    "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "projectUniqueName": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
         "projectName": "COMP1640",
-        "projectPath": "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\GitHub\\Enterprise-Web\\COMP1640\\obj\\",
+        "projectPath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
