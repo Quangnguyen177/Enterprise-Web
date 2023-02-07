@@ -366,3 +366,9 @@ section{
    width: 1520px;
    margin-left: -200px;
 }
+
+@media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+    }
+}

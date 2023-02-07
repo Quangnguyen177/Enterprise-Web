@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta character="utl-f8">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/1e27f03b11.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Admin site</title>
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="logo">
+                <a asp-action="" asp-controller="">
+                    <img src="/images/Logo_Admin.png"/>
+                </a>
+
+                <div class="search">
+                    <form asp-controller="Book" asp-action="Search" method="POST">
+                        <div class="input-group">
+                            <div class="form-outline">
+                                <input style="width: 250px; height: 32.5px; border-radius: 5px" type="search" id="form1" class="form-control" />
+                                <label class="form-label" for="form1">Search</label>
+                            </div>
+                            <button type="button" class="btn btn-outline-success">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <nav id="nav_bar" class="res-menu">
+                    <ul class="ul_icon">
+                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Home</a></li>
+                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Tags</a></li>
+                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Idea</a></li>
+                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="SignUp" asp-controller="Admin">Sign up</a></li>
+                    </ul>
+
+                    <ul class="menu icon">
+                        <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-house"></i></a></li>
+                        <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-regular fa-face-grin-tongue"></i></a></li>
+                        <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-check"></i></a></li>  &nbsp &nbsp
+                        <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-user"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+</body>
+</html>
+                
