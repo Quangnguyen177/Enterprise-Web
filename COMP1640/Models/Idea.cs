@@ -16,13 +16,15 @@ namespace COMP1640.Models
         public string idea_content { get; set; }
 
         [DataType(DataType.Date)] 
-        public Nullable<DateTime> created_date { get;}
+        public Nullable<DateTime> created_date { get; set; }
 
         [DataType(DataType.Date)]
         public Nullable<DateTime> first_closure { get; set; }
 
         [DataType(DataType.Date)]
         public Nullable<DateTime> last_closure { get; set; }
+
+        public Boolean idea_anonymous { get; set; }
 
         // FK1: Staff id
         public int StaffId { get; set; }
@@ -35,10 +37,6 @@ namespace COMP1640.Models
         //---------------
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Document> Documents { get; set; }
-
-        // FK2: Comment id ???
-        //public int cmt_id { get; set; }
-        //public Comment Comments { get; set; }
 
     }
 }

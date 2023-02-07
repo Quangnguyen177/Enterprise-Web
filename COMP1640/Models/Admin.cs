@@ -10,12 +10,10 @@ namespace COMP1640.Models
         public string ad_name { get; set; }
         public string ad_phone { get; set; }
         public string ad_email { get; set;}
-        //public virtual Account account { get; set; }
 
-        //FK1: Account ID --> Email??
-        public string Email { get; set; }
+        //FK1: Account ID
+        public string Username { get; set; }
         public Account Account { get; set; }
 
-        //public ICollection<Account> Accounts { get; set; }
     }
 }

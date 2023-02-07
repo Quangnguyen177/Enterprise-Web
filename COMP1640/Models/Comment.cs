@@ -10,8 +10,11 @@ namespace COMP1640.Models
         [Key]
         public int ComId { get; set; }
         public string com_content { get; set; }
+
         [DataType(DataType.Date)]
         public Nullable<DateTime> created_date { get; }
+
+        public Boolean com_anonymous { get; set; }
 
         // FK1: Staff id
         public int StaffId { get; set; }

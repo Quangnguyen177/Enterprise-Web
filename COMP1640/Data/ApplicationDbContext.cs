@@ -68,7 +68,7 @@ namespace COMP1640
             builder.Entity<QAManager>()
                 .HasOne(x => x.Account)
                 .WithMany(y => y.QAManagers)
-                .HasForeignKey(z => z.Email);
+                .HasForeignKey(z => z.Username);
             builder.Entity<QAManager>().HasData(
                 new QAManager
                 {
@@ -77,7 +77,7 @@ namespace COMP1640
                     qam_gender= "male",
                     qam_name= "Duong",
                     qam_phone= "0293872618",
-                    Email = "qam@gmail.com"
+                    Username = "qam@gmail.com"
                 }
             );
         }
@@ -91,7 +91,7 @@ namespace COMP1640
             builder.Entity<Staff>()
                 .HasOne(x => x.Account)
                 .WithMany(y => y.Staffs)
-                .HasForeignKey(z => z.Email);
+                .HasForeignKey(z => z.Username);
 
             //.OnDelete(DeleteBehavior.ClientSetNull);
 
@@ -107,13 +107,17 @@ namespace COMP1640
                     staff_address = "Somewhere in the big gray sky",
                     staff_avatar = "",
                     DepId= 1,
-                    Email = "Test@123.com"
+                    Username = "Test@123.com"
                 }
             );
         }
 
         private void SeedQACoordinator(ModelBuilder builder)
         {
+            builder.Entity<QACoordinator>()
+                .HasOne(x => x.Account)
+                .WithMany(y => y.QACoordinators)
+                .HasForeignKey(z => z.Username);
             builder.Entity<QACoordinator>().HasData(
                 new QACoordinator
                 {
@@ -121,7 +125,8 @@ namespace COMP1640
                     qac_email= "qac@gmail.com",
                     qac_gender= "female",
                     qac_name= "Duc",
-                    qac_phone= "0927652226"
+                    qac_phone= "0927652226",
+                    Username = "qac@gmail.com"
                 }
             );
         }
@@ -172,6 +177,7 @@ namespace COMP1640
                     IdeaId = 1,
                     com_content = "This is a great idea",
                     //created_date null
+                    com_anomymous = false
                 }
             );
         }
@@ -184,24 +190,32 @@ namespace COMP1640
                 .HasMany(x => x.Admins);
             builder.Entity<Account>()
                 .HasMany(x => x.QAManagers);
+            builder.Entity<Account>()
+                .HasMany(x => x.QACoordinators);
             builder.Entity<Account>().HasData(
                 new Account
                 {
-                    Email = "admin@gmail.com",
-                    Password = "admin1",
-                    Role = "ADMIN"
+                    Username = "admin@gmail.com",
+                    password = "admin1",
+                    role = "ADMIN"
                 },
                 new Account
                 {
-                    Email = "Test@123.com",
-                    Password = "staff1",
-                    Role = "STAFF"
+                    Username = "Test@123.com",
+                    password = "staff1",
+                    role = "STAFF"
                 },
                 new Account
                 {
-                    Email = "qam@gmail.com",
-                    Password = "qam1",
-                    Role = "QAM"
+                    Username = "qam@gmail.com",
+                    password = "qam1",
+                    role = "QAM"
+                },
+                new Account
+                {
+                    Username = "qac@gmail.com",
+                    password = "qac1",
+                    role = "QAC"
                 }
             );
         }
@@ -211,7 +225,7 @@ namespace COMP1640
             builder.Entity<Admin>()
                 .HasOne(x => x.Account)
                 .WithMany(y => y.Admins)
-                .HasForeignKey(z => z.Email);
+                .HasForeignKey(z => z.Username);
             builder.Entity<Admin>().HasData(
                 new Admin
                 {
@@ -219,13 +233,7 @@ namespace COMP1640
                     ad_email = "admin@gmail.com",
                     ad_name = "Truong",
                     ad_phone = "0983337621",
-                    Email = "admin@gmail.com"
-                    //Account = new Account
-                    //{
-                    //    Email = "admin@gmail.com",
-                    //    Password = "admin1",
-                    //    Role = "ADMIN"
-                    //}
+                    Username = "admin@gmail.com"
                 }
             );
         }
@@ -255,9 +263,10 @@ namespace COMP1640
                     TagId = 1,
                     idea_title = "Test",
                     idea_content = "This is a Test",
+                    //created_date = ,
                     //first_closure = ,
                     //last_closure = ,
-                    //created_date
+                    idea_anomymous = false
                 }
             );
         }

@@ -11,10 +11,9 @@ namespace COMP1640.Models
         public string qam_email { get; set;}
         public string qam_gender { get; set;}
 
-        //FK2: Account ID --> Email??
-        public string Email { get; set; }
+        //FK: Account ID
+        public string Username { get; set; }
         public Account Account { get; set; }
 
-        //public virtual Account account { get; set; }
     }
 }

@@ -1597,3 +1597,7 @@ C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard
 C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SignUp.cshtml.g.cs
 C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
 C:\Comp1640\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SignUp.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs

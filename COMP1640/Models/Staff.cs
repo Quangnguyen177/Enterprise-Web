@@ -28,14 +28,13 @@ namespace COMP1640.Models
         public int DepId { get; set; }
         public Department Department { get; set; }
 
-        //FK2: Account ID --> Email??
-        public string Email { get; set; }
+        //FK2: Account ID
+        public string Username { get; set; }
         public Account Account { get; set; }
 
         //-------------------------
         public ICollection<Idea> Ideas { get; set; }
         public ICollection<Comment> Comments { get; set; }
 
-        //public virtual Account account { get; set; }
     }
 }
