@@ -104,7 +104,7 @@ input[type="search" i] {
     transform: translate(0px, -65px);
 }
 dl, ol, ul {
-    transform: translate(930px, -108px);
+    transform: translate(930px, -260px);
 }
 
     .ul_icon:hover {
@@ -368,12 +368,12 @@ footer {
     display: inline-block;
 }
 section{
-   width: 1520px;
+   width: 1700px;
    margin-left: -200px;
 }
-
-@media (min-width: 1025px) {
+/*@media (min-width: 1025px) {
     .h-custom {
         height: 100vh !important;
     }
-}
+}*/
+
