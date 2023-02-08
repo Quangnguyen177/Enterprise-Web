@@ -118,6 +118,7 @@ section {
     padding: 33px 60px;
     padding-bottom: 10px;
     background-color: #f4f2f2;
+    height: 2000px;
 }
 
 .new_idea .post {
@@ -251,14 +252,13 @@ form .input_idea {
 .information_idea {
     background-color: var(--text-color);
     width: 600px;
-    height: 390px;
-    text-align: center;
+    height: 690px;
+    /*text-align: center;*/
     margin: 34px -17px;
     border-radius: 7px;
     padding-bottom: 200px;
     display: flex;
     padding-right: 20px;
-    transform: translate(-273px, 200px)
 }
 
 .avata_information_idea {
@@ -277,16 +277,15 @@ form .input_idea {
 
 .information_idea .name_account {
     margin-left: 0px;
-    margin-top: -50px;
+    margin-top: -53px;
 }
-
-.widget {
-    display: block;
-    background-color: var(--text-color);
-    height: 320px;
-    width: 300px;
-    border-radius: 7px;
-}
+    .widget {
+        display: block;
+        background-color: var(--text-color);
+        height: 320px;
+        width: 300px;
+        border-radius: 7px;
+    }
 
 .idea {
     display: block;
@@ -295,6 +294,7 @@ form .input_idea {
     width: 300px;
     border-radius: 7px;
     margin-bottom: 171px;
+    position: static;
 }
 /*dl, ol, ul {
     margin-top: 0;
@@ -314,11 +314,12 @@ section h4 {
     text-transform: capitalize;
     width: 100%;
 }
+/*section h4*/
 
-/*  section h4:hover {
-        background-color: chartreuse;
+  section h4:hover {
+        color: ;
     }
-*/
+
 .Shortcuts {
     display: inline-block;
     list-style: outside none none;
