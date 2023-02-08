@@ -2019,3 +2019,4 @@ D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genrunt
 D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\AddIdea.cshtml.g.cs
 >>>>>>> d34b4cb8bca931b9c5020df775be68347dfd750d
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\AddIdea.cshtml.g.cs
