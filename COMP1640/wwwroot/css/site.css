@@ -371,9 +371,19 @@ section{
    width: 1700px;
    margin-left: -200px;
 }
-/*@media (min-width: 1025px) {
-    .h-custom {
-        height: 100vh !important;
-    }
-}*/
+
+/*Create idea post*/
+
+.modal-dialog {
+    max-width:none;
+}
+
+.form-group {
+    width: 1000px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
