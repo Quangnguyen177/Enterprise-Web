@@ -1601,3 +1601,11 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.c
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SignUp.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SignUp.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\PostIdea.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Index.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddTag.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\EditTag.cshtml.g.cs
