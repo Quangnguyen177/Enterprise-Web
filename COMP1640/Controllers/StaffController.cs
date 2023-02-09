@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace COMP1640.Controllers
 {
     public class StaffController : Controller
@@ -14,12 +13,14 @@ namespace COMP1640.Controllers
         {
             Db = context;
         }
+
         [HttpGet]
         public IActionResult AddIdea()
         {
             
             return View(Db.Tags.ToList());
         }
+
         [HttpPost]
         public async Task<IActionResult> AddIdea(string title, string content, string tagName, string isAnonymous)
         {
