@@ -2012,3 +2012,5 @@ D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\AddIdea.cshtml.g.cs
+D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Comment.cshtml.g.cs
+D:\Enterprise-Web-main\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\EditIdea.cshtml.g.cs
