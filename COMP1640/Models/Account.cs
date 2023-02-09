@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
 namespace COMP1640.Models
 {
     public class Account
@@ -7,12 +9,13 @@ namespace COMP1640.Models
 
         [Key]
         public string Username { get; set; }
-        //[Required]
-        [StringLength(100)]
-        public string password { get; set; }
-        //[Required]
+
         [StringLength(50)]
-        public string role { get; set; }
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Please choose an account role")]
+        [StringLength(50)]
+        public string Role { get; set; }
 
         //------------------------
         public ICollection<Staff> Staffs { get; set; }

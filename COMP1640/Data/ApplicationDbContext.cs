@@ -196,26 +196,26 @@ namespace COMP1640
                 new Account
                 {
                     Username = "admin@gmail.com",
-                    password = "admin1",
-                    role = "ADMIN"
+                    Password = "admin1",
+                    Role = "ADMIN"
                 },
                 new Account
                 {
                     Username = "Test@123.com",
-                    password = "staff1",
-                    role = "STAFF"
+                    Password = "staff1",
+                    Role = "STAFF"
                 },
                 new Account
                 {
                     Username = "qam@gmail.com",
-                    password = "qam1",
-                    role = "QAM"
+                    Password = "qam1",
+                    Role = "QAM"
                 },
                 new Account
                 {
                     Username = "qac@gmail.com",
-                    password = "qac1",
-                    role = "QAC"
+                    Password = "qac1",
+                    Role = "QAC"
                 }
             );
         }

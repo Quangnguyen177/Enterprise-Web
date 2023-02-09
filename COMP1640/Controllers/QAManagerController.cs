@@ -7,8 +7,6 @@ namespace COMP1640.Controllers
     public class QAManagerController : Controller
     {
         private readonly ApplicationDbContext context;
-
-
         public QAManagerController(ApplicationDbContext context)
         {
             this.context = context;
