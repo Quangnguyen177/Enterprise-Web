@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://kit.fontawesome.com/1e27f03b11.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
     <title>Spring</title>
+
+    <script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown()
+        });
+    </script>
 </head>
 
 <body>
@@ -18,23 +28,23 @@
                     <img style="display: inline-block;" src="/images/logo.jpg"
                          width="100px" />
                 </a>
-           @* </div>
-            <div class="header_search">*@
-            <div class="search">
-                <form asp-controller="Book" asp-action="Search" method="POST">
-                    <div class="input-group">
-                        <div class="form-outline">
-                            <input style="width: 250px; height: 32.5px; border-radius: 5px" type="search" id="form1" class="form-control" />
-                            <label class="form-label" for="form1">Search</label>
+                @* </div>
+                <div class="header_search">*@
+                <div class="search">
+                    <form asp-controller="Book" asp-action="Search" method="POST">
+                        <div class="input-group">
+                            <div class="form-outline">
+                                <input style="width: 250px; height: 32.5px; border-radius: 5px" type="search" id="form1" class="form-control" />
+                                <label class="form-label" for="form1">Search</label>
+                            </div>
+                            <button type="button" class="btn btn-outline-success">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-outline-success">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-            </div>
-       
+
             <nav id="nav_bar" class="res-menu">
                 <ul class="ul_icon">
                     <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Home</a></li>
@@ -48,64 +58,64 @@
                     <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-user"></i></a></li>
                 </ul>
             </nav>
-       
+
             @*   <div class="avata_header">
-                <figure>
-                <img style="display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                alt="avata" />
-                </figure>
+            <figure>
+            <img style="display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
+            alt="avata" />
+            </figure>
             </div>*@
-    </header>
-   
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        </header>
 
-    @* <footer class="border-top footer text-muted">
-    <div class="footer">
-    <div class="FTInfor">
-    <div class="aboutus">
-    <h3>About us</h3>
-    <p>
-    The official and only website of Mixishop.
-    <br>
-    Currently, we only accept orders on the website, not anywhere else!
-    <br>
-    <br>
-    Thanks !!!
-    </p>
-    </div>
-    <div class="listproduct">
-    <h3>List product</h3>
-    <ul>
-    <li>Romantic</li>
-    <li>Finction</li>
-    <li>Kid</li>
-    <li>Tecnology</li>
-    </ul>
-    </div>
-    <div class="information">
-    <h3>Information</h3>
-    <ul>
-    <li>Introduction</li>
-    <li>Privacy Policy</li>
-    <li>Rules</li>
-    <li>Sitemap</li>
-    </ul>
-    </div>
-    <div class="support">
-    <h3>Support</h3>
-    <p>For any questions and suggestions <br> Please contact +84 126 874 829</p>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
-    </div>
-    </div>
-    </div>
-    </footer>*@
-    @*  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)*@
+        @* <footer class="border-top footer text-muted">
+        <div class="footer">
+        <div class="FTInfor">
+        <div class="aboutus">
+        <h3>About us</h3>
+        <p>
+        The official and only website of Mixishop.
+        <br>
+        Currently, we only accept orders on the website, not anywhere else!
+        <br>
+        <br>
+        Thanks !!!
+        </p>
+        </div>
+        <div class="listproduct">
+        <h3>List product</h3>
+        <ul>
+        <li>Romantic</li>
+        <li>Finction</li>
+        <li>Kid</li>
+        <li>Tecnology</li>
+        </ul>
+        </div>
+        <div class="information">
+        <h3>Information</h3>
+        <ul>
+        <li>Introduction</li>
+        <li>Privacy Policy</li>
+        <li>Rules</li>
+        <li>Sitemap</li>
+        </ul>
+        </div>
+        <div class="support">
+        <h3>Support</h3>
+        <p>For any questions and suggestions <br> Please contact +84 126 874 829</p>
+
+        </div>
+        </div>
+        </div>
+        </footer>*@
+        @*  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)*@
 </body>
 </html>
