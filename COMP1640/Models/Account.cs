@@ -8,13 +8,14 @@ namespace COMP1640.Models
     {
 
         [Key]
+        [Required(ErrorMessage = "Username is missing")]
         public string Username { get; set; }
 
-        [StringLength(50)]
+        [Required(ErrorMessage = "Password is missing")]
+        [StringLength(30)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please choose an account role")]
-        [StringLength(50)]
         public string Role { get; set; }
 
         //------------------------

@@ -7025,11 +7025,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+      "projectUniqueName": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
       "projectName": "COMP1640",
-      "projectPath": "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+      "projectPath": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\GitHub\\Enterprise-Web\\COMP1640\\obj\\",
+      "outputPath": "G:\\Git\\Enterprise-Web\\COMP1640\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7104,7 +7104,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

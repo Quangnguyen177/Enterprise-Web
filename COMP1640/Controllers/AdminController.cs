@@ -12,6 +12,7 @@ namespace COMP1640.Controllers
             this.context = context;
         }
 
+        [Route("/Admin/")]
         public IActionResult Dashboard()
         {
             return View();
