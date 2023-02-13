@@ -325,3 +325,51 @@ aside img {
     margin-left: 30px;
 }
 
+<<<<<<< HEAD
+=======
+aside.col-md-3 {
+    width: 300px;
+    height: 300px;
+}
+
+footer ul li {
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+footer {
+    display: inline-block;
+    background: #fff;
+    float: left;
+    padding: 75px 0;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+section{
+   width: 1700px;
+   margin-left: -200px;
+}
+
+/*Create idea post*/
+
+.modal-dialog {
+    max-width:none;
+}
+
+.form-group {
+    width: 1000px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*Radio*/
+
+
+>>>>>>> c438759892c8110a11c70c7a19eff0312148e939
