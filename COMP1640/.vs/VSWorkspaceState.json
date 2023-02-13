@@ -2,7 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Views",
-    "\\Views\\Home"
+    "\\Views\\Home",
+    "\\Views\\Shared",
+    "\\wwwroot",
+    "\\wwwroot\\css"
   ],
   "SelectedNode": "\\COMP1640.sln",
   "PreviewInSolutionExplorer": false
