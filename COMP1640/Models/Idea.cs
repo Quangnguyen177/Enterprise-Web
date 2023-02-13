@@ -26,6 +26,8 @@ namespace COMP1640.Models
 
         public Boolean idea_anonymous { get; set; }
 
+        public int Ipoint { get; set; }
+
         // FK1: Staff id
         public int StaffId { get; set; }
         public Staff Staff { get; set; }
