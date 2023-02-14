@@ -15,6 +15,7 @@ namespace COMP1640.Controllers
             this.context = context;
         }
 
+        [Route("/Login")]
         [HttpGet]
         public IActionResult Login()
         {
@@ -40,7 +41,7 @@ namespace COMP1640.Controllers
                         case "ADMIN":
                             //gan session "id" = id cua admin
                             HttpContext.Session.SetInt32("ID", context.Admins.FirstOrDefault(a => a.Username.Equals(username)).AdId);                          
-                            return RedirectToAction("Index", "Admin");
+                            return RedirectToAction("Dashboard", "Admin");
 
                         case "QAC":
                             //gan session "id" = id cua QAC

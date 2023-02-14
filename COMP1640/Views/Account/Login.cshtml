@@ -1,0 +1,36 @@
+﻿@model COMP1640.Models.Account
+
+@{
+    Layout = "_LayoutCreateAccount";
+}
+
+
+<h2 class="text-uppercase text-center mb-5">Creating<br /><b>New Account</b></h2>
+
+<form method="post" asp-controller="Account" asp-action="Login">
+    <div class="form-group">
+        <input type="text" class="form-control form-control-lg"
+               asp-for="@Model.Username" placeholder="Username" />
+        <span class="text-danger" asp-validation-for="@Model.Username"></span>
+    </div>
+
+    <br />
+
+    <br />
+
+    <div class="form-group">
+        <input type="text" class="form-control form-control-lg"
+               asp-for="@Model.Password" placeholder="Password" />
+        <span class="text-danger" asp-validation-for="@Model.Password"></span>
+    </div>
+
+    <br />
+
+    <br />
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-danger" value="Login" />
+        @*<a class="btn btn-success" asp-controller="Account" asp-action="Dashboard">Cancel</a>*@
+    </div>
+
+</form>
