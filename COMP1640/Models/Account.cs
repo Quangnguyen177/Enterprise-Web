@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
@@ -18,10 +19,8 @@ namespace COMP1640.Models
         [Required(ErrorMessage = "Please choose an account role")]
         public string Role { get; set; }
 
+        
+
         //------------------------
-        public ICollection<Staff> Staffs { get; set; }
-        public ICollection<Admin> Admins { get; set; }
-        public ICollection<QAManager> QAManagers { get; set; }
-        public ICollection<QACoordinator> QACoordinators { get; set; }
     }
 }

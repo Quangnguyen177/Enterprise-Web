@@ -29,8 +29,8 @@ namespace COMP1640.Models
         public int Ipoint { get; set; }
 
         // FK1: Staff id
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
+        public int ProfileId { get; set; }
+        public Profile Profile { get; set; }
 
         // FK2: Tag id
         public int TagId { get; set; }

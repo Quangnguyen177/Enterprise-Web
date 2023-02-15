@@ -17,8 +17,8 @@ namespace COMP1640.Models
         public Boolean com_anonymous { get; set; }
 
         // FK1: Staff id
-        public int StaffId { get; set; }
-        public Staff Staff { get; set; }
+        public int ProfileId { get; set; }
+        public Profile Profile { get; set; }
 
         // FK2: Idea Id
         public int IdeaId { get; set; }

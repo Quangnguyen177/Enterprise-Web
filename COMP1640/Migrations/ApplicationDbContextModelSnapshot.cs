@@ -36,68 +36,6 @@ namespace COMP1640.Migrations
                     b.HasKey("Username");
 
                     b.ToTable("Accounts");
-
-                    b.HasData(
-                        new
-                        {
-                            Username = "admin@gmail.com",
-                            Password = "admin1",
-                            Role = "ADMIN"
-                        },
-                        new
-                        {
-                            Username = "Test@123.com",
-                            Password = "staff1",
-                            Role = "STAFF"
-                        },
-                        new
-                        {
-                            Username = "qam@gmail.com",
-                            Password = "qam1",
-                            Role = "QAM"
-                        },
-                        new
-                        {
-                            Username = "qac@gmail.com",
-                            Password = "qac1",
-                            Role = "QAC"
-                        });
-                });
-
-            modelBuilder.Entity("COMP1640.Models.Admin", b =>
-                {
-                    b.Property<int>("AdId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ad_email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ad_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ad_phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdId");
-
-                    b.HasIndex("Username");
-
-                    b.ToTable("Admins");
-
-                    b.HasData(
-                        new
-                        {
-                            AdId = 1,
-                            Username = "admin@gmail.com",
-                            ad_email = "admin@gmail.com",
-                            ad_name = "Truong",
-                            ad_phone = "0983337621"
-                        });
                 });
 
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
@@ -110,7 +48,7 @@ namespace COMP1640.Migrations
                     b.Property<int>("IdeaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<bool>("com_anonymous")
@@ -123,7 +61,7 @@ namespace COMP1640.Migrations
 
                     b.HasIndex("IdeaId");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Comments");
 
@@ -132,7 +70,7 @@ namespace COMP1640.Migrations
                         {
                             ComId = 1,
                             IdeaId = 1,
-                            StaffId = 1,
+                            ProfileId = 1,
                             com_anonymous = false,
                             com_content = "This is a great idea"
                         });
@@ -202,7 +140,7 @@ namespace COMP1640.Migrations
                     b.Property<int>("Ipoint")
                         .HasColumnType("int");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagId")
@@ -228,7 +166,7 @@ namespace COMP1640.Migrations
 
                     b.HasKey("IdeaId");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("ProfileId");
 
                     b.HasIndex("TagId");
 
@@ -239,7 +177,7 @@ namespace COMP1640.Migrations
                         {
                             IdeaId = 1,
                             Ipoint = 0,
-                            StaffId = 1,
+                            ProfileId = 1,
                             TagId = 1,
                             idea_anonymous = false,
                             idea_content = "This is a Test",
@@ -247,141 +185,63 @@ namespace COMP1640.Migrations
                         });
                 });
 
-            modelBuilder.Entity("COMP1640.Models.QACoordinator", b =>
+            modelBuilder.Entity("COMP1640.Models.Profile", b =>
                 {
-                    b.Property<int>("QacId")
+                    b.Property<int>("ProfileId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Username")
+                    b.Property<string>("AccountId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("qac_email")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("qac_gender")
+                    b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("qac_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("qac_phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QacId");
-
-                    b.HasIndex("Username");
-
-                    b.ToTable("QACoordinators");
-
-                    b.HasData(
-                        new
-                        {
-                            QacId = 1,
-                            Username = "qac@gmail.com",
-                            qac_email = "qac@gmail.com",
-                            qac_gender = "female",
-                            qac_name = "Duc",
-                            qac_phone = "0927652226"
-                        });
-                });
-
-            modelBuilder.Entity("COMP1640.Models.QAManager", b =>
-                {
-                    b.Property<int>("QamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("qam_email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("qam_gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("qam_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("qam_phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QamId");
-
-                    b.HasIndex("Username");
-
-                    b.ToTable("QAManagers");
-
-                    b.HasData(
-                        new
-                        {
-                            QamId = 1,
-                            Username = "qam@gmail.com",
-                            qam_email = "qam@gmail.com",
-                            qam_gender = "male",
-                            qam_name = "Duong",
-                            qam_phone = "0293872618"
-                        });
-                });
-
-            modelBuilder.Entity("COMP1640.Models.Staff", b =>
-                {
-                    b.Property<int>("StaffId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("DepId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("DepartmentDepId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("staff_DoB")
+                    b.Property<DateTime>("DoB")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("staff_address")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("staff_avatar")
+                    b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("staff_email")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("staff_gender")
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("staff_name")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("staff_phone")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("ProfileId");
 
-                    b.HasKey("StaffId");
+                    b.HasIndex("AccountId");
 
-                    b.HasIndex("DepId");
+                    b.HasIndex("DepartmentDepId");
 
-                    b.HasIndex("Username");
-
-                    b.ToTable("Staffs");
+                    b.ToTable("Profile");
 
                     b.HasData(
                         new
                         {
-                            StaffId = 1,
-                            DepId = 1,
-                            Username = "Test@123.com",
-                            staff_DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            staff_address = "Somewhere in the big gray sky",
-                            staff_avatar = "",
-                            staff_email = "Test@123.com",
-                            staff_gender = "Male",
-                            staff_name = "Test",
-                            staff_phone = "0329226528"
+                            ProfileId = 1,
+                            DepId = 0,
+                            DoB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@gmail.com",
+                            Name = "Truong",
+                            Phone = "0983337621"
                         });
                 });
 
@@ -432,6 +292,36 @@ namespace COMP1640.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "4dc1c1ba-1491-431b-bda5-3e7d85827aea",
+                            Name = "Administrator",
+                            NormalizedName = "Administrator"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "aa16d17b-a615-4e4d-8a2e-68cec8ac256b",
+                            Name = "Staf",
+                            NormalizedName = "Staff"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "e9ad353a-15f8-4d14-bf31-41a20390e487",
+                            Name = "Quality Assurance Manager",
+                            NormalizedName = "Quality Assurance Manager"
+                        },
+                        new
+                        {
+                            Id = "4",
+                            ConcurrencyStamp = "6290c186-4ea0-43df-a3c2-ea9db5be4782",
+                            Name = "Quality Assurance Coordinator",
+                            NormalizedName = "Quality Assurance Coordinator"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -521,6 +411,23 @@ namespace COMP1640.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6a862d19-b10f-4f27-bb8d-9ec6a0076834",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "admin@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAdHePLD5QefrAOTxxanExnXsbfj4N6SPjyfzCszxYEJZhnG3k6S22kkhbkgu2iF2g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "281d9ae9-4155-42f2-bd13-be9f752b229d",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -584,6 +491,13 @@ namespace COMP1640.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -607,15 +521,6 @@ namespace COMP1640.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("COMP1640.Models.Admin", b =>
-                {
-                    b.HasOne("COMP1640.Models.Account", "Account")
-                        .WithMany("Admins")
-                        .HasForeignKey("Username");
-
-                    b.Navigation("Account");
-                });
-
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
@@ -623,14 +528,14 @@ namespace COMP1640.Migrations
                         .HasForeignKey("IdeaId")
                         .IsRequired();
 
-                    b.HasOne("COMP1640.Models.Staff", "Staff")
+                    b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany("Comments")
-                        .HasForeignKey("StaffId")
+                        .HasForeignKey("ProfileId")
                         .IsRequired();
 
                     b.Navigation("Idea");
 
-                    b.Navigation("Staff");
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Document", b =>
@@ -646,9 +551,9 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
-                    b.HasOne("COMP1640.Models.Staff", "Staff")
-                        .WithMany("Ideas")
-                        .HasForeignKey("StaffId")
+                    b.HasOne("COMP1640.Models.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -658,40 +563,20 @@ namespace COMP1640.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Staff");
+                    b.Navigation("Profile");
 
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("COMP1640.Models.QACoordinator", b =>
+            modelBuilder.Entity("COMP1640.Models.Profile", b =>
                 {
-                    b.HasOne("COMP1640.Models.Account", "Account")
-                        .WithMany("QACoordinators")
-                        .HasForeignKey("Username");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId");
 
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("COMP1640.Models.QAManager", b =>
-                {
-                    b.HasOne("COMP1640.Models.Account", "Account")
-                        .WithMany("QAManagers")
-                        .HasForeignKey("Username");
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("COMP1640.Models.Staff", b =>
-                {
                     b.HasOne("COMP1640.Models.Department", "Department")
-                        .WithMany("Staffs")
-                        .HasForeignKey("DepId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("COMP1640.Models.Account", "Account")
-                        .WithMany("Staffs")
-                        .HasForeignKey("Username");
+                        .WithMany("Profiles")
+                        .HasForeignKey("DepartmentDepId");
 
                     b.Navigation("Account");
 
@@ -749,20 +634,9 @@ namespace COMP1640.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("COMP1640.Models.Account", b =>
-                {
-                    b.Navigation("Admins");
-
-                    b.Navigation("QACoordinators");
-
-                    b.Navigation("QAManagers");
-
-                    b.Navigation("Staffs");
-                });
-
             modelBuilder.Entity("COMP1640.Models.Department", b =>
                 {
-                    b.Navigation("Staffs");
+                    b.Navigation("Profiles");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
@@ -772,11 +646,9 @@ namespace COMP1640.Migrations
                     b.Navigation("Documents");
                 });
 
-            modelBuilder.Entity("COMP1640.Models.Staff", b =>
+            modelBuilder.Entity("COMP1640.Models.Profile", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Ideas");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Tag", b =>

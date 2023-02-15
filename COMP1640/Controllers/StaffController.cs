@@ -32,7 +32,7 @@ namespace COMP1640.Controllers
                 idea_title = title,
                 idea_content = content,
                 idea_anonymous = anonynous,
-                StaffId = 1,
+                ProfileId = 1,
                 TagId = tag.TagId,
                 created_date = DateTime.Now,
                 Ipoint = 0
@@ -63,7 +63,7 @@ namespace COMP1640.Controllers
                 idea_title = title,
                 idea_content = content,
                 idea_anonymous = anonynous,
-                StaffId = 1, //because session is not initialized, the defaut Staff is 1 
+                ProfileId = 1, //because session is not initialized, the defaut Staff is 1 
                 created_date = DateTime.Now,
                 TagId = tag.TagId, 
             };
@@ -87,7 +87,7 @@ namespace COMP1640.Controllers
             Comment newComment = new Comment()
             {
                 com_content = content,
-                StaffId = 1,
+                ProfileId = 1,
                 com_anonymous = anonynous,
                 IdeaId = ideaId,
             };
