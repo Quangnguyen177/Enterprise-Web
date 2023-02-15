@@ -35,6 +35,7 @@ namespace COMP1640.Controllers
                 StaffId = 1,
                 TagId = tag.TagId,
                 created_date = DateTime.Now,
+                Ipoint = 0
             };
             Db.Add(newIdea);
             await Db.SaveChangesAsync();

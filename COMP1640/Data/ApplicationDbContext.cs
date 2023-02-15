@@ -266,7 +266,8 @@ namespace COMP1640
                     //created_date = ,
                     //first_closure = ,
                     //last_closure = ,
-                    idea_anonymous = false
+                    idea_anonymous = false,
+                    Ipoint= 0,
                 }
             );
         }

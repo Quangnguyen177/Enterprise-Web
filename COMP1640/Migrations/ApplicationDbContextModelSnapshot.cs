@@ -199,6 +199,9 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Ipoint")
+                        .HasColumnType("int");
+
                     b.Property<int>("StaffId")
                         .HasColumnType("int");
 
@@ -235,6 +238,7 @@ namespace COMP1640.Migrations
                         new
                         {
                             IdeaId = 1,
+                            Ipoint = 0,
                             StaffId = 1,
                             TagId = 1,
                             idea_anonymous = false,
