@@ -815,3 +815,6 @@ G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\refint\COMP1640.dll
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.dll
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\refint\COMP1640.dll
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
