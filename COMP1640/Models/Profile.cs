@@ -25,7 +25,7 @@ namespace COMP1640.Models
 
         //FK1: Account ID
         public string UserId { get; set; }
-        public IdentityUser Account { get; set; }
+        public IdentityUser IdentityUser { get; set; }
 
         //FK2: Department ID
         public int DepId { get; set; }

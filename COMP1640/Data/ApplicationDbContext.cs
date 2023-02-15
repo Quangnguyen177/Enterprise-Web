@@ -152,6 +152,7 @@ namespace COMP1640
                     Name = "Truong",
                     Email = "admin@gmail.com",
                     Phone = "0983337621",
+                    UserId = "1",
                 }
             //    new Account
             //    {

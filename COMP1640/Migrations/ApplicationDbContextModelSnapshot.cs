@@ -192,9 +192,6 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
@@ -216,6 +213,9 @@ namespace COMP1640.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -227,9 +227,9 @@ namespace COMP1640.Migrations
 
                     b.HasKey("ProfileId");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("DepartmentDepId");
+
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("Profile");
 
@@ -241,7 +241,8 @@ namespace COMP1640.Migrations
                             DoB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             Name = "Truong",
-                            Phone = "0983337621"
+                            Phone = "0983337621",
+                            UserId = "1"
                         });
                 });
 
@@ -297,28 +298,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "4dc1c1ba-1491-431b-bda5-3e7d85827aea",
+                            ConcurrencyStamp = "2a88606a-6f12-468e-9aac-bbe2d9e56f4e",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "aa16d17b-a615-4e4d-8a2e-68cec8ac256b",
-                            Name = "Staf",
+                            ConcurrencyStamp = "d6678ed2-eadf-4ede-aa24-f97c25064fdb",
+                            Name = "StafF",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "e9ad353a-15f8-4d14-bf31-41a20390e487",
+                            ConcurrencyStamp = "ee294636-b019-4dc3-a9e3-b016fb3a0199",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "6290c186-4ea0-43df-a3c2-ea9db5be4782",
+                            ConcurrencyStamp = "fb35cda6-fc60-469b-abd6-554e8b3af5e2",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -417,14 +418,14 @@ namespace COMP1640.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6a862d19-b10f-4f27-bb8d-9ec6a0076834",
+                            ConcurrencyStamp = "62ecf2f0-f01c-476f-bd05-135f366c454d",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAdHePLD5QefrAOTxxanExnXsbfj4N6SPjyfzCszxYEJZhnG3k6S22kkhbkgu2iF2g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL5aWy2z/e4rYRaADFjbbsBUt6RPb7OOyvAwLqHJIdKHiL/KTzK6caCj7dZqE9O/gQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "281d9ae9-4155-42f2-bd13-be9f752b229d",
+                            SecurityStamp = "79c4ddbe-98ec-4f16-8859-e02a69a39a87",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -570,17 +571,17 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Profile", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId");
-
                     b.HasOne("COMP1640.Models.Department", "Department")
                         .WithMany("Profiles")
                         .HasForeignKey("DepartmentDepId");
 
-                    b.Navigation("Account");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
 
                     b.Navigation("Department");
+
+                    b.Navigation("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
