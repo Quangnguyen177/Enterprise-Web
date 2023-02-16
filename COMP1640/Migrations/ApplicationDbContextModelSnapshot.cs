@@ -298,28 +298,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "2a88606a-6f12-468e-9aac-bbe2d9e56f4e",
+                            ConcurrencyStamp = "930ae09b-f545-4ae1-90da-75169e3558b3",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "d6678ed2-eadf-4ede-aa24-f97c25064fdb",
+                            ConcurrencyStamp = "90ada2ad-ac22-4c70-a4b6-b70ce2bd6572",
                             Name = "StafF",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "ee294636-b019-4dc3-a9e3-b016fb3a0199",
+                            ConcurrencyStamp = "551b43bd-a470-4e4b-8c15-eb868eca4a97",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "fb35cda6-fc60-469b-abd6-554e8b3af5e2",
+                            ConcurrencyStamp = "5a6ef2c5-3a86-4baa-865b-6863e8f429fb",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -418,14 +418,14 @@ namespace COMP1640.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "62ecf2f0-f01c-476f-bd05-135f366c454d",
+                            ConcurrencyStamp = "072c95e7-6d48-4674-82e5-3e5533ce0d66",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL5aWy2z/e4rYRaADFjbbsBUt6RPb7OOyvAwLqHJIdKHiL/KTzK6caCj7dZqE9O/gQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENys1MD47Q+0LcluG8szaE797Ipf9+PImX833h8YoiyxrRWNow5k84w9wF1fFo9QTw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "79c4ddbe-98ec-4f16-8859-e02a69a39a87",
+                            SecurityStamp = "5c41a058-2e72-42a5-abc3-3f429719cba8",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
