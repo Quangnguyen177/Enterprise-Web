@@ -1,9 +1,12 @@
-﻿using COMP1640.Models;
+using COMP1640.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace COMP1640.Controllers
 {
@@ -80,29 +83,90 @@ namespace COMP1640.Controllers
         } 
 
         [HttpPost]
-        public async Task<IActionResult> Comment(string content, string isAnonymous, int ideaId)
+        public async Task<IActionResult> Comment(string content, string isAnonymous, int ideaId, string toEmail, string name)
         {
-            bool anonynous = true;
-            if (isAnonymous == null) anonynous = false;
-            Comment newComment = new Comment()
+            // send a notification mail to idea owner
+            var sendMail = SendNotificationEmail(name, toEmail, content);
+            if (sendMail) // check if sending mail is successfull!
             {
-                com_content = content,
-                ProfileId = 1,
-                com_anonymous = anonynous,
-                IdeaId = ideaId,
-            };
-            Db.Add(newComment);
-            await Db.SaveChangesAsync();
+                //add comment 
+                bool anonynous = true;
+                if (isAnonymous == null) anonynous = false;
+                Comment newComment = new Comment()
+                {
+                    com_content = content,
+                    ProfileId = 1,
+                    com_anonymous = anonynous,
+                    IdeaId = ideaId,
+                };
+                Db.Add(newComment);
+                await Db.SaveChangesAsync();
+            }
+            else
+            {
+                ViewBag.Error = "Comment failed!";
+            }           
             return View();
         }
 
-        //check if current time is early than 1st closure date 
+        [HttpPost]
+        public async Task<HttpResponseMessage> Like(int id)
+        {
+            var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+            idea.Ipoint++;
+            Db.Update(idea);
+            await Db.SaveChangesAsync();
+            return new HttpResponseMessage(HttpStatusCode.Accepted);
+        }
+
+        //check if current time is earlier than 1st closure date 
         public bool CheckFirtClosureDate(Idea idea)
         {
             DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
             if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
             else return false;
         }
+        [HttpPost]
+        public bool SendNotificationEmail(string name, string toEmail, string content)
+        {         
+            try
+            {
+                // Create a new MailMessage object
+                MailMessage message = new MailMessage();
+
+                // Set the sender's email address
+                message.From = new MailAddress("truongtd2002tq@gmail.com");
+
+                // Add a recipient email address
+                message.To.Add("dantruong2002tq@gmail.com");
+
+                // Set the subject and body of the email
+                message.Subject = name + " comments your idea";
+                message.Body = content;
+
+                // Create a new SmtpClient object
+                SmtpClient client = new SmtpClient();
+
+                // Set the SMTP server and port number
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.UseDefaultCredentials = false;
+                // Set the credentials used to authenticate with the SMTP server (if required)
+                client.Credentials = new System.Net.NetworkCredential("truongtd2002tq@gmail.com", "dyxjomsrvccdgfys");
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                // Enable SSL if required
+                client.EnableSsl = true;
+                client.Timeout = 200000;
+                // Send the email
+                client.Send(message);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         //public bool CheckFinalClosureDate(int ideaId)
         //{
