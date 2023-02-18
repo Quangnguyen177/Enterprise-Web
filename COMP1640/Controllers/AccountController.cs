@@ -15,15 +15,15 @@ namespace COMP1640.Controllers
             this.context = context;
         }
 
-        [Route("/Login")]
-        [HttpGet]
-        public IActionResult Login()
-        {
+        //[Route("/Login")]
+        //[HttpGet]
+        //public IActionResult Login()
+        //{
    
-           return View();
-        }
+        //   return View();
+        //}
 
-        [HttpPost]
+        //[HttpPost]
         //public IActionResult Login(string username, string password)
         //{
         //    if (ModelState.IsValid)
@@ -69,10 +69,10 @@ namespace COMP1640.Controllers
             
         //}
 
-        public ActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");
-        }
+        //public ActionResult Logout()
+        //{
+        //    HttpContext.Session.Clear();
+        //    return RedirectToAction("Login");
+        //}
     }
 }

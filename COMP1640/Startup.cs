@@ -31,7 +31,7 @@ namespace COMP1640
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<Models.Profile>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Models.Profile>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();

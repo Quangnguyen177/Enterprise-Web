@@ -70,14 +70,15 @@ namespace COMP1640
                 Id = "1",
                 UserName = "Truong",
                 Email = "admin@gmail.com",
-                //NormalizedUserName = "admin@gmail.com",
+                NormalizedUserName = "admin@gmail.com",
                 //EmailConfirmed = true,
-                Name = "Truong Dep Trai",
+                Name = "Truong Dep Zai",
                 PhoneNumber = "0983337621",
                 DoB = DateTime.Parse("2002-03-26"),
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
                 Avatar = "",
+                DepId = "1",
             };
 
             //Khai báo thư viện để mã hóa mk
