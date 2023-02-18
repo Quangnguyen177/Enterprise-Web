@@ -38,12 +38,12 @@
                     </figure>
                 </div>
                 <div class="form_add_idea">
-                    <a style="text-decoration: none" asp-action="AddIdea" asp-controller="Home">
+                    <a style="text-decoration: none" asp-action="PostIdea" asp-controller="Home">
                         <div class="input_idea">
                             <input class="text" type="text" rows="2" />
                             <p style="transform: translate(20%, 30%); color: gray">write a new idea...</p>
                         </div>
-                        <button type="button" class="btn btn-outline-success">Add</button>
+                        <button type="button" class="btn btn-outline-success" asp-action="PostIdea" asp-controller="Home">Add</button>
                     </a>
                 </div>
             </div>

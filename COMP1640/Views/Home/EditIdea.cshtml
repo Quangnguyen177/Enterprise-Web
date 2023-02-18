@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "_LayoutPostIdea";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Edit Idea</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+    <!-- CSS & JS-->
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <section class="post">
+
+            <button type="button" class="close" aria-label="Close" data-toggle="modal" data-target="#exampleModal" style="font-size: 40px">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <header>Edit Post</header>
+
+            
+            <form action="#">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="logo">
+                    <div class="details">
+                        <p><b>Harris</b></p>
+                        <div class="option" style="height: 75px;">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <div class="slider"></div>
+                                <div class="slider-card">
+                                    <div class="slider-card-face slider-card-front"></div>
+                                    <div class="slider-card-face slider-card-back"></div>
+                                </div>
+                            </label>
+                            <h5>Anonymous</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <input type="text" placeholder="Title" required />
+                </div>
+                <textarea placeholder="Edit post here..." required></textarea>
+                <div class="theme-emoji">
+                    <img src="~/fb-icons/theme.svg" alt="theme">
+                    <img src="~/fb-icons/smile.svg" alt="smile">
+                </div>
+                <div class="options">
+                    <button class="buttonDownload" style="height: 45px;">Upload File</button>
+                    <ul class="list">
+                        <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
+                        <li><img src="~/fb-icons/tag.svg" alt="tag"></li>
+                        <li><img src="~/fb-icons/emoji.svg" alt="emoji"></li>
+                        <li><img src="~/fb-icons/mic.svg" alt="mic"></li>
+                        <li><img src="~/fb-icons/more.svg" alt="more"></li>
+                    </ul>
+                </div>
+                <button type="button">
+                    Save
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b style="font-size:20px">Unsaved changes</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>The system will not save your changes</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue editing</button>
+                    <button type="button" class="btn btn-primary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
