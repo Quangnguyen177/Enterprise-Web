@@ -35,7 +35,7 @@ namespace COMP1640.Controllers
                 idea_title = title,
                 idea_content = content,
                 idea_anonymous = anonynous,
-                ProfileId = 1,
+                ProfileId = "1",
                 TagId = tag.TagId,
                 created_date = DateTime.Now,
                 Ipoint = 0
@@ -55,7 +55,7 @@ namespace COMP1640.Controllers
             return View(currentIdea);
         }
         [HttpPut]
-        public async Task<IActionResult> EditIdea(int ideaId, string title, string content, string tagName, string isAnonymous)
+        public async Task<IActionResult> EditIdea(string ideaId, string title, string content, string tagName, string isAnonymous)
         {    
             bool anonynous = true;
             if (isAnonymous == null) anonynous = false;
@@ -66,7 +66,7 @@ namespace COMP1640.Controllers
                 idea_title = title,
                 idea_content = content,
                 idea_anonymous = anonynous,
-                ProfileId = 1, //because session is not initialized, the defaut Staff is 1 
+                ProfileId = "1", //because session is not initialized, the defaut Staff is 1 
                 created_date = DateTime.Now,
                 TagId = tag.TagId, 
             };
@@ -85,7 +85,7 @@ namespace COMP1640.Controllers
         } 
 
         [HttpPost]
-        public async Task<IActionResult> Comment(string content, string isAnonymous, int ideaId, string toEmail, string name)
+        public async Task<IActionResult> Comment(string content, string isAnonymous, string ideaId, string toEmail, string name)
         {
             // send a notification mail to idea owner
             var sendMail = SendNotificationEmail(name, toEmail, content);
@@ -97,7 +97,7 @@ namespace COMP1640.Controllers
                 Comment newComment = new Comment()
                 {
                     com_content = content,
-                    ProfileId = 1,
+                    ProfileId = "1",
                     com_anonymous = anonynous,
                     IdeaId = ideaId,
                 };
@@ -112,7 +112,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Like(int id)
+        public async Task<HttpResponseMessage> Like(string id)
         {
             var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
             idea.Ipoint++;

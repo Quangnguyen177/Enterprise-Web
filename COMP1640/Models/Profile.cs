@@ -5,14 +5,9 @@ using System.Collections.Generic;
 
 namespace COMP1640.Models
 {
-    public class Profile
+    public class Profile : IdentityUser
     {
-        public int ProfileId { get; set; }
         public string Name { get; set; }
-
-        public string Email { get; set; }
-
-        public string Phone { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DoB { get; set; }
@@ -24,11 +19,11 @@ namespace COMP1640.Models
         public string Avatar { get; set; }
 
         //FK1: Account ID
-        public string UserId { get; set; }
-        public IdentityUser IdentityUser { get; set; }
+        //public Guid UserId { get; set; }
+        //public IdentityUser IdentityUser { get; set; }
 
         //FK2: Department ID
-        public int DepId { get; set; }
+        public string DepId { get; set; }
         public Department Department { get; set; }
 
         //------------------------

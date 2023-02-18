@@ -8,7 +8,7 @@ namespace COMP1640.Models
     public class Comment
     {
         [Key]
-        public int ComId { get; set; }
+        public string ComId { get; set; }
         public string com_content { get; set; }
 
         [DataType(DataType.Date)]
@@ -17,11 +17,11 @@ namespace COMP1640.Models
         public Boolean com_anonymous { get; set; }
 
         // FK1: Staff id
-        public int ProfileId { get; set; }
+        public string ProfileId { get; set; }
         public Profile Profile { get; set; }
 
         // FK2: Idea Id
-        public int IdeaId { get; set; }
+        public string IdeaId { get; set; }
         public Idea Idea { get; set; }
 
         //------------------------

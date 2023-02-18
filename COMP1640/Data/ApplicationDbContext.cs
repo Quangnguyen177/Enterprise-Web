@@ -5,16 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Policy;
 
 namespace COMP1640
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<Profile>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Tag> Tags { get; set; }
@@ -29,7 +29,7 @@ namespace COMP1640
             // tam thoi
 
             //1
-            SeedAccount(builder);
+            SeedProfile(builder);
 
             //2
             SeedRole(builder);
@@ -37,8 +37,8 @@ namespace COMP1640
             //3
             SeedAccountRole(builder);
 
-            //4
-            SeedProfile(builder);
+            //XX
+            //SeedProfile(builder);
 
             //2
             SeedDepartment(builder);
@@ -57,25 +57,37 @@ namespace COMP1640
         }
 
         //1
-        private void SeedAccount(ModelBuilder builder)
+        private void SeedProfile(ModelBuilder builder)
         {
-            var ADMIN = new IdentityUser
+
+            builder.Entity<Profile>()
+                .HasOne(x => x.Department)
+                .WithMany(y => y.Profiles)
+                .HasForeignKey(z => z.DepId);
+
+            var admin1 = new Profile
             {
                 Id = "1",
-                UserName = "admin@gmail.com",
+                UserName = "Truong",
                 Email = "admin@gmail.com",
-                NormalizedUserName = "admin@gmail.com",
-                EmailConfirmed = true
+                //NormalizedUserName = "admin@gmail.com",
+                //EmailConfirmed = true,
+                Name = "Truong Dep Trai",
+                PhoneNumber = "0983337621",
+                DoB = DateTime.Parse("2002-03-26"),
+                Gender = "Male",
+                Address = "Somewhere in the big gray sky",
+                Avatar = "",
             };
 
             //Khai báo thư viện để mã hóa mk
-            var hashed = new PasswordHasher<IdentityUser>();
+            var hashed = new PasswordHasher<Profile>();
 
             //Thiết lập để mã hóa từng tài khoản
-            ADMIN.PasswordHash = hashed.HashPassword(ADMIN, "admin1");
+            admin1.PasswordHash = hashed.HashPassword(admin1, "admin1");
 
             //Add tài khoản vào DB
-            builder.Entity<IdentityUser>().HasData(ADMIN);
+            builder.Entity<Profile>().HasData(admin1);
 
 
         }
@@ -143,17 +155,20 @@ namespace COMP1640
         }
 
         //4 
-        private void SeedProfile(ModelBuilder builder)
-        {
-            builder.Entity<Profile>().HasData(
-                new Profile
-                {
-                    ProfileId = 1,
-                    Name = "Truong",
-                    Email = "admin@gmail.com",
-                    Phone = "0983337621",
-                    UserId = "1",
-                }
+        //private void SeedProfile(ModelBuilder builder)
+        //{
+        //    builder.Entity<Profile>()   
+        //        .HasOne(x => x.Department)
+        //        .WithMany(y => y.Profiles)
+        //        .HasForeignKey(z => z.DepId);
+        //    builder.Entity<Profile>().HasData(
+        //        new Profile
+        //        {
+        //            ProfileId = 1,
+        //            Name = "Truong",
+        //            Email = "admin@gmail.com",
+        //            Phone = "0983337621",
+        //        }
             //    new Account
             //    {
             //        Username = "Test@123.com",
@@ -188,8 +203,8 @@ namespace COMP1640
             //        Phone = "0927652226",
             //        Gender = "male",
             //    }
-            );
-        }
+        //    );
+        //}
 
         //2
         private void SeedDepartment(ModelBuilder builder)
@@ -199,7 +214,7 @@ namespace COMP1640
             builder.Entity<Department>().HasData(
                 new Department
                 {
-                    DepId = 1,
+                    DepId = "1",
                     dep_name = "Academic"
                 }
             );
@@ -239,8 +254,8 @@ namespace COMP1640
             builder.Entity<Idea>().HasData(
                 new Idea
                 {
-                    IdeaId = 1,
-                    ProfileId = 1,
+                    IdeaId = "1",
+                    ProfileId = "1",
                     TagId = 1,
                     idea_title = "Test",
                     idea_content = "This is a Test",
@@ -269,9 +284,9 @@ namespace COMP1640
             builder.Entity<Comment>().HasData(
                 new Comment
                 {
-                    ComId = 1,
-                    ProfileId = 1,
-                    IdeaId = 1,
+                    ComId = "1",
+                    ProfileId = "1",
+                    IdeaId = "1",
                     com_content = "This is a great idea",
                     //created_date null
                     com_anonymous = false

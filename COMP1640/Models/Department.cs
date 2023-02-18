@@ -6,7 +6,7 @@ namespace COMP1640.Models
     public class Department
     {
         [Key]
-        public int DepId { get; set; }
+        public string DepId { get; set; }
         public string dep_name { get; set; }
 
         public ICollection<Profile> Profiles { get; set; }

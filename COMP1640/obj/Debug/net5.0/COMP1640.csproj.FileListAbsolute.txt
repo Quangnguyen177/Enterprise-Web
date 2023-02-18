@@ -798,7 +798,6 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\Error.csht
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutCreateAccount.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutSignup.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\AddIdea.cshtml.g.cs
@@ -1846,3 +1845,5 @@ F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Document\AddFile.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Document\AddFile.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutPostIdea.cshtml.g.cs

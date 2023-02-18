@@ -40,16 +40,14 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
                 {
-                    b.Property<int>("ComId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("ComId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("IdeaId")
-                        .HasColumnType("int");
+                    b.Property<string>("IdeaId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
+                    b.Property<string>("ProfileId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("com_anonymous")
                         .HasColumnType("bit");
@@ -68,9 +66,9 @@ namespace COMP1640.Migrations
                     b.HasData(
                         new
                         {
-                            ComId = 1,
-                            IdeaId = 1,
-                            ProfileId = 1,
+                            ComId = "1",
+                            IdeaId = "1",
+                            ProfileId = "1",
                             com_anonymous = false,
                             com_content = "This is a great idea"
                         });
@@ -78,10 +76,8 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Department", b =>
                 {
-                    b.Property<int>("DepId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("DepId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("dep_name")
                         .HasColumnType("nvarchar(max)");
@@ -93,7 +89,7 @@ namespace COMP1640.Migrations
                     b.HasData(
                         new
                         {
-                            DepId = 1,
+                            DepId = "1",
                             dep_name = "Academic"
                         });
                 });
@@ -108,6 +104,9 @@ namespace COMP1640.Migrations
                     b.Property<int>("IdeaId")
                         .HasColumnType("int");
 
+                    b.Property<string>("IdeaId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("doc_content")
                         .HasColumnType("nvarchar(max)");
 
@@ -116,7 +115,7 @@ namespace COMP1640.Migrations
 
                     b.HasKey("DocId");
 
-                    b.HasIndex("IdeaId");
+                    b.HasIndex("IdeaId1");
 
                     b.ToTable("Documents");
 
@@ -132,16 +131,14 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
-                    b.Property<int>("IdeaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("IdeaId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Ipoint")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
+                    b.Property<string>("ProfileId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
@@ -175,9 +172,9 @@ namespace COMP1640.Migrations
                     b.HasData(
                         new
                         {
-                            IdeaId = 1,
+                            IdeaId = "1",
                             Ipoint = 0,
-                            ProfileId = 1,
+                            ProfileId = "1",
                             TagId = 1,
                             idea_anonymous = false,
                             idea_content = "This is a Test",
@@ -187,10 +184,11 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Profile", b =>
                 {
-                    b.Property<int>("ProfileId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -198,51 +196,95 @@ namespace COMP1640.Migrations
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DepId")
-                        .HasColumnType("int");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DepartmentDepId")
-                        .HasColumnType("int");
+                    b.Property<string>("DepId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DoB")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProfileId");
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("DepartmentDepId");
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("IdentityUserId");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
 
-                    b.ToTable("Profile");
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepId");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
 
                     b.HasData(
                         new
                         {
-                            ProfileId = 1,
-                            DepId = 0,
-                            DoB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            Address = "Somewhere in the big gray sky",
+                            Avatar = "",
+                            ConcurrencyStamp = "08caad5a-6c03-41a7-b5e2-c4edfbe3e0a2",
+                            DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Name = "Truong",
-                            Phone = "0983337621",
-                            UserId = "1"
+                            EmailConfirmed = false,
+                            Gender = "Male",
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEGO8FvARrkA77vj86Udqv9ammp28/rNbXPHCRLU8Ub+VSb6IpTycC9cLbuaGt0YDsA==",
+                            PhoneNumber = "0983337621",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "822721c7-7b72-4140-9fcb-8686a6879917",
+                            TwoFactorEnabled = false,
+                            UserName = "Truong"
                         });
                 });
 
@@ -298,28 +340,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "930ae09b-f545-4ae1-90da-75169e3558b3",
+                            ConcurrencyStamp = "6f44bebc-b771-46d1-9dab-c44e46be6d6a",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "90ada2ad-ac22-4c70-a4b6-b70ce2bd6572",
+                            ConcurrencyStamp = "bf1cf2c2-4e18-4b83-ae3f-9648a9ed6b59",
                             Name = "StafF",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "551b43bd-a470-4e4b-8c15-eb868eca4a97",
+                            ConcurrencyStamp = "59c3c05c-ebe8-4ded-947b-1b0d511dd5f0",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "5a6ef2c5-3a86-4baa-865b-6863e8f429fb",
+                            ConcurrencyStamp = "e8fc5c2d-c84b-45a3-9c41-2747ac804fcb",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -347,88 +389,6 @@ namespace COMP1640.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "072c95e7-6d48-4674-82e5-3e5533ce0d66",
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENys1MD47Q+0LcluG8szaE797Ipf9+PImX833h8YoiyxrRWNow5k84w9wF1fFo9QTw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5c41a058-2e72-42a5-abc3-3f429719cba8",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -526,13 +486,11 @@ namespace COMP1640.Migrations
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
                         .WithMany("Comments")
-                        .HasForeignKey("IdeaId")
-                        .IsRequired();
+                        .HasForeignKey("IdeaId");
 
                     b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany("Comments")
-                        .HasForeignKey("ProfileId")
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
 
                     b.Navigation("Idea");
 
@@ -543,9 +501,7 @@ namespace COMP1640.Migrations
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
                         .WithMany("Documents")
-                        .HasForeignKey("IdeaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdeaId1");
 
                     b.Navigation("Idea");
                 });
@@ -554,9 +510,7 @@ namespace COMP1640.Migrations
                 {
                     b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
 
                     b.HasOne("COMP1640.Models.Tag", "Tag")
                         .WithMany("Ideas")
@@ -573,15 +527,9 @@ namespace COMP1640.Migrations
                 {
                     b.HasOne("COMP1640.Models.Department", "Department")
                         .WithMany("Profiles")
-                        .HasForeignKey("DepartmentDepId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
+                        .HasForeignKey("DepId");
 
                     b.Navigation("Department");
-
-                    b.Navigation("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -595,7 +543,7 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("COMP1640.Models.Profile", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -604,7 +552,7 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("COMP1640.Models.Profile", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -619,7 +567,7 @@ namespace COMP1640.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("COMP1640.Models.Profile", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -628,7 +576,7 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("COMP1640.Models.Profile", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

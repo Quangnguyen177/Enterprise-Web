@@ -9,7 +9,7 @@ namespace COMP1640.Models
     public class Idea
     {
         [Key]
-        public int IdeaId { get; set; }
+        public string IdeaId { get; set; }
 
         public string idea_title { get; set; }
 
@@ -29,7 +29,7 @@ namespace COMP1640.Models
         public int Ipoint { get; set; }
 
         // FK1: Staff id
-        public int ProfileId { get; set; }
+        public string ProfileId { get; set; }
         public Profile Profile { get; set; }
 
         // FK2: Tag id
