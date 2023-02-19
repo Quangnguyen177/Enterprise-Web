@@ -28,7 +28,7 @@ namespace COMP1640.Controllers
             return View();
         }
 
-        public IActionResult AddIdea()
+        public IActionResult PostIdea()
         {
             return View();
         }
