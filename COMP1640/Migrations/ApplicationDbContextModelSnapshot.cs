@@ -43,8 +43,8 @@ namespace COMP1640.Migrations
                     b.Property<string>("ComId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("IdeaId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("IdeaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProfileId")
                         .HasColumnType("nvarchar(450)");
@@ -67,7 +67,7 @@ namespace COMP1640.Migrations
                         new
                         {
                             ComId = "1",
-                            IdeaId = "1",
+                            IdeaId = 1,
                             ProfileId = "1",
                             com_anonymous = false,
                             com_content = "This is a great idea"
@@ -104,9 +104,6 @@ namespace COMP1640.Migrations
                     b.Property<int>("IdeaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("IdeaId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("doc_content")
                         .HasColumnType("nvarchar(max)");
 
@@ -115,7 +112,7 @@ namespace COMP1640.Migrations
 
                     b.HasKey("DocId");
 
-                    b.HasIndex("IdeaId1");
+                    b.HasIndex("IdeaId");
 
                     b.ToTable("Documents");
 
@@ -131,8 +128,10 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
-                    b.Property<string>("IdeaId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("IdeaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Ipoint")
                         .HasColumnType("int");
@@ -172,7 +171,7 @@ namespace COMP1640.Migrations
                     b.HasData(
                         new
                         {
-                            IdeaId = "1",
+                            IdeaId = 1,
                             Ipoint = 0,
                             ProfileId = "1",
                             TagId = 1,
@@ -273,7 +272,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "0da9aea5-ba2e-4340-9cd7-582ac5150b2a",
+                            ConcurrencyStamp = "41d81210-9152-4651-b3e3-ca3d6ab2243a",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -282,10 +281,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFfvPrM3Ar+aMqp2HTfZdKkhv4D+gRfs/8jf4/AJ4TsWBqRS4WVmMz2LLGml+kvTUQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH1UGV1RsG9GRIGmy4UorlQLhlPYUQOYZHWtG+d60SBAwMxrVtQEaG9o1ogAGpOm6w==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0db665a1-8fa0-4388-a822-cb567dcceef1",
+                            SecurityStamp = "e6afe599-77b2-43df-bd75-08efde8733a1",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         });
@@ -343,28 +342,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "c46bdbb2-83fe-44ed-af9b-37249dc491f7",
+                            ConcurrencyStamp = "9d994ab2-c46a-446c-bb14-a3861dbf7f95",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "e2c94e87-9610-44d2-8c1d-5abad182df9a",
+                            ConcurrencyStamp = "b973f13e-12d4-4056-90fe-fae9e2877e13",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "ea3dc07a-ca1e-474c-8c42-117a70d809f0",
+                            ConcurrencyStamp = "c42e51fc-5bb0-404f-a77f-d72c34ce7a6b",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "5e3a4c14-3588-41e0-93e2-fb70ed1efb14",
+                            ConcurrencyStamp = "b079fcb4-7b75-4722-910d-277c785bf786",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -489,7 +488,8 @@ namespace COMP1640.Migrations
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
                         .WithMany("Comments")
-                        .HasForeignKey("IdeaId");
+                        .HasForeignKey("IdeaId")
+                        .IsRequired();
 
                     b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany("Comments")
@@ -504,7 +504,9 @@ namespace COMP1640.Migrations
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
                         .WithMany("Documents")
-                        .HasForeignKey("IdeaId1");
+                        .HasForeignKey("IdeaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Idea");
                 });

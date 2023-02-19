@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using Microsoft.EntityFrameworkCore;
 
 namespace COMP1640.Controllers
 {
@@ -55,7 +56,7 @@ namespace COMP1640.Controllers
             return View(currentIdea);
         }
         [HttpPut]
-        public async Task<IActionResult> EditIdea(string ideaId, string title, string content, string tagName, string isAnonymous)
+        public async Task<IActionResult> EditIdea(int ideaId, string title, string content, string tagName, string isAnonymous)
         {    
             bool anonynous = true;
             if (isAnonymous == null) anonynous = false;
@@ -85,7 +86,7 @@ namespace COMP1640.Controllers
         } 
 
         [HttpPost]
-        public async Task<IActionResult> Comment(string content, string isAnonymous, string ideaId, string toEmail, string name)
+        public async Task<IActionResult> Comment(string content, string isAnonymous, int ideaId, string toEmail, string name)
         {
             // send a notification mail to idea owner
             var sendMail = SendNotificationEmail(name, toEmail, content);
@@ -112,7 +113,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Like(string id)
+        public async Task<HttpResponseMessage> Like(int id)
         {
             var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
             idea.Ipoint++;
@@ -130,7 +131,7 @@ namespace COMP1640.Controllers
         }
         [HttpPost]
         public bool SendNotificationEmail(string name, string toEmail, string content)
-        {         
+        {
             try
             {
                 // Create a new MailMessage object
@@ -168,6 +169,17 @@ namespace COMP1640.Controllers
                 return false;
             }
         }
+
+        public IActionResult DetailIdea(int id)
+        {
+            var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.ProfileId.Equals(id));
+            ViewBag.Profile = user_of_idea;
+            var comments = Db.Comments.Include(p=>p.Idea).FirstOrDefault(p=>p.IdeaId == id);
+            ViewBag.Comments = Db.Comments.Where(comments=>comments.IdeaId == id).ToList();
+            var idea = Db.Ideas.Include(c => c.Tag).Include(u=>u.Profile).FirstOrDefault(c => c.TagId == id);
+            return View(idea); //them idea vo ngoac
+        }
+
 
 
         //public bool CheckFinalClosureDate(int ideaId)

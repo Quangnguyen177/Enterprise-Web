@@ -9,7 +9,7 @@ namespace COMP1640.Models
     public class Idea
     {
         [Key]
-        public string IdeaId { get; set; }
+        public int IdeaId { get; set; }
 
         public string idea_title { get; set; }
 

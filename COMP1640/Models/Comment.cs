@@ -21,7 +21,7 @@ namespace COMP1640.Models
         public Profile Profile { get; set; }
 
         // FK2: Idea Id
-        public string IdeaId { get; set; }
+        public int IdeaId { get; set; }
         public Idea Idea { get; set; }
 
         //------------------------

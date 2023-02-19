@@ -257,7 +257,7 @@ namespace COMP1640
             builder.Entity<Idea>().HasData(
                 new Idea
                 {
-                    IdeaId = "1",
+                    IdeaId = 1,
                     ProfileId = "1",
                     TagId = 1,
                     idea_title = "Test",
@@ -289,7 +289,7 @@ namespace COMP1640
                 {
                     ComId = "1",
                     ProfileId = "1",
-                    IdeaId = "1",
+                    IdeaId = 1,
                     com_content = "This is a great idea",
                     //created_date null
                     com_anonymous = false
