@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing:border-box;
     font-family: Open Sans;
 }
 
@@ -503,3 +504,4 @@ input:checked ~ .slider {
     display: inline-block;
     transform: translate(1.3em, -2em);
 }
+

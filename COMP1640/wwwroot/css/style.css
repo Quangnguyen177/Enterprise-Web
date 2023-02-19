@@ -136,9 +136,20 @@ h5 {
     margin-left: -500px;
 }
 
+.close-btn {
+    position: absolute;
+    top: 85px;
+    left: 64%;
+}
+
+.post a {
+    position: absolute;
+    top: 93px;
+}
+
 .post header {
     font-size: 30px;
-    font-weight:600;
+    font-weight: 600;
     padding: 17px 0;
     text-align: center;
     border-bottom: 1px solid #bfbfbf;
@@ -265,25 +276,6 @@ input {
     transition: 150ms cubic-bezier(.4, 0, .2, 1);
 }
 
-/*.title_label {
-    position: absolute;
-    left: 16px;
-    pointer-events: none;
-    transition: 150ms cubic-bezier(.4, 0, .2, 1);
-    transform: translateY(1rem)
-}
-
-input:focus {
-    outline: none;
-    border: 1.5px solid lightsteelblue 
-}
-
-input:focus ~ label {
-    transform: translateY(-50%) scale(1.1);
-    background: white;
-    color: black
-}*/
-
 form textarea:valid ~ button {
     color: black;
     cursor: pointer;
@@ -309,9 +301,6 @@ form textarea:valid ~ button {
     transition: all 0.3s ease;
 }
 
-/*    .cbx:hover {
-        border-color: #0b76ef;
-    }*/
 
 .flip {
     display: block;
