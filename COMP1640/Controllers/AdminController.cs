@@ -2,22 +2,27 @@
 using COMP1640.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using System.Dynamic;
 
 namespace COMP1640.Controllers
 {
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(ApplicationDbContext context)
+        public AdminController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
         {
             this.context = context;
+            _roleManager = roleManager;
         }
 
         [Route("/Admin/")]
         public IActionResult Dashboard()
         {
-            return View();
+            var roles = _roleManager.Roles.ToList();
+            return View(roles);
         }
 
         [HttpGet]

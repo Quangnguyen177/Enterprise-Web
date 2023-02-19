@@ -15,6 +15,8 @@ namespace COMP1640
             : base(options)
         {
         }
+        public DbSet<Profile> Profile { get; set; }
+        public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Tag> Tags { get; set; }
@@ -85,7 +87,7 @@ namespace COMP1640
             var hashed = new PasswordHasher<Profile>();
 
             //Thiết lập để mã hóa từng tài khoản
-            admin1.PasswordHash = hashed.HashPassword(admin1, "admin1");
+            admin1.PasswordHash = hashed.HashPassword(admin1, "admin#1");
 
             //Add tài khoản vào DB
             builder.Entity<Profile>().HasData(admin1);
@@ -99,28 +101,28 @@ namespace COMP1640
             //1. tạo các role cho hệ thống
             var ADMIN = new IdentityRole
             {
-                Id = "1",
+                Id = "A",
                 Name = "Administrator",
                 NormalizedName = "Administrator"
             };
 
             var STAFF = new IdentityRole
             {
-                Id = "2",
-                Name = "StafF",
+                Id = "B",
+                Name = "Staff",
                 NormalizedName = "Staff"
             };
 
             var QAM = new IdentityRole
             {
-                Id = "3",
+                Id = "C",
                 Name = "Quality Assurance Manager",
                 NormalizedName = "Quality Assurance Manager"
             };
 
             var QAC = new IdentityRole
             {
-                Id = "4",
+                Id = "D",
                 Name = "Quality Assurance Coordinator",
                 NormalizedName = "Quality Assurance Coordinator"
             };
@@ -135,7 +137,7 @@ namespace COMP1640
                 new IdentityUserRole<string>
                 {
                     UserId= "1",
-                    RoleId = "1"
+                    RoleId = "A"
                 }
                 //new IdentityUserRole<string>
                 //{
