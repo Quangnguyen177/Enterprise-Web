@@ -1,4 +1,4 @@
-﻿using COMP1640.Models;
+using COMP1640.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,16 +28,34 @@ namespace COMP1640.Controllers
             return View();
         }
 
-        public IActionResult PostIdea()
+        public IActionResult AddIdea()
         {
             return View();
         }
-
-        public IActionResult EditIdea()
+        public IActionResult Detail()
         {
             return View();
         }
-
+        public IActionResult Comment()
+        {
+            return View();
+        }
+        public IActionResult Edit()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        public IActionResult DeleteIdea()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
