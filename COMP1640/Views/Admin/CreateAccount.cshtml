@@ -5,7 +5,7 @@
 }
 
 
-<h2 class="text-uppercase text-center mb-5">Creating<br /><b>New Account</b></h2>
+@*<h2 class="text-uppercase text-center mb-5">Creating<br /><b>New Account</b></h2>
 
 <form method="post" asp-controller="Admin" asp-action="CreateAccount">
         <div class="form-group">
@@ -35,11 +35,6 @@
         </div>
 
         <br />
-
-        @*<div class="form-group">
-            <input type="password" class="form-control form-control-lg" placeholder="Repeat your password" />
-        </div>*@
-
         <br />
 
         <div class="form-group">
@@ -47,4 +42,30 @@
             <a class="btn btn-success" asp-controller="Admin" asp-action="Dashboard">Cancel</a>
         </div>
 
-</form>
+</form>*@
+
+<div class="center">
+    <h2><b>Create account</b></h2>
+    <form method="post">
+        <div class="txt_field">
+            <input type="text" required/>
+            <span></span>
+            <label>Email</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" required/>
+            <span></span>
+            <label>Password</label>
+        </div>
+
+        <div class="txt_field">
+            <input type="password" required />
+            <span></span>
+            <label>Re-password</label>
+        </div>
+        <div class="check">I agree to <a href="#">Terms and Conditions</a></div>
+        <input class="check-btn" type="checkbox" />
+
+        <input type="submit" value="Create"/>
+    </form>
+</div>
