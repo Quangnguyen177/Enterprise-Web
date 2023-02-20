@@ -40,7 +40,7 @@ namespace COMP1640.Controllers
         {
             return View();
         }
-        public IActionResult Edit()
+        public IActionResult EditIdea()
         {
             return View();
         }

@@ -2849,3 +2849,4 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\refint\COMP1640.dll
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
