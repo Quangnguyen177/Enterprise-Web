@@ -6,25 +6,26 @@
                 <div class="widget">
                     <h4 class="widget-title"><b> Shortcuts</b></h4>
                     <ul class="Shortcuts">
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Index" asp-controller="Home">New Feed</a></li>
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Index" asp-controller="Home">Profile</a></li>
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="" asp-controller="">My page</a></li>
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="PostIdea" asp-controller="Home">Logout</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a asp-action="Index" asp-controller="Home">New Feed</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a  asp-action="Index" asp-controller="Home">Profile</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-file"></i><a asp-action="" asp-controller="">My page</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Home">Logout</a></li>
                     </ul>
                 </div>
                 <br>
                 <div class="idea">
                     <h4 class="widget-title"><b>Most Popular Ideas</b></h4>
                     <ul class="Shortcuts">
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Index" asp-controller="Home">Most Viewed Ideas</a></li>
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="" asp-controller="">Latest Ideas</a></li>
-                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="PostIdea" asp-controller="Home">Latest Comments</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-action="Index" asp-controller="Home">Most Viewed Ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-action="Index" asp-controller="Home">Most Emotion ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-action="" asp-controller="">Latest Ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-comment"></i><a asp-action="PostIdea" asp-controller="Home">Latest Comments</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         @*        <div class="new_idea">
-            <div class="post">*@
+        <div class="post">*@
         <div class="sub_container col-lg-6">
             <div class="new-post">
                 <div class="avata_post">
@@ -60,8 +61,8 @@
                             </figure>
                         </div>
                         @* <div>
-                            <img src="~/fb-icons/more.svg" alt="gallery">
-                            </div>*@
+                        <img src="~/fb-icons/more.svg" alt="gallery">
+                        </div>*@
                         <div class="drop_down">
                             <a style="color: #373b3f; border-radius: 50%;" href="#" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -72,14 +73,14 @@
                                     <div class="row">
                                         <div class="col-sm-6 multi-gd-img">
                                             @*     <ul class="multi-column-dropdown">
-                                                @foreach($category as $cat)
-                                                <li class="hassubs"><a href="#">{{$cat->cname}}<i
-                                                class="fas fa-chevron-down"></i></a>
-                                                </li>
-                                                @endforeach
-                                                </ul>*@
+                                            @foreach($category as $cat)
+                                            <li class="hassubs"><a href="#">{{$cat->cname}}<i
+                                            class="fas fa-chevron-down"></i></a>
+                                            </li>
+                                            @endforeach
+                                            </ul>*@
                                             <ul>
-                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Index" asp-controller="Home">Edit</a></li>
+                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Home">Edit</a></li>
                                                 <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Delete" asp-controller="Home">Delete</a></li>
                                             </ul>
                                         </div>
@@ -88,14 +89,20 @@
                             </div>
                         </div>
                         <div class="content">
-
                             <div class="img_idea">
-                                <h1 class="lead" style="transform: translate(1.4em, -0.2em); font-size: 16px">Spring is wonderful</h1>
+                                <div class="title_idea">
+                                    <div class="tag">
+                                        <a asp-action="" asp-controller="">
+                                            <span>Tag</span>
+                                        </a>
+                                    </div>
+                                    <h1 class="lead">Spring is wonderful</h1>
+                                </div>
                                 @* <h1 class="Tag">@ViewBag.Tag</h1>*@
                                 <div class="image_idea">
                                     <a asp-action="Detail" asp-controller="Home">
-                                    <img style="width: 550px; height: 400px; padding-left: -50px; transform: translateX(-8.3%)" src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
-                                         title="Image_idea" />
+                                        <img style="width: 550px; height: 400px; padding-left: -50px; transform: translateX(-8.3%)" src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
+                                             title="Image_idea" />
                                     </a>
                                 </div>
                             </div>
@@ -122,7 +129,7 @@
                         <div class="comment" style=" position: static; z-index: 5;">
                             <div class="form-group">
                                 <a style="text-decoration: none">
-                                    <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment"  placeholder="Post your comment..." />
+                                    <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
                                 </a>
                                 <label class="switch" value="true">
                                     <input type="checkbox">
@@ -138,23 +145,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="appear_idea">
-                        <div class="ap_idea_avata">
-                            <figure class="account">
-                                <img src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                     alt="avata" />
-                            </figure>
-                        </div>
-                        <div class="info_comment">
-                            @*@foreach($category as $cat)
-                            <li class="hassubs"><a href="#">{{$cat->cname}}<i
-                            class="fas fa-chevron-down"></i></a>
-                            </li>
-                            @endforeach
-                            </ul>*@
-                        </div>
-                    </div>
-                  
                 </div>
             </div>
         </div>
@@ -190,4 +180,5 @@
         </div>
     </div>
 </div>
+
 

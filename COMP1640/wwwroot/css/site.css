@@ -160,7 +160,7 @@ body {
 }
 
 .sub_container2.col-lg-3 {
-    transform: translate(70em, -52.8em);
+    transform: translate(70em, -53.3em);
     position: relative;
     z-index: -1;
 }
@@ -170,12 +170,12 @@ body {
 }
 
 ul:hover {
-    color: greenyellow;
+    color: green;
 }
 
 ul a:active {
     position: relative;
-    color: #FF6347;
+    color: green;
 }
 
 input[type="search" i] {
@@ -366,7 +366,7 @@ input[type="text" i] {
 .idea {
     display: block;
     background-color: var(--text-color);
-    height: 270px;
+    height: 320px;
     width: 280px;
     border-radius: 7px;
     position: static;
@@ -380,13 +380,14 @@ input[type="text" i] {
     text-decoration: none;
 }
 
-.widget h4:hover {
-    color: green;
-}
+
 
 .sidebar.static li {
     font-size: 16px;
     font-weight: 400;
+}
+.widget h4:hover {
+    color: green;
 }
 
 .widget h4 {
@@ -398,7 +399,17 @@ input[type="text" i] {
     position: relative;
     width: 100%;
 }
-
+.Shortcuts a {
+    color: #797979;
+    text-decoration: none;
+    padding-left: 1.2em;
+}
+.sidebar.static a {
+    text-decoration: none;
+}
+    .sidebar.static a:hover {
+        color: #117724;
+    }
 .idea h4 {
     color: #424242;
     display: inline-block;
@@ -642,4 +653,24 @@ div {
 .next:before {
     content: "\f105";
     font-family: FontAwesome;
+}
+.title_idea{
+    display: flex;
+}
+.tag{
+    display: inline-block;
+    background-color: white;
+    border: 0.1em solid gray;
+    border-radius: 0.5em;
+    width: 3em;
+    transform: translate(1.4em, -0.4em);
+}
+.title_idea h1 {
+    display: inline-block;
+    transform: translate(1.6em, -0.2em);
+    font-size: 16px;
+}
+.title_idea span {
+    color: #117724;
+    margin-left: 0.6em;
 }
