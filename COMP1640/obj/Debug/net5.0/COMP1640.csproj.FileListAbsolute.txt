@@ -2850,3 +2850,8 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
