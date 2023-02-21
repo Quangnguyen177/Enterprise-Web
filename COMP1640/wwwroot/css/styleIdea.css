@@ -242,6 +242,12 @@ form .options {
     border-radius: 50%;
 }
 
+    .list {
+        position: absolute;
+        left: 54%;
+        top: 72%;
+    }
+
     .options .list li:hover {
         background: #f0f1f4;
     }
