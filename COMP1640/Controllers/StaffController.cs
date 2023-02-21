@@ -201,8 +201,9 @@ namespace COMP1640.Controllers
 
         public IActionResult DetailIdea(int id)
         {
-            var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.ProfileId.Equals(id));
-            ViewBag.Profile = user_of_idea;
+            var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.IdeaId.Equals(id));
+            var name_of_user = user_of_idea.Profile.UserName;
+            ViewBag.Profile = name_of_user;
             var comments = Db.Comments.Include(p=>p.Idea).FirstOrDefault(p=>p.IdeaId == id);
             ViewBag.Comments = Db.Comments.Where(comments=>comments.IdeaId == id).ToList();
             var idea = Db.Ideas.Include(c => c.Tag).FirstOrDefault(c => c.TagId == id);

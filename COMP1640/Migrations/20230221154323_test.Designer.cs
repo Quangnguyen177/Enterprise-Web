@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230221044100_test")]
+    [Migration("20230221154323_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -180,6 +180,16 @@ namespace COMP1640.Migrations
                             idea_anonymous = false,
                             idea_content = "This is a Test",
                             idea_title = "Test"
+                        },
+                        new
+                        {
+                            IdeaId = 2,
+                            Ipoint = 0,
+                            ProfileId = "2",
+                            TagId = 1,
+                            idea_anonymous = false,
+                            idea_content = "This is a Test #2",
+                            idea_title = "Test #2"
                         });
                 });
 
@@ -274,7 +284,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "9d8e2f35-5684-4a9a-9d35-f5cc4aa9d585",
+                            ConcurrencyStamp = "5c6d155c-079b-45fe-89bb-f7e365fbb0e2",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -283,12 +293,34 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBVpX6ioIZeKw1jZkoA/cRxCedSEQCyRWyv6UASp8ycm8Gf4hDBCJgxKYhu8k1Cgow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP2sPQHEcSGf55ep4UbHk7ul1p4tI+jnczeK8Td3HPE/4rhedYCXVsnwf4dFn0TrFg==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0cfcaf36-7a85-4a8d-9394-394a2d175b71",
+                            SecurityStamp = "f3e1d28f-74e5-4ed8-9dc5-d2a432e0e112",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            Address = "Somewhere in the big gray sky",
+                            Avatar = "",
+                            ConcurrencyStamp = "033158d7-313a-4255-b932-aabad1e0dd30",
+                            DepId = "1",
+                            DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "staff1@gmail.com",
+                            EmailConfirmed = false,
+                            Gender = "Male",
+                            LockoutEnabled = false,
+                            Name = "Duke Mike The",
+                            NormalizedUserName = "staff1@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAELWSYg7DbG9AR5LMrKuni5/EQ4f1579ygH6elGTTxdYb8kj3/YVPfSxr0fA4c9S/zQ==",
+                            PhoneNumber = "0329226528",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7972b69a-ae73-4a85-bdf7-62bba47a4573",
+                            TwoFactorEnabled = false,
+                            UserName = "Duke Mike The"
                         });
                 });
 
@@ -312,6 +344,26 @@ namespace COMP1640.Migrations
                             TagId = 1,
                             tag_name = "Testing Tag"
                         });
+                });
+
+            modelBuilder.Entity("COMP1640.Models.View", b =>
+                {
+                    b.Property<int>("ViewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("NumberOfView")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProfileId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ViewId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("Views");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -344,28 +396,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "70fc44a3-1858-4ec9-94d2-9cebaf40d47e",
+                            ConcurrencyStamp = "0698c44d-213e-46c0-8d0f-7c4d60a5bc50",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "f1f7e05e-2402-4795-8764-199c48b644f2",
+                            ConcurrencyStamp = "b688c6aa-9c20-4bb4-b696-492cfde97038",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "f00a8ff8-2533-4ff5-8c1b-72120f5c460e",
+                            ConcurrencyStamp = "364a5182-58ea-4439-ad42-2f43825f9f91",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "9468f3ee-6e55-4fd8-8d4b-6f8c8b9a19d3",
+                            ConcurrencyStamp = "cdb7614a-6b3a-4bab-ad9a-fd2420375c70",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -462,6 +514,11 @@ namespace COMP1640.Migrations
                         {
                             UserId = "1",
                             RoleId = "A"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "B"
                         });
                 });
 
@@ -537,6 +594,15 @@ namespace COMP1640.Migrations
                         .HasForeignKey("DepId");
 
                     b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.View", b =>
+                {
+                    b.HasOne("COMP1640.Models.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

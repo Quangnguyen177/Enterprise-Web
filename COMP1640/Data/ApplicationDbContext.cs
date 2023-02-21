@@ -83,15 +83,32 @@ namespace COMP1640
                 Avatar = "",
                 DepId = "1",
             };
+            var staff1 = new Profile
+            {
+                Id = "2",
+                UserName = "Duke Mike The",
+                Email = "staff1@gmail.com",
+                NormalizedUserName = "staff1@gmail.com",
+                Name = "Duke Mike The",
+                PhoneNumber = "0329226528",
+                DoB = DateTime.Parse("2002-08-25"),
+                Gender = "Male",
+                Address = "Somewhere in the big gray sky",
+                Avatar = "",
+                DepId = "1",
+            };
+
+
 
             //Khai báo thư viện để mã hóa mk
             var hashed = new PasswordHasher<Profile>();
 
             //Thiết lập để mã hóa từng tài khoản
             admin1.PasswordHash = hashed.HashPassword(admin1, "admin#1");
+            staff1.PasswordHash = hashed.HashPassword(admin1, "Staff#1");
 
             //Add tài khoản vào DB
-            builder.Entity<Profile>().HasData(admin1);
+            builder.Entity<Profile>().HasData(admin1, staff1);
 
 
         }
@@ -139,12 +156,12 @@ namespace COMP1640
                 {
                     UserId= "1",
                     RoleId = "A"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "2",
+                    RoleId = "B"
                 }
-                //new IdentityUserRole<string>
-                //{
-                //    UserId = "2",
-                //    RoleId = "B"
-                //},
                 //new IdentityUserRole<string>
                 //{
                 //    UserId = "3",
@@ -166,13 +183,7 @@ namespace COMP1640
         //        .WithMany(y => y.Profiles)
         //        .HasForeignKey(z => z.DepId);
         //    builder.Entity<Profile>().HasData(
-        //        new Profile
-        //        {
-        //            ProfileId = 1,
-        //            Name = "Truong",
-        //            Email = "admin@gmail.com",
-        //            Phone = "0983337621",
-        //        }
+
             //    new Account
             //    {
             //        Username = "Test@123.com",
@@ -263,6 +274,19 @@ namespace COMP1640
                     TagId = 1,
                     idea_title = "Test",
                     idea_content = "This is a Test",
+                    //created_date = ,
+                    //first_closure = ,
+                    //last_closure = ,
+                    idea_anonymous = false,
+                    Ipoint = 0,
+                },
+                new Idea
+                {
+                    IdeaId = 2,
+                    ProfileId = "2",
+                    TagId = 1,
+                    idea_title = "Test #2",
+                    idea_content = "This is a Test #2",
                     //created_date = ,
                     //first_closure = ,
                     //last_closure = ,

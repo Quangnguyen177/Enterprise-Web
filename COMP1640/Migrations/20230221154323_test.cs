@@ -236,6 +236,26 @@ namespace COMP1640.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Views",
+                columns: table => new
+                {
+                    ViewId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumberOfView = table.Column<int>(type: "int", nullable: false),
+                    ProfileId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Views", x => x.ViewId);
+                    table.ForeignKey(
+                        name: "FK_Views_AspNetUsers_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
@@ -288,10 +308,10 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "A", "70fc44a3-1858-4ec9-94d2-9cebaf40d47e", "Administrator", "Administrator" },
-                    { "B", "f1f7e05e-2402-4795-8764-199c48b644f2", "Staff", "Staff" },
-                    { "C", "f00a8ff8-2533-4ff5-8c1b-72120f5c460e", "Quality Assurance Manager", "Quality Assurance Manager" },
-                    { "D", "9468f3ee-6e55-4fd8-8d4b-6f8c8b9a19d3", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+                    { "A", "0698c44d-213e-46c0-8d0f-7c4d60a5bc50", "Administrator", "Administrator" },
+                    { "B", "b688c6aa-9c20-4bb4-b696-492cfde97038", "Staff", "Staff" },
+                    { "C", "364a5182-58ea-4439-ad42-2f43825f9f91", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "cdb7614a-6b3a-4bab-ad9a-fd2420375c70", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
                 });
 
             migrationBuilder.InsertData(
@@ -307,17 +327,30 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "9d8e2f35-5684-4a9a-9d35-f5cc4aa9d585", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEBVpX6ioIZeKw1jZkoA/cRxCedSEQCyRWyv6UASp8ycm8Gf4hDBCJgxKYhu8k1Cgow==", "0983337621", false, "0cfcaf36-7a85-4a8d-9394-394a2d175b71", false, "Truong" });
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "5c6d155c-079b-45fe-89bb-f7e365fbb0e2", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEP2sPQHEcSGf55ep4UbHk7ul1p4tI+jnczeK8Td3HPE/4rhedYCXVsnwf4dFn0TrFg==", "0983337621", false, "f3e1d28f-74e5-4ed8-9dc5-d2a432e0e112", false, "Truong" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "033158d7-313a-4255-b932-aabad1e0dd30", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAELWSYg7DbG9AR5LMrKuni5/EQ4f1579ygH6elGTTxdYb8kj3/YVPfSxr0fA4c9S/zQ==", "0329226528", false, "7972b69a-ae73-4a85-bdf7-62bba47a4573", false, "Duke Mike The" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "A", "1" });
+                values: new object[,]
+                {
+                    { "A", "1" },
+                    { "B", "2" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Ideas",
                 columns: new[] { "IdeaId", "Ipoint", "ProfileId", "TagId", "created_date", "first_closure", "idea_anonymous", "idea_content", "idea_title", "last_closure" },
-                values: new object[] { 1, 0, "1", 1, null, null, false, "This is a Test", "Test", null });
+                values: new object[,]
+                {
+                    { 1, 0, "1", 1, null, null, false, "This is a Test", "Test", null },
+                    { 2, 0, "2", 1, null, null, false, "This is a Test #2", "Test #2", null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Comments",
@@ -397,6 +430,11 @@ namespace COMP1640.Migrations
                 name: "IX_Ideas_TagId",
                 table: "Ideas",
                 column: "TagId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Views_ProfileId",
+                table: "Views",
+                column: "ProfileId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -424,6 +462,9 @@ namespace COMP1640.Migrations
 
             migrationBuilder.DropTable(
                 name: "Documents");
+
+            migrationBuilder.DropTable(
+                name: "Views");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
