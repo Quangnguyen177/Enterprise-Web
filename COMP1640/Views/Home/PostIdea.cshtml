@@ -22,7 +22,7 @@
 <body>
     <div class="wrapper">
         <section class="post">
-            <a  href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
+            <a href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
             <header>Create Idea</header>
 
             <form action="#">
@@ -37,7 +37,7 @@
                                 <div class="slider-card">
                                     <div class="slider-card-face slider-card-front"></div>
                                     <div class="slider-card-face slider-card-back"></div>
-                            </div>
+                                </div>
                             </label>
                             <h5>Anonymous</h5>
                         </div>
@@ -45,24 +45,41 @@
                 </div>
                 <div class="box">
                     <input type="text" placeholder="Title" required />
-               </div>
+                </div>
                 <textarea placeholder="Post new idea here..." required></textarea>
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
                 <div class="options">
-                    <button class="buttonDownload" style="height: 45px;">Upload File</button>
+                    <button class="buttonDownload" style="height: 45px; width: 145px">Upload File</button>
+                    @*<button class="buttonDownload-2" style="height: 45px; width: 110px; position: absolute;left: 46%;">
+                        Tags
+                    </button>*@
+
+
+                    <div class="form-group" style="position: fixed; right:49%; top:525px;">
+                        <select class="form-select" style="background: coral;border-radius: 10px;width: 72px; font-color:white" required>
+                            <option selected disabled>Tags</option>
+                           @* @foreach (var role in Roles)
+                            {
+                                <option value=@role.Name>@role.Name</option>
+                            }*@
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
+
                     <ul class="list">
                         <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
-                        <li><img src="~/fb-icons/tag.svg" alt="gallery"></li>
+                        @*<li><img src="~/fb-icons/tag.svg" alt="gallery"></li>*@
                         <li><img src="~/fb-icons/emoji.svg" alt="gallery"></li>
                         <li><img src="~/fb-icons/mic.svg" alt="gallery"></li>
                         <li><img src="~/fb-icons/more.svg" alt="gallery"></li>
                     </ul>
                 </div>
                 <button type="button" data-toggle="modal" data-target="#exampleModal">
-                   Post
+                    Post
                 </button>
             </form>
         </section>

@@ -25,6 +25,11 @@ namespace COMP1640.Controllers
             return View(roles);
         }
 
+        public IActionResult InformationStaff()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult CreateAccount()
         {
@@ -47,6 +52,6 @@ namespace COMP1640.Controllers
             }
         }
 
-       
+
     }
 }
