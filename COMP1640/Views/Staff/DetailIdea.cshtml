@@ -2,10 +2,14 @@
 @{
     Layout = "_Layout";
 }
+@{
+    var nums_coms = ViewBag.Comments.Count;
+}
 <style>
 
     .col-lg-12 {
         display: flex;
+        height: 60em;
     }
 
     .profile.col-lg-4 {
@@ -27,23 +31,15 @@
     }
 
     .title p {
-        font-size: 1.5em;
+        font-size: 1.4em;
         font-weight: 600;
+        margin-top: 0.2em;
+        
     }
 
     .profile h4 {
         transform: translate(4.2em, -3em);
     }
-    /*   .Info_account {
-                display: inline-block;
-                position: relative;
-                width: 100%;
-                margin-bottom: 18px;
-                background: #fdfdfd;
-                border: 1px solid #ede9e9;
-                border-radius: 5px
-            }
-        */
     .users-thumb-list {
         float: left;
         text-align: center;
@@ -61,40 +57,42 @@
         }
 
     .description_account {
-        width: 45em;
+        width: 100%;
         height: 100%;
         top: 2em;
         margin-top: -2em;
+        display: flex;
     }
 
         .description_account p {
             font-size: 1.8em;
+            display: inline-block;
         }
 
     .friend {
-        padding-left: 11em;
+        text-align: center;
     }
 
-    button {
-        font-family: PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
-        font-size: 1rem;
-        align-items: center;
-        height: 48px;
-        border-radius: 0.4rem;
-        font-weight: 600;
-        padding: 0 1.2rem;
-        color: #ddd;
-        border: none;
-        box-shadow: 0 .5rem 1rem rgba(143, 142, 142, 0.15) !important;
-        background: green;
-    }
+        .friend button {
+            font-family: PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
+            font-size: 1rem;
+            align-items: center;
+            height: 48px;
+            border-radius: 0.4rem;
+            font-weight: 600;
+            padding: 0 1.2rem;
+            color: #ddd;
+            border: none;
+            box-shadow: 0 .5rem 1rem rgba(143, 142, 142, 0.15) !important;
+            background: green;
+        }
 
     .followers {
         font-size: 0.8rem;
         color: #7f7f7f;
     }
 
-    button:hover {
+    .friend button:hover {
         background: #2b2a2a;
     }
 
@@ -108,13 +106,13 @@
         display: inline-block;
         width: 23em;
         color: #c95693;
-        text-align: -webkit-center;
-        /* transition: revert; */
+        text-align: center;
+        /*    transition: revert;*/
         transform: translate(-0.4em, 1em);
         margin-bottom: 1em;
     }
 
-    button {
+    .friend button {
         --green: #aee2b3;
         font-size: 15px;
         padding: 0.7em 4.7em;
@@ -131,12 +129,12 @@
         box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
     }
 
-        button:hover {
+        .friend button:hover {
             color: #82ffc9;
             box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
         }
 
-        button:before {
+        .friend button:before {
             content: "";
             position: absolute;
             left: -4em;
@@ -147,23 +145,41 @@
             background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60%, transparent 100%);
         }
 
-        button:hover:before {
+        .friend button:hover:before {
             transform: translateX(15em);
         }
+
+    .appear_idea {
+        display: flex;
+        transform: translate(-33.7em, 7em);
+        width: 30em;
+    }
+
+    .ap_idea_avata {
+        display: inline-block;
+    }
+
+    .info_comment {
+        display: inline-block;
+        transform: translate(2em, -0.7em);
+    }
+    .content_post{
+         width: 30.3em;
+    }
 </style>
 <div class="detail_idea">
     <div class="col-lg-12">
         <div class="sub_container col-lg-6">
             <div class="information_idea">
                 <div class="Infor_idea">
-                    <div class="detail_idea">
-                        <div class="avata_information_idea">
+                    <div class="detail_idea nav_bar--item--separate2">
+                        <div class="avata_information_idea" style="width: 100%">
                             <figure>
-                                <a asp-action="index" asp-controller="HTML">
-                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                         alt="avata" /> @*chen @Model.Profile.Avatar vao day*@
+                                <a style="text-decoration: none" asp-action="Profile" asp-controller="Home">
+                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                                         alt="avata" />
                                     <div class="name_account">
-                                        <h4 style="font-size: 16px;padding-top: -600px; width: 230px">Name User: @ViewBag.Name</h4>
+                                        <h4 style="font-size: 16px;padding-top: -600px; width: 230px">@ViewBag.Name</h4>
                                         <h5 style="font-size: 14px;padding-top: -600px; width: 230px; color: black; margin-left: 70px">@Model.created_date</h5>
                                     </div>
                                 </a>
@@ -198,28 +214,40 @@
                             </div>
                         </div>
                         <div class="content">
-
                             <div class="img_idea">
-                                <h1>@Model.idea_title</h1>
-                                <h1 class="lead" style="transform: translate(1.4em, -0.2em); font-size: 16px">@Model.idea_content</h1>
-                                @* <h1 class="Tag">@ViewBag.Tag</h1>*@
-                                <div class="image_idea">
+                                <div class="title_idea">
+                                    <div class="tag">
+                                        <a asp-action="" asp-controller="">
+                                            <span>@Model.Tag.tag_name</span>
+                                        </a>
+                                    </div>
+                                    <h1 class="lead">@Model.idea_title</h1>
+                                </div>
+                                @foreach(var doc in ViewBag.Documents)
+                                {
+                                    <div class="image_idea">
                                     @*<a asp-action="Detail" asp-controller="Home">
-                                        <img style="width: 550px; height: 400px; padding-left: -50px; transform: translateX(-8.3%)" src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
+                                        <img style="width: 550px; height: 400px; padding-left: -50px; transform: translateX(-44.3%)" src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
                                              title="Image_idea" />
                                     </a>*@
-                                   Tag:  @Model.Tag.tag_name
-                                </div>
+                                    <a asp-action="DownloadFile" asp-controller="Staff" asp-route-id="@doc.DocId">
+                                        @doc.doc_content
+                                    </a>
+                                        
+                                    </div>
+                                }
+                                
+                                <h2 class ="content_post">@Model.idea_content</h2>
                             </div>
                         </div>
                     </div>
-                    <div class="felling  nav_bar--item--separate3">
+                    <div class="felling nav_bar--item--separate3">
                         <div class="more">
                             <ul class="felling_idea">
-                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>32</li>
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-solid fa-heart"></i></a>32</li>
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-heart"></i></a>32</li>
+                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@nums_coms</li>
                             </ul>
                         </div>
                     </div>
@@ -227,14 +255,16 @@
                     <div class="comment_idea">
                         <div class="com_idea_avata">
                             <figure class="avata_comment">
-                                <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                     alt="avata" />
+                                <a asp-action="Profile" asp-controller="Home">
+                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                                         alt="avata" />
+                                </a>
                             </figure>
                         </div>
                         <div class="comment" style=" position: static; z-index: 5;">
                             <div class="form-group">
                                 <a style="text-decoration: none">
-                                    <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" value="true" placeholder="Post your comment..." />
+                                    <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment"  placeholder="Post your comment..." />
                                 </a>
                                 <label class="switch" value="true">
                                     <input type="checkbox">
@@ -249,25 +279,24 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="appear_idea">
-                        <div class="ap_idea_avata">
-                            <figure class="account">
-                                <img src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
-                                     alt="avata" />
-                            </figure>
-                        </div>
-                        <div class="info_comment">
-                            @foreach(var com in ViewBag.Comments){
-                                <ul>
-                            <li class="hassubs"><a href="#">@com.com_content<i
-                            class="fas fa-chevron-down"></i></a>
-                            </li>
-                            
-                            </ul>
-                            }
-                        </div>
+                        
+                        @foreach(var com in ViewBag.Comments)
+                        {
+                            <div class="appear_idea">
+                                <div class="ap_idea_avata">
+                                    <figure class="account">
+                                        <a asp-action="Profile" asp-controller="Home">
+                                            <img src="/images/avatar.jpg"
+                                                alt="avata" />
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="info_comment">
+                                    <span>@com.com_content</span>
+                                </div>
+                            </div>
+                        }
+                        
                     </div>
                 </div>
             </div>
@@ -279,8 +308,8 @@
                 </div>
                 <div class="avata_information_idea">
                     <figure>
-                        <a asp-action="index" asp-controller="HTML">
-                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://tphcmtop10.com/wp-content/uploads/2022/11/hinh-avatar-cute-1.jpg"
+                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Home">
+                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
                                  alt="avata" />
                             <div class="name_account">
                                 <h4 style="font-size: 16px;padding-top: -600px; width: 230px">Minh Lưu Thị</h4>
@@ -297,48 +326,37 @@
 
                     </div>
                     <div class="friend">
-                        <button>
+                        <button onclick="myFunction()">
                             Followers
                             <span class="followers">&nbsp; 65.7K </span>
                         </button>
-                    </div>
-                    @*<div class="Flower">
-                    <a asp-action="Index" asp-controller="Home">
-                    <button type="button" class="btn btn-outline-success">Add</button>
-                    </a>
-                    </div>*@
-
+                    </div
                     <div class="page-likes">
-                        @* <ul class="nav nav-tabs likes-btn">
-                        <li class="nav-item"><a class="active" href="#link1" data-toggle="tab">likes</a></li>
-                        <li class="nav-item"><a class="" href="#link2" data-toggle="tab">views</a></li>
-                        </ul>*@
-                        <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active fade show " id="link1">
                                 @* <span><i class="ti-heart"></i>884</span>*@
                                 <a class="title" href="" title="weekly-likes">35 new likes this week</a>
                                 <div class="users-thumb-list">
                                     <a href="#" title="Anderw" data-toggle="tooltip">
-                                        <img src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/avatar-dep-cute.jpg" alt="">
+                                        <img src="/images/ffm1.jpeg" alt="friend1">
                                     </a>
                                     <a href="#" title="frank" data-toggle="tooltip">
-                                        <img src="https://thuthuatnhanh.com/wp-content/uploads/2020/09/Anh-avatar-nam-dep.jpeg" alt="">
+                                        <img src="/images/ffm2.jpeg" alt="friend2">
                                     </a>
                                     <a href="#" title="Sara" data-toggle="tooltip">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3wHGShnDMoE0fXIEZNJ8vdr_VqFbtHxcdYB1-7-vmft_nVX3MHKfFlOs6BMeiZhNhcFw&usqp=CAU" alt="">
+                                        <img src="/images/fm1.jpeg" alt="friend3">
                                     </a>
                                     <a href="#" title="Amy" data-toggle="tooltip">
-                                        <img src="https://antimatter.vn/wp-content/uploads/2022/02/tai-anh-avatar-dep-hinh-dai-dien-facebook.jpg" alt="">
+                                        <img src="/images/ffm3.jpeg" alt="friend4">
                                     </a>
                                     <a href="#" title="Ema" data-toggle="tooltip">
-                                        <img src="https://khoinguonsangtao.vn/wp-content/uploads/2022/05/anh-avatar-dep-ngau-hinh-dai-dien.jpg" alt="">
+                                        <img src="/images/fm2.jpeg" alt="friend5">
                                     </a>
                                     <a href="#" title="Sophie" data-toggle="tooltip">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRurB5BPliJccvJqImPB7t4krfhbSGYlAmxWGA_CW4fx4hmDTJuqynWKznSgKDwkR66OJQ&usqp=CAU" alt="">
+                                        <img src="/images/fm3.jpeg" alt="friend6">
                                     </a>
                                     <a href="#" title="Maria" data-toggle="tooltip">
-                                        <img src="https://thuthuatnhanh.com/wp-content/uploads/2020/09/avatar-nu-cute-anime.jpg" alt="">
+                                        <img src="/images/fl1.jpg" alt="friend7">
                                     </a>
                                 </div>
                             </div>
@@ -349,4 +367,9 @@
         </div>
     </div>
 </div>
-
+@*<button id="btn" onclick="myFunction()">Click vào đây</button>*@
+<script>
+    function myFunction() {
+        alert("Thank you for following me!");
+    }
+</script>

@@ -243,10 +243,22 @@ namespace COMP1640.Controllers
             var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.IdeaId == id);
             var name_of_user = user_of_idea.Profile.Name;
             ViewBag.Name = name_of_user;
+
             var comments = Db.Comments.Include(p => p.Idea).FirstOrDefault(p => p.IdeaId == id);
             ViewBag.Comments = Db.Comments.Where(comments => comments.IdeaId == id).ToList();
+
+            var documents = Db.Documents.Include(d=>d.Idea).FirstOrDefault(d=>d.IdeaId == id);
+            ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
+
             var idea = Db.Ideas.Include(c => c.Tag).FirstOrDefault(c => c.IdeaId == id);
             return View(idea);
+        }
+
+        public FileResult DownloadFile(int id)
+        {
+            var file = Db.Documents.Find(id);
+            var filename = file.doc_content;
+            return File(@"F:\\F2G - UOG\\COMP1640 - Enterprise Web Software Development", filename, System.Net.Mime.MediaTypeNames.Application.Octet);
         }
 
 
