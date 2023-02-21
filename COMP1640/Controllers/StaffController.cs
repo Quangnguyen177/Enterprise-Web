@@ -18,7 +18,36 @@ namespace COMP1640.Controllers
         {
             Db = context;
         }
+        
+        [HttpGet]
+        public IActionResult ViewPage(int pageNum)
+        {
+            int skipPage = 5 * (pageNum - 1);
+            var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
+            ViewBag.Page = pageNum;
+            return View(page);
+        }
 
+        //chua co truong view trong idea nen comment
+        /*[HttpGet]
+        public IActionResult MostView(int pageNum)
+        {
+            int skipPage = 5 * (pageNum - 1);
+            var ideasList = Db.Ideas.OrderByDescending(i => i.View);
+            var page = ideasList.Skip(skipPage).Take(5).ToList();
+            ViewBag.Page = pageNum;
+            return View(page);
+        }*/
+
+        [HttpGet]
+        public IActionResult LastComment(int pageNum)
+        {
+            int skipPage = 5 * (pageNum - 1);
+            var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
+            var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
+            ViewBag.Page = pageNum;
+            return View(page);
+        }
         [HttpGet]
         public IActionResult AddIdea()
         {           

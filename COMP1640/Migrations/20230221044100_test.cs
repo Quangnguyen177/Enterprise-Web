@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
-    public partial class testRun : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -288,10 +288,10 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "A", "9d994ab2-c46a-446c-bb14-a3861dbf7f95", "Administrator", "Administrator" },
-                    { "B", "b973f13e-12d4-4056-90fe-fae9e2877e13", "Staff", "Staff" },
-                    { "C", "c42e51fc-5bb0-404f-a77f-d72c34ce7a6b", "Quality Assurance Manager", "Quality Assurance Manager" },
-                    { "D", "b079fcb4-7b75-4722-910d-277c785bf786", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+                    { "A", "70fc44a3-1858-4ec9-94d2-9cebaf40d47e", "Administrator", "Administrator" },
+                    { "B", "f1f7e05e-2402-4795-8764-199c48b644f2", "Staff", "Staff" },
+                    { "C", "f00a8ff8-2533-4ff5-8c1b-72120f5c460e", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "9468f3ee-6e55-4fd8-8d4b-6f8c8b9a19d3", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
                 });
 
             migrationBuilder.InsertData(
@@ -307,7 +307,7 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "41d81210-9152-4651-b3e3-ca3d6ab2243a", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEH1UGV1RsG9GRIGmy4UorlQLhlPYUQOYZHWtG+d60SBAwMxrVtQEaG9o1ogAGpOm6w==", "0983337621", false, "e6afe599-77b2-43df-bd75-08efde8733a1", false, "Truong" });
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "9d8e2f35-5684-4a9a-9d35-f5cc4aa9d585", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEBVpX6ioIZeKw1jZkoA/cRxCedSEQCyRWyv6UASp8ycm8Gf4hDBCJgxKYhu8k1Cgow==", "0983337621", false, "0cfcaf36-7a85-4a8d-9394-394a2d175b71", false, "Truong" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

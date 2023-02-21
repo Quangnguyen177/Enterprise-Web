@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230219185849_testRun")]
-    partial class testRun
+    [Migration("20230221044100_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -274,7 +274,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "41d81210-9152-4651-b3e3-ca3d6ab2243a",
+                            ConcurrencyStamp = "9d8e2f35-5684-4a9a-9d35-f5cc4aa9d585",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -283,10 +283,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH1UGV1RsG9GRIGmy4UorlQLhlPYUQOYZHWtG+d60SBAwMxrVtQEaG9o1ogAGpOm6w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBVpX6ioIZeKw1jZkoA/cRxCedSEQCyRWyv6UASp8ycm8Gf4hDBCJgxKYhu8k1Cgow==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6afe599-77b2-43df-bd75-08efde8733a1",
+                            SecurityStamp = "0cfcaf36-7a85-4a8d-9394-394a2d175b71",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         });
@@ -344,28 +344,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "9d994ab2-c46a-446c-bb14-a3861dbf7f95",
+                            ConcurrencyStamp = "70fc44a3-1858-4ec9-94d2-9cebaf40d47e",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "b973f13e-12d4-4056-90fe-fae9e2877e13",
+                            ConcurrencyStamp = "f1f7e05e-2402-4795-8764-199c48b644f2",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "c42e51fc-5bb0-404f-a77f-d72c34ce7a6b",
+                            ConcurrencyStamp = "f00a8ff8-2533-4ff5-8c1b-72120f5c460e",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "b079fcb4-7b75-4722-910d-277c785bf786",
+                            ConcurrencyStamp = "9468f3ee-6e55-4fd8-8d4b-6f8c8b9a19d3",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });

@@ -27,7 +27,13 @@ body {
     box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
 
-    .center h2 {
+    .btn-back-register {
+        position: absolute;
+        top: 25px;
+        margin-left: 20px;
+    }
+
+    .center h3 {
         font-family: system-ui;
         text-align: center;
         padding: 20px 0;
@@ -39,6 +45,11 @@ body {
         box-sizing: border-box;
     }
 
+.form-select {
+    border-radius: 10px;
+    width:80%;
+    font-family: system-ui
+}
 form .txt_field {
     position: relative;
     border-bottom: 2px solid #adadad;
