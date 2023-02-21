@@ -176,7 +176,7 @@ namespace COMP1640.Controllers
             ViewBag.Profile = user_of_idea;
             var comments = Db.Comments.Include(p=>p.Idea).FirstOrDefault(p=>p.IdeaId == id);
             ViewBag.Comments = Db.Comments.Where(comments=>comments.IdeaId == id).ToList();
-            var idea = Db.Ideas.Include(c => c.Tag).Include(u=>u.Profile).FirstOrDefault(c => c.TagId == id);
+            var idea = Db.Ideas.Include(c => c.Tag).FirstOrDefault(c => c.TagId == id);
             return View(idea); //them idea vo ngoac
         }
 

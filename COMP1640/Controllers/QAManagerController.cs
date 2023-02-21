@@ -1,5 +1,6 @@
 ﻿using COMP1640.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace COMP1640.Controllers
@@ -32,10 +33,17 @@ namespace COMP1640.Controllers
 
         public IActionResult DeleteTag(int? id)
         {
-            var tag = context.Tags.Find(id);
-            context.Tags.Remove(tag);
-            context.SaveChanges();
+            var ideas = context.Ideas.Include(i => i.Tag).FirstOrDefault(i => i.TagId == id);
+            var ideas_tag = context.Ideas.Where(ideas => ideas.TagId == id).ToList();
+            if (ideas_tag.Count == 0)
+            {
+                var tag = context.Tags.Find(id);
+                context.Tags.Remove(tag);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
+
         }
 
         [HttpGet]
