@@ -23,6 +23,7 @@ namespace COMP1640
         public DbSet<Document> Documents { get; set; }
         public DbSet<Idea> Ideas { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<View> Views { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
