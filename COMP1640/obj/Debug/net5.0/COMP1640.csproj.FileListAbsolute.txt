@@ -2813,7 +2813,6 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_Validati
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\CreateAccount.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Document\AddFile.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
@@ -2856,3 +2855,5 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\InformationStaff.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformationStaff.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\InformationStaff.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformationStaff.cshtml.g.cs
