@@ -7,7 +7,7 @@
                     <h4 class="widget-title"><b> Shortcuts</b></h4>
                     <ul class="Shortcuts">
                         <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a asp-action="Index" asp-controller="Home">New Feed</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a  asp-action="Index" asp-controller="Home">Profile</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Index" asp-controller="Home">Profile</a></li>
                         <li class="nav_bar--item "><i class="fa-regular fa-file"></i><a asp-action="" asp-controller="">My page</a></li>
                         <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Home">Logout</a></li>
                     </ul>
@@ -30,9 +30,9 @@
             <div class="new-post">
                 <div class="avata_post">
                     <figure>
-                        <a asp-action="Profile" asp-controller="Home">
-                        <img src="/images/avatar.jpg"
-                             alt="avata" />
+                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Home">
+                            <img src="/images/avatar.jpg"
+                                 alt="avata" />
                         </a>
                     </figure>
                 </div>
@@ -98,7 +98,7 @@
                                             <span>Tag</span>
                                         </a>
                                     </div>
-                                    <h1 class="lead">Spring is wonderful</h1>
+                                    <h1 class="lead" style="font-size: 1.3em">Spring is wonderful</h1>
                                 </div>
                                 @* <h1 class="Tag">@ViewBag.Tag</h1>*@
                                 <div class="image_idea ">
@@ -107,6 +107,9 @@
                                              title="Image_idea" />
                                     </a>
                                 </div>
+                               
+                                    <h2 class ="content_post">Most of us would have beautiful gardens in front of our houses. For many, gardening would be a favourite pastime.</h2>
+                                
                             </div>
                         </div>
                     </div>
@@ -124,10 +127,10 @@
                     <div class="comment_idea">
                         <div class="com_idea_avata">
                             <a asp-action="Profile" asp-controller="Home">
-                            <figure class="avata_comment">
-                                <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
-                                     alt="avata" />
-                            </figure>
+                                <figure class="avata_comment">
+                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                                         alt="avata" />
+                                </figure>
                             </a>
                         </div>
                         <div class="comment" style=" position: static; z-index: 5;">
@@ -147,7 +150,7 @@
                                     <button type="button" class="btn btn-outline-success">Add</button>
                                 </a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
