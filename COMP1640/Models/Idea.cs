@@ -37,6 +37,7 @@ namespace COMP1640.Models
         public Tag Tag { get; set; }
 
         //---------------
+        //public ICollection<Profile> Profiles { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Document> Documents { get; set; }
 
