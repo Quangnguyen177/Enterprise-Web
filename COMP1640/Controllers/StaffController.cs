@@ -1,4 +1,4 @@
-using COMP1640.Models;
+﻿using COMP1640.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace COMP1640.Controllers
 {
@@ -18,7 +20,7 @@ namespace COMP1640.Controllers
         {
             Db = context;
         }
-        
+
         [HttpGet]
         public IActionResult ViewPage(int pageNum)
         {
@@ -50,16 +52,16 @@ namespace COMP1640.Controllers
         }
         [HttpGet]
         public IActionResult AddIdea()
-        {           
+        {
             return View(Db.Tags.ToList());
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddIdea(string title, string content, string tagName, string isAnonymous)
+        public async Task<IActionResult> AddIdea(List<IFormFile> uploadedFiles,string title, string content, string tagName, string isAnonymous)
         {
             Tag tag = Db.Tags.FirstOrDefault(t => t.tag_name == tagName);
             Boolean anonynous = true;
-            if (isAnonymous == null) anonynous=false;
+            if (isAnonymous == null) anonynous = false;
             Idea newIdea = new Idea()
             {
                 idea_title = title,
@@ -72,8 +74,44 @@ namespace COMP1640.Controllers
             };
             Db.Add(newIdea);
             await Db.SaveChangesAsync();
+            if (uploadedFiles.Count > 0)
+            {
+                AddFile(uploadedFiles, Db.Ideas.OrderBy(i=>i.IdeaId).Last().IdeaId); //add file
+            }
             return View(Db.Tags.ToList());
         }
+        public void AddFile(List<IFormFile> uploadedFiles, int idIdea)
+        {
+
+            foreach (var file in uploadedFiles)
+            {
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+                //create folder if not exist
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+
+                string fileNameWithPath = Path.Combine(path, file.FileName);
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    file.CopyTo(stream); //đoạn này add vô root 
+
+                }
+                Models.Document doc = new Models.Document() //đoạn này đang addd  dữ liệu vô database goodddd :)))
+                {
+
+                    doc_content = file.FileName,
+                    doc_type = "Still dont know",
+                    IdeaId = idIdea
+                };
+                Db.Add(doc);
+                Db.SaveChanges();
+            }
+        }
+
         [HttpGet]
         public IActionResult EditIdea(int ideaId)
         {
@@ -86,7 +124,7 @@ namespace COMP1640.Controllers
         }
         [HttpPut]
         public async Task<IActionResult> EditIdea(int ideaId, string title, string content, string tagName, string isAnonymous)
-        {    
+        {
             bool anonynous = true;
             if (isAnonymous == null) anonynous = false;
             Tag tag = Db.Tags.FirstOrDefault(t => t.tag_name == tagName);
@@ -98,7 +136,7 @@ namespace COMP1640.Controllers
                 idea_anonymous = anonynous,
                 ProfileId = "1", //because session is not initialized, the defaut Staff is 1 
                 created_date = DateTime.Now,
-                TagId = tag.TagId, 
+                TagId = tag.TagId,
             };
             Db.Update(editedIdea);
             await Db.SaveChangesAsync();
@@ -112,7 +150,7 @@ namespace COMP1640.Controllers
         public IActionResult Comment()
         {
             return View();
-        } 
+        }
 
         [HttpPost]
         public async Task<IActionResult> Comment(string content, string isAnonymous, int ideaId, string toEmail, string name)
@@ -137,7 +175,7 @@ namespace COMP1640.Controllers
             else
             {
                 ViewBag.Error = "Comment failed!";
-            }           
+            }
             return View();
         }
 
@@ -201,12 +239,14 @@ namespace COMP1640.Controllers
 
         public IActionResult DetailIdea(int id)
         {
-            var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.ProfileId.Equals(id));
-            ViewBag.Profile = user_of_idea;
-            var comments = Db.Comments.Include(p=>p.Idea).FirstOrDefault(p=>p.IdeaId == id);
-            ViewBag.Comments = Db.Comments.Where(comments=>comments.IdeaId == id).ToList();
-            var idea = Db.Ideas.Include(c => c.Tag).FirstOrDefault(c => c.TagId == id);
-            return View(idea); //them idea vo ngoac
+
+            var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.IdeaId == id);
+            var name_of_user = user_of_idea.Profile.Name;
+            ViewBag.Name = name_of_user;
+            var comments = Db.Comments.Include(p => p.Idea).FirstOrDefault(p => p.IdeaId == id);
+            ViewBag.Comments = Db.Comments.Where(comments => comments.IdeaId == id).ToList();
+            var idea = Db.Ideas.Include(c => c.Tag).FirstOrDefault(c => c.IdeaId == id);
+            return View(idea);
         }
 
 
