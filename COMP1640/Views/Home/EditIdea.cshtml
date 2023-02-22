@@ -56,10 +56,22 @@
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
                 <div class="options">
-                    <button class="buttonDownload" style="height: 45px;">Upload File</button>
+                    <button class="buttonDownload" style="height: 45px;  width: 145px">Upload File</button>
+
+                    <div class="form-group" style="position: fixed; right:49%; top:525px;">
+                        <select class="form-select" style="background: coral;border-radius: 10px;width: 72px; font-color:white" required>
+                            <option selected disabled>Tags</option>
+                            @* @foreach (var role in Roles)
+                            {
+                            <option value=@role.Name>@role.Name</option>
+                            }*@
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
                     <ul class="list">
                         <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
-                        <li><img src="~/fb-icons/tag.svg" alt="tag"></li>
+                        @*<li><img src="~/fb-icons/tag.svg" alt="tag"></li>*@
                         <li><img src="~/fb-icons/emoji.svg" alt="emoji"></li>
                         <li><img src="~/fb-icons/mic.svg" alt="mic"></li>
                         <li><img src="~/fb-icons/more.svg" alt="more"></li>
