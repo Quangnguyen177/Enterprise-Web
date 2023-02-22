@@ -22,8 +22,11 @@
 <body>
     <div class="wrapper">
         <section class="post">
-            <a href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
-            <header>Create Idea</header>
+            <header class="row">
+                <a class="col-2" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
+                <div class="col-8">Add Idea</div>
+            </header>
+
 
             <form action="#">
                 <div class="content">
@@ -52,31 +55,29 @@
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
                 <div class="options">
-                    <button class="buttonDownload" style="height: 45px; width: 145px">Upload File</button>
-                    @*<button class="buttonDownload-2" style="height: 45px; width: 110px; position: absolute;left: 46%;">
-                        Tags
-                    </button>*@
+                    <div class="row">
+                        <button class="buttonDownload col-4">Upload File</button>
 
-
-                    <div class="form-group" style="position: fixed; right:49%; top:525px;">
-                        <select class="form-select" style="background: coral;border-radius: 10px;width: 72px; font-color:white" required>
-                            <option selected disabled>Tags</option>
-                           @* @foreach (var role in Roles)
-                            {
+                        <div class="form-group col-3">
+                            <select class="form-select" required>
+                                <option style="color:white">Tags</option>
+                                @* @foreach (var role in Roles)
+                                {
                                 <option value=@role.Name>@role.Name</option>
-                            }*@
-                        </select>
-                        <span class="text-danger"></span>
+                                }*@
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
+
+
+                        <ul class="list col-5">
+                            <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/tag.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/emoji.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/mic.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/more.svg" alt="gallery"></li>
+                        </ul>
                     </div>
-
-
-                    <ul class="list">
-                        <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
-                        @*<li><img src="~/fb-icons/tag.svg" alt="gallery"></li>*@
-                        <li><img src="~/fb-icons/emoji.svg" alt="gallery"></li>
-                        <li><img src="~/fb-icons/mic.svg" alt="gallery"></li>
-                        <li><img src="~/fb-icons/more.svg" alt="gallery"></li>
-                    </ul>
                 </div>
                 <button type="button" data-toggle="modal" data-target="#exampleModal">
                     Post

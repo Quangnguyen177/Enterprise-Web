@@ -18,7 +18,6 @@ namespace COMP1640.Controllers
             _roleManager = roleManager;
         }
 
-        [Route("/Admin/")]
         public IActionResult Dashboard()
         {
             var roles = _roleManager.Roles.ToList();

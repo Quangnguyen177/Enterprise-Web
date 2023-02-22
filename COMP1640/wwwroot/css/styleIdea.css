@@ -137,17 +137,6 @@ h5 {
     margin-left: -500px;
 }
 
-.close-btn {
-    position: absolute;
-    top: 85px;
-    left: 64%;
-}
-
-.post a {
-    position: absolute;
-    top: 93px;
-}
-
 .post header {
     font-size: 30px;
     font-weight: 600;
@@ -208,6 +197,7 @@ form :where(.theme-emoji, .options) {
 }
 
 form .options {
+    display:inline-block;
     height: 57px;
     margin: 15px 0;
     padding: 0 15px;
@@ -234,6 +224,18 @@ form .options {
         list-style: none;
     }
 
+.form-select {
+    width: 84px;
+    height: 48px;
+    margin: 5px;
+    color: ghostwhite;
+    font-weight: 500;
+    background: coral;
+    border-radius: 30px;
+    color: ghostwhite;
+    font-weight: 500;
+}
+
 .options .list li {
     height: 42px;
     width: 42px;
@@ -241,12 +243,6 @@ form .options {
     cursor: pointer;
     border-radius: 50%;
 }
-
-    .list {
-        position: absolute;
-        left: 54%;
-        top: 72%;
-    }
 
     .options .list li:hover {
         background: #f0f1f4;
@@ -260,7 +256,7 @@ form button {
     height: 53px;
     color: #fff;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 800;
     cursor: pointer;
     color: #BCC0C4;
     cursor: no-drop;
@@ -372,9 +368,12 @@ form textarea:valid ~ button {
 /* Css UploadFile */
 .buttonDownload {
     display: inline-block;
+    height: 45px;
+    width: 145px;
+    top: 7px;
+    left:5px;
     position: relative;
     padding: 10px 25px;
-    width: 170px;
     background-color: #4CC713;
     color: white;
     font-family: sans-serif;

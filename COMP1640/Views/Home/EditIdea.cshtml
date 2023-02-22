@@ -23,11 +23,10 @@
     <div class="wrapper">
         <section class="post">
 
-            <button type="button" class="close" aria-label="Close" data-toggle="modal" data-target="#exampleModal" style="font-size: 40px;">
-                <span class="close-btn" aria-hidden="true">&times;</span>
-            </button>
-
-            <header>Edit Post</header>
+            <header class="row">
+                <a class="col-2" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
+                <div class="col-8">Edit Idea</div>
+            </header>
             
             <form action="#">
                 <div class="content">
@@ -50,34 +49,37 @@
                 <div class="box">
                     <input type="text" placeholder="Title" required />
                 </div>
-                <textarea placeholder="Edit post here..." required></textarea>
+                <textarea placeholder="Edit idea here..." required></textarea>
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
                 <div class="options">
-                    <button class="buttonDownload" style="height: 45px;  width: 145px">Upload File</button>
+                    <div class="row">
+                        <button class="buttonDownload col-4">Upload File</button>
 
-                    <div class="form-group" style="position: fixed; right:49%; top:525px;">
-                        <select class="form-select" style="background: coral;border-radius: 10px;width: 72px; font-color:white" required>
-                            <option selected disabled>Tags</option>
-                            @* @foreach (var role in Roles)
-                            {
-                            <option value=@role.Name>@role.Name</option>
-                            }*@
-                        </select>
-                        <span class="text-danger"></span>
+                        <div class="form-group col-3">
+                            <select class="form-select" required>
+                                <option style="color:white">Tags</option>
+                                @* @foreach (var role in Roles)
+                                {
+                                <option value=@role.Name>@role.Name</option>
+                                }*@
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
+
+
+                        <ul class="list col-5">
+                            <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/tag.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/emoji.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/mic.svg" alt="gallery"></li>
+                            <li><img src="~/fb-icons/more.svg" alt="gallery"></li>
+                        </ul>
                     </div>
 
-                    <ul class="list">
-                        <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
-                        @*<li><img src="~/fb-icons/tag.svg" alt="tag"></li>*@
-                        <li><img src="~/fb-icons/emoji.svg" alt="emoji"></li>
-                        <li><img src="~/fb-icons/mic.svg" alt="mic"></li>
-                        <li><img src="~/fb-icons/more.svg" alt="more"></li>
-                    </ul>
-                </div>
-                <button type="button">
+                <button type="button" data-toggle="modal" data-target="#exampleModal">
                     Save
                 </button>
             </form>

@@ -18,6 +18,8 @@ namespace COMP1640.Controllers
             _logger = logger;
         }
 
+        [Route("/")]
+
         public IActionResult Index()
         {
             return View();
