@@ -179,14 +179,38 @@ namespace COMP1640.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<HttpResponseMessage> Like(int id)
+        //{
+        //    var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+        //    idea.Ipoint++;
+        //    Db.Update(idea);
+        //    await Db.SaveChangesAsync();
+        //    return new HttpResponseMessage(HttpStatusCode.Accepted);
+        //}
+
         [HttpPost]
-        public async Task<HttpResponseMessage> Like(int id)
+        public async Task<IActionResult> Like(Idea idea)
         {
-            var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
-            idea.Ipoint++;
+            //{
+            //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
+
+            //    if (updatedLike != null)
+            //    {
+            //        //updatedLike.Ipoint = idea.Ipoint + 1;
+            //        updatedLike.Ipoint++;
+            //        Db.Update(updatedLike);
+            //        Db.SaveChanges();
+            //        return Json(true);
+            //    }
+            //}
+
+            //return Json(false);
+
             Db.Update(idea);
             await Db.SaveChangesAsync();
-            return new HttpResponseMessage(HttpStatusCode.Accepted);
+
+            return Json("Done");
         }
 
         //check if current time is earlier than 1st closure date 

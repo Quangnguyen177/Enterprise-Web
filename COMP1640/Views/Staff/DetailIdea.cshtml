@@ -245,7 +245,15 @@
                         <div class="more">
                             <ul class="felling_idea">
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
-                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-solid fa-heart"></i></a>32</li>
+                                <li>@Model.Ipoint</li>
+                               
+                                <li>
+                                    @*asp-action="Like" asp-controller="Staff" onclick="Upvote()*@
+                                    @*<a style="color:green">*@
+                                        <i type="button" id="btnGO" class="fa-solid fa-heart"></i>
+                                    @*</a>*@
+                                </li>
+                                
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-heart"></i></a>32</li>
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@nums_coms</li>
                             </ul>
@@ -368,8 +376,75 @@
     </div>
 </div>
 @*<button id="btn" onclick="myFunction()">Click vào đây</button>*@
-<script>
-    function myFunction() {
-        alert("Thank you for following me!");
-    }
-</script>
+    
+
+
+    <script type="text/javascript">
+        function myFunction() {
+            alert("Thank you for following me!");
+        }
+
+        $("#UpvoteButton").click(function Upvote() {
+            //var data = $("#UpvoteButton").serialize();
+            //console.log(data);
+            //alert(data);
+
+            const data = { id: @Model.IdeaId, like: @Model.Ipoint++ }
+
+            $.ajax({
+                type: 'POST',
+                url: '/staff/like/',
+                dataType: "json",
+                data: JSON.stringify(data),
+                
+                //success: function (result) {
+                //    alert('Successfully received Data ');
+                //    console.log(result);
+                //},
+                //error: function () {
+                //    alert('Failed to receive the Data');
+                //    console.log('Failed ');
+                //}
+            })
+        });
+
+
+        $('#btnGO').click(function {
+
+            var point = @Model.Ipoint + 1;
+
+            var idea = {
+                IdeaId : @Model.IdeaId,
+                Ipoint : point,
+            };
+
+            $.ajax({
+                method: 'POST',
+                url: '/staff/like',
+                data:   idea ,
+                success: function (nice) {
+                    console.log(nice);
+                },
+                error: function(err) {
+                    console.error(err);
+                }
+            });
+            
+        }
+            
+
+        function Like(idea){
+            $.ajax({
+                method: "POST",
+                url: "/staff/like",
+                data: idea,
+                success: function (data) {
+                    @Model.Ipoint++;
+                },
+                error: function(err) {
+                    console.error(err);
+                }
+            });
+        });
+        
+    </script>

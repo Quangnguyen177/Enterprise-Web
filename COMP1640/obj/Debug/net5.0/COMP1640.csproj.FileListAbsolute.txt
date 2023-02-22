@@ -786,7 +786,6 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.TagHelpers.input.cac
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.TagHelpers.output.cache
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.RazorCoreGenerate.cache
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\CreateAccount.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\PostIdea.cshtml.g.cs
@@ -1842,7 +1841,6 @@ F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.csproj.CopyComplete
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Document\AddFile.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutPostIdea.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\bin\Debug\net5.0\appsettings.Development.json
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\bin\Debug\net5.0\appsettings.json
@@ -2856,3 +2854,7 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\InformationStaff.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformationStaff.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\InformationStaff.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformationStaff.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
