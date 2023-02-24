@@ -248,9 +248,9 @@
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
 
                                 <li>
-                                    <input id="#idea_Id" value="@Model.Ipoint" hidden />
-                                    <input id="#profile_Id" value="@Model.ProfileId" hidden />
-                                    <input id="#tag_Id" value="@Model.TagId" hidden />
+                                    <input id="#idea_Id" value=@Model.Ipoint hidden />
+                                    <input id="#profile_Id" value=@Model.ProfileId hidden />
+                                    <input id="#tag_Id" value=@Model.TagId hidden />
                                     
                                     <div id="" >@Model.Ipoint</div>
                                 </li>
@@ -406,6 +406,7 @@
             var tag_Id = $('#tag_Id').val();
             var point = $('#Ipoint').val();
 
+
             var idea = {
                 IdeaId : idea_Id,
                 ProfileId : profile_Id,
@@ -415,9 +416,9 @@
 
             $.ajax({
                 method: 'POST',
-                url: '/staff/like',
-                dataType: 'json',
-                data: {idea},
+                url: '/staff/like/',
+                //dataType: 'json',
+                data: idea,
                 success: function (nice) {
                     
                     console.log(nice);

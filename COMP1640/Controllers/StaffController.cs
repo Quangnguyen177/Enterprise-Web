@@ -211,9 +211,10 @@ namespace COMP1640.Controllers
             {
                 Db.Update(idea);
                 Db.SaveChanges();
+                return Ok("Done");
             }
-
-            return Json("Done");
+            else return Ok("not good");
+           
         }
 
         //check if current time is earlier than 1st closure date 
