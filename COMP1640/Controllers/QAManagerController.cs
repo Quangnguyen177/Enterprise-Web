@@ -14,31 +14,31 @@ namespace COMP1640.Controllers
         }
         public IActionResult Index()
         {
-            return View(context.Tags.ToList());
+            return View(context.Categories.ToList());
         }
 
         [HttpGet]
-        public IActionResult AddTag()
+        public IActionResult AddCate()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult AddTag(Tag tag)
+        public IActionResult AddCate(Category cate)
         {
-            context.Tags.Add(tag);
+            context.Categories.Add(cate);
             context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult DeleteTag(int? id)
         {
-            var ideas = context.Ideas.Include(i => i.Tag).FirstOrDefault(i => i.TagId == id);
-            var ideas_tag = context.Ideas.Where(ideas => ideas.TagId == id).ToList();
+            var ideas = context.Ideas.Include(i => i.Category).FirstOrDefault(i => i.CategoryId == id);
+            var ideas_tag = context.Ideas.Where(ideas => ideas.CategoryId == id).ToList();
             if (ideas_tag.Count == 0)
             {
-                var tag = context.Tags.Find(id);
-                context.Tags.Remove(tag);
+                var tag = context.Categories.Find(id);
+                context.Categories.Remove(tag);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -53,22 +53,22 @@ namespace COMP1640.Controllers
             {
                 return NotFound();
             }
-            return View(context.Tags.Find(id));
+            return View(context.Categories.Find(id));
         }
 
         [HttpPost]
-        public IActionResult EditTag(Tag tag)
+        public IActionResult EditTag(Category cate)
         {
             if (ModelState.IsValid)
             {
-                context.Tags.Update(tag);
+                context.Categories.Update(cate);
                 context.SaveChanges();
                 TempData["Message"] = "Edit student successfully !";
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                return View(tag);
+                return View(cate);
             }
         }
     }

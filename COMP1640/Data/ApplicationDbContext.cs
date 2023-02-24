@@ -19,11 +19,13 @@ namespace COMP1640
         public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Idea> Ideas { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<View> Views { get; set; }
+        public DbSet<React> React { get; set; }
+        public DbSet<ReactPoint> ReactPoints { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -47,7 +49,7 @@ namespace COMP1640
             SeedDepartment(builder);
 
             //3
-            SeedTag(builder);
+            SeedCategory(builder);
 
             //4
             SeedDocument(builder);
@@ -236,13 +238,13 @@ namespace COMP1640
         }
 
         //3
-        private void SeedTag(ModelBuilder builder)
+        private void SeedCategory(ModelBuilder builder)
         {
-            builder.Entity<Tag>().HasData(
-                new Tag
+            builder.Entity<Category>().HasData(
+                new Category
                 {
-                    TagId = 1,
-                    tag_name = "Testing Tag"
+                    CategoryId = 1,
+                    category_name = "Human Resource"
                 }
             );
         }
@@ -271,27 +273,27 @@ namespace COMP1640
                 {
                     IdeaId = 1,
                     ProfileId = "1",
-                    TagId = 1,
+                    CategoryId = 1,
                     idea_title = "Test",
                     idea_content = "This is a Test",
                     //created_date = ,
                     //first_closure = ,
                     //last_closure = ,
                     idea_anonymous = false,
-                    Ipoint = 0,
+                    idea_view = 0,
                 },
                 new Idea
                 {
                     IdeaId = 2,
                     ProfileId = "2",
-                    TagId = 1,
+                    CategoryId = 1,
                     idea_title = "Test #2",
                     idea_content = "This is a Test #2",
                     //created_date = ,
                     //first_closure = ,
                     //last_closure = ,
                     idea_anonymous = false,
-                    Ipoint = 0,
+                    idea_view = 0,
                 }
             );
         }

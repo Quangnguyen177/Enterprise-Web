@@ -1,4 +1,4 @@
-﻿@model List<Tag>
+﻿@model List<Category>
 <div>
     <h1>
         This is index of QAManger.
@@ -22,13 +22,13 @@
             @foreach (var tag in Model)
             {
                 <tr>
-                    <td>@tag.TagId</td>
-                    <td>@tag.tag_name</td>
+                    <td>@tag.CategoryId</td>
+                    <td>@tag.category_name</td>
                     <td>
-                        <a type="button" class="" asp-controller="QAManager" asp-action="EditTag" asp-route-id="@tag.TagId"><i class="fa-solid fa-wrench" style="color:darkgray"></i></a>
+                        <a type="button" class="" asp-controller="QAManager" asp-action="EditTag" asp-route-id="@tag.CategoryId"><i class="fa-solid fa-wrench" style="color:darkgray"></i></a>
                     </td>
                     <td>
-                        <a type="button" class="" asp-controller="QAManager" asp-action="DeleteTag" asp-route-id="@tag.TagId"><i class="fa-solid fa-trash" style="color:red"></i></a>
+                        <a type="button" class="" asp-controller="QAManager" asp-action="DeleteTag" asp-route-id="@tag.CategoryId"><i class="fa-solid fa-trash" style="color:red"></i></a>
                     </td>
                 </tr>
             }

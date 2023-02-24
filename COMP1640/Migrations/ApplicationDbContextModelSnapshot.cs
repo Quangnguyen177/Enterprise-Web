@@ -38,6 +38,28 @@ namespace COMP1640.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("COMP1640.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("category_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            category_name = "Human Resource"
+                        });
+                });
+
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
                 {
                     b.Property<string>("ComId")
@@ -133,14 +155,11 @@ namespace COMP1640.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Ipoint")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProfileId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("created_date")
                         .HasColumnType("datetime2");
@@ -157,14 +176,17 @@ namespace COMP1640.Migrations
                     b.Property<string>("idea_title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("idea_view")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("last_closure")
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdeaId");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Ideas");
 
@@ -172,22 +194,22 @@ namespace COMP1640.Migrations
                         new
                         {
                             IdeaId = 1,
-                            Ipoint = 0,
+                            CategoryId = 1,
                             ProfileId = "1",
-                            TagId = 1,
                             idea_anonymous = false,
                             idea_content = "This is a Test",
-                            idea_title = "Test"
+                            idea_title = "Test",
+                            idea_view = 0
                         },
                         new
                         {
                             IdeaId = 2,
-                            Ipoint = 0,
+                            CategoryId = 1,
                             ProfileId = "2",
-                            TagId = 1,
                             idea_anonymous = false,
                             idea_content = "This is a Test #2",
-                            idea_title = "Test #2"
+                            idea_title = "Test #2",
+                            idea_view = 0
                         });
                 });
 
@@ -282,7 +304,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "7ed81062-a914-4a52-840b-169ca321aafe",
+                            ConcurrencyStamp = "075db95e-3012-4fd1-a328-5f19a5c746bb",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -291,10 +313,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIyYKvAmZHQ4WW4zUiXdZEfRuJOjYQPMYaAJb5cWDpnONKVx2iY3KPK9IPYHMJYaow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMAbPzRlR/qRlz31bZxq/SCr7FmFhZGnaNn6kQYbzx9d9yp7TATFBfQ/EsnacI+DAw==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "219134af-791b-4668-834b-686cb6c6c7b9",
+                            SecurityStamp = "38836076-1ff8-4ef8-8340-6a5c6a0f0fbd",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -304,7 +326,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "4e8e9074-837e-4dea-9513-cad708bf183b",
+                            ConcurrencyStamp = "054ca572-612c-4eaf-9f33-9be63e53afd9",
                             DepId = "1",
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -313,35 +335,56 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAELy63MnQEHx+94B+ZrW4iF5C8LXHf2P+sE4vqXiqWwSA+2spxQ808aGqdaB1/83n0A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIKi/8sUH5FEDbInGV4xrwUQ2FoUqtcQkljdmYnhzXAaq9rYSTi8VrF1Ul52GcCVrA==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1d749c00-3327-4aaa-a731-f05e284652a9",
+                            SecurityStamp = "51eb523d-317b-4bbd-a221-df4624ed8acb",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         });
                 });
 
-            modelBuilder.Entity("COMP1640.Models.Tag", b =>
+            modelBuilder.Entity("COMP1640.Models.React", b =>
                 {
-                    b.Property<int>("TagId")
+                    b.Property<int>("ReactId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("tag_name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdeaId")
+                        .HasColumnType("int");
 
-                    b.HasKey("TagId");
+                    b.Property<string>("ProfileId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.ToTable("Tags");
+                    b.Property<bool>("Reacted")
+                        .HasColumnType("bit");
 
-                    b.HasData(
-                        new
-                        {
-                            TagId = 1,
-                            tag_name = "Testing Tag"
-                        });
+                    b.HasKey("ReactId");
+
+                    b.HasIndex("IdeaId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("React");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.ReactPoint", b =>
+                {
+                    b.Property<int>("ReactPointId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ThumbDown")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ThumbUp")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReactPointId");
+
+                    b.ToTable("ReactPoints");
                 });
 
             modelBuilder.Entity("COMP1640.Models.View", b =>
@@ -394,28 +437,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "937f5e06-571d-4b3e-9ef4-fbc19d699e23",
+                            ConcurrencyStamp = "8df661aa-7d6c-4126-a9aa-1229074fe8a6",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "a0cfd1be-6061-4e21-a68b-9ae8a039c846",
+                            ConcurrencyStamp = "59dbfdd4-2f41-4012-80b6-6a69ff309976",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "615876e4-e283-470c-97cc-7cec275781a8",
+                            ConcurrencyStamp = "86b929db-7742-4621-ba16-95959c3a4bcf",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "b604f849-6c54-4603-b1e7-2709c8d362ae",
+                            ConcurrencyStamp = "63e1f06e-4fd3-41bb-9d49-e609221e9498",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -570,19 +613,19 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
+                    b.HasOne("COMP1640.Models.Category", "Category")
+                        .WithMany("Ideas")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
 
-                    b.HasOne("COMP1640.Models.Tag", "Tag")
-                        .WithMany("Ideas")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Category");
 
                     b.Navigation("Profile");
-
-                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Profile", b =>
@@ -592,6 +635,23 @@ namespace COMP1640.Migrations
                         .HasForeignKey("DepId");
 
                     b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.React", b =>
+                {
+                    b.HasOne("COMP1640.Models.Idea", "Idea")
+                        .WithMany()
+                        .HasForeignKey("IdeaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("COMP1640.Models.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
+
+                    b.Navigation("Idea");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("COMP1640.Models.View", b =>
@@ -654,6 +714,11 @@ namespace COMP1640.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("COMP1640.Models.Category", b =>
+                {
+                    b.Navigation("Ideas");
+                });
+
             modelBuilder.Entity("COMP1640.Models.Department", b =>
                 {
                     b.Navigation("Profiles");
@@ -669,11 +734,6 @@ namespace COMP1640.Migrations
             modelBuilder.Entity("COMP1640.Models.Profile", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("COMP1640.Models.Tag", b =>
-                {
-                    b.Navigation("Ideas");
                 });
 #pragma warning restore 612, 618
         }

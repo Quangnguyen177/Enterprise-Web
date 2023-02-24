@@ -4,7 +4,7 @@
 }
 @{
     var nums_coms = ViewBag.Comments.Count;
-    var ThumbUp = Model.Ipoint + 1;
+    //var ThumbUp = Model.Ipoint + 1;
 }
 <style>
 
@@ -219,7 +219,7 @@
                                 <div class="title_idea">
                                     <div class="tag">
                                         <a asp-action="" asp-controller="">
-                                            <span>@Model.Tag.tag_name</span>
+                                            <span>@Model.Category.category_name</span>
                                         </a>
                                     </div>
                                     <h1 class="lead">@Model.idea_title</h1>
@@ -248,18 +248,18 @@
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
 
                                 <li>
-                                    <input id="#idea_Id" value=@Model.Ipoint hidden />
+                                    @*<input id="#idea_Id" value=@Model.Ipoint hidden />*@
                                     <input id="#profile_Id" value=@Model.ProfileId hidden />
-                                    <input id="#tag_Id" value=@Model.TagId hidden />
+                                    <input id="#tag_Id" value=@Model.CategoryId hidden />
                                     
-                                    <div id="" >@Model.Ipoint</div>
+                                    @*<div id="" >@Model.Ipoint</div>*@
                                 </li>
                                
                                 <li>
                                     @*asp-action="Like" asp-controller="Staff" onclick="Upvote()*@
                                     
                                     
-                                    <input id="#Ipoint" value=@ThumbUp hidden/>
+                                    @*<input id="#Ipoint" value=@ThumbUp hidden/>*@
 
                                     
                                     <i class="fa-solid fa-heart" style="color:green"><input onclick="btnGO()" type="button" /></i>

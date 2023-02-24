@@ -54,13 +54,13 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult AddIdea()
         {
-            return View(Db.Tags.ToList());
+            return View(Db.Categories.ToList());
         }
 
         [HttpPost]
         public async Task<IActionResult> AddIdea(List<IFormFile> uploadedFiles,string title, string content, string tagName, string isAnonymous)
         {
-            Tag tag = Db.Tags.FirstOrDefault(t => t.tag_name == tagName);
+            Category tag = Db.Categories.FirstOrDefault(t => t.category_name == tagName);
             Boolean anonynous = true;
             if (isAnonymous == null) anonynous = false;
             Idea newIdea = new Idea()
@@ -69,9 +69,9 @@ namespace COMP1640.Controllers
                 idea_content = content,
                 idea_anonymous = anonynous,
                 ProfileId = "1",
-                TagId = tag.TagId,
+                CategoryId = tag.CategoryId,
                 created_date = DateTime.Now,
-                Ipoint = 0
+                idea_view = 0
             };
             Db.Add(newIdea);
             await Db.SaveChangesAsync();
@@ -79,7 +79,7 @@ namespace COMP1640.Controllers
             {
                 AddFile(uploadedFiles, Db.Ideas.OrderBy(i=>i.IdeaId).Last().IdeaId); //add file
             }
-            return View(Db.Tags.ToList());
+            return View(Db.Categories.ToList());
         }
         public void AddFile(List<IFormFile> uploadedFiles, int idIdea)
         {
@@ -128,7 +128,7 @@ namespace COMP1640.Controllers
         {
             bool anonynous = true;
             if (isAnonymous == null) anonynous = false;
-            Tag tag = Db.Tags.FirstOrDefault(t => t.tag_name == tagName);
+            Category cate = Db.Categories.FirstOrDefault(t => t.category_name == tagName);
             Idea editedIdea = new Idea()
             {
                 IdeaId = ideaId,
@@ -137,7 +137,7 @@ namespace COMP1640.Controllers
                 idea_anonymous = anonynous,
                 ProfileId = "1", //because session is not initialized, the defaut Staff is 1 
                 created_date = DateTime.Now,
-                TagId = tag.TagId,
+                CategoryId = cate.CategoryId,
             };
             Db.Update(editedIdea);
             await Db.SaveChangesAsync();
@@ -288,7 +288,7 @@ namespace COMP1640.Controllers
             var documents = Db.Documents.Include(d=>d.Idea).FirstOrDefault(d=>d.IdeaId == id);
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
 
-            var idea = Db.Ideas.Include(c => c.Tag).FirstOrDefault(c => c.IdeaId == id);
+            var idea = Db.Ideas.Include(c => c.Category).FirstOrDefault(c => c.IdeaId == id);
             return View(idea);
         }
 

@@ -26,18 +26,17 @@ namespace COMP1640.Models
 
         public Boolean idea_anonymous { get; set; }
 
-        public int Ipoint { get; set; }
+        public int idea_view { get; set; }
 
         // FK1: Staff id
         public string ProfileId { get; set; }
         public Profile Profile { get; set; }
 
-        // FK2: Tag id
-        public int TagId { get; set; }
-        public Tag Tag { get; set; }
+        // FK2: Category id
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         //---------------
-        //public ICollection<Profile> Profiles { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Document> Documents { get; set; }
 

@@ -1,4 +1,4 @@
-﻿@model List<Tag>;
+﻿@model List<Category>;
 @{
     Layout = "_LayoutPostIdea";
 }
@@ -61,7 +61,7 @@
                         <option value="">--Select Tag--</option>
                         @foreach (var t in Model)
                         {
-                            <option value="@t.tag_name">@t.tag_name</option>
+                            <option value="@t.category_name">@t.category_name</option>
                         }
                     </select>
                 </div>
