@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "AJ5Ui7ADlJTHnM2975rgF99upeHgVV6+3hwQ8GHg2n0gvnIdOSba77qISchszNeZIHKOqjgBIP5mNCKt21J8nQ==",
   "success": true,
   "projectFilePath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+=======
+  "dgSpecHash": "mljd7uoOqoMcMDYnxQub0x/nQryupeelSJVHlQFKeY8nKWBEbxNY5G34bxQrkglx6XNu8GMt4RlJfiFPc6HdIA==",
+  "success": true,
+  "projectFilePath": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+>>>>>>> 1ae43a96018334f0bd00599065228aba1f6be3ae
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.17\\microsoft.aspnetcore.cryptography.internal.5.0.17.nupkg.sha512",

@@ -4,6 +4,7 @@
 }
 @{
     var nums_coms = ViewBag.Comments.Count;
+    var ThumbUp = Model.Ipoint + 1;
 }
 <style>
 
@@ -245,13 +246,28 @@
                         <div class="more">
                             <ul class="felling_idea">
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
-                                <li>@Model.Ipoint</li>
+
+                                <li>
+                                    <input id="#idea_Id" value=@Model.Ipoint hidden />
+                                    <input id="#profile_Id" value=@Model.ProfileId hidden />
+                                    <input id="#tag_Id" value=@Model.TagId hidden />
+                                    
+                                    <div id="" >@Model.Ipoint</div>
+                                </li>
                                
                                 <li>
                                     @*asp-action="Like" asp-controller="Staff" onclick="Upvote()*@
-                                    @*<a style="color:green">*@
-                                        <i type="button" id="btnGO" class="fa-solid fa-heart"></i>
-                                    @*</a>*@
+                                    
+                                    
+                                    <input id="#Ipoint" value=@ThumbUp hidden/>
+
+                                    
+                                    <i class="fa-solid fa-heart" style="color:green"><input onclick="btnGO()" type="button" /></i>
+                                    
+                                    
+                                    <label>Like: <p id="total" ></p></label>
+                                    <button type="button"  id="like" onclick="btnLike()" >Like</button>
+                                    
                                 </li>
                                 
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-heart"></i></a>32</li>
@@ -384,45 +400,28 @@
             alert("Thank you for following me!");
         }
 
-        $("#UpvoteButton").click(function Upvote() {
-            //var data = $("#UpvoteButton").serialize();
-            //console.log(data);
-            //alert(data);
+        function btnGO(){
 
-            const data = { id: @Model.IdeaId, like: @Model.Ipoint++ }
+            //var idea_Id = $('#idea_Id').val();
+            //var profile_Id = $('profile_Id').val();
+            //var tag_Id = $('#tag_Id').val();
+            var point = $('#Ipoint').val();
 
-            $.ajax({
-                type: 'POST',
-                url: '/staff/like/',
-                dataType: "json",
-                data: JSON.stringify(data),
-                
-                //success: function (result) {
-                //    alert('Successfully received Data ');
-                //    console.log(result);
-                //},
-                //error: function () {
-                //    alert('Failed to receive the Data');
-                //    console.log('Failed ');
-                //}
-            })
-        });
-
-
-        $('#btnGO').click(function {
-
-            var point = @Model.Ipoint + 1;
 
             var idea = {
-                IdeaId : @Model.IdeaId,
-                Ipoint : point,
+                //IdeaId : idea_Id,
+                //ProfileId : profile_Id,
+                //TagId : tag_Id,
+                Ipoint : point
             };
 
             $.ajax({
                 method: 'POST',
-                url: '/staff/like',
-                data:   idea ,
+                url: '/staff/like/',
+                dataType: 'json',
+                data: idea,
                 success: function (nice) {
+                    
                     console.log(nice);
                 },
                 error: function(err) {
@@ -432,19 +431,33 @@
             
         }
             
+        function btnLike(){
+        var obj = {
+            NumLike: 1,
+        };
+        
+        Submit(obj);
+    }
 
-        function Like(idea){
-            $.ajax({
-                method: "POST",
-                url: "/staff/like",
-                data: idea,
-                success: function (data) {
-                    @Model.Ipoint++;
-                },
-                error: function(err) {
-                    console.error(err);
-                }
-            });
-        });
+    function Submit(obj){
+        //get data from element id: $("id-name").val();
+        $.ajax({
+            url:"/Staff/Like",
+            method:"POST",
+            data: JSON.stringify(obj), //ten parameter ben acction phai giong ten truong ma du lieu gui den.
+            dataType: "json",
+            contentType: 'application/json',
+            success:function(res){                            
+                console.log(res)
+                result = JSON.parse(res)
+                console.log(result.NumLike)
+                $("#total").text(result.NumLike)  
+            },
+            error: function(err){
+
+              console.log(err)  
+            }
+        })
+    }
         
     </script>

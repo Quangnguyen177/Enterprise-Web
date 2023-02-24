@@ -7953,11 +7953,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
       "projectName": "COMP1640",
       "projectPath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
       "outputPath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\obj\\",
+=======
+      "projectUniqueName": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+      "projectName": "COMP1640",
+      "projectPath": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "G:\\Git\\Enterprise-Web\\COMP1640\\obj\\",
+>>>>>>> 1ae43a96018334f0bd00599065228aba1f6be3ae
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8039,7 +8047,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+>>>>>>> 1ae43a96018334f0bd00599065228aba1f6be3ae
       }
     }
   }

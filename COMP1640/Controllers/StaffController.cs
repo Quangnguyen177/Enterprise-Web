@@ -10,6 +10,7 @@ using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace COMP1640.Controllers
 {
@@ -189,29 +190,42 @@ namespace COMP1640.Controllers
         //    return new HttpResponseMessage(HttpStatusCode.Accepted);
         //}
 
-        [HttpPost]
-        public async Task<IActionResult> Like(Idea idea)
-        {
-            //{
-            //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
+        //[HttpPost]
+        //public async Task<IActionResult> Like(Idea idea)
+        //{
+        //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
 
-            //    if (updatedLike != null)
-            //    {
-            //        //updatedLike.Ipoint = idea.Ipoint + 1;
-            //        updatedLike.Ipoint++;
-            //        Db.Update(updatedLike);
-            //        Db.SaveChanges();
-            //        return Json(true);
-            //    }
-            //}
+        //    if (updatedLike != null)
+        //    {
+        //        //idea.TagId
+        //        Db.Update(idea);
+        //        await Db.SaveChangesAsync();
+        //        return Ok("Done");
+        //    }
+        //    else return Ok("not good");
 
-            //return Json(false);
+        //}
 
-            Db.Update(idea);
-            await Db.SaveChangesAsync();
+        //[HttpGet]
+        //public JsonResult Like()
+        //{
+        //    ThumbUp++;
+        //    Like data = new Like
+        //    {
+        //        NumLike = ThumbUp,
+        //    };
+        //    string result = JsonConvert.SerializeObject(data);
+        //    return Json(result);
+        //}
 
-            return Json("Done");
-        }
+        //[HttpPost]
+        //public JsonResult Like([FromBody] Like obj)
+        //{
+        //    string result = JsonConvert.SerializeObject(obj);
+        //    return Json(result);
+        //}
+
+        
 
         //check if current time is earlier than 1st closure date 
         public bool CheckFirtClosureDate(Idea idea)
