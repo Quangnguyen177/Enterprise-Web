@@ -190,7 +190,7 @@ namespace COMP1640.Controllers
         //}
 
         [HttpPost]
-        public async Task<IActionResult> Like(Idea idea)
+        public IActionResult Like(Idea idea)
         {
             //{
             //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
@@ -207,8 +207,11 @@ namespace COMP1640.Controllers
 
             //return Json(false);
 
-            Db.Update(idea);
-            await Db.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                Db.Update(idea);
+                Db.SaveChanges();
+            }
 
             return Json("Done");
         }
