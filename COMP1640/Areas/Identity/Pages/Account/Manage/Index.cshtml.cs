@@ -11,12 +11,12 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Models.Profile> _userManager;
+        private readonly SignInManager<Models.Profile> _signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Models.Profile> userManager,
+            SignInManager<Models.Profile> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,7 +37,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Models.Profile user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

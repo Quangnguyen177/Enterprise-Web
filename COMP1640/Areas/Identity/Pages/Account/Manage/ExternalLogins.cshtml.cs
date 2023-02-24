@@ -11,12 +11,12 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
 {
     public class ExternalLoginsModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Models.Profile> _userManager;
+        private readonly SignInManager<Models.Profile> _signInManager;
 
         public ExternalLoginsModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Models.Profile> userManager,
+            SignInManager<Models.Profile> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
