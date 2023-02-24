@@ -1,62 +1,555 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <meta character="utl-f8">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-U A-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/1e27f03b11.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Dashboard.css">
+
     <title>Admin site</title>
 </head>
 
 <body>
-    <div class="app">
-        <header class="header">
-            <div class="logo">
-                <a asp-action="" asp-controller="">
-                    <img src="/images/Logo_Admin.png"/>
+    <div class="d-flex flex-column flex-lg-row  bg-surface-secondary">
+        <!-- Vertical Navbar -->
+        <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-light border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
+            <div class="container-fluid">
+                <!-- Brand -->
+                <a class="navbar-brand py-lg-3 mb-lg-5 px-lg-6 me-0" href="#">
+                    <img src="https://logos.textgiraffe.com/logos/logo-name/Admin-designstyle-candy-m.png" alt="...">
                 </a>
-
-                <div class="search">
-                    <form asp-controller="Book" asp-action="Search" method="POST">
-                        <div class="input-group">
-                            <div class="form-outline">
-                                <input style="width: 250px; height: 32.5px; border-radius: 5px" type="search" id="form1" class="form-control" />
-                                <label class="form-label" for="form1">Search</label>
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidebarCollapse">
+                    <!-- Navigation -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-home"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-area-chart"></i> Analysis
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-message"></i> Messages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-heart"></i> Collections
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-user"></i> Users
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Divider -->
+                    <hr class="navbar-divider my-5 opacity-20">
+                    <!-- Navigation -->
+                    <ul class="navbar-nav mb-md-4">
+                        <li>
+                            <div class="nav-link text-xs font-semibold text-uppercase text-muted ls-wide" href="#">
+                                <div style="font-size:20px">Contacts</div>
+                                <span class="badge bg-opacity-30 bg-primary text-primary rounded-pill d-inline-flex align-items-center ms-4">3</span>
                             </div>
-                            <button type="button" class="btn btn-outline-success">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link d-flex align-items-center">
+                                <div class="me-4">
+                                    <div class="position-relative d-inline-block text-white">
+                                        <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-1/327280364_857471028690901_5396360754686166112_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=aNHD9tEHGmQAX9xS1zu&_nc_ht=scontent.fhan5-8.fna&oh=00_AfCabwMMAdzHkdL03Y3POJBHU2-dq2yjDWumC9S6wEuQtA&oe=63FDCF6C" class="avatar rounded-circle">
+                                        <span class="position-absolute bottom-2 end-2 transform translate-x-1/2 translate-y-1/2 border-2 border-solid border-current w-3 h-3 bg-danger rounded-circle"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block text-sm font-semibold">
+                                        Dan Truong
+                                    </span>
+                                    <span class="d-block text-xs text-muted font-regular">
+                                        Hanoi, HN
+                                    </span>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class="fa fa-comment"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link d-flex align-items-center">
+                                <div class="me-4">
+                                    <div class="position-relative d-inline-block text-white">
+                                        <img alt="..." src="https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-1/314436612_662510705266070_3615334432468039557_n.jpg?stp=dst-jpg_s320x320&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=qCEEY9IMIgIAX-bBAA0&_nc_ht=scontent.fhan5-11.fna&oh=00_AfAHIhPyhRsUgf0IdDwui-j7Z82LxgR2tkWcDe3RGIpPGg&oe=63FCB401" class="avatar rounded-circle">
+                                        <span class="position-absolute bottom-2 end-2 transform translate-x-1/2 translate-y-1/2 border-2 border-solid border-current w-3 h-3 bg-danger rounded-circle"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block text-sm font-semibold">
+                                        Minh ne
+                                    </span>
+                                    <span class="d-block text-xs text-muted font-regular">
+                                        HoChiMinh, HCM
+                                    </span>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class="fa fa-comment"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link d-flex align-items-center">
+                                <div class="me-4">
+                                    <div class="position-relative d-inline-block text-white">
+                                        <img alt="..." src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t39.30808-1/330563179_943374697041877_5251559825050286457_n.jpg?stp=dst-jpg_p200x200&_nc_cat=1&ccb=1-7&_nc_sid=1eb0c7&_nc_ohc=J75_Fiez4vUAX9QJwO7&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfAKFJ4yQYPpcqDkPCTeBuOPDkF8JpdXtJITzi0cYv8AxQ&oe=63FCDF8E" class="avatar rounded-circle">
+                                        <span class="position-absolute bottom-2 end-2 transform translate-x-1/2 translate-y-1/2 border-2 border-solid border-current w-3 h-3 bg-danger rounded-circle"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block text-sm font-semibold">
+                                        Eimi Fukada
+                                    </span>
+                                    <span class="d-block text-xs text-muted font-regular">
+                                        Tokyo, JP
+                                    </span>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class="fa fa-comment"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Push content down -->
+                    <div class="mt-auto"></div>
+                    <!-- User (md) -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-user-circle-o"></i> Account
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-sign-out"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="dropdown">
-                <nav id="nav_bar" class="res-menu">
-                    <ul class="ul_icon">
-                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Home</a></li>
-                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Tags</a></li>
-                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller="">Idea</a></li>
-                        <li class="nav_bar--item "><a style="color: #373b3f; text-decoration: none" asp-action="SignUp" asp-controller="Admin">Sign up</a></li>
-                    </ul>
-
-                    <ul class="menu icon">
-                        <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-house"></i></a></li>
-                        <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-regular fa-face-grin-tongue"></i></a></li>
-                        <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-check"></i></a></li>  &nbsp &nbsp
-                        <li><a style="color: #373b3f; text-decoration: none" asp-action="" asp-controller=""><i class="fa-solid fa-user"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
+        </nav>
+        <!-- Main content -->
+        <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+            <!-- Header -->
+            <header class="bg-surface-primary border-bottom pt-6">
+                <div class="container-fluid">
+                    <div class="mb-npx">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                                <!-- Title -->
+                                <h1 class="h2 mb-0 ls-tight">Application</h1>
+                            </div>
+                            <!-- Actions -->
+                            <div class="col-sm-6 col-12 text-sm-end">
+                                <div class="mx-n1">
+                                    <a href="#" class="btn d-inline-flex btn-sm btn-success mx-1" style="background-color:lawngreen">
+                                        <span class=" pe-2">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </span>
+                                        <span>Edit</span>
+                                    </a>
+                                    <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                        <span class=" pe-2">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </span>
+                                        <span>Create</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nav -->
+                        <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link active">All Content</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-regular">Budget</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-regular">Shared</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <!-- Main -->
+            <main class="py-6 bg-surface-secondary">
+                <div class="container-fluid">
+                    <!-- Card stats -->
+                    <div class="row g-6 mb-6">
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Idea Post</span>
+                                            <span class="h3 font-bold mb-0">200</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                                <i class="fa fa-newspaper-o"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm">
+                                        <span class="badge badge-pill bg-opacity-30 bg-success text-success me-2">
+                                            <i class="fa fa-arrow-up"></i>11%
+                                        </span>
+                                        <span class="text-nowrap text-xs text-muted">Since last week</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Like</span>
+                                            <span class="h3 font-bold mb-0">21k</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                                <i class="fa fa-thumbs-o-up"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm">
+                                        <span class="badge badge-pill bg-opacity-30 bg-success text-success me-2">
+                                            <i class="fa fa-arrow-up"></i>4%
+                                        </span>
+                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Dislike</span>
+                                            <span class="h3 font-bold mb-0">149</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                                                <i class="fa fa-thumbs-o-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm">
+                                        <span class="badge badge-pill bg-opacity-30 bg-danger text-danger me-2">
+                                            <i class="fa fa-arrow-down"></i>  -5%
+                                        </span>
+                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Comments</span>
+                                            <span class="h3 font-bold mb-0">31k</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                                                <i class="fa fa-comments-o"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm">
+                                        <span class="badge badge-pill bg-opacity-30 bg-success text-success me-2">
+                                            <i class="fa fa-arrow-up"></i>15%
+                                        </span>
+                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-7">
+                        <div class="card-header">
+                            <h5 class="mb-0">Post Idea Content</h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-nowrap">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Created Date</th>
+                                        <th scope="col">Department </th>
+                                        <th scope="col">First closure date</th>
+                                        <th scope="col">Final closure date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-1/289390500_177328441343817_4595144061376271837_n.jpg?stp=dst-jpg_p320x320&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=97ZuyC9awnoAX-kQtt_&_nc_ht=scontent.fhan5-8.fna&oh=00_AfA_o4BUyQyZhB3tnfWNThXN-qa4SAkzmobOhf3fzHehmQ&oe=63FD560E" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Harris
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 15, 2023
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Frontend Developer
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            Feb 25, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/331407488_739733257550252_6875258618993787964_n.jpg?stp=dst-jpg_s320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2ZAZr0pbyKoAX81HG0l&_nc_ht=scontent.fhan5-2.fna&oh=00_AfBcKvtQPL08YylYcjCOUTSszar8Vd25nzQzzR1TJ4zTyg&oe=63FE6DE4" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Mike Tke Duke
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Backend Developer
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            Feb 25, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t1.6435-1/171830266_1017338032130536_2499925604087986830_n.jpg?stp=dst-jpg_s320x320&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=T2-wHnnniUoAX_ydlvB&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDxfES3mJqNC5bJGp4MROu5c70dsxZDfW7pmbRNlioJlw&oe=641FF165" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Quang Doi
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Mar 20, 2022
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Scrum Master
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            Feb 25, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/325904561_5906093516172391_164856254293999003_n.jpg?stp=dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=sVNowq84kkwAX-X0BSY&_nc_ht=scontent.fhan5-2.fna&oh=00_AfCchxZg0q7-WoE-i1rIhA_O6WEkXLAanOwV5nQwWAo5iw&oe=63FE6D38" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Thuy Duong
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Sep 20, 2023
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Business Analysis
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Sep 22, 2023
+                                        </td>
+                                        <td>
+                                            Dec 1, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-1/289390500_177328441343817_4595144061376271837_n.jpg?stp=dst-jpg_p320x320&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=97ZuyC9awnoAX-kQtt_&_nc_ht=scontent.fhan5-8.fna&oh=00_AfA_o4BUyQyZhB3tnfWNThXN-qa4SAkzmobOhf3fzHehmQ&oe=63FD560E" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Harris
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 15, 2023
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Frontend Developer
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            Feb 25, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/331407488_739733257550252_6875258618993787964_n.jpg?stp=dst-jpg_s320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2ZAZr0pbyKoAX81HG0l&_nc_ht=scontent.fhan5-2.fna&oh=00_AfBcKvtQPL08YylYcjCOUTSszar8Vd25nzQzzR1TJ4zTyg&oe=63FE6DE4" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Mike Tke Duke
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Backend Developer
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            Feb 25, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t1.6435-1/171830266_1017338032130536_2499925604087986830_n.jpg?stp=dst-jpg_s320x320&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=T2-wHnnniUoAX_ydlvB&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDxfES3mJqNC5bJGp4MROu5c70dsxZDfW7pmbRNlioJlw&oe=641FF165" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Quang Doi
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Mar 20, 2022
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Scrum Master
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Feb 17, 2023
+                                        </td>
+                                        <td>
+                                            Feb 25, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/325904561_5906093516172391_164856254293999003_n.jpg?stp=dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=sVNowq84kkwAX-X0BSY&_nc_ht=scontent.fhan5-2.fna&oh=00_AfCchxZg0q7-WoE-i1rIhA_O6WEkXLAanOwV5nQwWAo5iw&oe=63FE6D38" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Thuy Duong
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Sep 20, 2023
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                Business Analysis
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Sep 22, 2023
+                                        </td>
+                                        <td>
+                                            Dec 1, 2023
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer border-0 py-5">
+                            <span class="text-muted text-sm">Showing 8 post idea out of 100 results found</span>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
+    </div>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 </body>
 </html>
-                
