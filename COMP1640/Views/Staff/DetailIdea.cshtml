@@ -261,11 +261,12 @@
                                     
                                     <input id="#Ipoint" value=@ThumbUp hidden/>
 
-                                    <input onclick="btnGO()" type="button"  >
-                                        <i class="fa-solid fa-heart" style="color:green"></i>
-                                    </input>
+                                    
+                                    <i class="fa-solid fa-heart" style="color:green"><input onclick="btnGO()" type="button" /></i>
                                     
                                     
+                                    <label>Like: <p id="total" ></p></label>
+                                    <button type="button"  id="like" onclick="btnLike()" >Like</button>
                                     
                                 </li>
                                 
@@ -401,23 +402,23 @@
 
         function btnGO(){
 
-            var idea_Id = $('#idea_Id').val();
-            var profile_Id = $('profile_Id').val();
-            var tag_Id = $('#tag_Id').val();
+            //var idea_Id = $('#idea_Id').val();
+            //var profile_Id = $('profile_Id').val();
+            //var tag_Id = $('#tag_Id').val();
             var point = $('#Ipoint').val();
 
 
             var idea = {
-                IdeaId : idea_Id,
-                ProfileId : profile_Id,
-                TagId : tag_Id,
+                //IdeaId : idea_Id,
+                //ProfileId : profile_Id,
+                //TagId : tag_Id,
                 Ipoint : point
             };
 
             $.ajax({
                 method: 'POST',
                 url: '/staff/like/',
-                //dataType: 'json',
+                dataType: 'json',
                 data: idea,
                 success: function (nice) {
                     
@@ -430,5 +431,33 @@
             
         }
             
+        function btnLike(){
+        var obj = {
+            NumLike: 1,
+        };
+        
+        Submit(obj);
+    }
+
+    function Submit(obj){
+        //get data from element id: $("id-name").val();
+        $.ajax({
+            url:"/Staff/Like",
+            method:"POST",
+            data: JSON.stringify(obj), //ten parameter ben acction phai giong ten truong ma du lieu gui den.
+            dataType: "json",
+            contentType: 'application/json',
+            success:function(res){                            
+                console.log(res)
+                result = JSON.parse(res)
+                console.log(result.NumLike)
+                $("#total").text(result.NumLike)  
+            },
+            error: function(err){
+
+              console.log(err)  
+            }
+        })
+    }
         
     </script>
