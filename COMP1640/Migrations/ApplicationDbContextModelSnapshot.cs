@@ -161,6 +161,9 @@ namespace COMP1640.Migrations
                     b.Property<string>("ProfileId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("ReactPointId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("created_date")
                         .HasColumnType("datetime2");
 
@@ -188,6 +191,8 @@ namespace COMP1640.Migrations
 
                     b.HasIndex("ProfileId");
 
+                    b.HasIndex("ReactPointId");
+
                     b.ToTable("Ideas");
 
                     b.HasData(
@@ -196,6 +201,7 @@ namespace COMP1640.Migrations
                             IdeaId = 1,
                             CategoryId = 1,
                             ProfileId = "1",
+                            ReactPointId = 1,
                             idea_anonymous = false,
                             idea_content = "This is a Test",
                             idea_title = "Test",
@@ -206,6 +212,7 @@ namespace COMP1640.Migrations
                             IdeaId = 2,
                             CategoryId = 1,
                             ProfileId = "2",
+                            ReactPointId = 2,
                             idea_anonymous = false,
                             idea_content = "This is a Test #2",
                             idea_title = "Test #2",
@@ -304,7 +311,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "075db95e-3012-4fd1-a328-5f19a5c746bb",
+                            ConcurrencyStamp = "c8de35ea-8914-4284-8f05-b9d20ea8a30a",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -313,10 +320,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMAbPzRlR/qRlz31bZxq/SCr7FmFhZGnaNn6kQYbzx9d9yp7TATFBfQ/EsnacI+DAw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKaDYV4j/1pLaxGHwdiPs3WosjmP6Nbc3EiZp4v8rVnSLj8rOngY+pfz0Ut4A0tuog==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "38836076-1ff8-4ef8-8340-6a5c6a0f0fbd",
+                            SecurityStamp = "ad6a0674-6d95-4428-90f8-564e43c5dde7",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -326,7 +333,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "054ca572-612c-4eaf-9f33-9be63e53afd9",
+                            ConcurrencyStamp = "84edc89f-28b2-4028-9175-2ecdc27a61bc",
                             DepId = "1",
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -335,10 +342,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIKi/8sUH5FEDbInGV4xrwUQ2FoUqtcQkljdmYnhzXAaq9rYSTi8VrF1Ul52GcCVrA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOF5MGSgrcJeirrOjIP6pZ40DD9aJH67TFyHnUGhz4UJ54yGonS5uQTWMmtfNQlu5A==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "51eb523d-317b-4bbd-a221-df4624ed8acb",
+                            SecurityStamp = "d878745c-a8ee-4b4e-ab25-8b970e077ef1",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         });
@@ -385,6 +392,20 @@ namespace COMP1640.Migrations
                     b.HasKey("ReactPointId");
 
                     b.ToTable("ReactPoints");
+
+                    b.HasData(
+                        new
+                        {
+                            ReactPointId = 1,
+                            ThumbDown = 0,
+                            ThumbUp = 0
+                        },
+                        new
+                        {
+                            ReactPointId = 2,
+                            ThumbDown = 0,
+                            ThumbUp = 0
+                        });
                 });
 
             modelBuilder.Entity("COMP1640.Models.View", b =>
@@ -437,28 +458,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "8df661aa-7d6c-4126-a9aa-1229074fe8a6",
+                            ConcurrencyStamp = "f508b5b2-86ca-43df-a1b9-f6ae70d21be9",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "59dbfdd4-2f41-4012-80b6-6a69ff309976",
+                            ConcurrencyStamp = "660d3d93-0133-41f2-acb0-b139c11641ee",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "86b929db-7742-4621-ba16-95959c3a4bcf",
+                            ConcurrencyStamp = "596126f5-1426-46cf-a2e6-8466d58e921e",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "63e1f06e-4fd3-41bb-9d49-e609221e9498",
+                            ConcurrencyStamp = "f05ba5b6-0618-4883-a1ba-59b3bf1e2498",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -623,9 +644,17 @@ namespace COMP1640.Migrations
                         .WithMany()
                         .HasForeignKey("ProfileId");
 
+                    b.HasOne("COMP1640.Models.ReactPoint", "Reacpoint")
+                        .WithMany()
+                        .HasForeignKey("ReactPointId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
 
                     b.Navigation("Profile");
+
+                    b.Navigation("Reacpoint");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Profile", b =>

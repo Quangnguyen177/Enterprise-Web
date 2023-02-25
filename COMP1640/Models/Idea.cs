@@ -36,6 +36,10 @@ namespace COMP1640.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        // FK3: React Point id
+        public int ReactPointId { get; set; }
+        public ReactPoint Reacpoint { get; set; }
+
         //---------------
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Document> Documents { get; set; }

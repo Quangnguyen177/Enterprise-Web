@@ -59,6 +59,9 @@ namespace COMP1640
 
             //6
             SeedComment(builder);
+
+            //7 
+            SeedReactPoint(builder);
         }
 
         //1
@@ -281,6 +284,7 @@ namespace COMP1640
                     //last_closure = ,
                     idea_anonymous = false,
                     idea_view = 0,
+                    ReactPointId = 1,
                 },
                 new Idea
                 {
@@ -294,8 +298,9 @@ namespace COMP1640
                     //last_closure = ,
                     idea_anonymous = false,
                     idea_view = 0,
+                    ReactPointId = 2,
                 }
-            );
+            ); 
         }
 
         //6
@@ -322,6 +327,24 @@ namespace COMP1640
                     com_anonymous = false
                 }
             );
-        }  
+        }
+
+        private void SeedReactPoint(ModelBuilder builder)
+        {
+            builder.Entity<ReactPoint>().HasData(
+                new ReactPoint
+                {
+                    ReactPointId = 1,
+                    ThumbUp = 0,
+                    ThumbDown = 0,
+                },
+                new ReactPoint
+                {
+                    ReactPointId = 2,
+                    ThumbUp = 0,
+                    ThumbDown = 0,
+                }
+            );
+        }
     }
 }
