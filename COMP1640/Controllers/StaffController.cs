@@ -181,16 +181,6 @@ namespace COMP1640.Controllers
         }
 
         //[HttpPost]
-        //public async Task<HttpResponseMessage> Like(int id)
-        //{
-        //    var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
-        //    idea.Ipoint++;
-        //    Db.Update(idea);
-        //    await Db.SaveChangesAsync();
-        //    return new HttpResponseMessage(HttpStatusCode.Accepted);
-        //}
-
-        //[HttpPost]
         //public async Task<IActionResult> Like(Idea idea)
         //{
         //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
@@ -218,14 +208,17 @@ namespace COMP1640.Controllers
         //    return Json(result);
         //}
 
-        //[HttpPost]
-        //public JsonResult Like([FromBody] Like obj)
-        //{
-        //    string result = JsonConvert.SerializeObject(obj);
-        //    return Json(result);
-        //}
+        [HttpPost]
+        public JsonResult Like([FromBody] ReactPoint obj)
+        {
+            Db.Update(obj);
+            Db.SaveChanges();
+            ReactPoint data = Db.ReactPoints.FirstOrDefault(o => o.ReactPointId == obj.ReactPointId);
+            string result = JsonConvert.SerializeObject(data);
+            return Json(result);
+        }
 
-        
+
 
         //check if current time is earlier than 1st closure date 
         public bool CheckFirtClosureDate(Idea idea)
@@ -287,6 +280,12 @@ namespace COMP1640.Controllers
 
             var documents = Db.Documents.Include(d=>d.Idea).FirstOrDefault(d=>d.IdeaId == id);
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
+
+            var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
+            var number_of_upvote = reactpoint_of_idea.Reacpoint.ThumbUp;
+            ViewBag.ThumbUp = number_of_upvote;
+            var number_of_downvote = reactpoint_of_idea.Reacpoint.ThumbDown;
+            ViewBag.ThumbDown = number_of_downvote;
 
             var idea = Db.Ideas.Include(c => c.Category).FirstOrDefault(c => c.IdeaId == id);
             return View(idea);

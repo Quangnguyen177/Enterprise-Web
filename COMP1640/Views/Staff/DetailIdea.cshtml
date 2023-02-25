@@ -4,7 +4,9 @@
 }
 @{
     var nums_coms = ViewBag.Comments.Count;
-    //var ThumbUp = Model.Ipoint + 1;
+    var thumb_up = @ViewBag.ThumbUp + 1;
+    var thumb_down = ViewBag.ThumbDown + 1;
+    var react_point = @ViewBag.ThumbUp - ViewBag.ThumbDown;
 }
 <style>
 
@@ -248,30 +250,20 @@
                                 <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
 
                                 <li>
-                                    @*<input id="#idea_Id" value=@Model.Ipoint hidden />*@
-                                    <input id="#profile_Id" value=@Model.ProfileId hidden />
-                                    <input id="#tag_Id" value=@Model.CategoryId hidden />
-                                    
-                                    @*<div id="" >@Model.Ipoint</div>*@
+                                    <label placeholder="React point: "><p id="total" >@react_point</p></label>
                                 </li>
                                
-                                <li>
-                                    @*asp-action="Like" asp-controller="Staff" onclick="Upvote()*@
-                                    
-                                    
-                                    @*<input id="#Ipoint" value=@ThumbUp hidden/>*@
-
-                                    
-                                    <i class="fa-solid fa-heart" style="color:green"><input onclick="btnGO()" type="button" /></i>
-                                    
-                                    
-                                    <label>Like: <p id="total" ></p></label>
-                                    <button type="button"  id="like" onclick="btnLike()" >Like</button>
-                                    
+                                <li>        
+                                    <button type="button"  id="like" onclick="btnThumbUp()" ><i class="fa-solid fa-heart" style="color:green"></i></button>
                                 </li>
-                                
-                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-heart"></i></a>32</li>
-                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@nums_coms</li>
+                                <li>
+                                    <button type="button"  id="like" onclick="btnThumbDown()" ><i class="fa-regular fa-heart" style="color:green"></i></button>
+                                </li>
+                                <li>
+                                    <a style="color:green" asp-action="" asp-controller="">
+                                        <i class="fa-regular fa-comment"></i>
+                                    </a>@nums_coms
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -395,69 +387,48 @@
     
 
 
-    <script type="text/javascript">
-        function myFunction() {
-            alert("Thank you for following me!");
-        }
-
-        function btnGO(){
-
-            //var idea_Id = $('#idea_Id').val();
-            //var profile_Id = $('profile_Id').val();
-            //var tag_Id = $('#tag_Id').val();
-            var point = $('#Ipoint').val();
-
-
-            var idea = {
-                //IdeaId : idea_Id,
-                //ProfileId : profile_Id,
-                //TagId : tag_Id,
-                Ipoint : point
-            };
-
-            $.ajax({
-                method: 'POST',
-                url: '/staff/like/',
-                dataType: 'json',
-                data: idea,
-                success: function (nice) {
-                    
-                    console.log(nice);
-                },
-                error: function(err) {
-                    console.error(err);
-                }
-            });
+<script type="text/javascript">
+    function myFunction() {
+        alert("Thank you for following me!");
+    }
             
-        }
-            
-        function btnLike(){
+    function btnThumbUp(){
         var obj = {
-            NumLike: 1,
+            ReactPointId : @Model.ReactPointId,
+            ThumbUp: @ViewBag.ThumbUp + 1,
+            ThumbDown: @ViewBag.ThumbDown
+        };
+        
+        Submit(obj);
+    }
+
+    function btnThumbDown(){
+        var obj = {
+            ReactPointId : @Model.ReactPointId,
+            ThumbUp: @ViewBag.ThumbUp,
+            ThumbDown: @ViewBag.ThumbDown + 1
         };
         
         Submit(obj);
     }
 
     function Submit(obj){
-        //get data from element id: $("id-name").val();
         $.ajax({
             url:"/Staff/Like",
             method:"POST",
-            data: JSON.stringify(obj), //ten parameter ben acction phai giong ten truong ma du lieu gui den.
+            data: JSON.stringify(obj),
             dataType: "json",
             contentType: 'application/json',
-            success:function(res){                            
-                console.log(res)
-                result = JSON.parse(res)
-                console.log(result.NumLike)
-                $("#total").text(result.NumLike)  
+            success:function(data){                            
+                console.log(data)
+                result = JSON.parse(data)
+                $("#total").text(result.ThumbUp - result.ThumbDown)
             },
             error: function(err){
 
-              console.log(err)  
+                console.log(err)  
             }
         })
     }
         
-    </script>
+</script>
