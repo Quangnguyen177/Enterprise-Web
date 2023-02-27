@@ -51,6 +51,7 @@ namespace COMP1640.Controllers
             ViewBag.Page = pageNum;
             return View(page);
         }
+        
         [HttpGet]
         public IActionResult AddIdea()
         {
@@ -58,9 +59,18 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddIdea(List<IFormFile> uploadedFiles,string title, string content, string tagName, string isAnonymous)
+        public IActionResult AddIdea(List<IFormFile> uploadedFiles,string title, string content, string categoryName, string isAnonymous, string profileId)
         {
-            Category tag = Db.Categories.FirstOrDefault(t => t.category_name == tagName);
+            ////Create reactpoint entity to relate to Idea entity
+            ReactPoint newReactPoint = new ReactPoint
+            {
+                ThumbDown = 0,
+                ThumbUp = 0,
+            };
+            Db.Add(newReactPoint);
+            Db.SaveChanges();
+            var reactPoint = Db.ReactPoints.OrderBy(r => r.ReactPointId).Last();
+            Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
             Boolean anonynous = true;
             if (isAnonymous == null) anonynous = false;
             Idea newIdea = new Idea()
@@ -68,20 +78,27 @@ namespace COMP1640.Controllers
                 idea_title = title,
                 idea_content = content,
                 idea_anonymous = anonynous,
-                ProfileId = "1",
-                CategoryId = tag.CategoryId,
                 created_date = DateTime.Now,
-                idea_view = 0
+                idea_view = 0,
+                ProfileId = profileId,
+                Profile = Db.Profile.FirstOrDefault(p => p.Id == profileId),
+                CategoryId = category.CategoryId,
+                Category = category,
+                ReactPointId = reactPoint.ReactPointId,
+                Reacpoint = reactPoint,
+
             };
             Db.Add(newIdea);
-            await Db.SaveChangesAsync();
+            Db.SaveChanges();
             if (uploadedFiles.Count > 0)
             {
-                AddFile(uploadedFiles, Db.Ideas.OrderBy(i=>i.IdeaId).Last().IdeaId); //add file
+                HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId,"ADD"); //add file
             }
             return View(Db.Categories.ToList());
+
         }
-        public void AddFile(List<IFormFile> uploadedFiles, int idIdea)
+            
+         public void HandleFile(List<IFormFile> uploadedFiles, int idIdea, string type)
         {
 
             foreach (var file in uploadedFiles)
@@ -108,41 +125,52 @@ namespace COMP1640.Controllers
                     doc_type = "Still dont know",
                     IdeaId = idIdea
                 };
-                Db.Add(doc);
+                if (type.Equals("ADD"))
+                {
+                    Db.Add(doc);
+                } else if (type.Equals("UPDATE"))
+                {
+                    Db.Update(doc);
+                }              
                 Db.SaveChanges();
             }
         }
 
         [HttpGet]
-        public IActionResult EditIdea(int ideaId)
+        public IActionResult EditIdea(int id)
         {
-            Idea currentIdea = Db.Ideas.Find(ideaId);
+            var a = id;
+            Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);           
+            ViewBag.Category = Db.Categories.ToList();
             //if (currentIdea.first_closure != null)
             //    if (!CheckFirtClosureDate(currentIdea)){
             //        ViewBag.Error = "You can not edit your idea when firt colosure date is due";
             //        return null;
             return View(currentIdea);
         }
-        [HttpPut]
-        public async Task<IActionResult> EditIdea(int ideaId, string title, string content, string tagName, string isAnonymous)
+        
+       [HttpPost]
+        public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName, string isAnonymous)
         {
             bool anonynous = true;
             if (isAnonymous == null) anonynous = false;
-            Category cate = Db.Categories.FirstOrDefault(t => t.category_name == tagName);
-            Idea editedIdea = new Idea()
+            Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
+            var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == ideaId);
+            idea.idea_title = title;
+            idea.idea_content = content;
+            idea.idea_anonymous = anonynous;
+            idea.created_date = DateTime.Now;
+            idea.CategoryId = category.CategoryId;
+            idea.Category = category;
+            if (uploadedFiles.Count > 0)
             {
-                IdeaId = ideaId,
-                idea_title = title,
-                idea_content = content,
-                idea_anonymous = anonynous,
-                ProfileId = "1", //because session is not initialized, the defaut Staff is 1 
-                created_date = DateTime.Now,
-                CategoryId = cate.CategoryId,
-            };
-            Db.Update(editedIdea);
-            await Db.SaveChangesAsync();
-            return RedirectToAction("EditIdea");
+                HandleFile(uploadedFiles, ideaId, "UPDATE"); //add file
+            }
+            Db.Update(idea);
+            Db.SaveChanges();
+            return RedirectToAction("AddIdea");
         }
+
 
 
 
