@@ -11,19 +11,37 @@ namespace COMP1640.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext Db;
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            Db = context;
         }
 
-        [Route("/")]
-
-        public IActionResult Index()
+        public IActionResult Index(int pageNum=1)
         {
-            return View();
+            int skipPage = 5 * (pageNum - 1);
+            var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
+            var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
+            ViewBag.Page = pageNum;
+            ViewBag.Category = Db.Categories.ToList();
+            return View(page);
         }
+
+        //[HttpGet]
+        //public JsonResult LastestComment(int pageNum)
+        //{
+        //    int skipPage = 5 * (pageNum - 1);
+        //    var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
+        //    var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
+        //    ViewBag.Page = pageNum;
+        //    return Json();
+        //}
+
+
+
+
+
+
 
         public IActionResult Privacy()
         {
