@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace COMP1640.Models
 {
     public class React
     {
+        [Key]
         public int ReactId { get; set; }
         public Boolean Reacted { get; set; }
 
