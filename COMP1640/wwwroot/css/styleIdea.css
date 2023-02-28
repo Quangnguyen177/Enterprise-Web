@@ -225,7 +225,7 @@ form .options {
     }
 
 .form-select {
-    width: 84px;
+    width: 105px;
     height: 48px;
     margin: 5px;
     color: ghostwhite;
@@ -369,11 +369,11 @@ form textarea:valid ~ button {
 .buttonDownload {
     display: inline-block;
     height: 45px;
-    width: 145px;
+    width: 123px;
     top: 7px;
     left:5px;
     position: relative;
-    padding: 10px 25px;
+    padding: 10px 15px;
     background-color: #4CC713;
     color: white;
     font-family: sans-serif;
