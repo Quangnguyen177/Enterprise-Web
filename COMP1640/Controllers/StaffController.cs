@@ -23,11 +23,24 @@ namespace COMP1640.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewPage(int pageNum)
+        public IActionResult ViewPage(int pageNum = 1)
         {
             int skipPage = 5 * (pageNum - 1);
+            var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
             var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
             ViewBag.Page = pageNum;
+            ViewBag.Category = Db.Categories.ToList();
+            /*List<Document> Documentss = new List<Document>();
+            foreach(var idea in page)
+            {
+var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId == idea.IdeaId);
+            var result = Db.Documents.Where(documents => documents.IdeaId == idea.IdeaId).ToList();
+                Documentss.Add(result);
+
+
+            }*/
+            
+
             return View(page);
         }
 
@@ -172,9 +185,6 @@ namespace COMP1640.Controllers
         }
 
 
-
-
-
         //comment
         public IActionResult Comment()
         {
@@ -306,7 +316,7 @@ namespace COMP1640.Controllers
             var comments = Db.Comments.Include(p => p.Idea).FirstOrDefault(p => p.IdeaId == id);
             ViewBag.Comments = Db.Comments.Where(comments => comments.IdeaId == id).ToList();
 
-            var documents = Db.Documents.Include(d=>d.Idea).FirstOrDefault(d=>d.IdeaId == id);
+            var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId == id);
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
 
             var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
@@ -326,7 +336,18 @@ namespace COMP1640.Controllers
             return File(@"F:\\F2G - UOG\\COMP1640 - Enterprise Web Software Development", filename, System.Net.Mime.MediaTypeNames.Application.Octet);
         }
 
-
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        public IActionResult DeleteIdea()
+        {
+            return View();
+        }
 
         //public bool CheckFinalClosureDate(int ideaId)
         //{
