@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Newtonsoft.Json;
+using static Microsoft.EntityFrameworkCore.Internal.AsyncLock;
 
 namespace COMP1640.Controllers
 {
@@ -218,45 +219,34 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Like(Idea idea)
-        //{
-        //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
-
-        //    if (updatedLike != null)
-        //    {
-        //        //idea.TagId
-        //        Db.Update(idea);
-        //        await Db.SaveChangesAsync();
-        //        return Ok("Done");
-        //    }
-        //    else return Ok("not good");
-
-        //}
-
-        //[HttpGet]
-        //public JsonResult Like()
-        //{
-        //    ThumbUp++;
-        //    Like data = new Like
-        //    {
-        //        NumLike = ThumbUp,
-        //    };
-        //    string result = JsonConvert.SerializeObject(data);
-        //    return Json(result);
-        //}
-
         [HttpPost]
-        public JsonResult Like([FromBody] ReactPoint obj)
+        public async Task<JsonResult> ReactPoint([FromBody] ReactPoint obj)
         {
-            Db.Update(obj);
-            Db.SaveChanges();
+            Db.ReactPoints.Update(obj);
+            await Db.SaveChangesAsync();
             ReactPoint data = Db.ReactPoints.FirstOrDefault(o => o.ReactPointId == obj.ReactPointId);
             string result = JsonConvert.SerializeObject(data);
             return Json(result);
         }
 
-
+        [HttpPost]
+        public async Task<JsonResult> React([FromBody] React save)
+        {
+            var findreactid = Db.React.Find(save.ReactId);
+            if (findreactid == null)
+            {
+                Db.React.Add(save);
+            }
+            else
+            {
+                Db.React.Update(save);
+            }
+            await Db.SaveChangesAsync();
+            //React data = Db.React.FirstOrDefault(o => o.ReactId == save.ReactId);
+            //string result = JsonConvert.SerializeObject(data);
+            //return Json(result);
+            return null;
+        }
 
         //check if current time is earlier than 1st closure date 
         public bool CheckFirtClosureDate(Idea idea)
@@ -319,11 +309,35 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
             var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId == id);
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
 
+            //ducmt2
             var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
             var number_of_upvote = reactpoint_of_idea.Reacpoint.ThumbUp;
             ViewBag.ThumbUp = number_of_upvote;
             var number_of_downvote = reactpoint_of_idea.Reacpoint.ThumbDown;
             ViewBag.ThumbDown = number_of_downvote;
+
+            //ducmt2
+            //var reacted = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == id);
+            //if (reacted != null)
+            //{
+            //    var reactid = reacted.ReactId;
+            //    ViewBag.ReactId = reactid;
+            //}
+            //else 
+            //{
+            if (Db.React.Count() >0)
+            {
+                var reactid = Db.React.Max(i => i.ReactId);
+                ViewBag.ReactId = reactid + 1;
+            }
+            else
+            {
+                ViewBag.ReactId = 1;
+            }
+
+            //}
+
+
 
             var idea = Db.Ideas.Include(c => c.Category).FirstOrDefault(c => c.IdeaId == id);
             return View(idea);

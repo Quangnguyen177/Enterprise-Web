@@ -43,6 +43,7 @@ namespace COMP1640.Models
         //---------------
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Document> Documents { get; set; }
+        public ICollection<React> React { get; set; }
 
     }
 }

@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.cs
     public partial class media : Migration
+========
+    public partial class test : Migration
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -356,10 +360,17 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.cs
                     { "A", "fab74328-490a-4e7f-a021-d5807cdf1bfa", "Administrator", "Administrator" },
                     { "B", "6291f2f5-c8a6-45be-937c-119649d89596", "Staff", "Staff" },
                     { "C", "a0d242c7-2bae-47f9-ba4d-4a8da36c89d4", "Quality Assurance Manager", "Quality Assurance Manager" },
                     { "D", "04d9c1ed-cefc-43c5-b300-d67ca8efb4f6", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+========
+                    { "A", "52dd1c30-57d0-47a2-ae88-b89fe312b05c", "Administrator", "Administrator" },
+                    { "B", "8a4accef-b7aa-481d-9539-04cce5f9e785", "Staff", "Staff" },
+                    { "C", "154266d7-0d69-4b47-a0fe-0f8d7e613f1f", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "1a98becc-54f8-4028-ae1b-bdf42f470de6", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.cs
                 });
 
             migrationBuilder.InsertData(
@@ -384,12 +395,20 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.cs
                 values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "1c9222a2-5497-4226-9729-ac4375ddf9f3", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEJAZR6da0uKTFIo+bWgL3GG/LJKceb6mmX/w9Rw3rQx49CUiMkvyyDZS7lBlYwhMHw==", "0983337621", false, "d1522749-89fd-4e12-adf9-a66e5593d20c", false, "Truong" });
+========
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "626a06c0-9288-469d-83e7-c13698d8b207", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEFjB1yFMntA1ZHYJ31Zbsrk+8j34B5A8KUazTVbwK0ZQLUPto72Ufzygvs5KIY95AA==", "0983337621", false, "120db52f-174f-4837-85e7-b75177b9a2e0", false, "Truong" });
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.cs
                 values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "c179a154-c322-4850-877b-3b3897ce1a09", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEAivOnr928u2i5fWaZ0Dhnp+kGlFTBawvI2rlhEEYfTIkaVn/aXR4YmwZqIS2lldBA==", "0329226528", false, "7e06299b-84ea-499c-b609-2a86c1c443d7", false, "Duke Mike The" });
+========
+                values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "e56a1778-9935-4756-b6db-18a0baea3ba9", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAENXptOT87yelq1D1IYK6PoBNljV9r9dMUvcjcPq+2Fs0LI9pQe5KMC1Mjh0/Vd/p+w==", "0329226528", false, "ca589120-03b6-4b17-8983-176168141c71", false, "Duke Mike The" });
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

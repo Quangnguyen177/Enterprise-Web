@@ -10,8 +10,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
     [Migration("20230228105053_media")]
     partial class media
+========
+    [Migration("20230228205007_test")]
+    partial class test
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -313,7 +318,11 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             ConcurrencyStamp = "1c9222a2-5497-4226-9729-ac4375ddf9f3",
+========
+                            ConcurrencyStamp = "626a06c0-9288-469d-83e7-c13698d8b207",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -322,10 +331,17 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             PasswordHash = "AQAAAAEAACcQAAAAEJAZR6da0uKTFIo+bWgL3GG/LJKceb6mmX/w9Rw3rQx49CUiMkvyyDZS7lBlYwhMHw==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "d1522749-89fd-4e12-adf9-a66e5593d20c",
+========
+                            PasswordHash = "AQAAAAEAACcQAAAAEFjB1yFMntA1ZHYJ31Zbsrk+8j34B5A8KUazTVbwK0ZQLUPto72Ufzygvs5KIY95AA==",
+                            PhoneNumber = "0983337621",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "120db52f-174f-4837-85e7-b75177b9a2e0",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -335,7 +351,11 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             ConcurrencyStamp = "c179a154-c322-4850-877b-3b3897ce1a09",
+========
+                            ConcurrencyStamp = "e56a1778-9935-4756-b6db-18a0baea3ba9",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             DepId = "1",
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -344,10 +364,17 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             PasswordHash = "AQAAAAEAACcQAAAAEAivOnr928u2i5fWaZ0Dhnp+kGlFTBawvI2rlhEEYfTIkaVn/aXR4YmwZqIS2lldBA==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7e06299b-84ea-499c-b609-2a86c1c443d7",
+========
+                            PasswordHash = "AQAAAAEAACcQAAAAENXptOT87yelq1D1IYK6PoBNljV9r9dMUvcjcPq+2Fs0LI9pQe5KMC1Mjh0/Vd/p+w==",
+                            PhoneNumber = "0329226528",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ca589120-03b6-4b17-8983-176168141c71",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         });
@@ -460,28 +487,44 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             ConcurrencyStamp = "fab74328-490a-4e7f-a021-d5807cdf1bfa",
+========
+                            ConcurrencyStamp = "52dd1c30-57d0-47a2-ae88-b89fe312b05c",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             ConcurrencyStamp = "6291f2f5-c8a6-45be-937c-119649d89596",
+========
+                            ConcurrencyStamp = "8a4accef-b7aa-481d-9539-04cce5f9e785",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             ConcurrencyStamp = "a0d242c7-2bae-47f9-ba4d-4a8da36c89d4",
+========
+                            ConcurrencyStamp = "154266d7-0d69-4b47-a0fe-0f8d7e613f1f",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
+<<<<<<<< HEAD:COMP1640/Migrations/20230228105053_media.Designer.cs
                             ConcurrencyStamp = "04d9c1ed-cefc-43c5-b300-d67ca8efb4f6",
+========
+                            ConcurrencyStamp = "1a98becc-54f8-4028-ae1b-bdf42f470de6",
+>>>>>>>> 756ba90 (hte almost ultimate interact react):COMP1640/Migrations/20230228205007_test.Designer.cs
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -671,7 +714,7 @@ namespace COMP1640.Migrations
             modelBuilder.Entity("COMP1640.Models.React", b =>
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
-                        .WithMany()
+                        .WithMany("React")
                         .HasForeignKey("IdeaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -760,6 +803,8 @@ namespace COMP1640.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Documents");
+
+                    b.Navigation("React");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Profile", b =>

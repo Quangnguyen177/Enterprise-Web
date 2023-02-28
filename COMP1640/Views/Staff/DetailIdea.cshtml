@@ -263,13 +263,15 @@
                                 <li>
                                     <label placeholder="React point: "><p id="total" >@react_point</p></label>
                                 </li>
-                               
+                                
                                 <li>        
-                                    <button type="button"  id="like" onclick="btnThumbUp()" ><i class="fa-solid fa-heart" style="color:green"></i></button>
+                                    <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
                                 </li>
+
                                 <li>
-                                    <button type="button"  id="like" onclick="btnThumbDown()" ><i class="fa-regular fa-heart" style="color:green"></i></button>
+                                    <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                 </li>
+
                                 <li>
                                     <a style="color:green" asp-action="" asp-controller="">
                                         <i class="fa-regular fa-comment"></i>
@@ -395,47 +397,82 @@
 </div>
 @*<button id="btn" onclick="myFunction()">Click vào đây</button>*@
     
-
+@*28/2/2023*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script type="text/javascript">
     function myFunction() {
         alert("Thank you for following me!");
     }
-            
-    function btnThumbUp(){
+
+    function btnThumbUp(x){
         var obj = {
             ReactPointId : @Model.ReactPointId,
             ThumbUp: @ViewBag.ThumbUp + 1,
             ThumbDown: @ViewBag.ThumbDown
         };
+
+        x.classList.toggle("fa-solid");
+        x.classList.toggle("fa-regular");
         
         Submit(obj);
     }
 
-    function btnThumbDown(){
+    function btnThumbDown(x){
         var obj = {
             ReactPointId : @Model.ReactPointId,
-            ThumbUp: @ViewBag.ThumbUp,
-            ThumbDown: @ViewBag.ThumbDown + 1
+            ThumbUp : @ViewBag.ThumbUp,
+            ThumbDown : @ViewBag.ThumbDown + 1
         };
         
+
+        x.classList.toggle("fa-solid");
+        x.classList.toggle("fa-regular");
+
         Submit(obj);
+        
+        var save = {
+            ReactId : @ViewBag.ReactId,
+            IdeaId : @Model.IdeaId,
+            ProfileId : "1",
+            Reacted : false
+        };
+        Save(save);
     }
 
     function Submit(obj){
         $.ajax({
-            url:"/Staff/Like",
+            url:"/Staff/ReactPoint",
             method:"POST",
             data: JSON.stringify(obj),
             dataType: "json",
             contentType: 'application/json',
-            success:function(data){                            
+            success:function(data)
+            {                            
                 console.log(data)
                 result = JSON.parse(data)
                 $("#total").text(result.ThumbUp - result.ThumbDown)
             },
-            error: function(err){
+            error: function(err)
+            {
+                console.log(err)  
+            }
+        })
+    }
 
+    function Save(save){
+        $.ajax({
+            url:"/Staff/React",
+            method:"POST",
+            data: JSON.stringify(save),
+            dataType: "json",
+            contentType: 'application/json',
+            success:function(data)
+            {                            
+                console.log(data)
+            },
+            error: function(err)
+            {
                 console.log(err)  
             }
         })
