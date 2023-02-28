@@ -1,5 +1,7 @@
 ﻿@model COMP1640.Models.Idea
-
+@{
+    Layout = "_Staff";
+}
 @{
     var nums_coms = ViewBag.Comments.Count;
     var thumb_up = @ViewBag.ThumbUp + 1;
@@ -12,19 +14,22 @@
         display: flex;
         height: 60em;
     }
+    .drop_down{
+        padding-right: 4em;
+    }
 
     .profile.col-lg-4 {
         background-color: white;
         top: 0.15em;
         border-radius: 0.4em;
-        left: 4.9em;
+        left: 6.5em;
         border: 0.1em solid gainsboro;
         box-sizing: border-box;
     }
 
     .sub_container.col-lg-6 {
         top: -1em;
-        left: 2em;
+        left: 7em;
     }
 
     .information_idea {
@@ -149,11 +154,19 @@
         .friend button:hover:before {
             transform: translateX(15em);
         }
-
+    .commented{
+        display: block;
+    }
     .appear_idea {
         display: flex;
         transform: translate(-33.7em, 7em);
         width: 30em;
+    }
+    .ap_idea_avata{
+        display: inline-block;
+    }
+    .info_comment{
+        display: inline-block;
     }
 
     .ap_idea_avata {
@@ -176,7 +189,7 @@
                     <div class="detail_idea nav_bar--item--separate2">
                         <div class="avata_information_idea" style="width: 100%">
                             <figure>
-                                <a style="text-decoration: none" asp-action="Profile" asp-controller="Home">
+                                <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
                                     <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
                                          alt="avata" />
                                     <div class="name_account">
@@ -206,8 +219,8 @@
                                             @endforeach
                                             </ul>*@
                                             <ul>
-                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Index" asp-controller="Home">Edit</a></li>
-                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
+                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="ViewPage" asp-controller="Staff">Edit</a></li>
+                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff">Delete</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -269,7 +282,7 @@
                     <div class="comment_idea">
                         <div class="com_idea_avata">
                             <figure class="avata_comment">
-                                <a asp-action="Profile" asp-controller="Home">
+                                <a asp-action="Profile" asp-controller="Staff">
                                     <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
                                          alt="avata" />
                                 </a>
@@ -282,7 +295,6 @@
                                 </a>
                                 <label class="switch" value="true">
                                     <input type="checkbox">
-                                    <div class="slider"></div>
                                     <div class="slider-card">
                                         <div class="slider-card-face slider-card-front"></div>
                                         <div class="slider-card-face slider-card-back"></div>
@@ -293,13 +305,13 @@
                                 </a>
                             </div>
                         </div>
-                        
+                        <div class="commented">
                         @foreach(var com in ViewBag.Comments)
                         {
                             <div class="appear_idea">
                                 <div class="ap_idea_avata">
                                     <figure class="account">
-                                        <a asp-action="Profile" asp-controller="Home">
+                                        <a asp-action="Profile" asp-controller="Staff">
                                             <img src="/images/avatar.jpg"
                                                 alt="avata" />
                                         </a>
@@ -310,7 +322,7 @@
                                 </div>
                             </div>
                         }
-                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -322,7 +334,7 @@
                 </div>
                 <div class="avata_information_idea">
                     <figure>
-                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Home">
+                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
                             <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
                                  alt="avata" />
                             <div class="name_account">

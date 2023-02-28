@@ -344,10 +344,6 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
         {
             return View();
         }
-        public IActionResult DeleteIdea()
-        {
-            return View();
-        }
 
         //public bool CheckFinalClosureDate(int ideaId)
         //{

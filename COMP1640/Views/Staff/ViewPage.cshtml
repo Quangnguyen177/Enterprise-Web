@@ -1,4 +1,7 @@
 ﻿@model List<Idea>;
+@{
+    Layout = "_Staff";
+}
 
 <div class="interface">
     <div class="row col-lg-12" id="page-contents">
@@ -17,10 +20,10 @@
                 <div class="idea">
                     <h4 class="widget-title"><b>Most Popular Ideas</b></h4>
                     <ul class="Shortcuts">
-                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-action="Index" asp-controller="Home">Most Viewed Ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-action="Index" asp-controller="Home">Most Emotion ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-action="" asp-controller="Staff">Most Viewed Ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-action="" asp-controller="Staff">Most Emotion ideas</a></li>
                         <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-action="" asp-controller="">Latest Ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-comments"></i><a asp-action="PostIdea" asp-controller="Home">Latest Comments</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-comments"></i><a asp-action="LastComment" asp-controller="Staff">Latest Comments</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,34 +83,25 @@
                                     </a>
                                 </figure>
                             </div>
-                            @* <div>
+                            @*<div class="drop_down">
+                        <a style="color: #373b3f; border-radius: 50%;" href="#" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         <img src="~/fb-icons/more.svg" alt="gallery">
+                        </a>
+                        <div class="dropdown-menu">
+                        <div class="agile_inner_drop_nav_info p-4">
+                        <div class="row">
+                        <div class="col-sm-6 multi-gd-img">
+                        <ul>
+                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff">Edit</a></li>
+                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff">Delete</a></li>
+
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
                         </div>*@
-                            <div class="drop_down">
-                                <a style="color: #373b3f; border-radius: 50%;" href="#" role="button" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                    <img src="~/fb-icons/more.svg" alt="gallery">
-                                </a>
-                                <div class="dropdown-menu">
-                                    <div class="agile_inner_drop_nav_info p-4">
-                                        <div class="row">
-                                            <div class="col-sm-6 multi-gd-img">
-                                                @*     <ul class="multi-column-dropdown">
-                                            @foreach($category as $cat)
-                                            <li class="hassubs"><a href="#">{{$cat->cname}}<i
-                                            class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                            @endforeach
-                                            </ul>*@
-                                                <ul>
-                                                    <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff">Edit</a></li>
-                                                    <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff">Delete</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="content">
                                 <div class="img_idea">
                                     <div class="title_idea">

@@ -2919,3 +2919,4 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformatio
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
