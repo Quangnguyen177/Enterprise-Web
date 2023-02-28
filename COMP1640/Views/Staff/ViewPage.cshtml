@@ -130,19 +130,7 @@
                                         <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
                                             @*<img src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
                                              title="Image_idea" />*@
-                                            @foreach (var doc in ViewBag.Documents)
-                                            {
-                                                <div class="file_idea" style="text-align: center">
-                                                    @*<a asp-action="Detail" asp-controller="Home">
-                                            <img style="width: 550px; height: 400px; padding-left: -50px; transform: translateX(-44.3%)" src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
-                                            title="Image_idea" />
-                                            </a>*@
-                                                    <a asp-action="DownloadFile" asp-controller="Staff" asp-route-id="@doc.DocId">
-                                                        @doc.doc_content
-                                                    </a>
 
-                                                </div>
-                                            }
                                         </a>
                                     </div>
 
