@@ -412,8 +412,7 @@
             ThumbDown: @ViewBag.ThumbDown
         };
 
-        x.classList.toggle("fa-solid");
-        x.classList.toggle("fa-regular");
+        TheToggle(x);
         
         Submit(obj);
     }
@@ -425,19 +424,22 @@
             ThumbDown : @ViewBag.ThumbDown + 1
         };
         
-
-        x.classList.toggle("fa-solid");
-        x.classList.toggle("fa-regular");
+        TheToggle(x);
 
         Submit(obj);
         
         var save = {
-            ReactId : @ViewBag.ReactId,
+            //ReactId : @ViewBag.ReactId,
             IdeaId : @Model.IdeaId,
             ProfileId : "1",
             Reacted : false
         };
         Save(save);
+    }
+
+    function TheToggle(x){
+        x.classList.toggle("fa-solid");
+        x.classList.toggle("fa-regular");
     }
 
     function Submit(obj){

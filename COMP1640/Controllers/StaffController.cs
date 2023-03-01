@@ -230,22 +230,22 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
         }
 
         [HttpPost]
-        public async Task<JsonResult> React([FromBody] React save)
+        public JsonResult React([FromBody] React save)
         {
-            var findreactid = Db.React.Find(save.ReactId);
-            if (findreactid == null)
-            {
-                Db.React.Add(save);
-            }
-            else
-            {
-                Db.React.Update(save);
-            }
-            await Db.SaveChangesAsync();
+            //if (Db.React.FirstOrDefault(s => s.ReactId == save.ReactId) == null)
+            //{
+            //    Db.React.Add(save);
+            //}
+            //else
+            //{
+            //    Db.React.Update(save);
+            //}
+            Db.React.Add(save);
+            Db.SaveChanges();
             //React data = Db.React.FirstOrDefault(o => o.ReactId == save.ReactId);
-            //string result = JsonConvert.SerializeObject(data);
-            //return Json(result);
-            return null;
+            string result = JsonConvert.SerializeObject(save);
+            return Json(result);
+           
         }
 
         //check if current time is earlier than 1st closure date 

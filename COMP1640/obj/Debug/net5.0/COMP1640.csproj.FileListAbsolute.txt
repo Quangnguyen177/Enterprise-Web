@@ -1239,7 +1239,6 @@ G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\PostIdea.cshtml.g.cs
-G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddTag.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\EditTag.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Index.cshtml.g.cs
@@ -2920,3 +2919,7 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
+G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
+G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
+G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
+G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
