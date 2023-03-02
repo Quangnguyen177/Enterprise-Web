@@ -12,15 +12,19 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Newtonsoft.Json;
 using static Microsoft.EntityFrameworkCore.Internal.AsyncLock;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace COMP1640.Controllers
 {
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext Db;
-        public StaffController(ApplicationDbContext context)
+        private readonly UserManager<Profile> _userManager;
+        public StaffController(ApplicationDbContext context, UserManager<Profile> userManager)
         {
             Db = context;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -230,26 +234,43 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
         }
 
         [HttpPost]
-        public JsonResult React([FromBody] React save)
+        public async Task<JsonResult> React([FromBody] React save)
         {
-            //if (Db.React.FirstOrDefault(s => s.ReactId == save.ReactId) == null)
-            //{
-            //    Db.React.Add(save);
-            //}
-            //else
-            //{
-            //    Db.React.Update(save);
-            //}
-            Db.React.Add(save);
-            Db.SaveChanges();
-            //React data = Db.React.FirstOrDefault(o => o.ReactId == save.ReactId);
+            var check = Db.React.FirstOrDefault(r => r.ProfileId == save.ProfileId);
+
+            if ( check != null )
+            {                
+                check.Reacted = save.Reacted;
+                Db.React.Update(check);
+                await Db.SaveChangesAsync();
+            }
+            else if ( check == null)
+            {
+                Db.React.Add(save);
+                await Db.SaveChangesAsync();
+            }
             string result = JsonConvert.SerializeObject(save);
             return Json(result);
-           
         }
 
-        //check if current time is earlier than 1st closure date 
-        public bool CheckFirtClosureDate(Idea idea)
+        [HttpPost]
+        public async Task<JsonResult> DeleteReact([FromBody] React save)
+        {
+            var the_idea = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == save.IdeaId);
+            var the_profile = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == save.ProfileId);
+            var the_result = Db.React.Where(a => a.IdeaId == the_idea.IdeaId).Where(b => b.ProfileId == the_profile.ProfileId).Single();
+
+            if (the_result != null)
+            {
+                Db.React.Remove(the_result);
+                await Db.SaveChangesAsync();
+            }
+            string result = JsonConvert.SerializeObject(save);
+            return Json(result);
+        } 
+
+    //check if current time is earlier than 1st closure date 
+    public bool CheckFirtClosureDate(Idea idea)
         {
             DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
             if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
@@ -296,7 +317,7 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
             }
         }
 
-        public IActionResult DetailIdea(int id)
+        public async Task<IActionResult> DetailIdea(int id)
         {
 
             var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.IdeaId == id);
@@ -309,37 +330,31 @@ var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId =
             var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId == id);
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
 
-            //ducmt2
+            var idea = Db.Ideas.Include(c => c.Category).FirstOrDefault(c => c.IdeaId == id);
+
+            //ducmt1
             var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
             var number_of_upvote = reactpoint_of_idea.Reacpoint.ThumbUp;
             ViewBag.ThumbUp = number_of_upvote;
             var number_of_downvote = reactpoint_of_idea.Reacpoint.ThumbDown;
             ViewBag.ThumbDown = number_of_downvote;
 
+
             //ducmt2
-            //var reacted = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == id);
-            //if (reacted != null)
-            //{
-            //    var reactid = reacted.ReactId;
-            //    ViewBag.ReactId = reactid;
-            //}
-            //else 
-            //{
-            if (Db.React.Count() >0)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user_react = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == userId);
+            var idea_react = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == id);
+
+            try
             {
-                var reactid = Db.React.Max(i => i.ReactId);
-                ViewBag.ReactId = reactid + 1;
+                var the_react = Db.React.Where(a => a.IdeaId == idea_react.IdeaId).Where(b => b.ProfileId == user_react.ProfileId).Single();
+                ViewBag.UserReact = the_react.Reacted; 
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.ReactId = 1;
+                ViewBag.UserReact = null;
             }
 
-            //}
-
-
-
-            var idea = Db.Ideas.Include(c => c.Category).FirstOrDefault(c => c.IdeaId == id);
             return View(idea);
         }
 
