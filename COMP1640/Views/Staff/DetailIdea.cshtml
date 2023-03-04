@@ -6,9 +6,22 @@
 }
 @{
     var nums_coms = ViewBag.Comments.Count;
-    var thumb_up = @ViewBag.ThumbUp + 1;
-    var thumb_down = ViewBag.ThumbDown + 1;
-    var react_point = @ViewBag.ThumbUp - ViewBag.ThumbDown;
+    
+    var react_point = 0;
+    if (ViewBag.ThumbDown >= 0)
+    {
+        react_point = ViewBag.ThumbUp - ViewBag.ThumbDown;
+    }
+    if (ViewBag.ThumbDown < 0)
+    {
+        react_point = ViewBag.ThumbUp + ViewBag.ThumbDown;
+    }
+    string userid = UserManager.GetUserId(User);
+    var info = "2";
+    if (@ViewBag.UserReact != null)
+    {
+        info = @ViewBag.UserReact.ToString().ToLower();
+    }
 }
 <style>
     .modal{
@@ -471,39 +484,254 @@
         alert("Thank you for following me!");
     }
 
+    var theLock = 0;
+    $(document).ready(function(){
+        if (@info == true)
+        {
+            $("#TU").removeClass("fa-regular");
+            $("#TU").addClass("fa-solid");
+            theLock = 1;
+        }
+        else if (@info == false)
+        {
+            $("#TD").removeClass("fa-regular");
+            $("#TD").addClass("fa-solid");
+            theLock = 2;
+        }
+    });
+
     function btnThumbUp(x){
-        var obj = {
-            ReactPointId : @Model.ReactPointId,
-            ThumbUp: @ViewBag.ThumbUp + 1,
-            ThumbDown: @ViewBag.ThumbDown
+        var save = {
+            IdeaId : @Model.IdeaId,
+            ProfileId : "@userid",
+            Reacted : true
         };
 
-        x.classList.toggle("fa-solid");
-        x.classList.toggle("fa-regular");
-        
-        Submit(obj);
+        //Lock 1 #1
+        if ($("#TU").hasClass("fa-solid") == true && theLock == 1 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp - 1,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Delete(save);
+        }
+        //Lock 1 #2
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 1 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //Lock 1 #3
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 1 && $("#TD").hasClass("fa-solid") == true)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //--------------------------------------------------------------------------------------------------------
+        //counter Lock 2 #2
+        if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == true)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp + 1,
+                ThumbDown: @ViewBag.ThumbDown -1
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //counter Lock 2 #1
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp + 1,
+                ThumbDown: @ViewBag.ThumbDown - 1
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //counter Lock 2 #3
+        else if ($("#TU").hasClass("fa-solid") == true && theLock == 2 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown - 1
+            };
+            Submit(obj);
+            Delete(save);
+        }
+        //--------------------------------------------------------------------------------------------------------
+        //Lock 0 #1
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 0 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp + 1,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //Lock 0 #2
+        else if ($("#TU").hasClass("fa-solid") == true && theLock == 0 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Delete(save);
+        }
+        //counter Lock 0 #3
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 0 && $("#TD").hasClass("fa-solid") == true)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp + 1,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Save(save);
+        }
+
+        TheToggle(x);
+        if ($("#TD").hasClass("fa-solid") == true)
+        {
+            $("#TD").removeClass("fa-solid");
+            $("#TD").addClass("fa-regular");
+        }        
     }
 
     function btnThumbDown(x){
-        var obj = {
-            ReactPointId : @Model.ReactPointId,
-            ThumbUp : @ViewBag.ThumbUp,
-            ThumbDown : @ViewBag.ThumbDown + 1
-        };
-        
-
-        x.classList.toggle("fa-solid");
-        x.classList.toggle("fa-regular");
-
-        Submit(obj);
-        
         var save = {
-            ReactId : @ViewBag.ReactId,
             IdeaId : @Model.IdeaId,
-            ProfileId : "1",
+            ProfileId : "@userid",
             Reacted : false
         };
-        Save(save);
+        
+        //counter Lock 1 #2
+        if ($("#TU").hasClass("fa-solid") == true && theLock == 1 &&  $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp - 1,
+                ThumbDown: @ViewBag.ThumbDown + 1
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //counter Lock 1 #1
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 1 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp - 1,
+                ThumbDown: @ViewBag.ThumbDown + 1
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //counter Lock 1 #3
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 1 && $("#TD").hasClass("fa-solid") == true)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp - 1,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Delete(save);
+        }
+        //------------------------------------------------------------------------------------------------------------
+        //Lock 2 #1
+        if ($("#TU").hasClass("fa-solid") == false && theLock == 2 &&  $("#TD").hasClass("fa-solid") == true)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown - 1
+            };
+            Submit(obj);
+            Delete(save);
+        }
+        //Lock 2 #2
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //Lock 2 #3
+        else if ($("#TU").hasClass("fa-solid") == true && theLock == 2 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //------------------------------------------------------------------------------------------------------------
+        //Lock 0 #1
+        if ($("#TU").hasClass("fa-solid") == false && theLock == 0 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown + 1,
+            };
+            Submit(obj);
+            Save(save);
+        }
+        //Lock 0 #2
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 0 && $("#TD").hasClass("fa-solid") == true)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown
+            };
+            Submit(obj);
+            Delete(save);
+        }
+        //counter Lock 0 #3
+        else if ($("#TU").hasClass("fa-solid") == true && theLock == 0 && $("#TD").hasClass("fa-solid") == false)
+        {
+            var obj = {
+                ReactPointId : @Model.ReactPointId,
+                ThumbUp: @ViewBag.ThumbUp,
+                ThumbDown: @ViewBag.ThumbDown + 1
+            };
+            Submit(obj);
+            Save(save);
+        }
+
+        TheToggle(x);
+        if ($("#TU").hasClass("fa-solid") == true)
+        {
+            $("#TU").removeClass("fa-solid");
+            $("#TU").addClass("fa-regular");
+        }
     }
 
     function Submit(obj){
@@ -517,7 +745,14 @@
             {                            
                 console.log(data)
                 result = JSON.parse(data)
-                $("#total").text(result.ThumbUp - result.ThumbDown)
+                if (result.ThumbDown >= 0)
+                {
+                    $("#total").text(result.ThumbUp - result.ThumbDown)
+                }
+                else
+                {
+                    $("#total").text(result.ThumbUp + result.ThumbDown)
+                }
             },
             error: function(err)
             {
@@ -540,6 +775,24 @@
             error: function(err)
             {
                 console.log(err)  
+            }
+        })
+    }
+
+    function Delete(save){
+        $.ajax({
+            url:"/Staff/DeleteReact",
+            method:"POST",
+            data: JSON.stringify(save),
+            dataType: "json",
+            contentType: 'application/json',
+            success:function()
+            {                            
+                //console.log(data)
+            },
+            error: function()
+            {
+                //console.log(err)  
             }
         })
     }
