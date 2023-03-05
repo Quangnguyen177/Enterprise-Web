@@ -315,7 +315,7 @@
                                              title="Image_idea" />
                                     </a>*@
                                     <a asp-action="DownloadFile" asp-controller="Staff" asp-route-id="@doc.DocId">
-                                        @doc.doc_name
+                                        @doc.doc_content
                                     </a>
                                         
                                     </div>
@@ -335,11 +335,11 @@
                                 </li>
                                 
                                 <li>        
-                                    <i type="button" id="TU" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
+                                    <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
                                 </li>
 
                                 <li>
-                                    <i type="button" id="TD" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                    <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                 </li>
 
                                 <li>
@@ -362,29 +362,32 @@
                         </div>
                          <div class="comment" style=" position: static; z-index: 5;">
                                 <div class="form-group">
-                                    <form asp-action="" asp-controller="" method="POST">
+                                    <form method="POST">
                                         <a style="text-decoration: none">
-                                            <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
+                                            <input style="width: 450px; height: 40px" class="form-control" rows="5" id="com-content" placeholder="Post your comment..." />
                                         </a>
                                         <label class="switch" value="true">
-                                            <input type="checkbox">
+                                            <input type="checkbox" id="com-anonymous">
                                             <div class="slider"></div>
                                             <div class="slider-card">
                                                 <div class="slider-card-face slider-card-front"></div>
                                                 <div class="slider-card-face slider-card-back"></div>
                                             </div>
                                         </label>
-
-                                        <button type="button" class="btn btn-outline-success">Add</button>
+                                        <input type="hidden" id="profileId" value="@userid"/>
+                                        <input type="hidden" id="ideaId" value="@Model.IdeaId"/>     
+                                        <button type="button" class="btn btn-outline-success" id="btnComment" onclick="SubmitComment()">Add</button>
                                     </form>
                                 </div>
                           </div>
                         <div class="commented">
+                        <div class="appear_idea" id="display-comment">
+                        @*old commented*@
                         @foreach(var com in ViewBag.Comments)
                         {
-                            <div class="appear_idea">
-                                <div class="ap_idea_avata">
-                                    <figure class="account">
+                            
+                                <div class="ap_idea_avata">                                   
+                                     <figure class="account">
                                         <a asp-action="Profile" asp-controller="Staff">
                                             <img src="/images/avatar.jpg"
                                                 alt="avata" />
@@ -392,18 +395,21 @@
                                     </figure>
                                 </div>
                                 <div class="info_comment">
+
                                     <div class="comment1_idea">
-                                <h4 style="font-size: 16px; font-weight: bold;">@ViewBag.Name</h4>
+                                        <h4 style="font-size: 16px; font-weight: bold;">@com.Profile.Name</h4>
                         
                               @*  <div class="info_comment">*@
-                                    <span>@com.com_content</span>
+                                        <span>@com.com_content</span>
                                @* </div>*@
-                               </div>
-                                       <h5 style="font-size: 12px; width: 100%; color: dimgray;">@Model.created_date</h5>
-                                </div>
-                            </div>
-                        }
+                                    </div>
+                                    <h5 style="font-size: 12px; width: 100%; color: dimgray;">@com.created_date</h5>
+                                </div>                             
+                        }     
                         </div>
+                       
+                        
+
                     </div>
                 </div>
             </div>
@@ -483,6 +489,43 @@
     function myFunction() {
         alert("Thank you for following me!");
     }
+    //send comment to controller
+    function SubmitComment(){  
+      var anonymous = false;   
+      if ($("#com-anonymous").prop("checked")) anonymous = true
+      $.ajax({
+            url:"/Staff/Comment",
+            type:"POST",
+            data: {
+                  com_content: $("#com-content").val(),
+                  com_anonymous: anonymous,
+                  ProfileId: $("#profileId").val(),
+                  IdeaId: $("#ideaId").val()         
+             }, 
+            success:function(res){  
+                console.log(res)
+                var result = JSON.parse(res)
+                console.log(result)
+                if (result.Content != null){  
+                     $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="/images/avatar.jpg" alt="avata" /> </a> </figure> </div>')
+                     $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">'+result.Name+'</h4><span>'+result.Content+'</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">'+result.Time+'</h5></div>')
+
+                     
+                     //if (result.Anonymous){
+                     //  $("#display-comment").append('<h4 style="font-size: 16px; font-weight: bold;">Anonymous</h4>')                  
+                     //}else{
+                     //  $("#display-comment").append('<h4 style="font-size: 16px; font-weight: bold;">'+result.Name+'</h4>')                 
+                     //}
+                }  
+            },
+            error: function(err){
+
+              console.log(err)  
+            }
+        })   
+      
+    }
+    ////
 
     var theLock = 0;
     $(document).ready(function(){
@@ -542,7 +585,7 @@
         }
         //--------------------------------------------------------------------------------------------------------
         //counter Lock 2 #2
-        else if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == true)
+        if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == true)
         {
             var obj = {
                 ReactPointId : @Model.ReactPointId,
@@ -659,7 +702,7 @@
         }
         //------------------------------------------------------------------------------------------------------------
         //Lock 2 #1
-        else if ($("#TU").hasClass("fa-solid") == false && theLock == 2 &&  $("#TD").hasClass("fa-solid") == true)
+        if ($("#TU").hasClass("fa-solid") == false && theLock == 2 &&  $("#TD").hasClass("fa-solid") == true)
         {
             var obj = {
                 ReactPointId : @Model.ReactPointId,
@@ -693,7 +736,7 @@
         }
         //------------------------------------------------------------------------------------------------------------
         //Lock 0 #1
-        else if ($("#TU").hasClass("fa-solid") == false && theLock == 0 && $("#TD").hasClass("fa-solid") == false)
+        if ($("#TU").hasClass("fa-solid") == false && theLock == 0 && $("#TD").hasClass("fa-solid") == false)
         {
             var obj = {
                 ReactPointId : @Model.ReactPointId,
