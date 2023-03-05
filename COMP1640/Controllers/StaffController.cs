@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Newtonsoft.Json;
+using System.IO.Compression;
 
 namespace COMP1640.Controllers
 {
@@ -51,7 +52,7 @@ namespace COMP1640.Controllers
             ViewBag.Page = pageNum;
             return View(page);
         }
-        
+
         [HttpGet]
         public IActionResult AddIdea()
         {
@@ -59,7 +60,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddIdea(List<IFormFile> uploadedFiles,string title, string content, string categoryName, string isAnonymous, string profileId)
+        public IActionResult AddIdea(List<IFormFile> uploadedFiles, string title, string content, string categoryName, string isAnonymous, string profileId)
         {
             ////Create reactpoint entity to relate to Idea entity
             ReactPoint newReactPoint = new ReactPoint
@@ -92,13 +93,13 @@ namespace COMP1640.Controllers
             Db.SaveChanges();
             if (uploadedFiles.Count > 0)
             {
-                HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId,"ADD"); //add file
+                HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
             }
             return View(Db.Categories.ToList());
 
         }
-            
-         public void HandleFile(List<IFormFile> uploadedFiles, int idIdea, string type)
+
+        public void HandleFile(List<IFormFile> uploadedFiles, int idIdea, string type)
         {
 
             foreach (var file in uploadedFiles)
@@ -121,17 +122,18 @@ namespace COMP1640.Controllers
                 Models.Document doc = new Models.Document() //đoạn này đang addd  dữ liệu vô database goodddd :)))
                 {
 
-                    doc_content = file.FileName,
-                    doc_type = "Still dont know",
+                    doc_name = file.FileName,
+                    doc_path = path,
                     IdeaId = idIdea
                 };
                 if (type.Equals("ADD"))
                 {
                     Db.Add(doc);
-                } else if (type.Equals("UPDATE"))
+                }
+                else if (type.Equals("UPDATE"))
                 {
                     Db.Update(doc);
-                }              
+                }
                 Db.SaveChanges();
             }
         }
@@ -140,7 +142,7 @@ namespace COMP1640.Controllers
         public IActionResult EditIdea(int id)
         {
             var a = id;
-            Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);           
+            Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
             ViewBag.Category = Db.Categories.ToList();
             //if (currentIdea.first_closure != null)
             //    if (!CheckFirtClosureDate(currentIdea)){
@@ -148,8 +150,8 @@ namespace COMP1640.Controllers
             //        return null;
             return View(currentIdea);
         }
-        
-       [HttpPost]
+
+        [HttpPost]
         public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName, string isAnonymous)
         {
             bool anonynous = true;
@@ -306,7 +308,7 @@ namespace COMP1640.Controllers
             var comments = Db.Comments.Include(p => p.Idea).FirstOrDefault(p => p.IdeaId == id);
             ViewBag.Comments = Db.Comments.Where(comments => comments.IdeaId == id).ToList();
 
-            var documents = Db.Documents.Include(d=>d.Idea).FirstOrDefault(d=>d.IdeaId == id);
+            var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId == id);
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
 
             var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
@@ -319,14 +321,53 @@ namespace COMP1640.Controllers
             return View(idea);
         }
 
-        public FileResult DownloadFile(int id)
+        public IActionResult DownloadFile(int id)
         {
             var file = Db.Documents.Find(id);
-            var filename = file.doc_content;
-            return File(@"F:\\F2G - UOG\\COMP1640 - Enterprise Web Software Development", filename, System.Net.Mime.MediaTypeNames.Application.Octet);
+            var filename = file.doc_name;
+            List<Document> listFiles = new List<Document>();
+
+            //Path For download From Network Path.
+            string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files"); ;
+
+            DirectoryInfo dirInfo = new DirectoryInfo(fileSavePath);
+
+            int i = 0;
+
+            foreach (var item in dirInfo.GetFiles())
+            {
+                if (item.Name == filename)
+                {
+                    listFiles.Add(new Document()
+                    {
+
+                        DocId = i + 1,
+
+                        doc_name = item.Name,
+
+                        doc_path = dirInfo.FullName + @"\" + item.Name
+
+                    });
+                }
+
+
+                i = i + 1;
+            }
+            var fileColumns = listFiles.ToList();
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var ziparchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    for (int j = 0; j < fileColumns.Count; j++)
+                    {
+                        ziparchive.CreateEntryFromFile(fileColumns[j].doc_path, fileColumns[j].doc_name);
+
+                    }
+                }
+
+                return File(memoryStream.ToArray(), "application/zip", "Documents.zip");
+            }
         }
-
-
 
         //public bool CheckFinalClosureDate(int ideaId)
         //{
@@ -335,5 +376,6 @@ namespace COMP1640.Controllers
         //    if (DateTime.Compare(DateTime.Now, finalClosureDate) < 0) return true;
         //    else return false;
         //}
+
     }
 }

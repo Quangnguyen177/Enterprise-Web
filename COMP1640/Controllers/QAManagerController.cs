@@ -1,6 +1,9 @@
 ﻿using COMP1640.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.IO.Compression;
+using System.IO;
 using System.Linq;
 
 namespace COMP1640.Controllers
@@ -69,6 +72,47 @@ namespace COMP1640.Controllers
             else
             {
                 return View(cate);
+            }
+        }
+        public IActionResult DownloadFile()
+        {
+            List<Document> listFiles = new List<Document>();
+
+            //Path For download From Network Path.
+            string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+            DirectoryInfo dirInfo = new DirectoryInfo(fileSavePath);
+
+            int i = 0;
+
+            foreach (var item in dirInfo.GetFiles())
+            {
+                listFiles.Add(new Document()
+                {
+
+                    DocId = i + 1,
+
+                    doc_name = item.Name,
+
+                    doc_path = dirInfo.FullName + @"\" + item.Name
+
+                });
+
+                i = i + 1;
+            }
+            var fileColumns = listFiles.ToList();
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var ziparchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    for (int j = 0; j < fileColumns.Count; j++)
+                    {
+                        ziparchive.CreateEntryFromFile(fileColumns[j].doc_path, fileColumns[j].doc_name);
+
+                    }
+                }
+
+                return File(memoryStream.ToArray(), "application/zip", "Documents.zip");
             }
         }
     }

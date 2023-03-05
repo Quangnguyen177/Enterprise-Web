@@ -51,8 +51,8 @@ namespace COMP1640
             //3
             SeedCategory(builder);
 
-            //4
-            SeedDocument(builder);
+/*            //4
+            SeedDocument(builder);*/
 
             //5
             SeedIdea(builder);
@@ -253,7 +253,7 @@ namespace COMP1640
         }
 
         //4
-        private void SeedDocument(ModelBuilder builder)
+/*        private void SeedDocument(ModelBuilder builder)
         {
             builder.Entity<Document>().HasData(
                 new Document
@@ -264,7 +264,7 @@ namespace COMP1640
                     doc_type = "Word"
                 }
             );
-        }
+        }*/
 
         //5
         private void SeedIdea(ModelBuilder builder)

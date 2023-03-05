@@ -2915,3 +2915,5 @@ G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-lock.json
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-lock.json
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json

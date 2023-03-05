@@ -8,8 +8,8 @@ namespace COMP1640.Models
     {
         [Key]
         public int DocId { get; set; }
-        public string doc_type { get; set; }
-        public string doc_content { get; set;}
+        public string doc_path { get; set; }
+        public string doc_name { get; set;}
 
         // FK1: Idea Id
         public int IdeaId { get; set; }
