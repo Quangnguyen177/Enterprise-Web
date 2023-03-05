@@ -109,8 +109,8 @@ namespace COMP1640
             var hashed = new PasswordHasher<Profile>();
 
             //Thiết lập để mã hóa từng tài khoản
-            admin1.PasswordHash = hashed.HashPassword(admin1, "admin#1");
-            staff1.PasswordHash = hashed.HashPassword(admin1, "Staff#1");
+            admin1.PasswordHash = hashed.HashPassword(admin1, "Admin#1");
+            staff1.PasswordHash = hashed.HashPassword(staff1, "Staff#1");
 
             //Add tài khoản vào DB
             builder.Entity<Profile>().HasData(admin1, staff1);
@@ -319,7 +319,7 @@ namespace COMP1640
             builder.Entity<Comment>().HasData(
                 new Comment
                 {
-                    ComId = "1",
+                    ComId = 1,
                     ProfileId = "1",
                     IdeaId = 1,
                     com_content = "This is a great idea",

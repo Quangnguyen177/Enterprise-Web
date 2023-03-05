@@ -62,8 +62,10 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
                 {
-                    b.Property<string>("ComId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ComId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("IdeaId")
                         .HasColumnType("int");
@@ -88,7 +90,7 @@ namespace COMP1640.Migrations
                     b.HasData(
                         new
                         {
-                            ComId = "1",
+                            ComId = 1,
                             IdeaId = 1,
                             ProfileId = "1",
                             com_anonymous = false,
@@ -302,7 +304,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "685286df-ee71-4556-91c8-54e9b417673c",
+                            ConcurrencyStamp = "4ee3fedf-ad55-495a-86ea-1248ee174625",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -311,10 +313,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM5anjhY1JNrKnBiXLruWBshDe1bpOhu38VOMBMsSs420yVPCM1w/1YJ4SG7zvOvMA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAkqDaTOpAyC5P5bySdbsz+ADznorUsP2cmYFUcUsSOenkLirfZim4FF9fhCCnwNVA==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "346346f9-f121-446b-b322-9cbc2b9253bf",
+                            SecurityStamp = "90bf08f7-c7c4-4cb6-b101-e9acc85574b3",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -324,7 +326,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "5eba84ef-a9ec-430a-a1ca-206356cd0171",
+                            ConcurrencyStamp = "c705a779-6c58-4111-9f1b-ba05878c4d02",
                             DepId = "1",
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -333,10 +335,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEm9GX05Wy7szE7jDdcmxzaRTU9NcXFwS2EZqa1wfyOQMQ+ExqXfrjMcp68++P2/TQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMbrUspxvfVJIPwil8ASrCIhzPmGpMnmTsOc3YE8DP3OVT2rJfUX4y3NYE8B/fSusQ==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1654dd4f-4fc1-4e21-bea7-79014804bfc7",
+                            SecurityStamp = "ebcfb62d-f8b5-4508-b061-9d7f500489fd",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         });
@@ -449,28 +451,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "35a58d54-c728-47df-ad63-29e2a893bbc7",
+                            ConcurrencyStamp = "4a22016b-bbcb-47f6-aba3-56e302b8d1bb",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "353f5983-a096-453b-a107-acf16a179828",
+                            ConcurrencyStamp = "3faef791-d2d0-478d-a3b2-675d7387f8ea",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "eefcd25b-6e5a-4641-a840-f5a4746cc771",
+                            ConcurrencyStamp = "d5127dc3-36e1-4e2e-8b42-792916e64371",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "26649482-5eab-4cdb-acd5-753cd3ae4ffe",
+                            ConcurrencyStamp = "362e2d7b-f028-4b35-99bb-be3cf5219ec1",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -660,7 +662,7 @@ namespace COMP1640.Migrations
             modelBuilder.Entity("COMP1640.Models.React", b =>
                 {
                     b.HasOne("COMP1640.Models.Idea", "Idea")
-                        .WithMany()
+                        .WithMany("React")
                         .HasForeignKey("IdeaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -749,6 +751,8 @@ namespace COMP1640.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Documents");
+
+                    b.Navigation("React");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Profile", b =>

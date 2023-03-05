@@ -383,9 +383,17 @@ namespace COMP1640.Controllers
         //    else return false;
         //}
 
-    }
 
-    // !!! This is the update account profile system !!!
-    // Different with profile page
-    // More info at Identity/Account/Manage
+        // !!! This is the update account profile system !!!
+        // Different with profile page
+        // More info at Identity/Account/Manage
+
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateAccount(Profile pro)
+        //{
+        //    Db.Profile.Update(pro);
+        //    await Db.SaveChangesAsync();
+        //    return View(pro);
+        //}
+    }
 }

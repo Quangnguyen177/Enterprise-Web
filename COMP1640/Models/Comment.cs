@@ -8,7 +8,7 @@ namespace COMP1640.Models
     public class Comment
     {
         [Key]
-        public string ComId { get; set; }
+        public int ComId { get; set; }
         public string com_content { get; set; }
 
         [DataType(DataType.Date)]
