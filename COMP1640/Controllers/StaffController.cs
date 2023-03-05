@@ -28,37 +28,30 @@ namespace COMP1640.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewPage(int pageNum = 1)
+        public IActionResult ViewPage(int pageNum, string viewType)
         {
+            if (pageNum == 1) ViewBag.PageNum = 1;
+            else ViewBag.PageNum = pageNum;
             int skipPage = 5 * (pageNum - 1);
-            var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
-            var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
-            ViewBag.Page = pageNum;
-            ViewBag.Category = Db.Categories.ToList();
-            /*List<Document> Documentss = new List<Document>();
-            foreach(var idea in page)
+            List<Idea> page = null;
+            if (viewType.Equals("mostview"))
             {
-var documents = Db.Documents.Include(d => d.Idea).FirstOrDefault(d => d.IdeaId == idea.IdeaId);
-            var result = Db.Documents.Where(documents => documents.IdeaId == idea.IdeaId).ToList();
-                Documentss.Add(result);
-
-
-            }*/
-            
-
+                page = Db.Ideas.OrderByDescending(i => i.idea_view).Skip(skipPage).Take(5).ToList();
+                ViewBag.ViewType = "mostview";
+            }
+            else if (viewType.Equals("lastest"))
+            {
+                page = Db.Ideas.OrderByDescending(i => i.created_date).Skip(skipPage).Take(5).ToList();
+                ViewBag.ViewType = "lastest";
+            }
+            else if (viewType.Equals("popular"))
+            {
+                page = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbDown + i.Reacpoint.ThumbUp).Skip(skipPage).Take(5).ToList();
+                ViewBag.ViewType = "lastest";
+            }
+            ViewBag.Category = Db.Categories.ToList();
             return View(page);
         }
-
-        //chua co truong view trong idea nen comment
-        /*[HttpGet]
-        public IActionResult MostView(int pageNum)
-        {
-            int skipPage = 5 * (pageNum - 1);
-            var ideasList = Db.Ideas.OrderByDescending(i => i.View);
-            var page = ideasList.Skip(skipPage).Take(5).ToList();
-            ViewBag.Page = pageNum;
-            return View(page);
-        }*/
 
         [HttpGet]
         public IActionResult LastComment(int pageNum)
