@@ -61,7 +61,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
                 PhoneNumber = phoneNumber
             };
 
-            var theUser = Db.Profile.Where(a =>  a.UserName == Username).FirstOrDefault();
+            var theUser = await _userManager.GetUserAsync(User);
             Fullname = theUser.Name;
             DoB = theUser.DoB;
             Gender = theUser.Gender;
@@ -106,15 +106,13 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             }
 
             //Update the rest
-            var userName = await _userManager.GetUserNameAsync(user);
             if (ModelState.IsValid)
             {
-                var theUser = Db.Profile.Where(a => a.UserName == userName).FirstOrDefault();
-                theUser.Name = Fullname;
-                theUser.DoB = DoB;
-                theUser.Gender = Gender;
-                theUser.Address = Address;
-                Db.Profile.Update(theUser);
+                user.Name = Fullname;
+                user.DoB = DoB;
+                user.Gender = Gender;
+                user.Address = Address;
+                Db.Profile.Update(user);
                 await Db.SaveChangesAsync();
             }
 

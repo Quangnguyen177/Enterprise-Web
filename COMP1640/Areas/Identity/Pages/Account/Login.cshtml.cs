@@ -20,14 +20,17 @@ namespace COMP1640.Areas.Identity.Pages.Account
         private readonly UserManager<Models.Profile> _userManager;
         private readonly SignInManager<Models.Profile> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ApplicationDbContext Db;
 
         public LoginModel(SignInManager<Models.Profile> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<Models.Profile> userManager)
+            UserManager<Models.Profile> userManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            Db = context;
         }
 
         [BindProperty]
@@ -85,7 +88,15 @@ namespace COMP1640.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _userManager.GetUserAsync(User);
+                    if (user.Name == "")
+                    {
+                        return Redirect("./Manage/Index");
+                    }
+                    else
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
