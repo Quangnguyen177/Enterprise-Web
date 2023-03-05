@@ -1,4 +1,4 @@
-﻿@model List<Idea>;
+@model List<Idea>;
 @{
     Layout = "_Staff";
 }
@@ -57,12 +57,11 @@
 
 
             @*A post*@
-
-
+            <div class="block">
+                @foreach (var idea in Model)
+                {
             <div class="information_idea">
-                <div class="Infor_idea">
-                    @foreach (var idea in Model)
-                    {
+                <div class="Infor_idea">  
                         <div class="detail_idea nav_bar--item--separate2">
                             <div class="avata_information_idea">
                                 <figure>
@@ -137,8 +136,16 @@
                             <div class="more">
                                 <ul class="felling_idea">
                                     <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
-                                    <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-solid fa-heart"></i></a>32</li>
-                                    <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-heart"></i></a>32</li>
+                                  @*  <li>
+                                        <label placeholder="React point: "><p id="total">@react_point</p></label>
+                                    </li>*@
+                                    <li>
+                                        <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
+                                    </li>
+
+                                    <li>
+                                        <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                    </li>
                                     <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>32</li>
                                 </ul>
                             </div>
@@ -155,29 +162,30 @@
                             </div>
                             <div class="comment" style=" position: static; z-index: 5;">
                                 <div class="form-group">
-                                    <form asp-action="" asp-controller="" method="POST">
+                                    <form asp-action="DetailIdea" asp-controller="Staff" method="POST">
                                         <a style="text-decoration: none">
                                             <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
                                         </a>
-                                        <label class="switch" value="true">
+                                        @*<label class="switch" value="true">
                                             <input type="checkbox">
                                             <div class="slider"></div>
                                             <div class="slider-card">
                                                 <div class="slider-card-face slider-card-front"></div>
                                                 <div class="slider-card-face slider-card-back"></div>
                                             </div>
-                                        </label>
-
-                                        <button type="button" class="btn btn-outline-success">Add</button>
+                                        </label>*@
                                     </form>
                                 </div>
 
                             </div>
 
                         </div>
-                    }
+                 
                     @*END*@
                 </div>
+                @*}*@
+           </div>
+            }
             </div>
         </div>
         <div class="sub_container2 col-lg-3">
