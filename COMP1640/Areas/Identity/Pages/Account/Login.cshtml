@@ -1,12 +1,64 @@
 ﻿@page
 @model LoginModel
 
-@{
+@*@{
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
+<h1>@ViewData["Title"]</h1>*@
+@*Code chay*@
+<style>
+        p {
+        color: #353836c4;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+        }
+</style>
+<div class="login-page">
+    <div class="form">
+        <div class="logo_login">
+                <img style="display: inline-block;" src="/images/logo.jpg"
+                   />
+        </div>
+        @*  <form class="register-form" asp-action="Index" asp-controller="Home">*@
+        <form id="account" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Input.Email" type="text" placeholder="email" />
+                <input asp-for="Input.Password" type="password" placeholder="password" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+        @*        <div class="checkbox">
+                    <label asp-for="Input.RememberMe">
+                        <input asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>*@
+                @*<p class="message">Already registered? <a href="#">Sign In</a></p>*@
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
+            <div class="form-group">
+                <p>
+                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                </p>
+                <p>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                </p>
+                <p>
+                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@*Code tu dong*@
+@*<div class="row">
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
@@ -79,7 +131,7 @@
         </section>
     </div>
 </div>
-
+*@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

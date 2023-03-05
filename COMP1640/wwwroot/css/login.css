@@ -5,16 +5,15 @@ body {
     height: 100%;
 }
 
-.logo {
+.logo_login {
     width: 9em;
     height: 6em;
-    text-align: center;
-    left: 4em;
+    transform: translate(0.8em, -2em);
 }
 
 .login-page {
     width: 360px;
-    padding: 8% 0 0;
+    padding: 6% 0 0;
     margin: auto;
 }
 
@@ -29,10 +28,11 @@ body {
     text-align: center;
     box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 5px 5px 0 rgb(0 0 0 / 24%);
 }
-.logo img {
+.logo_login img {
     width: 15em;
-    height: inherit;
-    transform: translate(0.6em, 2.5em);
+    height: 6em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form input {

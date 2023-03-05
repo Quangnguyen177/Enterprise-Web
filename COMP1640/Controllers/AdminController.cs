@@ -51,6 +51,11 @@ namespace COMP1640.Controllers
             }
         }
 
+        public IActionResult SetClosureDate()
+        {
+            return View();
+        }
+
 
     }
 }

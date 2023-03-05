@@ -356,10 +356,17 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
+<<<<<<<< HEAD:COMP1640/Migrations/20230304084242_testRun.cs
                     { "A", "35a58d54-c728-47df-ad63-29e2a893bbc7", "Administrator", "Administrator" },
                     { "B", "353f5983-a096-453b-a107-acf16a179828", "Staff", "Staff" },
                     { "C", "eefcd25b-6e5a-4641-a840-f5a4746cc771", "Quality Assurance Manager", "Quality Assurance Manager" },
                     { "D", "26649482-5eab-4cdb-acd5-753cd3ae4ffe", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+========
+                    { "A", "a17b7854-92e1-4131-b56c-6d3f1bdf2f86", "Administrator", "Administrator" },
+                    { "B", "0ca4cc1b-1b70-433f-b325-7f6e31ca4f92", "Staff", "Staff" },
+                    { "C", "a8fa3669-9dc2-45a6-a386-503a860f1a63", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "cca99c2c-d17f-48e8-b059-c4289b2e1890", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+>>>>>>>> ef5b9f6a442c0a9fd54473c70c4f5a396684add1:COMP1640/Migrations/20230301163423_test.cs
                 });
 
             migrationBuilder.InsertData(
@@ -384,12 +391,20 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+<<<<<<<< HEAD:COMP1640/Migrations/20230304084242_testRun.cs
                 values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "685286df-ee71-4556-91c8-54e9b417673c", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEM5anjhY1JNrKnBiXLruWBshDe1bpOhu38VOMBMsSs420yVPCM1w/1YJ4SG7zvOvMA==", "0983337621", false, "346346f9-f121-446b-b322-9cbc2b9253bf", false, "Truong" });
+========
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "c2fa3ee7-0ad5-420e-81ff-7a42c00202ba", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEPNNgCEcX2rHX4fACtNinEcweKCpHrq+uWMF+Tx/EqZhDSxXvjzEP/RGUuvbr7nCMA==", "0983337621", false, "4f64c379-7ffe-4364-bc0d-f403b8ab09f3", false, "Truong" });
+>>>>>>>> ef5b9f6a442c0a9fd54473c70c4f5a396684add1:COMP1640/Migrations/20230301163423_test.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+<<<<<<<< HEAD:COMP1640/Migrations/20230304084242_testRun.cs
                 values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "5eba84ef-a9ec-430a-a1ca-206356cd0171", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEEm9GX05Wy7szE7jDdcmxzaRTU9NcXFwS2EZqa1wfyOQMQ+ExqXfrjMcp68++P2/TQ==", "0329226528", false, "1654dd4f-4fc1-4e21-bea7-79014804bfc7", false, "Duke Mike The" });
+========
+                values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "eabe5df9-ccea-4688-87cf-5d3f3d962c48", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEGU2KBZUQMMec6Q55cgKBntzLYjOeYb2bHWh2XLK04zUng1NzuHxY07OgVi4j0KEAA==", "0329226528", false, "1079996e-4dd1-44d4-a371-ccf4d741aac9", false, "Duke Mike The" });
+>>>>>>>> ef5b9f6a442c0a9fd54473c70c4f5a396684add1:COMP1640/Migrations/20230301163423_test.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

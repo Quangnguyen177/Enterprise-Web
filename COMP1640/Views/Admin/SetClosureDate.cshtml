@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_LayoutSetClosureDate";
+}
+
+<div class="container">
+    @*<a class="btn-back-register" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>*@
+    <div class="title">Set Closure Date</div>
+    <div class="content">
+        <form action="#">
+            <div class="user-details">
+                <div class="search" action="">
+                    <input type="search" placeholder="Search title..." required>
+                    <button type="submit">Search</button>
+                </div>
+                <div class="input-box">
+                    <span class="details">First Closure Date</span>
+                    <input type="date" placeholder="Enter new first closure date" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Final Closure Date</span>
+                    <input type="date" placeholder="Enter new final closure date" required>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Save">
+            </div>
+        </form>
+    </div>
+</div>

@@ -2,70 +2,84 @@
     Layout = "_LayoutInformationStaff";
 }
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="~/css/InformationStaff.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div class="container">
-        <div class="title">Registration</div>
-        <div class="content">
-            <form action="#">
-                <div class="user-details">
-                    <div class="input-box">
-                        <span class="details">Full Name</span>
-                        <input type="text" placeholder="Enter your name" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Username</span>
-                        <input type="text" placeholder="Enter your username" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" placeholder="Enter your email" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Phone Number</span>
-                        <input type="text" placeholder="Enter your number" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Password</span>
-                        <input type="text" placeholder="Enter your password" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Confirm Password</span>
-                        <input type="text" placeholder="Confirm your password" required>
-                    </div>
-                </div>
-                <div class="gender-details">
-                    <input type="radio" name="gender" id="dot-1">
-                    <input type="radio" name="gender" id="dot-2">
-                    <input type="radio" name="gender" id="dot-3">
-                    <span class="gender-title">Gender</span>
-                    <div class="category">
-                        <label for="dot-1">
-                            <span class="dot one"></span>
-                            <span class="gender">Male</span>
-                        </label>
-                        <label for="dot-2">
-                            <span class="dot two"></span>
-                            <span class="gender">Female</span>
-                        </label>
-                        <label for="dot-3">
-                            <span class="dot three"></span>
-                            <span class="gender">Prefer not to say</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="button">
-                    <input type="submit" value="Register">
-                </div>
-            </form>
-        </div>
-    </div>
+<section class="container">
+    <a class="btn-back-register" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
 
-</body>
-</html>
+    <header>Registration</header>
+    <form action="#" class="form">
+        <div class="">
+            <label>Avatar file: </label>
+            <input type="file" required />
+        </div>
+
+        <div class="input-box">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your full name" required />
+        </div>
+
+        <div class="input-box">
+            <label>User Name</label>
+            <input type="text" placeholder="Enter your user name" required />
+        </div>
+
+        <div class="column">
+            <div class="input-box">
+                <label>Phone Number</label>
+                <input type="number" placeholder="Enter your phone number" required />
+            </div>
+            <div class="input-box">
+                <label>Birthday</label>
+                <input type="date" placeholder="Enter your birthday" required />
+            </div>
+        </div>
+        <div class="gender-box">
+            <h3>Gender</h3>
+            <div class="gender-option">
+                <div class="gender">
+                    <input type="radio" name="gender" checked />
+                    <label for="check-male">Male</label>
+                </div>
+                <div class="gender">
+                    <input type="radio" name="gender" />
+                    <label for="check-female">Female</label>
+                </div>
+            </div>
+        </div>
+        <div class="input-box address">
+            <label>Address</label>
+            <input type="text" placeholder="Enter your address" required />
+        </div>
+        <button>Save</button>
+    </form>
+</section>
+
+<script>
+    console.clear();
+
+    const loginBtn = document.getElementById('login');
+    const signupBtn = document.getElementById('signup');
+
+    loginBtn.addEventListener('click', (e) => {
+    let parent = e.target.parentNode.parentNode;
+    Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+    if(element !== "slide-up") {
+    parent.classList.add('slide-up')
+    }else{
+    signupBtn.parentNode.classList.add('slide-up')
+    parent.classList.remove('slide-up')
+    }
+    });
+    });
+
+    signupBtn.addEventListener('click', (e) => {
+    let parent = e.target.parentNode;
+    Array.from(e.target.parentNode.classList).find((element) => {
+    if(element !== "slide-up") {
+    parent.classList.add('slide-up')
+    }else{
+    loginBtn.parentNode.parentNode.classList.add('slide-up')
+    parent.classList.remove('slide-up')
+    }
+    });
+    });
+</script>
