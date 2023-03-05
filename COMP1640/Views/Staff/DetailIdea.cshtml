@@ -335,11 +335,11 @@
                                 </li>
                                 
                                 <li>        
-                                    <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
+                                    <i type="button" id="TU" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
                                 </li>
 
                                 <li>
-                                    <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                    <i type="button" id="TD" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                 </li>
 
                                 <li>
@@ -585,7 +585,7 @@
         }
         //--------------------------------------------------------------------------------------------------------
         //counter Lock 2 #2
-        if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == true)
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 2 && $("#TD").hasClass("fa-solid") == true)
         {
             var obj = {
                 ReactPointId : @Model.ReactPointId,
@@ -702,7 +702,7 @@
         }
         //------------------------------------------------------------------------------------------------------------
         //Lock 2 #1
-        if ($("#TU").hasClass("fa-solid") == false && theLock == 2 &&  $("#TD").hasClass("fa-solid") == true)
+        else if ($("#TU").hasClass("fa-solid") == false && theLock == 2 &&  $("#TD").hasClass("fa-solid") == true)
         {
             var obj = {
                 ReactPointId : @Model.ReactPointId,
@@ -775,6 +775,11 @@
             $("#TU").removeClass("fa-solid");
             $("#TU").addClass("fa-regular");
         }
+    }
+
+    function TheToggle(x){
+        x.classList.toggle("fa-solid");
+        x.classList.toggle("fa-regular");
     }
 
     function Submit(obj){

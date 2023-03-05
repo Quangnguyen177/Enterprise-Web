@@ -14,17 +14,16 @@ using Newtonsoft.Json;
 using static Microsoft.EntityFrameworkCore.Internal.AsyncLock;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using System.IO.Compression;
 
 namespace COMP1640.Controllers
 {
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext Db;
-        private readonly UserManager<Profile> _userManager;
-        public StaffController(ApplicationDbContext context, UserManager<Profile> userManager)
+        public StaffController(ApplicationDbContext context)
         {
             Db = context;
-            _userManager = userManager;
         }
 
         [HttpGet]
@@ -132,8 +131,8 @@ namespace COMP1640.Controllers
                 Models.Document doc = new Models.Document() //đoạn này đang addd  dữ liệu vô database goodddd :)))
                 {
 
-                    doc_content = file.FileName,
-                    doc_type = "Still dont know",
+                    doc_name = file.FileName,
+                    doc_path = path,
                     IdeaId = idIdea
                 };
                 if (type.Equals("ADD"))
@@ -313,13 +312,13 @@ namespace COMP1640.Controllers
             return Json(result);
         } 
 
-    //check if current time is earlier than 1st closure date 
-    public bool CheckFirtClosureDate(Idea idea)
-        {
-            DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-            if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
-            else return false;
-        }
+        //check if current time is earlier than 1st closure date 
+        public bool CheckFirtClosureDate(Idea idea)
+            {
+                DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
+                if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
+                else return false;
+            }
      
 
         public async Task<IActionResult> DetailIdea(int id)
@@ -368,13 +367,55 @@ namespace COMP1640.Controllers
             return View(idea);
         }
 
-        public FileResult DownloadFile(int id)
+        public IActionResult DownloadFile(int id)
         {
             var file = Db.Documents.Find(id);
-            var filename = file.doc_content;
-            return File(@"F:\\F2G - UOG\\COMP1640 - Enterprise Web Software Development", filename, System.Net.Mime.MediaTypeNames.Application.Octet);
+            var filename = file.doc_name;
+            List<Document> listFiles = new List<Document>();
+
+            //Path For download From Network Path.
+            string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files"); ;
+
+            DirectoryInfo dirInfo = new DirectoryInfo(fileSavePath);
+
+            int i = 0;
+
+            foreach (var item in dirInfo.GetFiles())
+            {
+                if (item.Name == filename)
+                {
+                    listFiles.Add(new Document()
+                    {
+
+                        DocId = i + 1,
+
+                        doc_name = item.Name,
+
+                        doc_path = dirInfo.FullName + @"\" + item.Name
+
+                    });
+                }
+
+
+                i = i + 1;
+            }
+            var fileColumns = listFiles.ToList();
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var ziparchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    for (int j = 0; j < fileColumns.Count; j++)
+                    {
+                        ziparchive.CreateEntryFromFile(fileColumns[j].doc_path, fileColumns[j].doc_name);
+
+                    }
+                }
+
+                return File(memoryStream.ToArray(), "application/zip", "Documents.zip");
+            }
         }
 
+        // What the actual k? why login here?
         public IActionResult Login()
         {
             return View();
