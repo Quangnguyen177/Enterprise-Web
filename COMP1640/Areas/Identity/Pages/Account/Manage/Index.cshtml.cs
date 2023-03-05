@@ -41,6 +41,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var 
 
             Username = userName;
 

@@ -378,4 +378,8 @@ namespace COMP1640.Controllers
         //}
 
     }
+
+    // !!! This is the update account profile system !!!
+    // Different with profile page
+    // More info at Identity/Account/Manage
 }
