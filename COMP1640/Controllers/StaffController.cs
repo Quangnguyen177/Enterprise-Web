@@ -210,45 +210,51 @@ namespace COMP1640.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Like(Idea idea)
-        //{
-        //    var updatedLike = Db.Ideas.FirstOrDefault(i => i.IdeaId == idea.IdeaId);
-
-        //    if (updatedLike != null)
-        //    {
-        //        //idea.TagId
-        //        Db.Update(idea);
-        //        await Db.SaveChangesAsync();
-        //        return Ok("Done");
-        //    }
-        //    else return Ok("not good");
-
-        //}
-
-        //[HttpGet]
-        //public JsonResult Like()
-        //{
-        //    ThumbUp++;
-        //    Like data = new Like
-        //    {
-        //        NumLike = ThumbUp,
-        //    };
-        //    string result = JsonConvert.SerializeObject(data);
-        //    return Json(result);
-        //}
-
         [HttpPost]
-        public JsonResult Like([FromBody] ReactPoint obj)
+        public async Task<JsonResult> ReactPoint([FromBody] ReactPoint obj)
         {
-            Db.Update(obj);
-            Db.SaveChanges();
+            Db.ReactPoints.Update(obj);
+            await Db.SaveChangesAsync();
             ReactPoint data = Db.ReactPoints.FirstOrDefault(o => o.ReactPointId == obj.ReactPointId);
             string result = JsonConvert.SerializeObject(data);
             return Json(result);
         }
 
+        [HttpPost]
+        public async Task<JsonResult> React([FromBody] React save)
+        {
+            var check = Db.React.FirstOrDefault(r => r.ProfileId == save.ProfileId);
 
+            if (check != null)
+            {
+                check.Reacted = save.Reacted;
+                Db.React.Update(check);
+                await Db.SaveChangesAsync();
+            }
+            else if (check == null)
+            {
+                Db.React.Add(save);
+                await Db.SaveChangesAsync();
+            }
+            string result = JsonConvert.SerializeObject(save);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> DeleteReact([FromBody] React save)
+        {
+            var the_idea = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == save.IdeaId);
+            var the_profile = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == save.ProfileId);
+            var the_result = Db.React.Where(a => a.IdeaId == the_idea.IdeaId).Where(b => b.ProfileId == the_profile.ProfileId).Single();
+
+            if (the_result != null)
+            {
+                Db.React.Remove(the_result);
+                await Db.SaveChangesAsync();
+            }
+            string result = JsonConvert.SerializeObject(save);
+            return Json(result);
+        }
 
         //check if current time is earlier than 1st closure date 
         public bool CheckFirtClosureDate(Idea idea)
