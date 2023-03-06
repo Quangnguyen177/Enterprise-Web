@@ -5,8 +5,16 @@
     <meta http-equiv="X-U A-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Link Font-->
     <script src="https://kit.fontawesome.com/1e27f03b11.js" crossorigin="anonymous"></script>
+
+    <!--Link bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--Link Css-->
     <link rel="stylesheet" href="~/css/Dashboard.css">
 
     <title>Admin site</title>
@@ -45,10 +53,15 @@
                                 <i class="fa fa-pencil-square-o"></i> Manage idea
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Admin" asp-action="SetClosureDate">
-                                <i class="fa fa-cog"></i> Setting closure date
+                        <li class="dropdown">
+                            <i class="fa fa-cog"></i>
+                            <a class="button" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Setting closure date
                             </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Admin" asp-action="SetClosureDate">Set closure date</a>                             
+                                <a class="dropdown-item" asp-controller="Admin" asp-action="EditClosureDate">Edit closure date</a>
+                            </div>
                         </li>
                     </ul>
                     <!-- Divider -->
@@ -318,16 +331,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Feb 17, 2023
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -347,16 +360,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Feb 17, 2023
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -376,16 +389,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Feb 17, 2023
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -405,16 +418,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Sep 22, 2023
+                                        Sep 22, 2023
                                         </td>
                                         <td>
-                                            Dec 1, 2023
+                                        Dec 1, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -434,16 +447,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Feb 17, 2023
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -463,16 +476,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Feb 17, 2023
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -491,17 +504,17 @@
                                                 Scrum Master
                                             </a>
                                         </td>
-                                       @* <td>
-                                            Feb 17, 2023
+                                        @* <td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                     <tr>
@@ -521,16 +534,16 @@
                                             </a>
                                         </td>
                                         @*<td>
-                                            Sep 22, 2023
+                                        Sep 22, 2023
                                         </td>
                                         <td>
-                                            Dec 1, 2023
+                                        Dec 1, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                         </td>*@
                                     </tr>
                                 </tbody>

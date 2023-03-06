@@ -56,6 +56,11 @@ namespace COMP1640.Controllers
             return View();
         }
 
+        public IActionResult EditClosureDate()
+        {
+            return View();
+        }
+
 
     }
 }
