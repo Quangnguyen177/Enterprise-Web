@@ -28,7 +28,7 @@ namespace COMP1640.Controllers
         {
             context.Categories.Add(cate);
             context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CategoryManager));
         }
 
         public IActionResult DeleteTag(int? id)
@@ -40,9 +40,9 @@ namespace COMP1640.Controllers
                 var tag = context.Categories.Find(id);
                 context.Categories.Remove(tag);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CategoryManager");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("CategoryManager");
 
         }
 
@@ -70,6 +70,22 @@ namespace COMP1640.Controllers
             {
                 return View(cate);
             }
+        }
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+        public IActionResult Idea()
+        {
+            return View();
+        }
+        public IActionResult CommentIdea()
+        {
+            return View();
+        }
+        public IActionResult CategoryManager()
+        {
+            return View(context.Categories.ToList());
         }
     }
 }

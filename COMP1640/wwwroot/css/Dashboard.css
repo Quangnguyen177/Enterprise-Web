@@ -370,7 +370,8 @@ ol, ul, dl {
 
 /*Main content*/
 .bg-surface-secondary {
-    background-color: #fcf5f7 !important;
+    /*background-color: #fcf5f7 !important;*/
+    background: linear-gradient(#e8f2e3, #e8f2e3);
 }
 
 .overflow-y-lg-auto {

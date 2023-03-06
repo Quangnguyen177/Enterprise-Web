@@ -2920,3 +2920,11 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CategoryManager.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Idea.cshtml.g.cs

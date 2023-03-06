@@ -9,10 +9,17 @@
     var react_point = @ViewBag.ThumbUp - ViewBag.ThumbDown;
 }
 <style>
-
+    .modal{
+        position: fixed;
+        z-index: 1;
+    }
+  /*  .dropdown-menu{
+        position: relative;
+        z-index: 2000 !important;
+    }*/
     .col-lg-12 {
         display: flex;
-        height: 60em;
+        height: 90em;
     }
     .drop_down{
         padding-right: 4em;
@@ -25,11 +32,15 @@
         left: 6.5em;
         border: 0.1em solid gainsboro;
         box-sizing: border-box;
+        position: inherit;
+        z-index: 1;
     }
 
     .sub_container.col-lg-6 {
         top: -1em;
         left: 7em;
+        position: inherit;
+        z-index: 5;
     }
 
     .information_idea {
@@ -57,7 +68,7 @@
         .users-thumb-list > a img {
             border: 2px solid #fff;
             border-radius: 50%;
-            width: 6em;
+            width: 100%;
             height: 6em;
             display: inline-block;
         }
@@ -110,7 +121,7 @@
     .tab-content .title {
         font-size: 2.0em;
         display: inline-block;
-        width: 23em;
+        width: 100%;
         color: #c95693;
         text-align: center;
         /*    transition: revert;*/
@@ -155,19 +166,19 @@
             transform: translateX(15em);
         }
     .commented{
-        display: block;
+        display: grid;
     }
     .appear_idea {
-        display: flex;
+        display:block;
         transform: translate(-33.7em, 7em);
         width: 30em;
     }
-    .ap_idea_avata{
+  /*  .ap_idea_avata{
         display: inline-block;
     }
     .info_comment{
         display: inline-block;
-    }
+    }*/
 
     .ap_idea_avata {
         display: inline-block;
@@ -175,11 +186,29 @@
 
     .info_comment {
         display: inline-block;
-        transform: translate(2em, -0.7em);
+            transform: translate(6em, -6em);
+        width: 100%;
+    }
+    .comment1_idea{
+          border-radius: 7px;
+    background: #e8f3e0;
     }
     .content_post{
          width: 30.3em;
     }
+    .appear_idea h4{
+
+    }
+    .information_idea {
+    background-color: var(--text-color);
+    /*    width: 600px;*/
+    height: 100%;
+    border-radius: 7px;
+    display: flex;
+    transform: translateY(20px);
+    box-shadow: 2px 3px 10px #e3e5e8;
+    display: block;
+}
 </style>
 <div class="detail_idea">
     <div class="col-lg-12">
@@ -219,8 +248,34 @@
                                             @endforeach
                                             </ul>*@
                                             <ul>
-                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="ViewPage" asp-controller="Staff">Edit</a></li>
-                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff">Delete</a></li>
+                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff">Edit</a></li>
+                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
+                                                <li>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                       Delete
+                                                    </button>
+
+                                                <!-- Modal -->
+                                                <li>
+                                                <div class="modal fade" id="exampleModal" tabindex="6" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </li>
+                                              
                                             </ul>
                                         </div>
                                     </div>
@@ -290,23 +345,25 @@
                                 </a>
                             </figure>
                         </div>
-                        <div class="comment" style=" position: static; z-index: 5;">
-                            <div class="form-group">
-                                <a style="text-decoration: none">
-                                    <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment"  placeholder="Post your comment..." />
-                                </a>
-                                <label class="switch" value="true">
-                                    <input type="checkbox">
-                                    <div class="slider-card">
-                                        <div class="slider-card-face slider-card-front"></div>
-                                        <div class="slider-card-face slider-card-back"></div>
-                                    </div>
-                                </label>
-                                <a asp-action="" asp-controller="">
-                                    <button type="button" class="btn btn-outline-success">Add</button>
-                                </a>
-                            </div>
-                        </div>
+                         <div class="comment" style=" position: static; z-index: 5;">
+                                <div class="form-group">
+                                    <form asp-action="" asp-controller="" method="POST">
+                                        <a style="text-decoration: none">
+                                            <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
+                                        </a>
+                                        <label class="switch" value="true">
+                                            <input type="checkbox">
+                                            <div class="slider"></div>
+                                            <div class="slider-card">
+                                                <div class="slider-card-face slider-card-front"></div>
+                                                <div class="slider-card-face slider-card-back"></div>
+                                            </div>
+                                        </label>
+
+                                        <button type="button" class="btn btn-outline-success">Add</button>
+                                    </form>
+                                </div>
+                          </div>
                         <div class="commented">
                         @foreach(var com in ViewBag.Comments)
                         {
@@ -320,7 +377,14 @@
                                     </figure>
                                 </div>
                                 <div class="info_comment">
+                                    <div class="comment1_idea">
+                                <h4 style="font-size: 16px; font-weight: bold;">@ViewBag.Name</h4>
+                        
+                              @*  <div class="info_comment">*@
                                     <span>@com.com_content</span>
+                               @* </div>*@
+                               </div>
+                                       <h5 style="font-size: 12px; width: 100%; color: dimgray;">@Model.created_date</h5>
                                 </div>
                             </div>
                         }
@@ -340,7 +404,7 @@
                             <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
                                  alt="avata" />
                             <div class="name_account">
-                                <h4 style="font-size: 16px;padding-top: -600px; width: 230px">Minh Lưu Thị</h4>
+                                <h4 style="font-size: 16px;padding-top: -600px; width: 230px">@ViewBag.Name</h4>
                                 <h5 style="font-size: 14px;padding-top: -600px; width: 230px; color: black; margin-left: 70px"></h5>
                             </div>
                         </a>
@@ -478,4 +542,13 @@
         })
     }
         
+</script>
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
 </script>
