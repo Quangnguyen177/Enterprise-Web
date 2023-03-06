@@ -2,8 +2,9 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-    IEnumerable<IdentityRole> Roles = ViewData["Roles"] as IEnumerable<IdentityRole>;
-    Layout = "_LayoutCreateAccount";
+    List<IdentityRole> Roles = ViewData["Roles"] as List<IdentityRole>;
+    
+    //Layout = "_LayoutCreateAccount";
 }
 <style>
     body {
@@ -11,22 +12,51 @@
     }
 </style>
 
-<div class="center">
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <select class="form-select" asp-for="Input.Role" class="form-control">
+                    <option selected disabled>Choose the account role</option>
+                    @foreach (var role in Roles)
+                    {
+                        <option value="@role.Name" >@role.Name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="Input.Role"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+@*<div class="center">
     <a class="btn-back-register" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
     <h3>Create New account</h3>
     <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
-
-        <div class="form-group">
-            <select class="form-select" asp-for="Input.Role" required>
-                <option selected disabled>Choose the account role</option>
-                @foreach (var role in Roles)
-                {
-                    <option value=@role.Name>@role.Name</option>
-                }
-            </select>
-            <span class="text-danger" asp-validation-for="Input.Role"></span>
-        </div>
 
         <div class="txt_field">
             <input asp-for="Input.Email" type="text" required />
@@ -48,9 +78,20 @@
 
         </div>
 
-        <input type="submit" value="Next ->" asp-controller="Admin" asp-action="InformationStaff" />
+        <div class="form-group">
+            <select class="form-select" asp-for="Input.Role" required>
+                <option selected disabled>Choose the account role</option>
+                @foreach (var role in @Roles)
+                {
+                    <option value=@role.Name>@role.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="Input.Role"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" />Register</button>
     </form>
-</div>
+</div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
