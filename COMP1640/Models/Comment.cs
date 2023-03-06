@@ -8,11 +8,11 @@ namespace COMP1640.Models
     public class Comment
     {
         [Key]
-        public string ComId { get; set; }
+        public int ComId { get; set; }
         public string com_content { get; set; }
 
         [DataType(DataType.Date)]
-        public Nullable<DateTime> created_date { get; }
+        public Nullable<DateTime> created_date { get; set; }
 
         public Boolean com_anonymous { get; set; }
 

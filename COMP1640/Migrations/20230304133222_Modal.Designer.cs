@@ -10,8 +10,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
     [Migration("20230304133222_Modal")]
     partial class Modal
+========
+    [Migration("20230306085837_test")]
+    partial class test
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,8 +69,10 @@ namespace COMP1640.Migrations
 
             modelBuilder.Entity("COMP1640.Models.Comment", b =>
                 {
-                    b.Property<string>("ComId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ComId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("IdeaId")
                         .HasColumnType("int");
@@ -79,6 +86,9 @@ namespace COMP1640.Migrations
                     b.Property<string>("com_content")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("created_date")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("ComId");
 
                     b.HasIndex("IdeaId");
@@ -90,7 +100,7 @@ namespace COMP1640.Migrations
                     b.HasData(
                         new
                         {
-                            ComId = "1",
+                            ComId = 1,
                             IdeaId = 1,
                             ProfileId = "1",
                             com_anonymous = false,
@@ -128,10 +138,10 @@ namespace COMP1640.Migrations
                     b.Property<int>("IdeaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("doc_content")
+                    b.Property<string>("doc_name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("doc_type")
+                    b.Property<string>("doc_path")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DocId");
@@ -139,15 +149,6 @@ namespace COMP1640.Migrations
                     b.HasIndex("IdeaId");
 
                     b.ToTable("Documents");
-
-                    b.HasData(
-                        new
-                        {
-                            DocId = 1,
-                            IdeaId = 1,
-                            doc_content = "This is a word or pdf, it can be a file",
-                            doc_type = "Word"
-                        });
                 });
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
@@ -313,7 +314,11 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             ConcurrencyStamp = "2339b5bc-45f5-43a9-b5a3-2977bb72f5a9",
+========
+                            ConcurrencyStamp = "08e5a4a9-34ef-4029-9e0d-beb74d5f0a01",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -322,10 +327,17 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             PasswordHash = "AQAAAAEAACcQAAAAEMDZ1S8yLnszelLd7zF+5MNRYlejDA4b7JOs+kMl95KXxlVdsbUAAnLz1TlIRdwVkg==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "9f813e99-cb0d-4a24-b018-f1ac0be0b826",
+========
+                            PasswordHash = "AQAAAAEAACcQAAAAEFI5T6tgUoCDqqUHleA0YvViTVYnb9r7pp6uxbB7f/lCiu1hv69rJsPCeUA4WGx9bg==",
+                            PhoneNumber = "0983337621",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c41a8c5e-091b-4ec0-902f-0cdcb94af161",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -335,7 +347,11 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             ConcurrencyStamp = "32a19e56-c7b7-409d-88aa-87af5ee603a1",
+========
+                            ConcurrencyStamp = "bda2b97e-9786-4199-9f26-e7c54f103e0b",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             DepId = "1",
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -344,10 +360,17 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             PasswordHash = "AQAAAAEAACcQAAAAEKq8/hoJrmdZXWtW3+ktE5wYjg5TiRp4bE+Ko73WKVFK3q3RKUg0XI5u2iMPywKmug==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "80d828b6-fdbb-4ce8-b5fb-d0f783ca69ff",
+========
+                            PasswordHash = "AQAAAAEAACcQAAAAELMafUBnm1zr65XbBDX0kJMNy4zGniB1NtTnb4toy/xmc3FyWnbTOhAWZ+3B9WVqJw==",
+                            PhoneNumber = "0329226528",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d900550d-dca6-4b21-8e51-275d890d2bd2",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         });
@@ -460,28 +483,44 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             ConcurrencyStamp = "7837f0a7-2659-4d31-82d4-65c1d0fc2391",
+========
+                            ConcurrencyStamp = "9bc4a050-83c7-4697-9990-4b05936b8acd",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             ConcurrencyStamp = "0b2a02c4-6ce7-48f1-acf1-9f4e6bcce738",
+========
+                            ConcurrencyStamp = "fa3f6f99-bf9f-413d-84d4-5e71342bbe75",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             ConcurrencyStamp = "30b4b20e-9f7f-47f1-83d0-4f3a21ed757d",
+========
+                            ConcurrencyStamp = "45b14ec2-9757-44d4-a034-0b93e3897f29",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.Designer.cs
                             ConcurrencyStamp = "5f00dfe0-a736-4fc0-b3b4-33ae4a160b83",
+========
+                            ConcurrencyStamp = "c833a4fb-64bf-43a8-a694-b280917417ac",
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.Designer.cs
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });

@@ -733,6 +733,7 @@ div {
 }
 
 
+
 /* Hide the default checkbox */
 .container input {
     opacity: 0;
@@ -830,3 +831,4 @@ div {
         transform: translateY(0em);
     }
 }
+

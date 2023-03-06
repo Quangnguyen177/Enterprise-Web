@@ -1,10 +1,12 @@
 using COMP1640.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace COMP1640.Controllers
@@ -17,14 +19,24 @@ namespace COMP1640.Controllers
             Db = context;
         }
 
-        public IActionResult Index(int pageNum=1)
+        [Route("/")]
+        public async Task<IActionResult> Index(int pageNum=1)
         {
-            int skipPage = 5 * (pageNum - 1);
-            var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
-            var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
-            ViewBag.Page = pageNum;
-            ViewBag.Category = Db.Categories.ToList();
-            return View(page);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = Db.Profile.FirstOrDefault(i => i.Id == userId);
+            if (user != null && user.Name == "")
+            {
+                return Redirect("Identity/Account/Manage/Index");
+            }
+            else
+            {
+                int skipPage = 5 * (pageNum - 1);
+                var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
+                var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
+                ViewBag.Page = pageNum;
+                ViewBag.Category = Db.Categories.ToList();
+                return View(page);
+            }
         }
 
         //[HttpGet]

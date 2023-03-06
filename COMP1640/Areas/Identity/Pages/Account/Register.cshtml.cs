@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
@@ -74,17 +75,11 @@ namespace COMP1640.Areas.Identity.Pages.Account
             
         }
 
-        private List<IdentityRole> GetRegisterModels() 
-        {
-            List<IdentityRole> AllRole = new List<IdentityRole>(_roleManager.Roles.ToList());
-            return AllRole;
-        }
-
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            ViewData["Roles"] = GetRegisterModels();
+            ViewData["Roles"] = new List<IdentityRole>(await _roleManager.Roles.ToListAsync());
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

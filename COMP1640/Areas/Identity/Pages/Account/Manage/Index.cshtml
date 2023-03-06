@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
+    //Layout = "_LayoutInformationStaff";
 }
 
 <h4>@ViewData["Title"]</h4>
@@ -20,10 +21,90 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input class="form-control" 
+                       name="Fullname"
+                       type="text" placeholder="Enter your full name" required
+                       asp-for="Fullname"/>
+                <span asp-validation-for="Fullname" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Date of birth</label>
+                <input class="form-control"
+                       name="Dob"
+                       type="date" placeholder="Enter your birthday"
+                       asp-for="DoB" />
+                @*<span asp-validation-for="" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input id="male" type="radio" name="Gender" asp-for="Gender" value="Male"/>
+                        <label for="check-male">Male</label>
+                    </div>
+                    <div class="gender">
+                        <input id="female" type="radio" name="Gender" asp-for="Gender" value="Female"/>
+                        <label for="check-female">Female</label>
+                    </div>
+                </div>
+                @*<span asp-validation-for="" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <input class="form-control"
+                       name="Address"
+                       type="text" placeholder="Enter your address"
+                       asp-for="Address" />
+                @*<span asp-validation-for="" class="text-danger"></span>*@
+            </div>
+
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
+
+@*        <section class="container">
+            <form class="form" asp-controller="" asp-action="" method="post">*@
+                @* !!! avatar tinh sau !!! *@
+                @*<div class="">
+                <label>avatar file: </label>
+                <input type="file" required />
+                </div>*@
+
+                @* !!! Doan nay khong can thiet !!! *@
+                @*<div class="input-box">
+                <label>User Name</label>
+                <input type="text" placeholder="Enter your user name" required />
+                </div>*@
+@*            </form>
+        </section>*@
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            if ("@Model.Gender" == "")
+            {
+                $("#male").attr("checked");
+                $("#female").attr("checked");
+            }
+            else if ("@Model.Gender" == "Male")
+            {
+                $("#male").attr("checked", "checked");
+                $("#female").attr("checked");
+            }
+            else if ("@Model.Gender" == "Female") 
+            {
+                $("#male").attr("checked");
+                $("#female").attr("checked", "checked");
+            }
+        });
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -5,15 +5,23 @@
     <meta http-equiv="X-U A-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Link Font-->
     <script src="https://kit.fontawesome.com/1e27f03b11.js" crossorigin="anonymous"></script>
+
+    <!--Link bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--Link Css-->
     <link rel="stylesheet" href="~/css/Dashboard.css">
 
     <title>Admin site</title>
 </head>
 
 <body>
-    <div class="d-flex flex-column flex-lg-row  bg-surface-secondary">
+    <div class="d-flex flex-column flex-lg-row bg-surface-secondary">
         <!-- Vertical Navbar -->
         <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-light border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
             <div class="container-fluid">
@@ -42,13 +50,18 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="fa fa-heart"></i> Collections
+                                <i class="fa fa-pencil-square-o"></i> Manage idea
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-cog"></i> Setting
+                        <li class="dropdown">
+                            <i class="fa fa-cog"></i>
+                            <a class="button" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Setting closure date
                             </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Admin" asp-action="SetClosureDate">Set closure date</a>                             
+                                <a class="dropdown-item" asp-controller="Admin" asp-action="EditClosureDate">Edit closure date</a>
+                            </div>
                         </li>
                     </ul>
                     <!-- Divider -->
@@ -65,7 +78,7 @@
                             <a href="#" class="nav-link d-flex align-items-center">
                                 <div class="me-4">
                                     <div class="position-relative d-inline-block text-white">
-                                        <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-1/327280364_857471028690901_5396360754686166112_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=aNHD9tEHGmQAX9xS1zu&_nc_ht=scontent.fhan5-8.fna&oh=00_AfCabwMMAdzHkdL03Y3POJBHU2-dq2yjDWumC9S6wEuQtA&oe=63FDCF6C" class="avatar rounded-circle">
+                                        <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar rounded-circle">
                                         <span class="position-absolute bottom-2 end-2 transform translate-x-1/2 translate-y-1/2 border-2 border-solid border-current w-3 h-3 bg-danger rounded-circle"></span>
                                     </div>
                                 </div>
@@ -86,7 +99,7 @@
                             <a href="#" class="nav-link d-flex align-items-center">
                                 <div class="me-4">
                                     <div class="position-relative d-inline-block text-white">
-                                        <img alt="..." src="https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-1/314436612_662510705266070_3615334432468039557_n.jpg?stp=dst-jpg_s320x320&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=qCEEY9IMIgIAX-bBAA0&_nc_ht=scontent.fhan5-11.fna&oh=00_AfAHIhPyhRsUgf0IdDwui-j7Z82LxgR2tkWcDe3RGIpPGg&oe=63FCB401" class="avatar rounded-circle">
+                                        <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar rounded-circle">
                                         <span class="position-absolute bottom-2 end-2 transform translate-x-1/2 translate-y-1/2 border-2 border-solid border-current w-3 h-3 bg-danger rounded-circle"></span>
                                     </div>
                                 </div>
@@ -107,7 +120,7 @@
                             <a href="#" class="nav-link d-flex align-items-center">
                                 <div class="me-4">
                                     <div class="position-relative d-inline-block text-white">
-                                        <img alt="..." src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t39.30808-1/330563179_943374697041877_5251559825050286457_n.jpg?stp=dst-jpg_p200x200&_nc_cat=1&ccb=1-7&_nc_sid=1eb0c7&_nc_ohc=J75_Fiez4vUAX9QJwO7&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfAKFJ4yQYPpcqDkPCTeBuOPDkF8JpdXtJITzi0cYv8AxQ&oe=63FCDF8E" class="avatar rounded-circle">
+                                        <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar rounded-circle">
                                         <span class="position-absolute bottom-2 end-2 transform translate-x-1/2 translate-y-1/2 border-2 border-solid border-current w-3 h-3 bg-danger rounded-circle"></span>
                                     </div>
                                 </div>
@@ -296,14 +309,14 @@
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Created Date</th>
                                         <th scope="col">Department </th>
-                                        <th scope="col">First closure date</th>
-                                        <th scope="col">Final closure date</th>
+                                        @*<th scope="col">First closure date</th>
+                                        <th scope="col">Final closure date</th>*@
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-1/289390500_177328441343817_4595144061376271837_n.jpg?stp=dst-jpg_p320x320&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=97ZuyC9awnoAX-kQtt_&_nc_ht=scontent.fhan5-8.fna&oh=00_AfA_o4BUyQyZhB3tnfWNThXN-qa4SAkzmobOhf3fzHehmQ&oe=63FD560E" class="avatar avatar-sm rounded-circle me-2">
+                                            <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
                                             <a class="text-heading font-semibold" href="#">
                                                 Harris
                                             </a>
@@ -317,22 +330,22 @@
                                                 Frontend Developer
                                             </a>
                                         </td>
-                                        <td>
-                                            Feb 17, 2023
+                                        @*<td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/331407488_739733257550252_6875258618993787964_n.jpg?stp=dst-jpg_s320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2ZAZr0pbyKoAX81HG0l&_nc_ht=scontent.fhan5-2.fna&oh=00_AfBcKvtQPL08YylYcjCOUTSszar8Vd25nzQzzR1TJ4zTyg&oe=63FE6DE4" class="avatar avatar-sm rounded-circle me-2">
+                                            <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
                                             <a class="text-heading font-semibold" href="#">
                                                 Mike Tke Duke
                                             </a>
@@ -346,18 +359,18 @@
                                                 Backend Developer
                                             </a>
                                         </td>
-                                        <td>
-                                            Feb 17, 2023
+                                        @*<td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -375,22 +388,22 @@
                                                 Scrum Master
                                             </a>
                                         </td>
-                                        <td>
-                                            Feb 17, 2023
+                                        @*<td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/325904561_5906093516172391_164856254293999003_n.jpg?stp=dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=sVNowq84kkwAX-X0BSY&_nc_ht=scontent.fhan5-2.fna&oh=00_AfCchxZg0q7-WoE-i1rIhA_O6WEkXLAanOwV5nQwWAo5iw&oe=63FE6D38" class="avatar avatar-sm rounded-circle me-2">
+                                            <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
                                             <a class="text-heading font-semibold" href="#">
                                                 Thuy Duong
                                             </a>
@@ -404,22 +417,22 @@
                                                 Business Analysis
                                             </a>
                                         </td>
-                                        <td>
-                                            Sep 22, 2023
+                                        @*<td>
+                                        Sep 22, 2023
                                         </td>
                                         <td>
-                                            Dec 1, 2023
+                                        Dec 1, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-1/289390500_177328441343817_4595144061376271837_n.jpg?stp=dst-jpg_p320x320&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=97ZuyC9awnoAX-kQtt_&_nc_ht=scontent.fhan5-8.fna&oh=00_AfA_o4BUyQyZhB3tnfWNThXN-qa4SAkzmobOhf3fzHehmQ&oe=63FD560E" class="avatar avatar-sm rounded-circle me-2">
+                                            <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
                                             <a class="text-heading font-semibold" href="#">
                                                 Harris
                                             </a>
@@ -433,22 +446,22 @@
                                                 Frontend Developer
                                             </a>
                                         </td>
-                                        <td>
-                                            Feb 17, 2023
+                                        @*<td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/331407488_739733257550252_6875258618993787964_n.jpg?stp=dst-jpg_s320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2ZAZr0pbyKoAX81HG0l&_nc_ht=scontent.fhan5-2.fna&oh=00_AfBcKvtQPL08YylYcjCOUTSszar8Vd25nzQzzR1TJ4zTyg&oe=63FE6DE4" class="avatar avatar-sm rounded-circle me-2">
+                                            <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
                                             <a class="text-heading font-semibold" href="#">
                                                 Mike Tke Duke
                                             </a>
@@ -462,18 +475,18 @@
                                                 Backend Developer
                                             </a>
                                         </td>
-                                        <td>
-                                            Feb 17, 2023
+                                        @*<td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -491,22 +504,22 @@
                                                 Scrum Master
                                             </a>
                                         </td>
-                                        <td>
-                                            Feb 17, 2023
+                                        @* <td>
+                                        Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                        Feb 25, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <img alt="..." src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-1/325904561_5906093516172391_164856254293999003_n.jpg?stp=dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=sVNowq84kkwAX-X0BSY&_nc_ht=scontent.fhan5-2.fna&oh=00_AfCchxZg0q7-WoE-i1rIhA_O6WEkXLAanOwV5nQwWAo5iw&oe=63FE6D38" class="avatar avatar-sm rounded-circle me-2">
+                                            <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
                                             <a class="text-heading font-semibold" href="#">
                                                 Thuy Duong
                                             </a>
@@ -520,18 +533,18 @@
                                                 Business Analysis
                                             </a>
                                         </td>
-                                        <td>
-                                            Sep 22, 2023
+                                        @*<td>
+                                        Sep 22, 2023
                                         </td>
                                         <td>
-                                            Dec 1, 2023
+                                        Dec 1, 2023
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
+                                        </td>*@
                                     </tr>
                                 </tbody>
                             </table>

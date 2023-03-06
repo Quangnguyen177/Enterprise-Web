@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.cs
     public partial class Modal : Migration
+========
+    public partial class test : Migration
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -280,8 +284,10 @@ namespace COMP1640.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    ComId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ComId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     com_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    created_date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     com_anonymous = table.Column<bool>(type: "bit", nullable: false),
                     ProfileId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     IdeaId = table.Column<int>(type: "int", nullable: false)
@@ -309,8 +315,8 @@ namespace COMP1640.Migrations
                 {
                     DocId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    doc_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    doc_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    doc_path = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    doc_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdeaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -356,10 +362,17 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.cs
                     { "A", "7837f0a7-2659-4d31-82d4-65c1d0fc2391", "Administrator", "Administrator" },
                     { "B", "0b2a02c4-6ce7-48f1-acf1-9f4e6bcce738", "Staff", "Staff" },
                     { "C", "30b4b20e-9f7f-47f1-83d0-4f3a21ed757d", "Quality Assurance Manager", "Quality Assurance Manager" },
                     { "D", "5f00dfe0-a736-4fc0-b3b4-33ae4a160b83", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+========
+                    { "A", "9bc4a050-83c7-4697-9990-4b05936b8acd", "Administrator", "Administrator" },
+                    { "B", "fa3f6f99-bf9f-413d-84d4-5e71342bbe75", "Staff", "Staff" },
+                    { "C", "45b14ec2-9757-44d4-a034-0b93e3897f29", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "c833a4fb-64bf-43a8-a694-b280917417ac", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.cs
                 });
 
             migrationBuilder.InsertData(
@@ -384,12 +397,20 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.cs
                 values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "2339b5bc-45f5-43a9-b5a3-2977bb72f5a9", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEMDZ1S8yLnszelLd7zF+5MNRYlejDA4b7JOs+kMl95KXxlVdsbUAAnLz1TlIRdwVkg==", "0983337621", false, "9f813e99-cb0d-4a24-b018-f1ac0be0b826", false, "Truong" });
+========
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "08e5a4a9-34ef-4029-9e0d-beb74d5f0a01", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEFI5T6tgUoCDqqUHleA0YvViTVYnb9r7pp6uxbB7f/lCiu1hv69rJsPCeUA4WGx9bg==", "0983337621", false, "c41a8c5e-091b-4ec0-902f-0cdcb94af161", false, "Truong" });
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+<<<<<<<< HEAD:COMP1640/Migrations/20230304133222_Modal.cs
                 values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "32a19e56-c7b7-409d-88aa-87af5ee603a1", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEKq8/hoJrmdZXWtW3+ktE5wYjg5TiRp4bE+Ko73WKVFK3q3RKUg0XI5u2iMPywKmug==", "0329226528", false, "80d828b6-fdbb-4ce8-b5fb-d0f783ca69ff", false, "Duke Mike The" });
+========
+                values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "bda2b97e-9786-4199-9f26-e7c54f103e0b", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAELMafUBnm1zr65XbBDX0kJMNy4zGniB1NtTnb4toy/xmc3FyWnbTOhAWZ+3B9WVqJw==", "0329226528", false, "d900550d-dca6-4b21-8e51-275d890d2bd2", false, "Duke Mike The" });
+>>>>>>>> a56203f928588503f14d799173f12eccf00a6603:COMP1640/Migrations/20230306085837_test.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -411,13 +432,8 @@ namespace COMP1640.Migrations
 
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "ComId", "IdeaId", "ProfileId", "com_anonymous", "com_content" },
-                values: new object[] { "1", 1, "1", false, "This is a great idea" });
-
-            migrationBuilder.InsertData(
-                table: "Documents",
-                columns: new[] { "DocId", "IdeaId", "doc_content", "doc_type" },
-                values: new object[] { 1, 1, "This is a word or pdf, it can be a file", "Word" });
+                columns: new[] { "ComId", "IdeaId", "ProfileId", "com_anonymous", "com_content", "created_date" },
+                values: new object[] { 1, 1, "1", false, "This is a great idea", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

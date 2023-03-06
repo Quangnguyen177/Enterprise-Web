@@ -13,14 +13,26 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<Models.Profile> _userManager;
         private readonly SignInManager<Models.Profile> _signInManager;
+        private readonly ApplicationDbContext Db;
 
         public IndexModel(
             UserManager<Models.Profile> userManager,
-            SignInManager<Models.Profile> signInManager)
+            SignInManager<Models.Profile> signInManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            Db = context;
         }
+
+        //Custom
+        [Required]
+        public string Fullname { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DoB { get; set; }
+        public string Gender { get; set; }
+        public string Address { get; set; }
+        public string Avatar { get; set; }
 
         public string Username { get; set; }
 
@@ -48,6 +60,12 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber
             };
+
+            var theUser = await _userManager.GetUserAsync(User);
+            Fullname = theUser.Name;
+            DoB = theUser.DoB;
+            Gender = theUser.Gender;
+            Address = theUser.Address;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -62,7 +80,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string Fullname, DateTime DoB, string Gender, string Address)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -85,6 +103,17 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+
+            //Update the rest
+            if (ModelState.IsValid)
+            {
+                user.Name = Fullname;
+                user.DoB = DoB;
+                user.Gender = Gender;
+                user.Address = Address;
+                Db.Profile.Update(user);
+                await Db.SaveChangesAsync();
             }
 
             await _signInManager.RefreshSignInAsync(user);
