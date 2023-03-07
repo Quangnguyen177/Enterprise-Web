@@ -2944,3 +2944,11 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditClosure
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditClosureDate.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SetClosureDate.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutSetClosureDate.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CategoryManager.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Idea.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
