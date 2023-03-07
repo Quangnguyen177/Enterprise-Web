@@ -601,3 +601,8 @@ thead {
 .comment_table {
     padding-top: 4em;
 }
+
+.modal-content {
+    background: linear-gradient(#d4e5f4, #d7f7e7);
+    margin-top: -8em;
+}

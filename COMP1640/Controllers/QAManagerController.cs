@@ -67,7 +67,7 @@ namespace COMP1640.Controllers
                 context.Categories.Update(cate);
                 context.SaveChanges();
                 TempData["Message"] = "Edit student successfully !";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CategoryManager));
             }
             else
             {
