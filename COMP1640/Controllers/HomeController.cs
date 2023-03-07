@@ -19,7 +19,7 @@ namespace COMP1640.Controllers
             Db = context;
         }
 
-        [Route("/")]
+      /*  [Route("/")]*/
         public async Task<IActionResult> Index(int pageNum=1)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
