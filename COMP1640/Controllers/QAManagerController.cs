@@ -90,7 +90,7 @@ namespace COMP1640.Controllers
         public IActionResult CategoryManager()
         {
             return View(context.Categories.ToList());
-
+        }
         public IActionResult DownloadFile()
         {
             List<Document> listFiles = new List<Document>();

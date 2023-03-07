@@ -362,35 +362,32 @@
                         </div>
                          <div class="comment" style=" position: static; z-index: 5;">
                                 <div class="form-group">
-<<<<<<< HEAD
-                                    <form asp-action="" asp-controller="" method="POST">
+                                 @*   <form asp-action="" asp-controller="" method="POST">
                                         <a style="text-decoration: none">
                                             <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
                                         </a>
                                         <label class="switch" value="true">
-                                            <input type="checkbox">
-=======
+                                            <input type="checkbox">*@
                                     <form method="POST">
                                         <a style="text-decoration: none">
                                             <input style="width: 450px; height: 40px" class="form-control" rows="5" id="com-content" placeholder="Post your comment..." />
                                         </a>
                                         <label class="switch" value="true">
                                             <input type="checkbox" id="com-anonymous">
->>>>>>> a56203f928588503f14d799173f12eccf00a6603
+
                                             <div class="slider"></div>
                                             <div class="slider-card">
                                                 <div class="slider-card-face slider-card-front"></div>
                                                 <div class="slider-card-face slider-card-back"></div>
                                             </div>
                                         </label>
-<<<<<<< HEAD
+@*<<<<<<< HEAD
 
                                         <button type="button" class="btn btn-outline-success">Add</button>
-=======
+=======*@
                                         <input type="hidden" id="profileId" value="@userid"/>
                                         <input type="hidden" id="ideaId" value="@Model.IdeaId"/>     
                                         <button type="button" class="btn btn-outline-success" id="btnComment" onclick="SubmitComment()">Add</button>
->>>>>>> a56203f928588503f14d799173f12eccf00a6603
                                     </form>
                                 </div>
                           </div>
@@ -399,45 +396,27 @@
                         @*old commented*@
                         @foreach(var com in ViewBag.Comments)
                         {
-                            
-                                <div class="ap_idea_avata">                                   
-                                     <figure class="account">
-                                        <a asp-action="Profile" asp-controller="Staff">
-                                            <img src="/images/avatar.jpg"
+                            <div class="ap_idea_avata">                                   
+                                <figure class="account">
+                                    <a asp-action="Profile" asp-controller="Staff">
+                                        <img src="/images/avatar.jpg"
                                                 alt="avata" />
                                         </a>
-                                    </figure>
-                                </div>
+                                </figure>
+                              @*  </div>*@
                                 <div class="info_comment">
-<<<<<<< HEAD
                                     <div class="comment1_idea">
                                 <h4 style="font-size: 16px; font-weight: bold;">@ViewBag.Name</h4>
                         
                               @*  <div class="info_comment">*@
                                     <span>@com.com_content</span>
                                @* </div>*@
-                               </div>
+                                </div>
                                        <h5 style="font-size: 12px; width: 100%; color: dimgray;">@Model.created_date</h5>
                                 </div>
-                            </div>
-                        }
-=======
-
-                                    <div class="comment1_idea">
-                                        <h4 style="font-size: 16px; font-weight: bold;">@com.Profile.Name</h4>
-                        
-                              @*  <div class="info_comment">*@
-                                        <span>@com.com_content</span>
-                               @* </div>*@
-                                    </div>
-                                    <h5 style="font-size: 12px; width: 100%; color: dimgray;">@com.created_date</h5>
-                                </div>                             
-                        }     
->>>>>>> a56203f928588503f14d799173f12eccf00a6603
+                           </div>
+                        } 
                         </div>
-                       
-                        
-
                     </div>
                 </div>
             </div>
@@ -883,7 +862,3 @@
         myInput.focus()
     })
 </script>
-<<<<<<< HEAD
-=======
-
->>>>>>> a56203f928588503f14d799173f12eccf00a6603
