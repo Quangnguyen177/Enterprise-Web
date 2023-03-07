@@ -9,7 +9,11 @@ namespace COMP1640.Controllers
         {
             this.context = context;
         }
-        public IActionResult Index()
+        public IActionResult ListIdea()
+        {
+            return View();
+        }
+        public IActionResult LatestComment()
         {
             return View();
         }
