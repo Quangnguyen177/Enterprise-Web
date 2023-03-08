@@ -34,7 +34,7 @@
         }*/
         .col-lg-12 {
             display: flex;
-            height: 90em;
+            height: 100%;
         }
         .drop_down{
             padding-right: 4em;
@@ -255,13 +255,6 @@
                                 <div class="agile_inner_drop_nav_info p-4">
                                     <div class="row">
                                         <div class="col-sm-6 multi-gd-img">
-                                            @*     <ul class="multi-column-dropdown">
-                                            @foreach($category as $cat)
-                                            <li class="hassubs"><a href="#">{{$cat->cname}}<i
-                                            class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                            @endforeach
-                                            </ul>*@
                                             <ul>
                                                 <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff">Edit</a></li>
                                                 <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
@@ -336,12 +329,6 @@
                         </div>
                         <div class="comment" style=" position: static; z-index: 5;">
                             <div class="form-group">
-                                @*   <form asp-action="" asp-controller="" method="POST">
-                                <a style="text-decoration: none">
-                                <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
-                                </a>
-                                <label class="switch" value="true">
-                                <input type="checkbox">*@
                                 <form method="POST">
                                     <a style="text-decoration: none">
                                         <input style="width: 450px; height: 40px" class="form-control" rows="5" id="com-content" placeholder="Post your comment..." />
@@ -355,10 +342,6 @@
                                             <div class="slider-card-face slider-card-back"></div>
                                         </div>
                                     </label>
-                                    @*<<<<<<< HEAD
-
-                                    <button type="button" class="btn btn-outline-success">Add</button>
-                                    =======*@
                                     <input type="hidden" id="profileId" value="@userid" />
                                     <input type="hidden" id="ideaId" value="@Model.IdeaId" />
                                     <button type="button" class="btn btn-outline-success" id="btnComment" onclick="SubmitComment()">Add</button>
@@ -382,17 +365,14 @@
                                                  alt="avata" />
                                             </a>
                                         </figure>
-                                        @*  </div>*@
                                         <div class="info_comment">
                                             <div class="comment1_idea">
                                                 <h4 style="font-size: 16px; font-weight: bold;">@ViewBag.Name</h4>
 
-                                                @*  <div class="info_comment">*@
                                                 <span>@com.com_content</span>
-                                                @* </div>*@
 
                                             </div>
-                                            <h5 style="font-size: 12px; width: 100%; color: dimgray;">@Model.created_date</h5>
+                                            <h5 style="font-size: 12px; width: 100%; color: dimgray;">@com.created_date</h5>
                                         </div>
                                     </div>
                                 }

@@ -10,7 +10,7 @@
                 <div class="widget">
                     <h4 class="widget-title"><b> Shortcuts</b></h4>
                     <ul class="Shortcuts">
-                        <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a asp-action="ViewPage" asp-controller="Staff">New Feed</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">New Feed</a></li>
                         <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
                         <li class="nav_bar--item "><i class="fa-regular fa-file"></i><a asp-action="Profile" asp-controller="Staff">My page</a></li>
                         <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
@@ -82,24 +82,7 @@
                                         </a>
                                     </figure>
                                 </div>
-                                @*<div class="drop_down">
-                            <a style="color: #373b3f; border-radius: 50%;" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <img src="~/fb-icons/more.svg" alt="gallery">
-                            </a>
-                            <div class="dropdown-menu">
-                            <div class="agile_inner_drop_nav_info p-4">
-                            <div class="row">
-                            <div class="col-sm-6 multi-gd-img">
-                            <ul>
-                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff">Edit</a></li>
-                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff">Delete</a></li>
-                            </ul>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>*@
+
                                 <div class="content">
                                     <div class="img_idea">
                                         <div class="title_idea">
@@ -116,7 +99,7 @@
                                             </div>
                                             <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
                                         </div>
-                                        @* <h1 class="Tag">@ViewBag.Tag</h1>*@
+
                                         <div class="file_idea ">
                                             @*Image*@
                                             <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
@@ -161,28 +144,16 @@
                                 </div>
                                 <div class="comment" style=" position: static; z-index: 5;">
                                     <div class="form-group">
-                                        <form asp-action="DetailIdea" asp-controller="Staff" method="POST">
-                                            <a style="text-decoration: none">
-                                                <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
-                                            </a>
-                                            @*<label class="switch" value="true">
-                                        <input type="checkbox">
-                                        <div class="slider"></div>
-                                        <div class="slider-card">
-                                        <div class="slider-card-face slider-card-front"></div>
-                                        <div class="slider-card-face slider-card-back"></div>
-                                        </div>
-                                        </label>*@
-                                        </form>
+
+                                        <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration: none">
+                                            <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
+                                        </a>
                                     </div>
-
                                 </div>
-
                             </div>
 
                             @*END*@
                         </div>
-                        @*}*@
                     </div>
                 }
             </div>

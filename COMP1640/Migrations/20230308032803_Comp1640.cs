@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
-    public partial class COMP1640 : Migration
+    public partial class Comp1640 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -358,10 +358,10 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "A", "2b0df1e9-1601-4233-a43f-4280dbba71d3", "Administrator", "Administrator" },
-                    { "B", "387763a4-87bc-4c80-8fac-a2ab36951f3f", "Staff", "Staff" },
-                    { "C", "ec904f04-cdb9-4417-885b-1d088346b213", "Quality Assurance Manager", "Quality Assurance Manager" },
-                    { "D", "996dd14e-7856-4a37-8f01-469c4d5006f0", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+                    { "A", "f3d86d97-e434-4503-9e71-97daab6ec6aa", "Administrator", "Administrator" },
+                    { "B", "9ca28b4e-8955-4480-9db4-2f966c54878d", "Staff", "Staff" },
+                    { "C", "e436937c-7094-4846-8c92-6a7f992b477d", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "41c85483-e436-4e14-9f22-d28c75ff4a47", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
                 });
 
             migrationBuilder.InsertData(
@@ -386,12 +386,12 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "7a55d936-e7b7-4fa9-949b-797157f10cb7", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEEieMfMxX/4Xxwq9EOx+FghpedI6jtIcRmox5VvwfH0irLgimydsrCKWLlzoqCISbg==", "0983337621", false, "b28ecf3f-d242-4d7e-88c7-1b97f9810118", false, "Truong" });
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "", "e96dc0f2-5a5f-4db8-a6bf-8ef2e93eea03", "1", new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEEAAxQBJMvTx6lPoXNVs7wLI4wgneHQ8jv5uQ7BmTbVyHG7Hi8IQOVudydOcej5WiQ==", "0983337621", false, "477618b3-8e3e-4801-8f2c-af2f7f284519", false, "Truong" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "f438af46-53a5-4058-accc-3d4481c59912", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEC8XqmzHnzLuxtuv9WIpJVPlLIXKOkpuZ3EbIGwa9xZyrDt3GASEuulMrqQEJe9ycA==", "0329226528", false, "0339834d-ff8e-4212-8406-25903431b6f2", false, "Duke Mike The" });
+                values: new object[] { "2", 0, "Somewhere in the big gray sky", "", "4dfd8d3f-e101-4f2c-a27a-754c5b6e65f4", "1", new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEKT92xbx2aD34S2BnsFBwZ1+A8djfUVjMBs2uIu4y6VIIY7XnLMBjuP3f1EuCn/nNQ==", "0329226528", false, "7f7c3a0a-0bef-4df3-86f3-cd7da0928ced", false, "Duke Mike The" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
