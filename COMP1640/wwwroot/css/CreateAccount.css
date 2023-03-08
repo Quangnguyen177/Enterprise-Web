@@ -1,6 +1,4 @@
-﻿/*New 1*/
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 * {
     margin: 0;
@@ -14,6 +12,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(#e8f2e3, #e8f2e3);
 }
 
 .wrapper {
@@ -33,17 +32,6 @@ body {
         color: #333;
         font-family: sans-serif;
     }
-
-    /*    .wrapper h2::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 3px;
-            width: 40px;
-            border-radius: 12px;
-            background: #4070f4;
-        }*/
 
     .wrapper form {
         margin-top: 30px;

@@ -70,9 +70,7 @@ namespace COMP1640.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Role")]
-            public string Role { get; set; }
-
-            
+            public string Role { get; set; }            
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -84,6 +82,7 @@ namespace COMP1640.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            ViewData["Roles"] = new List<IdentityRole>(await _roleManager.Roles.ToListAsync());
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
