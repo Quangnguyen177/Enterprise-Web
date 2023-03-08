@@ -93,10 +93,11 @@ namespace COMP1640.Areas.Identity.Pages.Account
                 var userrole = Input.Role;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                await _userManager.AddToRoleAsync(user, userrole);
+
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, userrole);
-
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

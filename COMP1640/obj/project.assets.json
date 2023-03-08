@@ -8273,19 +8273,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hps\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+      "projectUniqueName": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
       "projectName": "COMP1640",
-      "projectPath": "C:\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
-      "packagesPath": "C:\\Users\\hps\\.nuget\\packages\\",
-      "outputPath": "C:\\Enterprise-Web\\COMP1640\\obj\\",
+      "projectPath": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "G:\\Git\\Enterprise-Web\\COMP1640\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hps\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8365,7 +8365,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
