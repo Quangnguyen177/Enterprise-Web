@@ -1810,11 +1810,9 @@ F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\PostIdea.cshtml.g.cs
-F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddTag.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\EditTag.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Index.cshtml.g.cs
@@ -2971,3 +2969,23 @@ G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\LatestComment.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\ListIdea.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-lock.json
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditClosureDate.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SetClosureDate.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\LatestComment.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\ListIdea.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CategoryManager.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Idea.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutSetClosureDate.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs

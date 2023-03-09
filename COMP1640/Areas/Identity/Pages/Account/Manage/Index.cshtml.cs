@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -80,7 +83,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string Fullname, DateTime DoB, string Gender, string Address)
+        public async Task<IActionResult> OnPostAsync(IFormFile uploadedAva, string Fullname, DateTime DoB, string Gender, string Address)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -104,6 +107,21 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            //Upload Avatar
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Avatars");
+
+            //create folder if not exist
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+
+            string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
+
+            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            {
+                uploadedAva.CopyTo(stream); //đoạn này add vô root 
+
+            }
 
             //Update the rest
             if (ModelState.IsValid)
@@ -112,6 +130,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
                 user.DoB = DoB;
                 user.Gender = Gender;
                 user.Address = Address;
+                user.Avatar = uploadedAva.FileName;
                 Db.Profile.Update(user);
                 await Db.SaveChangesAsync();
             }
