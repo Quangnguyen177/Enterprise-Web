@@ -17,6 +17,7 @@
         react_point = ViewBag.ThumbUp + ViewBag.ThumbDown;
     }
     string userid = UserManager.GetUserId(User);
+    Profile logginnedUser = (Profile)ViewBag.LogginedUser;
     var info = "2";
     if (@ViewBag.UserReact != null)
     {
@@ -234,10 +235,25 @@
                         <div class="avata_information_idea" style="width: 100%">
                             <figure>
                                 <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
-                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
-                                         alt="avata" />
+                                     @if (@Model.idea_anonymous)    @*Anonymous*@
+                                                {
+                                                  <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
+                                                }
+                                                else
+                                                {
+                                                  <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@Model.Profile.Avatar" alt="avatar" />
+                                                }
+                                    
                                     <div class="name_account">
-                                        <h4 style="font-size: 16px;padding-top: -600px; width: 230px">@ViewBag.Name</h4>
+                                        @if (@Model.idea_anonymous)    @*Anonymous*@
+                                                {
+                                                  <h4 style="font-size: 16px;padding-top: -600px; width: 230px;">Anonymous</h4>
+                                                }
+                                                else
+                                                {
+                                                  <h4 style="font-size: 16px;padding-top: -600px; width: 230px">@ViewBag.Name</h4>
+                                                }
+                                        
                                         <h5 style="font-size: 14px;padding-top: -600px; width: 230px; color: black; margin-left: 70px">@Model.created_date</h5>
                                     </div>
                                 </a>
@@ -295,7 +311,7 @@
                     <div class="felling nav_bar--item--separate3">
                         <div class="more">
                             <ul class="felling_idea">
-                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
+                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye" ></i></a>@Model.idea_view</li>
 
                                 <li>
                                     <label placeholder="React point: "><p id="total">@react_point</p></label>
@@ -310,9 +326,10 @@
                                 </li>
 
                                 <li>
-                                    <a style="color:green" asp-action="" asp-controller="">
+                                    <a style="color:green" >
                                         <i class="fa-regular fa-comment"></i>
-                                    </a>@nums_coms
+                                        <span id="comment-numbers">@nums_coms</span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -322,7 +339,7 @@
                         <div class="com_idea_avata">
                             <figure class="avata_comment">
                                 <a asp-action="Profile" asp-controller="Staff">
-                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
                                          alt="avata" />
                                 </a>
                             </figure>
@@ -350,7 +367,7 @@
                         </div>
 
                         <div class="latest_comment" style="transform: translateY(4em)">
-                              <a style="color: #373b3f; text-decoration: none;" asp-action="ViewPage" asp-controller="Staff"><i class="fa-solid fa-filter"></i></a>
+                              <i class="fa-solid fa-filter"></i> 
                         </div>
 
                         <div class="commented">
@@ -360,15 +377,20 @@
                                 {
                                     <div class="ap_idea_avata">
                                         <figure class="account">
-                                            <a asp-action="Profile" asp-controller="Staff">
-                                                <img src="/images/avatar.jpg"
-                                                 alt="avata" />
-                                            </a>
+                                            @if (@com.com_anonymous){
+                                                <a asp-action="Profile" asp-controller="Staff"><img src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avata" /></a>
+
+                                            } else {
+                                                <a asp-action="Profile" asp-controller="Staff"><img src="/Avatars/@com.Profile.Avatar" alt="avatar" /></a>
+                                            }
                                         </figure>
                                         <div class="info_comment">
                                             <div class="comment1_idea">
-                                                <h4 style="font-size: 16px; font-weight: bold;">@ViewBag.Name</h4>
-
+                                                @if (@com.com_anonymous){
+                                                    <h4 style="font-size: 16px; font-weight: bold;">Anonymous</h4>
+                                                } else {
+                                                    <h4 style="font-size: 16px; font-weight: bold;">@com.Profile.Name</h4>
+                                                }
                                                 <span>@com.com_content</span>
 
                                             </div>
@@ -390,7 +412,7 @@
                 <div class="avata_information_idea">
                     <figure>
                         <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
-                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@Model.Profile.Avatar"
                                  alt="avata" />
                             <div class="name_account">
                                 <h4 style="font-size: 16px;padding-top: -600px; width: 230px">@ViewBag.Name</h4>
@@ -475,8 +497,14 @@
                 var result = JSON.parse(res)
                 console.log(result)
                 if (result.Content != null) {
-                    $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="/images/avatar.jpg" alt="avata" /> </a> </figure> </div>')
-                    $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">' + result.Name + '</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
+                    $("#comment-numbers").html(`${result.ComNumber}`)
+                    if (result.Anonymous){
+                        $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avata" /> </a> </figure> </div>')
+                        $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">Anonymous</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
+                    }else{
+                        $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="/Avatars/'+result.Avatar+'" alt="avata" /> </a> </figure> </div>')
+                        $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">' + result.Name + '</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
+                    }
 
 
                     //if (result.Anonymous){

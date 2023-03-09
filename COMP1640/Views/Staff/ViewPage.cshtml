@@ -1,6 +1,7 @@
 @model List<Idea>;
 @{
     Layout = "_Staff";
+    Profile logginnedUser = (Profile)ViewBag.LogginedUser;
 }
 
 <div class="interface">
@@ -38,7 +39,7 @@
                     <figure>
                         @*AVATAR*@
                         <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
-                            <img src="/images/avatar.jpg"
+                            <img src="/Avatars/@logginnedUser.Avatar"
                                  alt="avata" />
                         </a>
                     </figure>
@@ -66,8 +67,14 @@
                                 <div class="avata_information_idea">
                                     <figure>
                                         <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
-                                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
-                                             alt="avata" />
+                                            @if (@idea.idea_anonymous)    @*Anonymous*@
+                                                {
+                                                  <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
+                                                }
+                                                else
+                                                {
+                                                  <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
+                                                }
                                             <div class="name_account">
                                                 @if (@idea.idea_anonymous)    @*Anonymous*@
                                                 {
@@ -75,7 +82,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <h4 style="font-size: 16px">Minh Lưu Thị</h4>
+                                                    <h4 style="font-size: 16px">@idea.Profile.Name</h4>
                                                 }
                                                 <h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
                                             </div>
@@ -83,37 +90,44 @@
                                     </figure>
                                 </div>
 
-                                <div class="content">
-                                    <div class="img_idea">
-                                        <div class="title_idea">
-                                            <div class="tag">
-                                                <a asp-action="" asp-controller="">
-                                                    @foreach (var c in @ViewBag.Category)
-                                                    {
-                                                        if (@c.CategoryId == @idea.CategoryId)
+                               
+                                    <div class="content">
+                                    
+                                        <div class="img_idea">
+                                            <div class="title_idea">
+                                                <div class="tag">
+                                                    <a asp-action="" asp-controller="">
+                                                        @foreach (var c in @ViewBag.Category)
                                                         {
-                                                            <span>@c.category_name</span>     @*Category*@
+                                                            if (@c.CategoryId == @idea.CategoryId)
+                                                            {
+                                                                <span>@c.category_name</span>     @*Category*@
+                                                            }
                                                         }
-                                                    }
+                                                    </a>
+                                                </div>
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
+                                                   <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
+                                                </a> 
+                                            </div>
+    @*
+                                            <div class="file_idea ">
+                                                Image
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
+                                                    <img src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
+                                                     title="Image_idea" />
+
                                                 </a>
                                             </div>
-                                            <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
+    *@
+                                             <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
+                                                 <h2 class="content_post">@idea.idea_content</h2> 
+                                             </a> @*Content*@
                                         </div>
-
-                                        <div class="file_idea ">
-                                            @*Image*@
-                                            <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
-                                                <img src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
-                                                 title="Image_idea" />
-
-                                            </a>
-                                        </div>
-
-                                        <h2 class="content_post">@idea.idea_content</h2> @*Content*@
-
                                     </div>
-                                </div>
+                                 
                             </div>
+                             
                             <div class="felling  nav_bar--item--separate3">
                                 <div class="more">
                                     <ul class="felling_idea">
@@ -128,7 +142,7 @@
                                         <li>
                                             <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                         </li>
-                                        <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>32</li>
+                                        <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@idea.Comments.Count()</li>
                                     </ul>
                                 </div>
                             </div>
@@ -137,7 +151,7 @@
                                 <div class="com_idea_avata">
                                     <a asp-action="Profile" asp-controller="Staff">
                                         <figure class="avata_comment">
-                                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
                                              alt="avata" />
                                         </figure>
                                     </a>
