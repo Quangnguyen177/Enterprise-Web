@@ -35,36 +35,30 @@ namespace COMP1640.Controllers
             List<Idea> page = null;
             if (viewType.Equals("mostview"))
             {
-                page = Db.Ideas.OrderByDescending(i => i.idea_view).Skip(skipPage).Take(5).ToList();
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
                 ViewBag.ViewType = "mostview";
             }
             else if (viewType.Equals("lastest"))
             {
-                page = Db.Ideas.OrderByDescending(i => i.created_date).Skip(skipPage).Take(5).ToList();
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.created_date).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
                 ViewBag.ViewType = "lastest";
             }
             else if (viewType.Equals("popular"))
             {
-                page = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbDown + i.Reacpoint.ThumbUp).Skip(skipPage).Take(5).ToList();
+                page = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbDown + i.Reacpoint.ThumbUp).Include(i => i.Comments).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
                 ViewBag.ViewType = "lastest";
             }
             ViewBag.Category = Db.Categories.ToList();
-            return View(page);
-        }
-
-        [HttpGet]
-        public IActionResult LastComment(int pageNum)
-        {
-            int skipPage = 5 * (pageNum - 1);
-            var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
-            var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
-            ViewBag.Page = pageNum;
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));    
             return View(page);
         }
         
         [HttpGet]
         public IActionResult AddIdea()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             return View(Db.Categories.ToList());
         }
 
@@ -191,7 +185,7 @@ namespace COMP1640.Controllers
             var idea = Db.Ideas.Include(i => i.Profile).FirstOrDefault(i => i.IdeaId == com.IdeaId);
             //default sender is system, so from email is not needed.
             //var sendMail = SendEmail("dantruong2002tq@gmail.com", "Dan Truong", com.com_content);
-            var sendMail = SendEmail(idea.Profile.Email, idea.Profile.Name, com.com_content);
+            //var sendMail = SendEmail(idea.Profile.Email, idea.Profile.Name, com.com_content);
             if (true) // check if sending mail is successfull!
             {
                 //add comment 
@@ -208,12 +202,13 @@ namespace COMP1640.Controllers
                 Db.Add(newComment);
                 Db.SaveChanges();
                 var result = new
-                {                 
+                {
                     Name = profile.Name,
                     Avatar = profile.Avatar,
                     Anonymous = com.com_anonymous,
                     Content = com.com_content,
-                    Time = newComment.created_date
+                    Time = String.Format("{0:g}", newComment.created_date),
+                    ComNumber = Db.Comments.Where(c => c.IdeaId == com.IdeaId).Count()
             };
                
                 var response = JsonConvert.SerializeObject(result);
@@ -327,12 +322,7 @@ namespace COMP1640.Controllers
             var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.IdeaId == id);
             var name_of_user = user_of_idea.Profile.Name;
             ViewBag.Name = name_of_user;
-
-            //su dung lenh nay cua duc khong hien thi dung ten nguoi comment.
-            //var comments = Db.Comments.Include(p => p.Idea).FirstOrDefault(p => p.IdeaId == id);
-            //ViewBag.Comments = Db.Comments.Where(comments => comments.IdeaId == id).ToList();
             
-            //lenh thay the: truong commmit
             var comments = Db.Comments.Include(c => c.Idea);
             ViewBag.Comments = Db.Comments.Where(comments => comments.IdeaId == id).Include(c => c.Profile).ToList();
 
@@ -340,7 +330,9 @@ namespace COMP1640.Controllers
             ViewBag.Documents = Db.Documents.Where(documents => documents.IdeaId == id).ToList();
 
             var idea = Db.Ideas.Include(c => c.Category).FirstOrDefault(c => c.IdeaId == id);
-
+            idea.idea_view++;
+            Db.Ideas.Update(idea);
+            Db.SaveChanges();
             //ducmt1
             var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
             var number_of_upvote = reactpoint_of_idea.Reacpoint.ThumbUp;
@@ -351,6 +343,7 @@ namespace COMP1640.Controllers
 
             //ducmt2
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(userId));
             var user_react = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == userId);
             var idea_react = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == id);
 
