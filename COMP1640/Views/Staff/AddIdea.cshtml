@@ -47,9 +47,9 @@
                     </div>
                 </div>
                 <div class="box">
-                    <input type="text" name="title" placeholder="Title" required  />   @*title*@
+                    <input type="text" name="title" placeholder="Title" required />   @*title*@
                 </div>
-                 <input type="hidden" name="profileId" value="1"> @*profileid*@
+                <input type="hidden" name="profileId" value="1"> @*profileid*@
                 <textarea form="add" name="content" placeholder="Post content idea here..." required></textarea>   @*content*@
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
@@ -57,15 +57,15 @@
                 </div>
                 <div class="options">
                     <div class="row">
-                       <input type="file" id="uploadedFiles" name="uploadedFiles" class="buttonDownload col-3" multiple> @*file*@
-                        @*<button class="buttonDownload col-4">Upload File</button>   *@                     
+                        <input type="file" id="uploadedFiles" name="uploadedFiles" class="buttonDownload col-3" multiple> @*file*@
                         <div class="form-group col-4">
-                            <select class="form-select" name="categoryName" required>                @*category*@
+                            <select class="form-select" name="categoryName" required>
+                                @*category*@
                                 <option style="color:white" value="">Category</option>
-                               @foreach (var c in Model)
-                                 {
-                                <option value="@c.category_name">@c.category_name</option>
-                                    }
+                                @foreach (var c in Model)
+                                {
+                                    <option value="@c.category_name">@c.category_name</option>
+                                }
                             </select>
                             <span class="text-danger"></span>
                         </div>
@@ -91,23 +91,30 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><b style="font-size:20px">Privacy</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="checkbox" required />
-                    <span>I agree <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" form="add" class="btn btn-primary">Submit</button>      @*submit*@
-                </div>
+                <form id="my_form_add">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><b style="font-size:20px">Privacy</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="checkbox" required />
+                        <span>I agree <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" id="submit" class="btn btn-primary">Submit</button>      @*submit*@
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+    <script>
+        $("#my-form_add").on("submit", function (e) {
+        })
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
