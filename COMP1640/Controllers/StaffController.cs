@@ -98,7 +98,7 @@ namespace COMP1640.Controllers
             {
                 HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId,"ADD"); //add file
             }
-            return View(Db.Categories.ToList());
+            return RedirectToAction("AddIdea");
 
         }
             

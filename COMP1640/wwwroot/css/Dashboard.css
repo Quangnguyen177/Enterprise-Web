@@ -518,12 +518,27 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.btn-neutral {
+.btn-set {
     color: #16192c;
-    background-color: #fff;
+    background-color: #98FB98;
     border-color: #e7eaf0;
     box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
 }
+
+    .btn-set:hover {
+        background-color: #00FA9A
+    }
+
+.btn-edit {
+    color: #16192c;
+    background-color: #87CEFA;
+    border-color: #e7eaf0;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
+}
+
+    .btn-edit:hover {
+        background-color: #00BFFF
+    }
 
 .btn-primary {
     color: #fff;
