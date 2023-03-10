@@ -57,19 +57,32 @@ namespace COMP1640
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // Redirect requests to the default URL
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path == "/")
+                {
+                    context.Response.Redirect("/identity/account/login");
+                }
+                else
+                {
+                    await next();
+                }
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Staff}/{action=AddIdea}/{id?}");
+                    pattern: "{controller=staff}/{action?}/{id?}");
+
                 endpoints.MapRazorPages();
             });
         }

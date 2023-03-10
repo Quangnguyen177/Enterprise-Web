@@ -184,34 +184,38 @@
         </div>
     </div>
     @{
-
-        string next = Convert.ToString(int.Parse(@ViewBag.PageNum.ToString()) + 1);
-        string pre = Convert.ToString(int.Parse(@ViewBag.PageNum.ToString()) - 1);
-        var nextPage = new Dictionary<string, string>
-    {
-    { "pagenum", next},
-    { "viewtype", @ViewBag.ViewType }
-    };
-        var prePage = new Dictionary<string, string>
-    {
-    { "pagenum", pre},
-    { "viewtype", @ViewBag.ViewType }
-    };
-
+        int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
+        int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
+        var viewType = @ViewBag.ViewType;
     }
     <div class="pagination" style=" border-radius: 3em">
-        <div class="prev">
-            <span class="text">Prev</span>
-            <div class="left">
-                <a asp-controller="Staff" asp-action="ViewPage" asp-all-route-data="prePage" class="prev"></a>
-            </div>
-        </div>
 
+        <div class="prev">
+            @if (@pre > 0)
+            {
+                <span class="text"  onclick="BtnPre()" >Prev</span>
+                <div class="left">
+                </div>
+            }
+        </div>    
+        
         <div class="next">
-            <span class="text">Next</span>
-            <div class="right">
-                <a asp-controller="Staff" asp-action="ViewPage" asp-all-route-data="nextPage" class="prev"></a>
-            </div>
+             @if (@next*5-@ViewBag.Total<5)
+            {
+                <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                <div class="right">
+                </div>
+            }
         </div>
     </div>
 </div>
+
+<script>
+  
+    function BtnNext(){
+        window.location.replace('/Staff/ViewPage?pageNum=@next&viewType=@viewType');
+    }
+    function BtnPre(){
+        window.location.replace('/Staff/ViewPage?pageNum=@pre&viewType=@viewType');
+    }
+</script>
