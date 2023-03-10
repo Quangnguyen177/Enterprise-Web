@@ -144,6 +144,39 @@ namespace COMP1640.Migrations
                     b.ToTable("Documents");
                 });
 
+            modelBuilder.Entity("COMP1640.Models.Event", b =>
+                {
+                    b.Property<int>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EventName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("First_closure_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Last_closure_date")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("EventId");
+
+                    b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            EventId = 1,
+                            EventName = "Test #1"
+                        },
+                        new
+                        {
+                            EventId = 2,
+                            EventName = "The second Test"
+                        });
+                });
+
             modelBuilder.Entity("COMP1640.Models.Idea", b =>
                 {
                     b.Property<int>("IdeaId")
@@ -154,6 +187,9 @@ namespace COMP1640.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ProfileId")
                         .HasColumnType("nvarchar(450)");
 
@@ -161,9 +197,6 @@ namespace COMP1640.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("created_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("first_closure")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("idea_anonymous")
@@ -178,12 +211,11 @@ namespace COMP1640.Migrations
                     b.Property<int>("idea_view")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("last_closure")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("IdeaId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("ProfileId");
 
@@ -196,6 +228,7 @@ namespace COMP1640.Migrations
                         {
                             IdeaId = 1,
                             CategoryId = 1,
+                            EventId = 1,
                             ProfileId = "1",
                             ReactPointId = 1,
                             idea_anonymous = false,
@@ -207,6 +240,7 @@ namespace COMP1640.Migrations
                         {
                             IdeaId = 2,
                             CategoryId = 1,
+                            EventId = 2,
                             ProfileId = "2",
                             ReactPointId = 2,
                             idea_anonymous = false,
@@ -307,7 +341,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "62373fcd-868c-4a11-9e69-1b5de783a30f",
+                            ConcurrencyStamp = "101470a7-0239-4969-b395-7dc1b65d7d41",
                             DepId = "1",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -316,10 +350,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEvYbxzN94WVKoapvCCxy9QwD6t7OJl3wC/hnK8L/z0lrvUbbxXIZUBY4opGs9IhGA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKCcsuL2FWusOTmxsQfskR8UxrqWnYdW10s7DcrSFKc/BuTQPAgrtvSyoO+CfNPBng==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f34cdd45-b5ef-48c9-af86-7e686505cc7d",
+                            SecurityStamp = "a70bc753-75e5-48ec-89d1-f8fca1299960",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -329,7 +363,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "b652716f-6052-460b-817f-c13a5071c51c",
+                            ConcurrencyStamp = "1e55d7ec-ba33-4eb3-a1f9-45d71d3047f9",
                             DepId = "1",
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -338,10 +372,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHC13aqO/gyDjVzXKmHMrdX+DSq3SoH3eRdU48PUno7IvWm9FL2yrKmHXMMIPKax4g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGFL4YOSPKIcVrPVkWDcIil4t8wRJO/90Oo12Jd2v5Mzc3hyv8Afhcxkrf6YEK6Arg==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ff9981e9-ff39-479a-aebd-f833d0ace7c8",
+                            SecurityStamp = "921d94d7-a22c-4146-b2e0-ae271d5e64ae",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         });
@@ -454,28 +488,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "7a683260-72ab-433f-819b-df8b83b93b3d",
+                            ConcurrencyStamp = "4848773d-e818-4679-bf75-f0a3a3b1b6f7",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "9a1fbd8c-688b-4d09-80b8-2ebdf971e398",
+                            ConcurrencyStamp = "1f748b55-e3b5-4343-be74-54b20b572762",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "33997449-2e04-48f5-896f-054dc493015e",
+                            ConcurrencyStamp = "f45fa000-10cf-47e1-9b33-1d29fedafb17",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "5ac5ac66-cfb9-465a-a7a8-101694245cec",
+                            ConcurrencyStamp = "0f0f569e-d98f-48b5-823e-2b4979224dd9",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -636,6 +670,12 @@ namespace COMP1640.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("COMP1640.Models.Event", "Event")
+                        .WithMany("Ideas")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
@@ -647,6 +687,8 @@ namespace COMP1640.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Event");
 
                     b.Navigation("Profile");
 
@@ -747,6 +789,11 @@ namespace COMP1640.Migrations
             modelBuilder.Entity("COMP1640.Models.Department", b =>
                 {
                     b.Navigation("Profiles");
+                });
+
+            modelBuilder.Entity("COMP1640.Models.Event", b =>
+                {
+                    b.Navigation("Ideas");
                 });
 
             modelBuilder.Entity("COMP1640.Models.Idea", b =>

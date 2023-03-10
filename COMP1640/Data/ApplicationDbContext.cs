@@ -26,6 +26,7 @@ namespace COMP1640
         public DbSet<View> Views { get; set; }
         public DbSet<React> React { get; set; }
         public DbSet<ReactPoint> ReactPoints { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -42,26 +43,26 @@ namespace COMP1640
             //3
             SeedAccountRole(builder);
 
-            //XX
-            //SeedProfile(builder);
-
-            //2
+            //4
             SeedDepartment(builder);
 
-            //3
+            //5
             SeedCategory(builder);
 
-/*            //4
-            SeedDocument(builder);*/
-
-            //5
-            SeedIdea(builder);
+            //5.5
+            //SeedDocument(builder);
 
             //6
+            SeedIdea(builder);
+
+            //7
             SeedComment(builder);
 
-            //7 
+            //8
             SeedReactPoint(builder);
+
+            //9
+            SeedEvent(builder);
         }
 
         //1
@@ -277,28 +278,24 @@ namespace COMP1640
                     IdeaId = 1,
                     ProfileId = "1",
                     CategoryId = 1,
+                    ReactPointId = 1,
+                    EventId = 1,
                     idea_title = "Test",
                     idea_content = "This is a Test",
-                    //created_date = ,
-                    //first_closure = ,
-                    //last_closure = ,
                     idea_anonymous = false,
-                    idea_view = 0,
-                    ReactPointId = 1,
+                    idea_view = 0
                 },
                 new Idea
                 {
                     IdeaId = 2,
                     ProfileId = "2",
                     CategoryId = 1,
+                    ReactPointId = 2,
+                    EventId = 2,
                     idea_title = "Test #2",
                     idea_content = "This is a Test #2",
-                    //created_date = ,
-                    //first_closure = ,
-                    //last_closure = ,
                     idea_anonymous = false,
                     idea_view = 0,
-                    ReactPointId = 2,
                 }
             ); 
         }
@@ -343,6 +340,26 @@ namespace COMP1640
                     ReactPointId = 2,
                     ThumbUp = 0,
                     ThumbDown = 0,
+                }
+            );
+        }
+
+        private void SeedEvent(ModelBuilder builder)
+        {
+            builder.Entity<Event>().HasData(
+                new Event
+                {
+                    EventId = 1,
+                    EventName = "Test #1",
+                    First_closure_date = null,
+                    Last_closure_date = null
+                },
+                new Event
+                {
+                    EventId = 2,
+                    EventName = "The second Test",
+                    First_closure_date = null,
+                    Last_closure_date = null
                 }
             );
         }

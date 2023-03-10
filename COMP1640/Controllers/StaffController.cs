@@ -311,12 +311,12 @@ namespace COMP1640.Controllers
         } 
 
         //check if current time is earlier than 1st closure date 
-        public bool CheckFirtClosureDate(Idea idea)
-            {
-                DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-                if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
-                else return false;
-            }
+        //public bool CheckFirtClosureDate(Idea idea)
+        //    {
+        //        DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
+        //        if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
+        //        else return false;
+        //    }
      
 
         public async Task<IActionResult> DetailIdea(int id)

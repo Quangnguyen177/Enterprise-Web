@@ -3490,3 +3490,16 @@ D:\FinalProject\Demo\Enterprise-Web\COMP1640\obj\Debug\net5.0\refint\COMP1640.dl
 D:\FinalProject\Demo\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 D:\FinalProject\Demo\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 D:\FinalProject\Demo\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\LatestComment.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\ListIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CategoryManager.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Idea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
