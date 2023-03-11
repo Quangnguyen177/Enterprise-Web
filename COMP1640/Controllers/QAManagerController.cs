@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace COMP1640.Controllers
 {
+    [Authorize(Roles = "Quality Assurance Manager")]
     public class QAManagerController : Controller
     {
         private readonly ApplicationDbContext context;

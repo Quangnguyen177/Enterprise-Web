@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace COMP1640.Controllers
 {
+    [Authorize(Roles = "Quality Assurance Coordinator")]
     public class QACoordinatorController : Controller
     {
         private readonly ApplicationDbContext context;

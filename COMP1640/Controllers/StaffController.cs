@@ -15,9 +15,11 @@ using static Microsoft.EntityFrameworkCore.Internal.AsyncLock;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using System.IO.Compression;
+using Microsoft.AspNetCore.Authorization;
 
 namespace COMP1640.Controllers
 {
+    [Authorize]
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext Db;

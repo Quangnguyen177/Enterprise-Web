@@ -1,4 +1,5 @@
 using COMP1640.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace COMP1640.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext Db;
@@ -19,7 +21,7 @@ namespace COMP1640.Controllers
             Db = context;
         }
 
-      /*  [Route("/")]*/
+        [Route("/")]
         public async Task<IActionResult> Index(int pageNum=1)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
