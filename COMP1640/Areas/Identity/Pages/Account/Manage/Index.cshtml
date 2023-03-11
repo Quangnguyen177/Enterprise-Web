@@ -5,87 +5,88 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
     //Layout = "_LayoutInformationStaff";
 }
-
-<h4>@ViewData["Title"]</h4>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
-<form id="profile-form" method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="p-3 py-5">
-                <div class="avatar-form">
-                    <label asp-for="Avatar"></label>
-                    <input asp-for="Avatar" type="file" id="uploadedAva" name="uploadedAva" class="buttonUpload">
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label asp-for="Username" class="labels">Username</label>
-                        <input asp-for="Username" class="form-control" disabled>
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>@ViewData["Title"]</h4>
+    <partial name="_StatusMessage" model="Model.StatusMessage" />
+    <form id="profile-form" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="p-3 py-5">
+                    <div class="avatar-form">
+                        <label asp-for="Avatar"></label>
+                        <input asp-for="Avatar" type="file" id="uploadedAva" name="uploadedAva" class="buttonUpload">
                     </div>
-                    <div class="col-md-6">
-                        <label asp-for="Fullname" class="labels">Fullname</label>
-                        <input asp-for="Fullname" class="form-control" required>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label asp-for="Input.PhoneNumber" class="labels">Phone number</label>
-                        <input asp-for="Input.PhoneNumber" class="form-control">
-                    </div>
-                    <div class="col-md-12">
-                        <label asp-for="DoB" class="labels">Date of Birth</label>
-                        <input asp-for="DoB" type="date" class="form-control">
-                    </div>
-                    <div class="col-md-12">
-                        <label>Gender</label>
-                        <div class="gender-option">
-                            <div class="gender">
-                                <input id="male" type="radio" name="Gender" asp-for="Gender" value="Male" />
-                                <label for="check-male">Male</label>
-                            </div>
-                            <div class="gender">
-                                <input id="female" type="radio" name="Gender" asp-for="Gender" value="Female" />
-                                <label for="check-female">Female</label>
-                            </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label asp-for="Username" class="labels">Username</label>
+                            <input asp-for="Username" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Fullname" class="labels">Fullname</label>
+                            <input asp-for="Fullname" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <label asp-for="Address" class="labels">Address</label>
-                        <input asp-for="Address" class="form-control">
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label asp-for="Input.PhoneNumber" class="labels">Phone number</label>
+                            <input asp-for="Input.PhoneNumber" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="DoB" class="labels">Date of Birth</label>
+                            <input asp-for="DoB" type="date" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label>Gender</label>
+                            <div class="gender-option">
+                                <div class="gender">
+                                    <input id="male" type="radio" name="Gender" asp-for="Gender" value="Male" />
+                                    <label for="check-male">Male</label>
+                                </div>
+                                <div class="gender">
+                                    <input id="female" type="radio" name="Gender" asp-for="Gender" value="Female" />
+                                    <label for="check-female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="Address" class="labels">Address</label>
+                            <input asp-for="Address" class="form-control">
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary profile-button" id="update-profile-button">Save Profile</button>
                     </div>
                 </div>
-                <div class="mt-5 text-center">
-                    <button class="btn btn-primary profile-button" id="update-profile-button">Save Profile</button>
+            </div>
+            <div class="col-md-6 border-right">
+                <div class="d-flex flex-column align-items-center text-center py-5" style="position: relative;bottom: 125px;">
+                    <img class="rounded-circle mt-5" style="width:150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    <span class="font-weight-bold">Harris</span>
+                    <span class="text-black-50">harris@gmail.com</span>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 border-right">
-            <div class="d-flex flex-column align-items-center text-center py-5" style="position: relative;bottom: 125px;">
-                <img class="rounded-circle mt-5" style="width:150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                <span class="font-weight-bold">Harris</span>
-                <span class="text-black-50">harris@gmail.com</span>
-        </div>
-    </div>
-    </div>
-</form>
+    </form>
 
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
         if ("@Model.Gender" == "") {
-            $("#male").attr("checked");
-            $("#female").attr("checked");
+        $("#male").attr("checked");
+        $("#female").attr("checked");
         }
         else if ("@Model.Gender" == "Male") {
-            $("#male").attr("checked", "checked");
-            $("#female").attr("checked");
+        $("#male").attr("checked", "checked");
+        $("#female").attr("checked");
         }
         else if ("@Model.Gender" == "Female") {
-            $("#male").attr("checked");
-            $("#female").attr("checked", "checked");
+        $("#male").attr("checked");
+        $("#female").attr("checked", "checked");
         }
-    });
-</script>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

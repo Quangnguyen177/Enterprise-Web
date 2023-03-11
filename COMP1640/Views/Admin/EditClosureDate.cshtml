@@ -1,37 +1,39 @@
 ﻿@{
     Layout = "_LayoutSetClosureDate";
 }
-
-<div class="container">
-    <a class="back" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
-    <div class="title">Edit Closure Date</div>
-    <div class="content">
-        <form action="#">
-            <div class="user-details">
-                <div class="search" action="">
-                    <input type="search" placeholder="Search title..." required>
-                    <button type="submit">Search</button>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    <div class="container">
+        <a class="back" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
+        <div class="title">Edit Closure Date</div>
+        <div class="content">
+            <form action="#">
+                <div class="user-details">
+                    <div class="search" action="">
+                        <input type="search" placeholder="Search title..." required>
+                        <button type="submit">Search</button>
+                    </div>
+                    <div class="input-box">
+                        <span class="details"><b>Old</b> First Closure Date</span>
+                        <input type="date" placeholder="Enter old first closure date" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details"><b>New</b> First Closure Date</span>
+                        <input type="date" placeholder="Enter new first closure date" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details"><b>Old</b> Final Closure Date</span>
+                        <input type="date" placeholder="Enter old final closure date" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details"><b>New</b> Final Closure Date</span>
+                        <input type="date" placeholder="Enter new final closure date" required>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <span class="details"><b>Old</b> First Closure Date</span>
-                    <input type="date" placeholder="Enter old first closure date" required>
+                <div class="button">
+                    <input type="submit" value="Save">
                 </div>
-                <div class="input-box">
-                    <span class="details"><b>New</b> First Closure Date</span>
-                    <input type="date" placeholder="Enter new first closure date" required>
-                </div>
-                <div class="input-box">
-                    <span class="details"><b>Old</b> Final Closure Date</span>
-                    <input type="date" placeholder="Enter old final closure date" required>
-                </div>
-                <div class="input-box">
-                    <span class="details"><b>New</b> Final Closure Date</span>
-                    <input type="date" placeholder="Enter new final closure date" required>
-                </div>
-            </div>
-            <div class="button">
-                <input type="submit" value="Save">
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+}

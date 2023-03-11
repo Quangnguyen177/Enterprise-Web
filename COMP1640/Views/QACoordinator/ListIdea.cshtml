@@ -2,115 +2,115 @@
 
 @{
     Layout = "_QAC";
-}
-@{
     ViewData["Title"] = "List Idea";
 }
+@if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Coordinator"))
+{
+    <div class="idea">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Frist_clourse</th>
+                    <th scope="col">Last_closure</th>
+                    <th scope="col">Anonymous</th>
+                    <th scope="col">View</th>
+                    <th scope="col">Profile ID</th>
+                    <th scope="col">Category ID</th>
+                    <th scope="col">React Point</th>
+                    <th scope="col">Documnet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>HI</td>
+                    <td>I am a student of GW</td>
+                    <td>3/5/2023 3:45 PM</td>
+                    <td>13/5/2023 3:45 PM</td>
+                    <td>18/5/2023 3:45 PM</td>
+                    <td>False</td>
+                    <td>300</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>doc.file</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>HI</td>
+                    <td>I am a student of GW</td>
+                    <td>3/5/2023 3:45 PM</td>
+                    <td>13/5/2023 3:45 PM</td>
+                    <td>18/5/2023 3:45 PM</td>
+                    <td>False</td>
+                    <td>300</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>doc.file</td>
+                </tr>
 
-<div class="idea">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Content</th>
-                <th scope="col">Date</th>
-                <th scope="col">Frist_clourse</th>
-                <th scope="col">Last_closure</th>
-                <th scope="col">Anonymous</th>
-                <th scope="col">View</th>
-                <th scope="col">Profile ID</th>
-                <th scope="col">Category ID</th>
-                <th scope="col">React Point</th>
-                <th scope="col">Documnet</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>HI</td>
-                <td>I am a student of GW</td>
-                <td>3/5/2023 3:45 PM</td>
-                <td>13/5/2023 3:45 PM</td>
-                <td>18/5/2023 3:45 PM</td>
-                <td>False</td>
-                <td>300</td>
-                <td>1</td>
-                <td>20</td>
-                <td>1</td>
-                <td>doc.file</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>HI</td>
-                <td>I am a student of GW</td>
-                <td>3/5/2023 3:45 PM</td>
-                <td>13/5/2023 3:45 PM</td>
-                <td>18/5/2023 3:45 PM</td>
-                <td>False</td>
-                <td>300</td>
-                <td>1</td>
-                <td>20</td>
-                <td>1</td>
-                <td>doc.file</td>
-            </tr>
-
-            <tr>
-                <td>3</td>
-                <td>HI</td>
-                <td>I am a student of GW</td>
-                <td>3/5/2023 3:45 PM</td>
-                <td>13/5/2023 3:45 PM</td>
-                <td>18/5/2023 3:45 PM</td>
-                <td>False</td>
-                <td>300</td>
-                <td>1</td>
-                <td>20</td>
-                <td>1</td>
-                <td>doc.file</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>HI</td>
-                <td>I am a student of GW</td>
-                <td>3/5/2023 3:45 PM</td>
-                <td>13/5/2023 3:45 PM</td>
-                <td>18/5/2023 3:45 PM</td>
-                <td>False</td>
-                <td>300</td>
-                <td>1</td>
-                <td>20</td>
-                <td>1</td>
-                <td>doc.file</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>HI</td>
-                <td>I am a student of GW</td>
-                <td>3/5/2023 3:45 PM</td>
-                <td>13/5/2023 3:45 PM</td>
-                <td>18/5/2023 3:45 PM</td>
-                <td>False</td>
-                <td>300</td>
-                <td>1</td>
-                <td>20</td>
-                <td>1</td>
-                <td>doc.file</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>HI</td>
-                <td>I am a student of GW</td>
-                <td>3/5/2023 3:45 PM</td>
-                <td>13/5/2023 3:45 PM</td>
-                <td>18/5/2023 3:45 PM</td>
-                <td>False</td>
-                <td>300</td>
-                <td>1</td>
-                <td>20</td>
-                <td>1</td>
-                <td>doc.file</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                <tr>
+                    <td>3</td>
+                    <td>HI</td>
+                    <td>I am a student of GW</td>
+                    <td>3/5/2023 3:45 PM</td>
+                    <td>13/5/2023 3:45 PM</td>
+                    <td>18/5/2023 3:45 PM</td>
+                    <td>False</td>
+                    <td>300</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>doc.file</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>HI</td>
+                    <td>I am a student of GW</td>
+                    <td>3/5/2023 3:45 PM</td>
+                    <td>13/5/2023 3:45 PM</td>
+                    <td>18/5/2023 3:45 PM</td>
+                    <td>False</td>
+                    <td>300</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>doc.file</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>HI</td>
+                    <td>I am a student of GW</td>
+                    <td>3/5/2023 3:45 PM</td>
+                    <td>13/5/2023 3:45 PM</td>
+                    <td>18/5/2023 3:45 PM</td>
+                    <td>False</td>
+                    <td>300</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>doc.file</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>HI</td>
+                    <td>I am a student of GW</td>
+                    <td>3/5/2023 3:45 PM</td>
+                    <td>13/5/2023 3:45 PM</td>
+                    <td>18/5/2023 3:45 PM</td>
+                    <td>False</td>
+                    <td>300</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>doc.file</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

@@ -5,46 +5,49 @@
     var Roles = ViewData["Roles"] as List<IdentityRole>;
     Layout = "_LayoutCreateAccount";
 }
-<div class="wrapper">
-    <div class="row">
-        <a class="col-2" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
-        <h2 class="col-10">Create account</h2>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    <div class="wrapper">
+        <div class="row">
+            <a class="col-2" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
+            <h2 class="col-10">Create account</h2>
+        </div>
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+            <div class="form-group">
+                <select class="form-select" asp-for="Input.Role" class="form-control" required>
+                    <option selected disabled>Choose the account role</option>
+                    @foreach (var role in Roles)
+                    {
+                        <option value="@role.Name">@role.Name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="Input.Role"></span>
+            </div>
+
+            <div class="input-box">
+                <input asp-for="Input.Email" placeholder="Enter your email" required>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <input asp-for="Input.Password" placeholder="Enter your password" required>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <input asp-for="Input.ConfirmPassword" placeholder="Confirm your password" required>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="policy">
+                <input type="checkbox" required>
+                <h3>I accept all <b>Terms</b> & <b>Condition</b></h3>
+            </div>
+            <div class="input-box button">
+                <input type="Submit" value="Create">
+            </div>
+        </form>
     </div>
-
-    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-
-        <div class="form-group">
-            <select class="form-select" asp-for="Input.Role" class="form-control" required>
-                <option selected disabled>Choose the account role</option>
-                @foreach (var role in Roles)
-                {
-                    <option value="@role.Name">@role.Name</option>
-                }
-            </select>
-            <span class="text-danger" asp-validation-for="Input.Role"></span>
-        </div>
-
-        <div class="input-box">
-            <input asp-for="Input.Email" placeholder="Enter your email" required>
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-        </div>
-        <div class="input-box">
-            <input asp-for="Input.Password" placeholder="Enter your password" required>
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
-        </div>
-        <div class="input-box">
-            <input asp-for="Input.ConfirmPassword" placeholder="Confirm your password" required>
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-        </div>
-        <div class="policy">
-            <input type="checkbox" required>
-            <h3>I accept all <b>Terms</b> & <b>Condition</b></h3>
-        </div>
-        <div class="input-box button">
-            <input type="Submit" value="Create">
-        </div>
-    </form>
-</div>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

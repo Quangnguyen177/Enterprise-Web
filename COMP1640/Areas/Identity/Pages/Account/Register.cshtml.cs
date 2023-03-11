@@ -19,7 +19,7 @@ using Microsoft.Extensions.Logging;
 
 namespace COMP1640.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<Profile> _signInManager;

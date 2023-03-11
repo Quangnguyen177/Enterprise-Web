@@ -310,7 +310,7 @@ namespace COMP1640.Controllers
             }
             string result = JsonConvert.SerializeObject(save);
             return Json(result);
-        } 
+        }
 
         //check if current time is earlier than 1st closure date 
         //public bool CheckFirtClosureDate(Idea idea)
@@ -319,8 +319,8 @@ namespace COMP1640.Controllers
         //        if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
         //        else return false;
         //    }
-     
 
+        [Authorize(Roles = "Staff")]
         public async Task<IActionResult> DetailIdea(int id)
         {
 

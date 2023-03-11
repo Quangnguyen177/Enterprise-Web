@@ -103,7 +103,34 @@ namespace COMP1640
                 Avatar = "",
                 DepId = "1",
             };
-
+            var qam1 = new Profile
+            {
+                Id = "3",
+                UserName = "Mike The Duke",
+                Email = "qam1@gmail.com",
+                NormalizedUserName = "qam1@gmail.com",
+                Name = "Mike The Duke",
+                PhoneNumber = "0329226528",
+                DoB = DateTime.Parse("2002-08-25"),
+                Gender = "Male",
+                Address = "Somewhere in the big gray sky",
+                Avatar = "",
+                DepId = "1",
+            };
+            var qac1 = new Profile
+            {
+                Id = "4",
+                UserName = "Mai The Duc",
+                Email = "qac1@gmail.com",
+                NormalizedUserName = "qac1@gmail.com",
+                Name = "Mai The Clone Duke",
+                PhoneNumber = "0329226528",
+                DoB = DateTime.Parse("2002-08-25"),
+                Gender = "Female",
+                Address = "Somewhere in the big gray sky",
+                Avatar = "",
+                DepId = "1",
+            };
 
 
             //Khai báo thư viện để mã hóa mk
@@ -112,11 +139,11 @@ namespace COMP1640
             //Thiết lập để mã hóa từng tài khoản
             admin1.PasswordHash = hashed.HashPassword(admin1, "Admin#1");
             staff1.PasswordHash = hashed.HashPassword(staff1, "Staff#1");
+            qam1.PasswordHash = hashed.HashPassword(qam1, "Qamrf#1");
+            qac1.PasswordHash = hashed.HashPassword(qac1, "Qacr#1");
 
             //Add tài khoản vào DB
-            builder.Entity<Profile>().HasData(admin1, staff1);
-
-
+            builder.Entity<Profile>().HasData(admin1, staff1, qam1, qac1);
         }
 
         //Add Role
@@ -167,17 +194,17 @@ namespace COMP1640
                 {
                     UserId = "2",
                     RoleId = "B"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "3",
+                    RoleId = "C"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "4",
+                    RoleId = "D"
                 }
-                //new IdentityUserRole<string>
-                //{
-                //    UserId = "3",
-                //    RoleId = "C"
-                //},
-                //new IdentityUserRole<string>
-                //{
-                //    UserId = "4",
-                //    RoleId = "C"
-                //}
              );
         }
 
