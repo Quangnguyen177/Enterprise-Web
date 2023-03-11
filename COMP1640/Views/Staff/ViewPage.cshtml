@@ -43,18 +43,13 @@
                         </a>
                     </figure>
                 </div>
-                <div class="form_add_idea">
-                    <a style="text-decoration: none" asp-action="AddIdea" asp-controller="Staff">
-                        <div class="input_idea">
-                            <input class="text" type="text" rows="2" />
-                            <p style="transform: translate(20%, 30%); color: gray">write a new idea...</p>
-                        </div>
-                        <button type="button" class="btn btn-outline-success">Add</button>
+                 <div class="form_add_idea">
+                    <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
+                    <input class="form-control" type="text" placeholder="Readonly input here" readonly>
+                       <button type="button" class="btn btn-success">Add</button>
                     </a>
                 </div>
             </div>
-            @* <div class="central-meta new-idea">*@
-
 
             @*A post*@
             <div class="block">
@@ -88,7 +83,6 @@
                                         </a>
                                     </figure>
                                 </div>
-
                                
                                     <div class="content">
                                     
@@ -109,22 +103,14 @@
                                                    <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
                                                 </a> 
                                             </div>
-    @*
-                                            <div class="file_idea ">
-                                                Image
-                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
-                                                    <img src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
-                                                     title="Image_idea" />
-
-                                                </a>
+                                            
+                                             <div class="file_idea ">
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                    <h2 class="content_post">@idea.idea_content</h2>
+                                                </a> @*Content*@
                                             </div>
-    *@
-                                             <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
-                                                 <h2 class="content_post">@idea.idea_content</h2> 
-                                             </a> @*Content*@
                                         </div>
                                     </div>
-                                 
                             </div>
                              
                             <div class="felling  nav_bar--item--separate3">
