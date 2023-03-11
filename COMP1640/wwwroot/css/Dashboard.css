@@ -926,3 +926,10 @@ thead, tbody, tfoot, tr, td, th {
 .text-sm {
     font-size: 0.875rem !important;
 }
+
+/*icon hide password*/
+.field-icon::before {
+    cursor:pointer
+}
+
+

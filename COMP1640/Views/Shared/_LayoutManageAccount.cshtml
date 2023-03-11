@@ -44,30 +44,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-message"></i> Messages
+                            <a class="nav-link" asp-controller="Admin" asp-action="ManageInformation">
+                                <i class="fa fa-pencil-square-o"></i> Manage information staff
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Admin" asp-action="ManageAccount">
-                                <i class="fa fa-pencil-square-o"></i> Manage account
+                                <i class="fa fa-pencil-square-o"></i> Manage account staff
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-cog"></i> Setting
+                            <a class="nav-link" asp-controller="Admin" asp-action="ManageClosureDate">
+                                <i class="fa fa-cog"></i> Setting closure date
                             </a>
                         </li>
-                        @*<li class="dropdown">
-                        <i class="fa fa-cog"></i>
-                        <a class="button" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Setting closure date
-                        </a>
-                        <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-controller="Admin" asp-action="SetClosureDate">Set closure date</a>
-                        <a class="dropdown-item" asp-controller="Admin" asp-action="EditClosureDate">Edit closure date</a>
-                        </div>
-                        </li>*@
                     </ul>
                     <!-- Divider -->
                     <hr class="navbar-divider my-5 opacity-20">
@@ -175,12 +165,6 @@
                             <!-- Actions -->
                             <div class="col-sm-6 col-12 text-sm-end">
                                 <div class="mx-n1">
-                                    @*<a href="#" class="btn d-inline-flex btn-sm btn-success mx-1" style="background-color:lawngreen">
-                                    <span class=" pe-2">
-                                    <i class="fa fa-pencil-square-o"></i>
-                                    </span>
-                                    <span>Edit</span>
-                                    </a>*@
                                     <a class="btn d-inline-flex btn-sm btn-primary mx-1" asp-area="Identity" asp-page="/Account/Register">
                                         <span class=" pe-2">
                                             <i class="fa fa-plus-circle"></i>
@@ -195,9 +179,6 @@
                             <li class="nav-item ">
                                 <a asp-controller="Admin" asp-action="dashboard" class="nav-link active">All Content</a>
                             </li>
-                            @*<li class="nav-item">
-                            <a href="#" class="nav-link font-regular">Budget</a>
-                            </li>*@
                             <li class="nav-item">
                                 <a class="nav-link font-regular">Shared</a>
                             </li>
@@ -210,90 +191,71 @@
                 <div class="container-fluid">
                     <div class="card mb-7">
                         <div class="card-header">
-                            <h5 class="mb-0">Manage account</h5>
+                            <h5 class="mb-0">Manage account staff</h5>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-nowrap">
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Date of birth</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Gender</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">Visibility</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
+                                        <td>admin1@gmail.com</td>
+                                        <td><input type="password" value="Admin#1" id="myInput1"></td>
+                                        <td><span onclick="myFunction1()" class="fa fa-fw fa-eye field-icon"></span></td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
+                                        <td>admin2@gmail.com</td>
+                                        <td><input type="password" value="Admin#2" id="myInput2"></td>
+                                        <td><span onclick="myFunction2()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
+                                        <td>admin3@gmail.com</td>
+                                        <td><input type="password" value="Admin#3" id="myInput3"></td>
+                                        <td><span onclick="myFunction3()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
-                                    </tr>
+                                        <td>admin4@gmail.com</td>
+                                        <td><input type="password" value="Admin#4" id="myInput4"></td>
+                                        <td><span onclick="myFunction4()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
                                     <tr>
                                         <td>5</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
+                                        <td>admin5@gmail.com</td>
+                                        <td><input type="password" value="Admin#5" id="myInput5"></td>
+                                        <td><span onclick="myFunction5()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
                                     </tr>
                                     <tr>
                                         <td>8</td>
-                                        <td>Harris</td>
-                                        <td><i class="fa fa-phone"></i> 0987654312</td>
-                                        <td>Feb 17, 2002</td>
-                                        <td><i class="fa fa-map-marker"></i>Ha Noi</td>
-                                        <td>Male</td>
+                                        <td>admin8@gmail.com</td>
+                                        <td><input type="password" value="Admin#6" id="myInput6"></td>
+                                        <td><span onclick="myFunction6()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
                                     </tr>
-                               </tbody>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>admin6@gmail.com</td>
+                                        <td><input type="password" value="Admin#7" id="myInput7"></td>
+                                        <td><span onclick="myFunction7()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>admin7@gmail.com</td>
+                                        <td><input type="password" value="Admin#8" id="myInput8"></td>
+                                        <td><span onclick="myFunction8()" class="fa fa-fw fa-eye field-icon toggle-password"></span></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <div class="card-footer border-0 py-5">
-                            <span class="text-muted text-sm">Showing 8 post idea out of 100 results found</span>
+                            <span class="text-muted text-sm">Showing 8 account out of 100 results found</span>
                         </div>
                     </div>
                 </div>
@@ -301,6 +263,72 @@
         </div>
     </div>
 
+    <script>
+        function myFunction1() {
+            var x = document.getElementById("myInput1");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction2() {
+            var x = document.getElementById("myInput2");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction3() {
+            var x = document.getElementById("myInput3");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction4() {
+            var x = document.getElementById("myInput4");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction5() {
+            var x = document.getElementById("myInput5");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction6() {
+            var x = document.getElementById("myInput6");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction7() {
+            var x = document.getElementById("myInput7");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function myFunction8() {
+            var x = document.getElementById("myInput8");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 
     <div class="container">
         <main role="main" class="pb-3">

@@ -66,5 +66,14 @@ namespace COMP1640.Controllers
             return View();
         }
 
+        public IActionResult ManageInformation()
+        {
+            return View();
+        }
+
+        public IActionResult ManageClosureDate()
+        {
+            return View();
+        }
     }
 }

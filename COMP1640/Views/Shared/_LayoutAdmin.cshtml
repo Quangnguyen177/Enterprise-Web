@@ -44,30 +44,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-message"></i> Messages
+                            <a class="nav-link" asp-controller="Admin" asp-action="ManageInformation">
+                                <i class="fa fa-pencil-square-o"></i> Manage information staff
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Admin" asp-action="ManageAccount">
-                                <i class="fa fa-pencil-square-o"></i> Manage account
+                                <i class="fa fa-pencil-square-o"></i> Manage account staff
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-cog"></i> Setting
+                            <a class="nav-link" asp-controller="Admin" asp-action="ManageClosureDate">
+                                <i class="fa fa-cog"></i> Setting closure date
                             </a>
                         </li>
-                        @*<li class="dropdown">
-                            <i class="fa fa-cog"></i>
-                            <a class="button" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Setting closure date
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-controller="Admin" asp-action="SetClosureDate">Set closure date</a>
-                                <a class="dropdown-item" asp-controller="Admin" asp-action="EditClosureDate">Edit closure date</a>
-                            </div>
-                        </li>*@
                     </ul>
                     <!-- Divider -->
                     <hr class="navbar-divider my-5 opacity-20">
@@ -305,18 +295,18 @@
                     </div>
                     <div class="card mb-7">
                         <div class="card-header">
-                            <h5 class="mb-0">Idea Content</h5>
+                            <h5 class="mb-0">Idea Information</h5>
                         </div>
-                        <div class="table-responsive">
+                        <div class="table-responsive">  
                             <table class="table table-hover table-nowrap">
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col">Username</th>
-                                        <th scope="col">Created Date</th>
-                                        <th scope="col">Department </th>
-                                        <th scope="col">First closure date</th>
-                                        <th scope="col">Final closure date</th>
-                                        <th scope="col">Setting closure date</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Created date</th>
+                                        <th scope="col">Anonymous</th>
+                                        <th scope="col">View</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -328,7 +318,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Feb 15, 2023
+                                            Sport
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
@@ -340,15 +330,15 @@
                                             Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
+                                        <td>
+                                            300
+                                        </td>
+                                        @*<td class="text-end">
                                             <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                             <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                            <i class="fa fa-trash"></i>
-                                            </button>*@
-                                        </td>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -358,7 +348,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Feb 17, 2023
+                                            Gaming
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
@@ -370,15 +360,15 @@
                                             Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
+                                        <td>
+                                            300
                                         </td>
+                                        @*<td class="text-end">
+                                        <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -388,7 +378,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Mar 20, 2022
+                                            Cooking
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
@@ -400,15 +390,15 @@
                                             Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
+                                        <td>
+                                            300
+                                        </td>
+                                        @*<td class="text-end">
                                             <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                             <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
-                                        </td>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -418,7 +408,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Sep 20, 2023
+                                            Shopping
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
@@ -430,15 +420,15 @@
                                             Sep 22, 2023
                                         </td>
                                         <td>
-                                            Dec 1, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
+                                        <td>
+                                            300
                                         </td>
+                                        @*<td class="text-end">
+                                        <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -448,7 +438,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Feb 15, 2023
+                                            Chilling
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
@@ -460,15 +450,15 @@
                                             Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
+                                        <td>
+                                            300
                                         </td>
+                                        @*<td class="text-end">
+                                        <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -478,7 +468,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Feb 17, 2023
+                                            Coding
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
@@ -490,15 +480,15 @@
                                             Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
+                                        <td>
+                                            300
                                         </td>
+                                        @*<td class="text-end">
+                                        <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -508,7 +498,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Mar 20, 2022
+                                            Hang out
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
@@ -520,15 +510,15 @@
                                             Feb 17, 2023
                                         </td>
                                         <td>
-                                            Feb 25, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
+                                        <td>
+                                            300
                                         </td>
+                                        @*<td class="text-end">
+                                        <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                        </td>*@
                                     </tr>
                                     <tr>
                                         <td>
@@ -538,7 +528,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            Sep 20, 2023
+                                            Gym
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
@@ -550,15 +540,15 @@
                                             Sep 22, 2023
                                         </td>
                                         <td>
-                                            Dec 1, 2023
+                                            False
                                         </td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                            @*<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="fa fa-trash"></i>
-                                            </button>*@
+                                        <td>
+                                            300
                                         </td>
+                                        @*<td class="text-end">
+                                        <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                        </td>*@
                                     </tr>
                                 </tbody>
                             </table>
