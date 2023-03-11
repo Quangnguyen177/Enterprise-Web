@@ -1,6 +1,7 @@
 @model List<Category>;
 @{
     Layout = "_LayoutPostIdea";
+    Profile logginnedUser = (Profile)ViewBag.LogginedUser;
 }
 
 <!doctype html>
@@ -30,9 +31,9 @@
 
             <form asp-action="AddIdea" asp-controller="Staff" method="post" id="add" enctype="multipart/form-data">
                 <div class="content">
-                    <img src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="logo">
+                    <img src="/Avatars/@logginnedUser.Avatar" alt="logo">
                     <div class="details">
-                        <p><b>Harris</b></p>
+                        <p><b>@logginnedUser.Name</b></p>
                         <div class="option" style="height: 75px;">
                             <label class="switch">
                                 <input type="checkbox" name="isAnonymous" value="true">  @* anonymous*@

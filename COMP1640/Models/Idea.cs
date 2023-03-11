@@ -18,12 +18,6 @@ namespace COMP1640.Models
         [DataType(DataType.Date)] 
         public Nullable<DateTime> created_date { get; set; }
 
-        [DataType(DataType.Date)]
-        public Nullable<DateTime> first_closure { get; set; }
-
-        [DataType(DataType.Date)]
-        public Nullable<DateTime> last_closure { get; set; }
-
         public Boolean idea_anonymous { get; set; }
 
         public int idea_view { get; set; }
@@ -39,6 +33,10 @@ namespace COMP1640.Models
         // FK3: React Point id
         public int ReactPointId { get; set; }
         public ReactPoint Reacpoint { get; set; }
+
+        // FK4: Event id
+        public int EventId { get; set; }
+        public Event Event { get; set; }
 
         //---------------
         public ICollection<Comment> Comments { get; set; }

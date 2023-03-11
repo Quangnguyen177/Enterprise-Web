@@ -263,6 +263,8 @@
                         <img src="~/fb-icons/more.svg" alt="gallery">
                         </div>*@
                         <div class="drop_down">
+                            @if (Model.ProfileId.ToString().Equals(@logginnedUser.Id))
+                            {
                             <a style="color: #373b3f; border-radius: 50%;" href="#" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 <img src="~/fb-icons/more.svg" alt="gallery">
@@ -272,13 +274,14 @@
                                     <div class="row">
                                         <div class="col-sm-6 multi-gd-img">
                                             <ul>
-                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff">Edit</a></li>
+                                                <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId">Edit</a></li>
                                                 <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            }
                         </div>
                         <div class="content">
                             @*   <div class="img_idea">*@

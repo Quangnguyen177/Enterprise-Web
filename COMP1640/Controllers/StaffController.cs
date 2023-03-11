@@ -48,9 +48,10 @@ namespace COMP1640.Controllers
                 page = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbDown + i.Reacpoint.ThumbUp).Include(i => i.Comments).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
                 ViewBag.ViewType = "lastest";
             }
-            ViewBag.Category = Db.Categories.ToList();
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));    
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));   
+            ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Total = Db.Ideas.Count();
             return View(page);
         }
         
@@ -98,7 +99,7 @@ namespace COMP1640.Controllers
             {
                 HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId,"ADD"); //add file
             }
-            return RedirectToAction("AddIdea");
+            return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
 
         }
             
@@ -144,7 +145,9 @@ namespace COMP1640.Controllers
         public IActionResult EditIdea(int id)
         {
             var a = id;
-            Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);           
+            Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
             //if (currentIdea.first_closure != null)
             //    if (!CheckFirtClosureDate(currentIdea)){
@@ -168,11 +171,11 @@ namespace COMP1640.Controllers
             idea.Category = category;
             if (uploadedFiles.Count > 0)
             {
-                HandleFile(uploadedFiles, ideaId, "UPDATE"); //add file
+                HandleFile(uploadedFiles, ideaId, "UPDATE"); //edit file
             }
             Db.Update(idea);
             Db.SaveChanges();
-            return RedirectToAction("AddIdea");
+            return RedirectToAction("EditIdea", new {id=ideaId});
         }
 
 
@@ -308,12 +311,12 @@ namespace COMP1640.Controllers
         } 
 
         //check if current time is earlier than 1st closure date 
-        public bool CheckFirtClosureDate(Idea idea)
-            {
-                DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-                if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
-                else return false;
-            }
+        //public bool CheckFirtClosureDate(Idea idea)
+        //    {
+        //        DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
+        //        if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
+        //        else return false;
+        //    }
      
 
         public async Task<IActionResult> DetailIdea(int id)
