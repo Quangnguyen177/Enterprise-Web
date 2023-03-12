@@ -3,208 +3,210 @@
     Layout = "_Staff";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
 }
+@if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
+{
+    <div class="interface">
+        <div class="row col-lg-12" id="page-contents">
+            <div class="sub_container col-lg-3">
+                <div class="sidebar static">
+                    <div class="widget">
+                        <h4 class="widget-title"><b> Shortcuts</b></h4>
+                        <ul class="Shortcuts">
+                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">New Feed</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-file"></i><a asp-action="Profile" asp-controller="Staff">My page</a></li>
+                            <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="idea">
+                        <h4 class="widget-title"><b>Most Popular Ideas</b></h4>
+                        <ul class="Shortcuts">
+                            <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pageNum=1&viewtype=popular">Most Emotion ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @*        <div class="new_idea">
+            <div class="post">*@
 
-<div class="interface">
-    <div class="row col-lg-12" id="page-contents">
-        <div class="sub_container col-lg-3">
-            <div class="sidebar static">
-                <div class="widget">
-                    <h4 class="widget-title"><b> Shortcuts</b></h4>
-                    <ul class="Shortcuts">
-                        <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">New Feed</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-file"></i><a asp-action="Profile" asp-controller="Staff">My page</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
-                    </ul>
+
+            <div class="sub_container col-lg-6">
+                <div class="new-post">
+                    <div class="avata_post">
+                        <figure>
+                            @*AVATAR*@
+                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
+                                <img src="/Avatars/@logginnedUser.Avatar"
+                                     alt="avata" />
+                            </a>
+                        </figure>
+                    </div>
+                     <div class="form_add_idea">
+                        <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
+                        <input class="form-control" type="text" placeholder="Readonly input here" readonly>
+                           <button type="button" class="btn btn-success">Add</button>
+                        </a>
+                    </div>
+                </div>
+
+                @*A post*@
+                <div class="block">
+                    @foreach (var idea in Model)
+                    {
+                        <div class="information_idea">
+                            <div class="Infor_idea">
+                                <div class="detail_idea nav_bar--item--separate2">
+                                    <div class="avata_information_idea">
+                                        <figure>
+                                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
+                                                @if (@idea.idea_anonymous)    @*Anonymous*@
+                                                    {
+                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
+                                                    }
+                                                    else
+                                                    {
+                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
+                                                    }
+                                                <div class="name_account">
+                                                    @if (@idea.idea_anonymous)    @*Anonymous*@
+                                                    {
+                                                        <h4 style="font-size: 16px;padding-top: -600px; width: 230px;">Anonymous</h4>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h4 style="font-size: 16px">@idea.Profile.Name</h4>
+                                                    }
+                                                    <h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
+                                                </div>
+                                            </a>
+                                        </figure>
+                                    </div>
+                               
+                                        <div class="content">
+                                    
+                                            <div class="img_idea">
+                                                <div class="title_idea">
+                                                    <div class="tag">
+                                                        <a asp-action="" asp-controller="">
+                                                            @foreach (var c in @ViewBag.Category)
+                                                            {
+                                                                if (@c.CategoryId == @idea.CategoryId)
+                                                                {
+                                                                    <span>@c.category_name</span>     @*Category*@
+                                                                }
+                                                            }
+                                                        </a>
+                                                    </div>
+                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
+                                                       <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
+                                                    </a> 
+                                                </div>
+                                            
+                                                 <div class="file_idea ">
+                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                        <h2 class="content_post">@idea.idea_content</h2>
+                                                    </a> @*Content*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                             
+                                <div class="felling  nav_bar--item--separate3">
+                                    <div class="more">
+                                        <ul class="felling_idea">
+                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
+                                            @*  <li>
+                                        <label placeholder="React point: "><p id="total">@react_point</p></label>
+                                        </li>*@
+                                            <li>
+                                                <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
+                                            </li>
+
+                                            <li>
+                                                <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                            </li>
+                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@idea.Comments.Count()</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="comment_idea">
+                                    <div class="com_idea_avata">
+                                        <a asp-action="Profile" asp-controller="Staff">
+                                            <figure class="avata_comment">
+                                                <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
+                                                 alt="avata" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <div class="comment" style=" position: static; z-index: 5;">
+                                        <div class="form-group">
+
+                                            <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration: none">
+                                                <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*END*@
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="sub_container2 col-lg-3">
+                <div class="advertisement1">
+                    <img src="https://inspirdoedu.com/vnt_upload/abroad/05_2020/du-hoc-anh-dai-hoc-greenwich.jpg" title="QC" />
                 </div>
                 <br>
-                <div class="idea">
-                    <h4 class="widget-title"><b>Most Popular Ideas</b></h4>
-                    <ul class="Shortcuts">
-                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pageNum=1&viewtype=popular">Most Emotion ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
-                    </ul>
+                <div class="advertisement2">
+                    <img src="https://media.kenhtuyensinh.vn/images/article/240123/daihocgreenwich.jpg"
+                         title="QC" />
+                </div>
+                <div class="advertisement3">
+                    <img src="https://vtv1.mediacdn.vn/thumb_w/640/2022/5/28/6-16537503950961937725457.jpg"
+                         title="QC" />
                 </div>
             </div>
         </div>
-        @*        <div class="new_idea">
-        <div class="post">*@
+        @{
+            int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
+            int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
+            var viewType = @ViewBag.ViewType;
+        }
+        <div class="pagination" style=" border-radius: 3em">
 
-
-        <div class="sub_container col-lg-6">
-            <div class="new-post">
-                <div class="avata_post">
-                    <figure>
-                        @*AVATAR*@
-                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
-                            <img src="/Avatars/@logginnedUser.Avatar"
-                                 alt="avata" />
-                        </a>
-                    </figure>
-                </div>
-                 <div class="form_add_idea">
-                    <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
-                    <input class="form-control" type="text" placeholder="Readonly input here" readonly>
-                       <button type="button" class="btn btn-success">Add</button>
-                    </a>
-                </div>
-            </div>
-
-            @*A post*@
-            <div class="block">
-                @foreach (var idea in Model)
+            <div class="prev">
+                @if (@pre > 0)
                 {
-                    <div class="information_idea">
-                        <div class="Infor_idea">
-                            <div class="detail_idea nav_bar--item--separate2">
-                                <div class="avata_information_idea">
-                                    <figure>
-                                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
-                                            @if (@idea.idea_anonymous)    @*Anonymous*@
-                                                {
-                                                  <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
-                                                }
-                                                else
-                                                {
-                                                  <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
-                                                }
-                                            <div class="name_account">
-                                                @if (@idea.idea_anonymous)    @*Anonymous*@
-                                                {
-                                                    <h4 style="font-size: 16px;padding-top: -600px; width: 230px;">Anonymous</h4>
-                                                }
-                                                else
-                                                {
-                                                    <h4 style="font-size: 16px">@idea.Profile.Name</h4>
-                                                }
-                                                <h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
-                                            </div>
-                                        </a>
-                                    </figure>
-                                </div>
-                               
-                                    <div class="content">
-                                    
-                                        <div class="img_idea">
-                                            <div class="title_idea">
-                                                <div class="tag">
-                                                    <a asp-action="" asp-controller="">
-                                                        @foreach (var c in @ViewBag.Category)
-                                                        {
-                                                            if (@c.CategoryId == @idea.CategoryId)
-                                                            {
-                                                                <span>@c.category_name</span>     @*Category*@
-                                                            }
-                                                        }
-                                                    </a>
-                                                </div>
-                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
-                                                   <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
-                                                </a> 
-                                            </div>
-                                            
-                                             <div class="file_idea ">
-                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
-                                                    <h2 class="content_post">@idea.idea_content</h2>
-                                                </a> @*Content*@
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                             
-                            <div class="felling  nav_bar--item--separate3">
-                                <div class="more">
-                                    <ul class="felling_idea">
-                                        <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
-                                        @*  <li>
-                                    <label placeholder="React point: "><p id="total">@react_point</p></label>
-                                    </li>*@
-                                        <li>
-                                            <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
-                                        </li>
-
-                                        <li>
-                                            <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
-                                        </li>
-                                        <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@idea.Comments.Count()</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="comment_idea">
-                                <div class="com_idea_avata">
-                                    <a asp-action="Profile" asp-controller="Staff">
-                                        <figure class="avata_comment">
-                                            <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
-                                             alt="avata" />
-                                        </figure>
-                                    </a>
-                                </div>
-                                <div class="comment" style=" position: static; z-index: 5;">
-                                    <div class="form-group">
-
-                                        <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration: none">
-                                            <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            @*END*@
-                        </div>
+                    <span class="text"  onclick="BtnPre()" >Prev</span>
+                    <div class="left">
+                    </div>
+                }
+            </div>    
+        
+            <div class="next">
+                 @if (@next*5-@ViewBag.Total<5)
+                {
+                    <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                    <div class="right">
                     </div>
                 }
             </div>
         </div>
-        <div class="sub_container2 col-lg-3">
-            <div class="advertisement1">
-                <img src="https://inspirdoedu.com/vnt_upload/abroad/05_2020/du-hoc-anh-dai-hoc-greenwich.jpg" title="QC" />
-            </div>
-            <br>
-            <div class="advertisement2">
-                <img src="https://media.kenhtuyensinh.vn/images/article/240123/daihocgreenwich.jpg"
-                     title="QC" />
-            </div>
-            <div class="advertisement3">
-                <img src="https://vtv1.mediacdn.vn/thumb_w/640/2022/5/28/6-16537503950961937725457.jpg"
-                     title="QC" />
-            </div>
-        </div>
     </div>
-    @{
-        int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
-        int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
-        var viewType = @ViewBag.ViewType;
-    }
-    <div class="pagination" style=" border-radius: 3em">
 
-        <div class="prev">
-            @if (@pre > 0)
-            {
-                <span class="text"  onclick="BtnPre()" >Prev</span>
-                <div class="left">
-                </div>
-            }
-        </div>    
-        
-        <div class="next">
-             @if (@next*5-@ViewBag.Total<5)
-            {
-                <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
-                <div class="right">
-                </div>
-            }
-        </div>
-    </div>
-</div>
-
-<script>
+    <script>
   
-    function BtnNext(){
-        window.location.replace('/Staff/ViewPage?pageNum=@next&viewType=@viewType');
-    }
-    function BtnPre(){
-        window.location.replace('/Staff/ViewPage?pageNum=@pre&viewType=@viewType');
-    }
-</script>
+        function BtnNext(){
+            window.location.replace('/Staff/ViewPage?pageNum=@next&viewType=@viewType');
+        }
+        function BtnPre(){
+            window.location.replace('/Staff/ViewPage?pageNum=@pre&viewType=@viewType');
+        }
+    </script>
+}
