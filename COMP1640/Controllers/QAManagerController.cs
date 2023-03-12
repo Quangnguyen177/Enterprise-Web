@@ -95,6 +95,7 @@ namespace COMP1640.Controllers
         }
         public IActionResult DownloadFile()
         {
+            var file = context.Documents.ToList();
             List<Document> listFiles = new List<Document>();
 
             //Path For download From Network Path.
@@ -106,17 +107,23 @@ namespace COMP1640.Controllers
 
             foreach (var item in dirInfo.GetFiles())
             {
-                listFiles.Add(new Document()
+                foreach (var f in file)
                 {
+                    if (f.doc_name == item.Name)
+                    {
+                        listFiles.Add(new Document()
+                        {
 
-                    DocId = i + 1,
+                            DocId = i + 1,
 
-                    doc_name = item.Name,
+                            doc_name = item.Name,
 
-                    doc_path = dirInfo.FullName + @"\" + item.Name
+                            doc_path = dirInfo.FullName + @"\" + item.Name
 
-                });
-
+                        });
+                        break;
+                    }
+                }
                 i = i + 1;
             }
             var fileColumns = listFiles.ToList();
@@ -133,6 +140,11 @@ namespace COMP1640.Controllers
 
                 return File(memoryStream.ToArray(), "application/zip", "Documents.zip");
             }
+        }
+        public IActionResult DownloadCSV()
+        {
+
+            return View();
         }
     }
 }

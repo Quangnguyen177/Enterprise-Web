@@ -139,7 +139,7 @@ namespace COMP1640
             //Thiết lập để mã hóa từng tài khoản
             admin1.PasswordHash = hashed.HashPassword(admin1, "Admin#1");
             staff1.PasswordHash = hashed.HashPassword(staff1, "Staff#1");
-            qam1.PasswordHash = hashed.HashPassword(qam1, "Qamrf#1");
+            qam1.PasswordHash = hashed.HashPassword(qam1, "Qamr#1");
             qac1.PasswordHash = hashed.HashPassword(qac1, "Qacr#1");
 
             //Add tài khoản vào DB
