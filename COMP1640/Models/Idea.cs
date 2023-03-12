@@ -35,7 +35,7 @@ namespace COMP1640.Models
         public ReactPoint Reacpoint { get; set; }
 
         // FK4: Event id
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
         public Event Event { get; set; }
 
         //---------------
