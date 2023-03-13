@@ -45,26 +45,37 @@
                 </div>
             </div>
         </div>
-        <div class="body_db">
-            <div class="dashboard_contribute">
+         <div class="body_db">
+            <div class="dashboard">
                 <div class="colom1">
-                    <div class="contribute2 col-5">
-                        <img src="https://wiseenglish.edu.vn/wp-content/uploads/2022/03/line-graph-7.jpg" width="500" height="300" />
+                    <div class="chartCard">
+                        <div class="chartBox">
+                            <h5>Number of ideas per department/year </h5>
+                            <canvas id="ideas" width="500" height="300"></canvas>
+                        </div>
                     </div>
-                    <div class="contribute2 col-5">
-                        <img src="https://www.ieltsvietop.vn/wp-content/uploads/2021/04/WRITINGTASK1-170421-06-scaled.jpg" width="500" height="300" />
+                    <div class="chart_contributor">
+                        <div class="chart_contributors">
+                            <h5>Numbers of contributors per departments </h5>
+                            <canvas id="contributors"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="colom1">
-                    <div class="contribute2 col-5">
-                        <img src="https://talkfirst.vn/wp-content/uploads/2021/08/cach-viet-ielts-writing-task-1-bar-chart.png" width="500" height="300" />
+                    <div class="chartCard">
+                        <div class="chartBox">
+                            <h5>Category per year </h5>
+                            <canvas id="categories" width="500" height="300"></canvas>
+                        </div>
                     </div>
-                    <div class="contribute2 col-5">
-                        <img src="https://www.researchgate.net/publication/350751228/figure/fig1/AS:1010543175430146@1617943676392/Represent-the-pie-chart-for-Nationality.ppm" width="500" height="300" />
+                    <div class="chartCard">
+                        <div class="chartBox">
+                               <h5>Number of point per event </h5>
+                            <canvas id="point_envent" width="500" height="300"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="contributor">
                 <h4>Contributor table</h4>
                 <table class="table">
@@ -89,47 +100,181 @@
                             <td>Hung Yen</td>
                             <td>1</td>
                         </tr>
-
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>P1</td>
-                            <td>Minh Luu thi</td>
-                            <td>28/06/2002</td>
-                            <td>Female</td>
-                            <td>Hung Yen</td>
-                            <td>1</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>P1</td>
-                            <td>Minh Luu thi</td>
-                            <td>28/06/2002</td>
-                            <td>Female</td>
-                            <td>Hung Yen</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>P1</td>
-                            <td>Minh Luu thi</td>
-                            <td>28/06/2002</td>
-                            <td>Female</td>
-                            <td>Hung Yen</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>P1</td>
-                            <td>Minh Luu thi</td>
-                            <td>28/06/2002</td>
-                            <td>Female</td>
-                            <td>Hung Yen</td>
-                            <td>1</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 }
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+
+<script>
+    var xValues = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+
+    new Chart("ideas", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'IT',
+                data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+                borderColor: "red",
+                fill: false
+            }, {
+                label: 'Maketing',
+                data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+                borderColor: "green",
+                fill: false
+            }, {
+                label: 'Desgin',
+                data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+                borderColor: "blue",
+                fill: false
+            },   {
+                label: 'Business',
+                data: [600, 1000, 2600, 2700, 2010, 2500, 3000, 5000, 4000, 7000],
+                borderColor: "gray",
+                fill: false
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Biểu đồ tăng trưởng dân số Châu Phi và Châu Âu)'
+            }
+        }
+    });
+</script>
+
+
+<script>
+    Chart.register(ChartjsPluginStacked100);
+    // setup
+    const data = {
+        labels: ['Spring', 'Summer', 'Fall', 'Winner'],
+        datasets: [{
+            label: 'Month',
+            data: [48, 50, 60, 80],
+            backgroundColor: [
+                  'RGBA( 255, 182, 193, 1 )',
+                  'RGBA( 255, 182, 193, 1 )',
+                  'RGBA( 255, 182, 193, 1 )',
+                  'RGBA( 255, 182, 193, 1 )',
+            ],
+            borderColor: [
+                'RGBA( 255, 182, 193, 1 )',
+                  'RGBA( 255, 182, 193, 1 )',
+                  'RGBA( 255, 182, 193, 1 )',
+                  'RGBA( 255, 182, 193, 1 )',
+            ],
+            borderWidth: 1
+        }, {
+            label: 'Year',
+            data: [1000, 900, 800, 1200],
+            backgroundColor: [
+                    'RGBA( 216, 191, 216, 1 )',
+                     'RGBA( 216, 191, 216, 1 )',   
+                     'RGBA( 216, 191, 216, 1 )',   
+                     'RGBA( 216, 191, 216, 1 )',
+            ],
+            borderColor: [
+                    'RGBA( 216, 191, 216, 1 )',
+                     'RGBA( 216, 191, 216, 1 )',   
+                     'RGBA( 216, 191, 216, 1 )',   
+                     'RGBA( 216, 191, 216, 1 )',
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // config
+    const config = {
+        type: 'bar',
+        data,
+        options: {
+            plugins: {
+                stacked100: {
+                    enable: true,
+                },
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    min: 0,
+                    max: 1500
+                }
+            },
+            title: {
+                display: true,
+                text: 'Biểu đồ tăng trưởng dân số Châu Phi và Châu Âu)'
+            }
+        }
+    };
+
+    // render init block
+    const myChart = new Chart(
+        document.getElementById('categories'),
+        config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+
+</script>
+<script>
+    var xValues = ["IT", "Desgin", "Maketing", "Busniess"];
+    var yValues = [55, 49, 44, 24];
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+    ];
+
+    new Chart("contributors", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Contributor/Department"
+            }
+        }
+    });
+</script>
+
+<script>
+    var xValues = ['Event1', 'Event2', 'Event3', 'Event4', 'Event5'];
+    var yValues = [50, 90, 10, 880, 90, 100, 110, 120, 130, 140, 150];
+
+    new Chart("point_envent", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'Point Idea',
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            scales: {
+                yAxes: [{ ticks: { min: 6, max: 16 } }],
+            }
+        }
+    });
+</script>
