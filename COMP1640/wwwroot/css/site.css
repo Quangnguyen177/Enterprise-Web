@@ -649,6 +649,7 @@ input:checked ~ .slider {
     padding-top: 2em;
 }
 
+/*Responsive*/
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
     background-color: limegreen;
@@ -663,15 +664,253 @@ input:checked ~ .slider {
     transform: none;
     animation: 0.5s jump_3951;
 }
-/*Mobile: width<740px*/
-@media only screen and (max-width: 46.1875em) {
-    .column {
-        width: 90%;
+/*Bar*/
+.icon_bar {
+    display: none;
+}
+
+input[type = "checkbox"] {
+    -webkit-appearance: none;
+    display: none;
+    visibility: hidden;
+}
+
+.bar {
+    position: relative;
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    top: 20%;
+}
+
+    .bar span {
+        position: absolute;
+        width: 30px;
+        height: 4px;
+        background: black;
+        border-radius: 100px;
+        display: inline-block;
+        transition: 0.3s ease;
+        left: 0;
+    }
+
+        .bar span.top {
+            top: 11px;
+        }
+
+        .bar span.middle {
+            top: 19px;
+        }
+
+        .bar span.bottom {
+            bottom: 9px;
+        }
+
+input[type]:checked ~ span.top {
+    transform: rotate(45deg);
+    transform-origin: top left;
+    width: 33px;
+    left: 1.7px;
+}
+
+input[type]:checked ~ span.bottom {
+    transform: rotate(-49deg);
+    transform-origin: top left;
+    width: 33px;
+    bottom: -0.2px;
+}
+
+input[type]:checked ~ span.middle {
+    transform: translateX(-20px);
+    opacity: 0;
+}
+/*Overlay*/
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: fadeIn linear 0.2s;
+}
+
+.idea_mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 350px;
+    max-width: 100%;
+    background: white;
+    transform: translateX(-100%);
+    float: right;
+    opacity: 0;
+    transition: transform linear 0.2s, opacity linear 0.3s;
+    border-radius: 7px;
+}
+
+.all_idea_mobile {
+    margin-top: 2em;
+}
+
+.shortcuts_mobile {
+    display: inline-block;
+    list-style: outside none none;
+    font-size: 18px;
+    text-transform: capitalize;
+    display: inline-block;
+    position: relative;
+    color: #757575;
+    line-height: 65px;
+    padding-left: 2.8em;
+    top: 1em;
+    font-weight: 500;
+}
+
+    .shortcuts_mobile a {
+        color: #333;
+        text-decoration: none;
+        padding-left: 1.4em;
+    }
+
+        .shortcuts_mobile a:hover {
+            text-decoration: none;
+        }
+
+.idea_mobile h1 {
+    color: #424242;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 20px 20px 0px;
+    position: relative;
+    width: 100%;
+}
+
+.input_check:checked ~ .overlay {
+    display: block;
+}
+
+.input_check:checked ~ .idea_mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
+/*animation*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
+
+/*Mobile & tablet: width<1024px*/
+@media only screen and (max-width: 63.9375em) {
+    #nav_bar {
+        display: none;
+    }
+
+    .header_search {
+        display: none;
+    }
+
+    .nav_icon {
+        display: none;
+    }
+
+    .sidebar.static {
+        display: none;
+    }
+
+    .form_add_idea button {
+        display: none;
+    }
+
+    .icon_bar {
+        display: block;
+    }
+
+    .comment {
+        width: 80%;
+    }
+}
+
+
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .interface {
+        margin-left: -5em;
+        margin-right: -7em;
+    }
+
+    .felling {
+        margin-left: 0em;
+    }
+
+        .felling li {
+            font-size: 1em;
+        }
+
+    .pagination {
+        margin-top: 2em;
+        width: 12em;
+        margin-left: -65em;
+    }
+
+    .sub_container2 {
+        display: none;
+    }
+
+    .tag span {
+        font-size: 0.9em;
+    }
+
+    .title_idea h1 {
+        font-size: 0.9em;
+    }
+}
+
 /*Tablet: width>=740px and width < 1024px*/
-@media only screen and (min-width: 46.1875em) and (max-width: 63.9375em) {
-    .column {
-        width: 30%;
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .interface {
+        margin-left: -4em;
+        margin-right: -6em;
+    }
+
+    #nav_bar {
+        display: none;
+    }
+
+    .header_search {
+        display: none;
+    }
+
+    .pagination {
+        transform: translateX(12em);
+        margin-top: 2em;
+    }
+
+    .Shortcuts {
+        letter-spacing: 0em;
+        padding-left: 1.4em;
+    }
+
+    .sidebar.static {
+        width: 200px;
+    }
+
+    .sub_container2 img {
+        width: 370px;
+        height: 230px;
+        margin-left: 22%;
+    }
+
+    .form_add_idea button {
+        display: none;
     }
 }
