@@ -430,5 +430,9 @@ namespace COMP1640.Controllers
         //    if (DateTime.Compare(DateTime.Now, finalClosureDate) < 0) return true;
         //    else return false;
         //}
+         public IActionResult TermsConditions()
+        {
+            return View();
+        }
     }
 }
