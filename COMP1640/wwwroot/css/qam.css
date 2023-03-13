@@ -681,3 +681,56 @@ thead {
     float: right;
     padding-bottom: 1em;
 }
+.download_csv {
+    float: right;
+    padding-bottom: 1em;
+}
+
+.colom1 {
+    display: flex;
+}
+
+
+.chartMenu {
+    width: 100vw;
+    height: 40px;
+    background: #1A1A1A;
+}
+
+.chartCard {
+    width: 100vw;
+    /*   height: calc(100vh - 40px);*/
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.chartBox {
+    width: 570px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px white;
+    background: linear-gradient(#e2ebf4, #e7f5ee);
+}
+
+.chart_contributors {
+    width: 340px;
+    margin-left: -20px;
+    border-radius: 20px;
+    border: solid 3px white;
+}
+
+#contributors {
+    transform: translateX(-3em);
+}
+
+.chartBox h5 {
+    padding-bottom: 1.2em;
+    font-size: 1.3em;
+    text-align: center;
+}
+.chart_contributors h5 {
+    padding-bottom: 1.2em;
+    font-size: 1.3em;
+    margin-left: -30px;
+}
