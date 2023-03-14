@@ -29,18 +29,15 @@
 
                     <div class="form-group">
                         <label class="font-weight-bold">Email</label>
-                        <input type="email" class="form-control" asp-for="@Model.Email" placeholder="@Model.Email"/>
-                        @*<span asp-validation-for="@Model.Email" class="text-danger"></span>*@
+                        <input type="email" class="form-control" asp-for="@Model.Email" placeholder="@Model.Email">
                     </div>
 
-
-
-                    <div class="col-md-12">
+                    <div class="form-group">
                         <label class="font-weight-bold">Phone number</label>
                         <input type="tel" class="form-control" asp-for="@Model.PhoneNumber" placeholder="@Model.PhoneNumber">
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="form-group">
                         <label asp-for="DoB" class="labels">Date of Birth</label>
                         <input type="date" class="form-control" asp-for="DoB" placeholder="@Model.DoB">
                     </div>
@@ -59,17 +56,32 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="form-group">
                         <label class="font-weight-bold">Address</label>
                         <input class="form-control" asp-for="@Model.Address" placeholder="@Model.Address"/>
+                    </div>
+
+                    
+                    <button type="submit" class="btn btn-success">Update</button>
+                </form>
+
+                <form asp-controller="Admin" asp-action="ResetPassword" method="post">
+                    <h2 class="display-6">Reset Password</h2>
+                    <div class="form-group">
+                        <input hidden class="form-control" asp-for="@Model.Id" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold">Password</label>
+                        <input type="password" class="form-control" asp-for="@Model.PasswordHash" placeholder="Enter new password" required>
                     </div>
 
                     <a type="button" class="btn btn-secondary" data-dismiss="modal" asp-controller="Admin" asp-action="ManageAccount">
                         Close
                     </a>
+
                     <button type="submit" class="btn btn-success">Update</button>
                 </form>
-
             </div>
         </div>
     </div>

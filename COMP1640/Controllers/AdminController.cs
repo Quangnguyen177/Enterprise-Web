@@ -87,11 +87,6 @@ namespace COMP1640.Controllers
         [HttpPost]
         public async Task<IActionResult> ManageInformation(string id, string Name, string Email, string PhoneNumber, DateTime DoB, string Gender, string Address)
         {
-            //var userrole = Input.Role;
-
-            //var result = await _userManager.CreateAsync(user, Input.Password);
-
-            //await _userManager.AddToRoleAsync(user, userrole);
             var user = Db.Profile.FirstOrDefault(u => u.Id == id);
             user.Name = Name;
             user.Email = Email;
@@ -99,6 +94,28 @@ namespace COMP1640.Controllers
             user.DoB = DoB;
             user.Gender = Gender;
             user.Address = Address;
+
+
+
+            if (ModelState.IsValid)
+            {
+                Db.Profile.Update(user);
+                await Db.SaveChangesAsync();
+                return RedirectToAction("ManageAccount");
+            }
+            else
+            {
+                return View(user);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string id, string PasswordHash)
+        {
+            var user = Db.Profile.FirstOrDefault(u => u.Id == id);
+            var hashed = new PasswordHasher<Profile>();
+            user.PasswordHash = hashed.HashPassword(user, PasswordHash);
+
             if (ModelState.IsValid)
             {
                 Db.Profile.Update(user);
