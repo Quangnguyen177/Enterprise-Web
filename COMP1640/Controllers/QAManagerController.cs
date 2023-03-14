@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace COMP1640.Controllers
 {
@@ -143,8 +144,28 @@ namespace COMP1640.Controllers
         }
         public IActionResult DownloadCSV()
         {
-
-            return View();
+            var data = context.Ideas.ToList();
+            var csv = new StringBuilder();
+            string heading = "IdeaId,idea_title,idea_content,created_date,idea_anonymous,idea_view,ProfileId,CategoryId,ReactPointId,EventId";
+            csv.AppendLine(heading);
+            foreach (var row in data)
+            {
+                var newRow = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
+                                row.IdeaId,
+                                row.idea_title,
+                                row.idea_content,
+                                row.created_date,
+                                row.idea_anonymous,
+                                row.idea_view,
+                                row.ProfileId,
+                                row.CategoryId,
+                                row.ReactPointId,
+                                row.EventId
+                              );
+                csv.AppendLine(newRow);
+            }
+            byte[] bytes = Encoding.ASCII.GetBytes(csv.ToString());
+            return File(bytes, "text/csv", "Ideas.csv");
         }
     }
 }
