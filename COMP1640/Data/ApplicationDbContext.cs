@@ -15,6 +15,7 @@ namespace COMP1640
             : base(options)
         {
         }
+        //public DbSet<IdentityUser> IdentityUsers { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Account> Accounts { get; set; }

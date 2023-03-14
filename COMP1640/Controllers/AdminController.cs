@@ -6,18 +6,21 @@ using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace COMP1640.Controllers
 {
     [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext Db;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public AdminController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
         {
-            this.context = context;
+            Db = context;
             _roleManager = roleManager;
         }
 
@@ -32,27 +35,27 @@ namespace COMP1640.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult CreateAccount()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult CreateAccount()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public IActionResult CreateAccount(Account acc)
-        {
-            if (ModelState.IsValid)
-            {
-                context.Accounts.Add(acc);
-                context.SaveChanges();
-                return RedirectToAction("Dashboard");
-            }
-            else
-            {
-                //ViewBag.<Somethings> = context.<Somethings>.ToList();
-                return View(acc);
-            }
-        }
+        //[HttpPost]
+        //public IActionResult CreateAccount(Account acc)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Db.Accounts.Add(acc);
+        //        Db.SaveChanges();
+        //        return RedirectToAction("Dashboard");
+        //    }
+        //    else
+        //    {
+        //        //ViewBag.<Somethings> = context.<Somethings>.ToList();
+        //        return View(acc);
+        //    }
+        //}
 
         public IActionResult SetClosureDate()
         {
@@ -63,15 +66,49 @@ namespace COMP1640.Controllers
         {
             return View();
         }
-
+        
         public IActionResult ManageAccount()
         {
-            return View();
+            var accs = Db.Profile.AsNoTracking().ToList();
+            return View(accs);
         }
 
-        public IActionResult ManageInformation()
+        [HttpGet]
+        public IActionResult ManageInformation(string? id)
         {
-            return View();
+            if (id == "")
+            {
+                return NotFound();
+            }
+            var acc = Db.Profile.FirstOrDefault(x => x.Id == id);
+            return View(acc);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageInformation(string id, string Name, string Email, string PhoneNumber, DateTime DoB, string Gender, string Address)
+        {
+            //var userrole = Input.Role;
+
+            //var result = await _userManager.CreateAsync(user, Input.Password);
+
+            //await _userManager.AddToRoleAsync(user, userrole);
+            var user = Db.Profile.FirstOrDefault(u => u.Id == id);
+            user.Name = Name;
+            user.Email = Email;
+            user.PhoneNumber = PhoneNumber;
+            user.DoB = DoB;
+            user.Gender = Gender;
+            user.Address = Address;
+            if (ModelState.IsValid)
+            {
+                Db.Profile.Update(user);
+                await Db.SaveChangesAsync();
+                return RedirectToAction("ManageAccount");
+            }
+            else
+            {
+                return View(user);
+            }
         }
 
         public IActionResult ManageClosureDate()
