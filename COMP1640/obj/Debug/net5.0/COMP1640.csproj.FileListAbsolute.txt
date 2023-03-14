@@ -2836,9 +2836,7 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\InformationStaff.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformationStaff.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-lock.json
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json
@@ -3517,3 +3515,21 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.Views.pdb
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.csproj.CopyComplete
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageClosureDate.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageInformation.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\LatestComment.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\ListIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CategoryManager.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Idea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageInformation.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\TermsConditions.cshtml.g.cs
