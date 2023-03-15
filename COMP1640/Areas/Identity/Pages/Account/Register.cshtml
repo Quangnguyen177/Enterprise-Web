@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Register";
     var Roles = ViewData["Roles"] as List<IdentityRole>;
+    var Deps = ViewData["Departments"] as List<COMP1640.Models.Department>;
     Layout = "_LayoutCreateAccount";
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
@@ -24,6 +25,17 @@
                     }
                 </select>
                 <span class="text-danger" asp-validation-for="Input.Role"></span>
+            </div>
+
+            <div class="form-group">
+                <select class="form-select" asp-for="Input.DepartmentId" class="form-control" required>
+                    <option selected disabled>Choose the account department</option>
+                    @foreach (var dep in Deps)
+                    {
+                        <option value="@dep.DepId">@dep.Dep_name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="Input.DepartmentId"></span>
             </div>
 
             <div class="input-box">

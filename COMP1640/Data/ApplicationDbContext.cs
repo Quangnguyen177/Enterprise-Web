@@ -88,7 +88,7 @@ namespace COMP1640
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
                 Avatar = "",
-                DepId = "1",
+                DepId = 1,
             };
             var staff1 = new Profile
             {
@@ -102,7 +102,7 @@ namespace COMP1640
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
                 Avatar = "",
-                DepId = "1",
+                DepId = 1,
             };
             var qam1 = new Profile
             {
@@ -116,7 +116,7 @@ namespace COMP1640
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
                 Avatar = "",
-                DepId = "1",
+                DepId = 1,
             };
             var qac1 = new Profile
             {
@@ -130,7 +130,7 @@ namespace COMP1640
                 Gender = "Female",
                 Address = "Somewhere in the big gray sky",
                 Avatar = "",
-                DepId = "1",
+                DepId = 1,
             };
 
 
@@ -263,8 +263,18 @@ namespace COMP1640
             builder.Entity<Department>().HasData(
                 new Department
                 {
-                    DepId = "1",
-                    dep_name = "Academic"
+                    DepId = 1,
+                    Dep_name = "Academic"
+                },
+                new Department
+                {
+                    DepId = 2,
+                    Dep_name = "IT"
+                },
+                new Department
+                {
+                    DepId = 3,
+                    Dep_name = "Business"
                 }
             );
         }

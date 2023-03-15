@@ -84,8 +84,7 @@ namespace COMP1640.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-                    //return LocalRedirect(returnUrl);
+                    return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {

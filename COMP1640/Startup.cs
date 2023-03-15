@@ -58,19 +58,6 @@ namespace COMP1640
                 app.UseHsts();
             }
 
-            // Redirect requests to the default URL
-            //app.Use(async (context, next) =>
-            //{
-            //    if (context.Request.Path == "/")
-            //    {
-            //        context.Response.Redirect("/identity/account/login");
-            //    }
-            //    else
-            //    {
-            //        await next();
-            //    }
-            //});
-
             app.UseSession();
 
             app.UseHttpsRedirection();

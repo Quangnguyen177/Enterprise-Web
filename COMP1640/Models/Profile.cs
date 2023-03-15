@@ -19,7 +19,7 @@ namespace COMP1640.Models
         public string Avatar { get; set; }
 
         //FK1: Department ID
-        public string DepId { get; set; }
+        public int? DepId { get; set; }
         public Department Department { get; set; }
 
         //------------------------

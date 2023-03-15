@@ -27,13 +27,15 @@ namespace COMP1640.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext Db;
 
         public RegisterModel(
             UserManager<Profile> userManager,
             SignInManager<Profile> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager
+            RoleManager<IdentityRole> roleManager,
+            ApplicationDbContext context
             )
         {
             _userManager = userManager;
@@ -41,6 +43,7 @@ namespace COMP1640.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
+            Db = context;
         }
 
         [BindProperty]
@@ -70,7 +73,11 @@ namespace COMP1640.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Role")]
-            public string Role { get; set; }            
+            public string Role { get; set; }
+
+            [Required]
+            [Display(Name = "Department")]
+            public int DepartmentId { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -78,16 +85,19 @@ namespace COMP1640.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             ViewData["Roles"] = new List<IdentityRole>(await _roleManager.Roles.ToListAsync());
+            ViewData["Departments"] = new List<Department>(Db.Departments.ToList());
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             ViewData["Roles"] = new List<IdentityRole>(await _roleManager.Roles.ToListAsync());
+            ViewData["Departments"] = new List<Department>(Db.Departments.ToList());
+
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Profile { UserName = Input.Email, Email = Input.Email };
+                var user = new Profile { UserName = Input.Email, Email = Input.Email, DepId = Input.DepartmentId };
 
                 var userrole = Input.Role;
 
