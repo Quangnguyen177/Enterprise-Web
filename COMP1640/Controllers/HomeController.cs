@@ -1,10 +1,8 @@
 using COMP1640.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Security.Principal;
 using System.Linq;
 using System.Security.Claims;
 
@@ -14,11 +12,9 @@ namespace COMP1640.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext Db;
-        private readonly UserManager<Profile> _userManager;
-        public HomeController(ApplicationDbContext context, UserManager<Profile> userManager)
+        public HomeController(ApplicationDbContext context)
         {
             Db = context;
-            _userManager = userManager;
         }
 
         [Route("/")]
