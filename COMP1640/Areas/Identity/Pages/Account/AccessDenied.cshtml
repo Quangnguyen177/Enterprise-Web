@@ -1,10 +1,14 @@
 ﻿@page
 @model AccessDeniedModel
 @{
-    ViewData["Title"] = "Access denied";
+    Layout = "_LayoutCreateAccount";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<div class="access-denied">
+    <img src="https://png.pngtree.com/png-clipart/20210311/original/pngtree-error-403-glitch-border-vector-transparent-design-png-image_6038329.png" style="display: block;margin-left: auto;margin-right: auto;width: 40%;" />
+    <div style="text-align:center">
+        <h1>We are sorry...</h1>
+        <section>The page you are trying to access has restricted access</section>
+    </div>
+    <a type="button" style="display: block;margin-left: auto;margin-right: auto;position: relative;top: 15px;width: 14%;border-radius: 20px;" class="btn btn-info" asp-area="Identity" asp-page="/Account/Login">Login as member</a>
+</div>

@@ -56,6 +56,14 @@ namespace COMP1640.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Role")]
+            public string Role { get; set; }
+
+            [Required]
+            [Display(Name = "Department")]
+            public int DepartmentId { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -68,16 +76,8 @@ namespace COMP1640.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "Confirmation password not match with password")]
+            [Compare("Password", ErrorMessage = "Not match with password")]
             public string ConfirmPassword { get; set; }
-
-            [Required]
-            [Display(Name = "Role")]
-            public string Role { get; set; }
-
-            [Required]
-            [Display(Name = "Department")]
-            public int DepartmentId { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
