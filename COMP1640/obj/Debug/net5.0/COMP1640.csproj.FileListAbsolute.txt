@@ -3539,3 +3539,4 @@ G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManage
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageInformation.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\TermsConditions.cshtml.g.cs
+F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\TermsConditions.cshtml.g.cs

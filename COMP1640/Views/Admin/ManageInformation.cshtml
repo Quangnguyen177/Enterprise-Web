@@ -11,16 +11,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form asp-controller="Admin" asp-action="ManageInformation" method="post">
+                <form asp-controller="Admin" asp-action="ManageInformation" method="post" enctype="multipart/form-data">
                     <h1 class="display-6">Edit this Account</h1>
                     <div class="form-group">
                         <input hidden class="form-control" asp-for="@Model.Id" />
                     </div>
 
-                    @*<div class="avatar-form">
+                    <div class="avatar-form">
                         <label class="font-weight-bold">Avatar</label>
                         <input class="buttonUpload" asp-for="Avatar" type="file" id="uploadedAva" name="uploadedAva">
-                    </div>*@
+                    </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Name</label>

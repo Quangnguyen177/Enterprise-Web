@@ -9,6 +9,7 @@ using System.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.IO;
 
 namespace COMP1640.Controllers
 {
@@ -85,7 +86,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ManageInformation(string id, string Name, string Email, string PhoneNumber, DateTime DoB, string Gender, string Address)
+        public async Task<IActionResult> ManageInformation(IFormFile uploadedAva, string id, string Name, string Email, string PhoneNumber, DateTime DoB, string Gender, string Address)
         {
             var user = Db.Profile.FirstOrDefault(u => u.Id == id);
             user.Name = Name;
@@ -94,8 +95,23 @@ namespace COMP1640.Controllers
             user.DoB = DoB;
             user.Gender = Gender;
             user.Address = Address;
+            user.Avatar = uploadedAva.FileName;
+
+            //Upload Avatar
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Avatars");
+
+            //create folder if not exist
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
 
 
+            string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
+
+            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            {
+                uploadedAva.CopyTo(stream); //đoạn này add vô root 
+
+            }
 
             if (ModelState.IsValid)
             {
