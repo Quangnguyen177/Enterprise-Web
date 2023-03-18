@@ -208,6 +208,10 @@ ul a:active {
     display: inline-block;
     justify-content: space-around;
 }
+.btn_add{
+padding-top: 2em;
+}
+
 /*form address new idea*/
 input[type="text" i] {
     width: 420px;
@@ -223,13 +227,9 @@ input[type="text" i] {
     padding-left: 1.4em;
     margin-top: 0em;
 }
-.new-post button {
-    transform: translate(15em, -3em);
-}
-
-.form_add_idea .form-control {
+.form_add_idea .form_control {
     background-color: white;
-    width: 86%;
+    width: 95%;
     background: linear-gradient(#e8f2e3, #e8f2e3);
     margin-top: 2.5em;
 }
@@ -332,10 +332,15 @@ input[type="text" i] {
 
 .drop_down li {
     font-size: 17px;
-    transform: translateX(-2em);
-    font-weight: bold;
     list-style: none;
-    display: inline-block;
+       letter-spacing: 0px;
+        padding: 0em;
+     font-weight: 300;
+    padding-left: 0px;
+}
+
+.col-sm-6.multi-gd-img {
+    left: -1.9em;
 }
 
 .felling ul {
