@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
+    "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
   },
   "projects": {
-    "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
+    "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "projectUniqueName": "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
         "projectName": "COMP1640",
-        "projectPath": "G:\\Git\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "projectPath": "E:\\GitHub\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "G:\\Git\\Enterprise-Web\\COMP1640\\obj\\",
+        "outputPath": "E:\\GitHub\\Enterprise-Web\\COMP1640\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

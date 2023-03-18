@@ -38,9 +38,7 @@ namespace COMP1640.Controllers
         public class InputModel
         {
             public string Id { get; set; }
-
-            public IFormFile uploadedAva { get; set; }
-
+             
             public string Name { get; set; }
 
             [EmailAddress]
@@ -110,13 +108,13 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ManageAccountInformation()
+        public async Task<IActionResult> ManageAccountInformation(IFormFile uploadedAva)
         {
             var user = Db.Profile.FirstOrDefault(u => u.Id == Input.Id);
             var currentRoles = await _userManager.GetRolesAsync(user);
 
             user.Id = Input.Id;
-            user.Avatar = Input.uploadedAva.FileName;
+            user.Avatar = uploadedAva.FileName;
             user.Name = Input.Name;
             user.Email = Input.Email;
             user.PhoneNumber = Input.PhoneNumber;
@@ -132,15 +130,18 @@ namespace COMP1640.Controllers
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
-            string fileNameWithPath = Path.Combine(path, Input.uploadedAva.FileName);
+            string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
 
             using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
             {
-                Input.uploadedAva.CopyTo(stream); //đoạn này add vô root 
+                uploadedAva.CopyTo(stream); //đoạn này add vô root 
 
             }
-            await _userManager.RemoveFromRoleAsync(user, currentRoles.Last());
-            await _userManager.AddToRoleAsync(user, Input.Role);
+            if (currentRoles.Last() != Input.Role)
+            {
+                await _userManager.RemoveFromRoleAsync(user, currentRoles.Last());
+                await _userManager.AddToRoleAsync(user, Input.Role);
+            }    
 
             if (ModelState.IsValid)
             {
