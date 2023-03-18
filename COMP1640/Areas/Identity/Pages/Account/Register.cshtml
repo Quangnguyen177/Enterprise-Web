@@ -16,7 +16,7 @@
 
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
 
-            <div class="form-group">
+            <div class="form-group-role">
                 <select class="form-select" asp-for="Input.Role" class="form-control" required>
                     <option selected disabled>Choose the account role</option>
                     @foreach (var role in Roles)
@@ -27,7 +27,7 @@
                 <span class="text-danger" asp-validation-for="Input.Role"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group-department">
                 <select class="form-select" asp-for="Input.DepartmentId" class="form-control" required>
                     <option selected disabled>Choose the account department</option>
                     @foreach (var dep in Deps)
@@ -39,15 +39,15 @@
             </div>
 
             <div class="input-box">
-                <input asp-for="Input.Email" placeholder="Enter your email" required>
+                <input asp-for="Input.Email" placeholder="Enter account email" required>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="input-box">
-                <input asp-for="Input.Password" placeholder="Enter your password" required>
+                <input asp-for="Input.Password" placeholder="Enter account password" required>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="input-box">
-                <input asp-for="Input.ConfirmPassword" placeholder="Confirm your password" required>
+                <input asp-for="Input.ConfirmPassword" placeholder="Confirm password" required>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="policy">

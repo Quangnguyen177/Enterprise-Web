@@ -376,8 +376,8 @@
                                     <i class="fa-solid fa-filter"></i>
                                 </div>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Oldest Comments</a>
-                                    <a class="dropdown-item" href="#">Lastest Comments</a>
+                                    <a class="dropdown-item" onclick = "FilterComment(@Model.IdeaId,0)">Oldest Comments</a>
+                                    <a class="dropdown-item" onclick = "FilterComment(@Model.IdeaId,1)">Lastest Comments</a>
                                 </div>
                             </div>
 
@@ -485,7 +485,7 @@
 
     @*28/2/2023*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="/js/filter-comment.js"></script>
     <script type="text/javascript">
         function myFunction() {
             alert("Thank you for following me!");

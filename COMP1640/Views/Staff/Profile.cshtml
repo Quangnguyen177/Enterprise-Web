@@ -1,12 +1,12 @@
-﻿@{
+@{
     Layout = "_Staff";
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
     <style>
         .profile {
-         /*   padding: 0em;
-            margin: 0em;*/
+            /*   padding: 0em;
+                                            margin: 0em;*/
             display: block;
             justify-content: center;
             width: 100%;
@@ -14,14 +14,15 @@
             padding-right: 4em;
         }
 
-        .row merged20{
-           transform: translate(2em, 2em);
+        .row merged20 {
+            transform: translate(2em, 2em);
         }
 
-        .file_idea img{
+        .file_idea img {
             text-align: center;
             margin-left: 2em;
         }
+
         .header_pro {
             height: 30.25em;
             width: 100%;
@@ -48,6 +49,7 @@
         .drop_down {
             transform: translate(-1em, -4em);
         }
+
         .users-thumb-list {
             float: left;
             text-align: center;
@@ -86,17 +88,17 @@
         }
 
         /*.sub_container.col-lg-3 {
-            transform: translateX(4em);
-        }
+                                            transform: translateX(4em);
+                                        }
 
-        .sub_container2.col-lg-3 {
-            transform: translateX(4em);
-        }
+                                        .sub_container2.col-lg-3 {
+                                            transform: translateX(4em);
+                                        }
 
-        .sub_container.col-lg-6 {
-            transform: translateX(3em);
-            width: auto;
-        }*/
+                                        .sub_container.col-lg-6 {
+                                            transform: translateX(3em);
+                                            width: auto;
+                                        }*/
         .Shortcuts {
             width: auto;
         }
@@ -142,7 +144,7 @@
         .appear_idea {
             display: flex;
             transform: translate(-33.7em, 7em);
-           /* width: 30em;*/
+            /* width: 30em;*/
         }
 
         .ap_idea_avata {
@@ -157,6 +159,15 @@
         .content_post {
             width: 30.3em;
         }
+
+        .row.merged20 {
+            padding-left: 4.5em;
+        }
+        .pagination
+        {
+            margin-top: 2em;
+            padding-top: 0.1em;
+        }
     </style>
     <div class="profile">
         <div class="header_pro">
@@ -164,7 +175,7 @@
             <div class="avata_profile">
                 <figure>
                     <img src="/images/avatar.jpg"
-                         alt="avata" />
+                     alt="avata" />
                 </figure>
                 <div class="name_profile">
                     <h4>Minh Lưu Thị</h4>
@@ -194,10 +205,6 @@
                     </a>
                 </div>
             </div>
-
-            @* <button class="btn_pro">
-            Add Friend
-            </button>*@
         </div>
         <div class="section">
             <div class="col-lg-12">
@@ -229,211 +236,141 @@
                         </div>
                     </div>
                     @*        <div class="new_idea">
-                    <div class="post">*@
+                <div class="post">*@
                     <div class="sub_container col-lg-6">
                         <div class="new-post">
                             <div class="avata_post">
                                 <figure>
-                                    <a asp-action="Profile" asp-controller="Home">
+                                    @*AVATAR*@
+                                    <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
                                         <img src="/images/avatar.jpg"
-                                             alt="avata" />
+                                         alt="avata" />
                                     </a>
                                 </figure>
                             </div>
                             <div class="form_add_idea">
-                                <a style="text-decoration: none" asp-action="AddIdea" asp-controller="Home">
-                                    <div class="input_idea">
-                                        <input class="text" type="text" rows="2" />
-                                        <p style="transform: translate(20%, 30%); color: gray">write a new idea...</p>
-                                    </div>
-                                    <button type="button" class="btn btn-outline-success">Add</button>
+                                <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
+                                    <input class="form-control" type="text" placeholder="Readonly input here" readonly>
+                                    <button type="button" class="btn btn-success">Add</button>
                                 </a>
                             </div>
                         </div>
-                        @* <div class="central-meta new-idea">*@
-                        <div class="information_idea">
-                            <div class="Infor_idea">
-                                <div class="detail_idea nav_bar--item--separate2">
-                                    <div class="avata_information_idea">
-                                        <figure>
-                                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Home">
-                                                <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
-                                                     alt="avata" />
-                                                <div class="name_account">
-                                                    <h4 style="font-size: 16px;padding-top: -600px; width: 230px">Minh Lưu Thị</h4>
-                                                    <h5 style="font-size: 14px;padding-top: -600px; width: 230px; color: black; margin-left: 70px">3:48 AM</h5>
-                                                </div>
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    @* <div>
-                                    <img src="~/fb-icons/more.svg" alt="gallery">
-                                    </div>*@
-                                    <div class="drop_down">
-                                        <a style="color: #373b3f; border-radius: 50%;" href="#" role="button" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            <img src="~/fb-icons/more.svg" alt="gallery">
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <div class="agile_inner_drop_nav_info p-4">
-                                                <div class="row">
-                                                    <div class="col-sm-6 multi-gd-img">
-                                                        <ul>
-                                                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Home">Edit</a></li>
-                                                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="Delete" asp-controller="Home">Delete</a></li>
-                                                            <li>
-                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                    Delete
-                                                                </button>
 
-                                                                <!-- Modal -->
-                                                                <div class="modal fade" id="exampleModal" tabindex="6" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: relative; z-index: 10 !important;">
-                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                Are you sure?
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
+                        @*A post*@
+                        <div class="block">
+                            <div class="information_idea">
+                                <div class="Infor_idea">
+                                    <div class="detail_idea nav_bar--item--separate2">
+                                        <div class="avata_information_idea">
+                                            <figure>
+                                                <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
+                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg" alt="avatar" />
+
+                                                    <div class="name_account">
+
+                                                        <h4 style="font-size: 16px">Minh Luu Thi</h4>
+                                                        <h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">3/17/2023</h5>   @*CreatedTime*@
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </a>
+                                            </figure>
                                         </div>
-                                    </div>
-                                    <div class="content">
-                                        <div class="img_idea">
-                                            <div class="title_idea">
-                                                <div class="tag">
-                                                    <a asp-action="" asp-controller="">
-                                                        <span>Tag</span>
+
+                                        <div class="content">
+
+                                            <div class="img_idea">
+                                                <div class="title_idea">
+                                                    <div class="tag">
+                                                        <a asp-action="" asp-controller="">
+                                                            <span>Category_name</span>     @*Category*@
+                                                        </a>
+                                                    </div>
+                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="" style="text-decoration:none; color: black;">
+                                                        <h1 class="lead" style="font-size: 1.3em">idea_title</h1>    @*Title*@
                                                     </a>
                                                 </div>
-                                                <h1 class="lead">Spring is wonderful</h1>
-                                            </div>
-                                            @* <h1 class="Tag">@ViewBag.Tag</h1>*@
-                                            <div class="file_idea">
-                                                <a asp-action="Detail" asp-controller="Home">
-                                                    <img src="/images/img_idea/idea_profile.jpg"
-                                                         title="Image_idea" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h2 class="content_post">Most of us would have beautiful gardens in front of our houses. For many, gardening would be a favourite pastime.</h2>
-                                    </div>
-                                </div>
-                                <div class="felling  nav_bar--item--separate3">
-                                    <div class="more">
-                                        <ul class="felling_idea">
-                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>32</li>
-                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-solid fa-heart"></i></a>32</li>
-                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-heart"></i></a>32</li>
-                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>32</li>
-                                        </ul>
-                                    </div>
-                                </div>
 
-                                <div class="comment_idea">
-                                    <div class="com_idea_avata">
-                                        <a asp-action="Profile" asp-controller="Home">
-                                            <figure class="avata_comment">
-                                                <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
-                                                     alt="avata" />
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="comment" style=" position: static; z-index: 5;">
-                                        <div class="form-group">
-                                            <a style="text-decoration: none">
-                                                <input style="width: 450px; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
-                                            </a>
-                                            <label class="switch" value="true">
-                                                <input type="checkbox">
-                                                <div class="slider"></div>
-                                                <div class="slider-card">
-                                                    <div class="slider-card-face slider-card-front"></div>
-                                                    <div class="slider-card-face slider-card-back"></div>
+                                                <div class="file_idea ">
+                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="" style="text-decoration:none; color: black;">
+                                                        <h2 class="content_post">idea_content</h2>
+                                                    </a> @*Content*@
                                                 </div>
-                                            </label>
-                                            <a asp-action="" asp-controller="">
-                                                <button type="button" class="btn btn-outline-success">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="felling  nav_bar--item--separate3">
+                                        <div class="more">
+                                            <ul class="felling_idea">
+                                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a></li>
+                                                @*  <li>
+                                            <label placeholder="React point: "><p id="total">@react_point</p></label>
+                                            </li>*@
+                                                <li>
+                                                    <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
+                                                </li>
+
+                                                <li>
+                                                    <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                                </li>
+                                                <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>32</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment_idea">
+                                        <div class="com_idea_avata">
+                                            <a asp-action="Profile" asp-controller="Staff">
+                                                <figure class="avata_comment">
+                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar.jpg"
+                                                     alt="avata" />
+                                                </figure>
                                             </a>
                                         </div>
-                                    </div>
-                                    <div class="appear_idea">
-                                        <div class="ap_idea_avata">
-                                            <figure class="account">
-                                                <a asp-action="Profile" asp-controller="Home">
-                                                    <img src="/images/avatar.jpg"
-                                                         alt="avata" />
+                                        <div class="comment" style=" position: static; z-index: 5;">
+                                            <div class="form-group">
+
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="IdeaId" style="text-decoration: none">
+                                                    <input style="height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
                                                 </a>
-                                            </figure>
-                                        </div>
-                                        <div class="info_comment">
-                                            <span>It's so pretty'</span>
-                                            @*@foreach($category as $cat)
-                                            <li class="hassubs"><a href="#">{{$cat->cname}}<i
-                                            class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                            @endforeach
-                                            </ul>*@
+                                            </div>
                                         </div>
                                     </div>
+
+                                    @*END*@
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="sub_container2 col-lg-3">
-                        <aside class="QC">
-                            <div class="QC_aside">
-                                <div class="col-lg-3">
-                                    <img src="/images/img_idea/img_profile.jpg" title="img_perfect" />
-                                </div>
-                                <br>
-                                <div class="col-lg-3">
-                                    <img src="/images/img_idea/img2_profile.jpg"
-                                         title="my like" />
-                                </div>
-                            </div>
-                        </aside>
+                        <div class="advertisement1">
+                            <img src="https://inspirdoedu.com/vnt_upload/abroad/05_2020/du-hoc-anh-dai-hoc-greenwich.jpg" title="QC" />
+                        </div>
+                        <br>
+                        <div class="advertisement2">
+                            <img src="https://media.kenhtuyensinh.vn/images/article/240123/daihocgreenwich.jpg"
+                             title="QC" />
+                        </div>
+                        <div class="advertisement3">
+                            <img src="https://vtv1.mediacdn.vn/thumb_w/640/2022/5/28/6-16537503950961937725457.jpg"
+                             title="QC" />
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="pagination" style=" border-radius: 3em">
 
-            <div class="pagination" style=" border-radius: 3em">
-                <div class="prev">
-                    <span class="text">Prev</span>
-                    <div class="left">
-                        <a href="" class="prev"></a>
+                    <div class="prev">
+                        <span class="text" onclick="BtnPre()">Prev</span>
+                    @*    <div class="left">*@
+                    @*    </div>*@
                     </div>
-                </div>
 
-                <div class="next">
-                    <span class="text">Next</span>
-                    <div class="right">
-                        <a href="" class="prev"></a>
+                    <div class="next">
+                        <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                     @*   <div class="right">*@
+                        @*</div>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function () {
-            myInput.focus()
-        })
-    </script>
 }

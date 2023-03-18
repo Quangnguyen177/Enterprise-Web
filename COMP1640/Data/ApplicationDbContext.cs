@@ -2,10 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using COMP1640.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Policy;
 
 namespace COMP1640
 {
@@ -15,10 +12,14 @@ namespace COMP1640
             : base(options)
         {
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
         //public DbSet<IdentityUser> IdentityUsers { get; set; }
+        //public DbSet<IUserRoleStore> userRoleStores { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<IdentityRole> IdentityRoles { get; set; }
-        public DbSet<Account> Accounts { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Document> Documents { get; set; }

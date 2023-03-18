@@ -413,6 +413,40 @@ namespace COMP1640.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult FilterComment(int id, int order)
+        {
+            string result = "";
+            if (order == 0)
+            {
+                var data = Db.Comments.Include(c => c.Profile).Where(c => c.IdeaId == id).OrderBy(c => c.created_date).Select(c => new
+                {
+                    avatar = c.Profile.Avatar,
+                    anonymous = c.com_anonymous,
+                    content = c.com_content,
+                    name = c.Profile.Name,
+                    time = String.Format("{0:g}", c.created_date)
+                });
+                result = JsonConvert.SerializeObject(data);
+            }
+            else
+            {
+                var data = Db.Comments.Include(c => c.Profile).Where(c => c.IdeaId == id).OrderByDescending(c => c.created_date).Select(c => new
+                {
+                    avatar = c.Profile.Avatar,
+                    anonymous = c.com_anonymous,
+                    content = c.com_content,
+                    name = c.Profile.Name,
+                    time = String.Format("{0:g}", c.created_date)
+                });
+                result = JsonConvert.SerializeObject(data);
+            }
+            return Json(result);
+        }
+
+
+
+
         // What the actual k? why login here?
         public IActionResult Login()
         {

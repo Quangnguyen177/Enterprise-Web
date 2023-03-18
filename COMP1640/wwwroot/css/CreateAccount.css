@@ -42,8 +42,15 @@ body {
             margin: 18px 0;
         }
 
-.form-select {
-    width: 91%;
+.form-group-role {
+    width: 80%;
+    border-radius: 10px
+}
+
+.form-group-department {
+    position:relative;
+    top: 9px;
+    width: 100%;
     border-radius: 10px
 }
 
