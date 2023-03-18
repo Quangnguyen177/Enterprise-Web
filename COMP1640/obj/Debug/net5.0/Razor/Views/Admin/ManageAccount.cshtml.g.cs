@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
+#line 1 "G:\Git\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
 using COMP1640;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
+#line 2 "G:\Git\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
 using COMP1640.Models;
 
 #line default
@@ -60,7 +60,7 @@ using COMP1640.Models;
         {
             WriteLiteral("\r\n");
 #nullable restore
-#line 3 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 3 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
   
     Layout = "_LayoutManageAccount";
 
@@ -68,7 +68,7 @@ using COMP1640.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 6 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
  if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
 
@@ -90,7 +90,7 @@ using COMP1640.Models;
                 <tbody>
 ");
 #nullable restore
-#line 28 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 28 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
                      foreach (var acc in Model)
                     {
 
@@ -99,7 +99,7 @@ using COMP1640.Models;
 #nullable disable
             WriteLiteral("                        <tr>\r\n                            <td>");
 #nullable restore
-#line 31 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 31 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
                            Write(acc.Id);
 
 #line default
@@ -107,7 +107,7 @@ using COMP1640.Models;
 #nullable disable
             WriteLiteral("</td>\r\n                            <td>");
 #nullable restore
-#line 32 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 32 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
                            Write(acc.Name);
 
 #line default
@@ -115,7 +115,7 @@ using COMP1640.Models;
 #nullable disable
             WriteLiteral("</td>\r\n                            <td>");
 #nullable restore
-#line 33 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 33 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
                            Write(acc.Email);
 
 #line default
@@ -164,7 +164,7 @@ using COMP1640.Models;
             WriteLiteral("\r\n                            </td>\r\n");
             WriteLiteral("\r\n                        </tr>\r\n");
 #nullable restore
-#line 55 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 55 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
                     }
 
 #line default
@@ -172,7 +172,7 @@ using COMP1640.Models;
 #nullable disable
             WriteLiteral("                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n");
 #nullable restore
-#line 60 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
+#line 60 "G:\Git\Enterprise-Web\COMP1640\Views\Admin\ManageAccount.cshtml"
 }
 
 #line default

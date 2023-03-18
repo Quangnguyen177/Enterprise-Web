@@ -23,17 +23,14 @@ namespace COMP1640.Controllers
         private readonly ApplicationDbContext Db;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<Profile> _userManager;
-        //private readonly IdentityUserRole _UserRole;
 
         public AdminController(ApplicationDbContext context, 
                                RoleManager<IdentityRole> roleManager,
                                UserManager<Profile> userManager)
-                               //IUserRoleStore<IdentityRole> userRoleStore)
         {
             Db = context;
             _roleManager = roleManager;
             _userManager = userManager;
-            //_userRoleStore = userRoleStore;
         }
 
         [BindProperty]
@@ -135,11 +132,11 @@ namespace COMP1640.Controllers
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
-            string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
+            string fileNameWithPath = Path.Combine(path, Input.uploadedAva.FileName);
 
             using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
             {
-                uploadedAva.CopyTo(stream); //đoạn này add vô root 
+                Input.uploadedAva.CopyTo(stream); //đoạn này add vô root 
 
             }
             await _userManager.RemoveFromRoleAsync(user, currentRoles.Last());
