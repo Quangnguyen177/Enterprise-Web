@@ -55,7 +55,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Admin" asp-action="ManageClosureDate">
-                                <i class="fa fa-cog"></i> Setting event date
+                                <i class="fa fa-cog"></i> Setting event 
                             </a>
                         </li>
                     </ul>
@@ -200,7 +200,7 @@
                 <div class="container-fluid">
                     <div class="card mb-7">
                         <div class="card-header">
-                            <h5 class="mb-0">Setting event date</h5>
+                            <h5 class="mb-0">Setting event</h5>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-nowrap">
@@ -208,18 +208,13 @@
                                     <tr>
                                         <th scope="col">Event ID</th>
                                         <th scope="col">Event Name</th>
-                                        <th scope="col">First closre date</th>
-                                        <th scope="col">Final closre date</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
                                         <td>My daily school</td>
-                                        <td class="text-end">
-                                            <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                        </td>
                                         <td class="text-end">
                                             <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                             <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
