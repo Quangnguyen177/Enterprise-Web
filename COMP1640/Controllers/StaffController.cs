@@ -452,9 +452,22 @@ namespace COMP1640.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
+        public IActionResult Profile(string? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ideas = Db.Ideas.Include(c => c.Comments).Include(p => p.Profile).Include(i=>i.Category).FirstOrDefault(p=>p.ProfileId.Equals(id));
+            ViewBag.Ideas = Db.Ideas.Where(ideas => ideas.ProfileId.Equals(id)).ToList();
+
+            var documents = Db.Documents.Include(d => d.Idea);
+            ViewBag.Documents = Db.Documents.ToList();
+
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+
+            return View(Db.Profile.FirstOrDefault(p => p.Id.Equals(id)));
         }
 
         //public bool CheckFinalClosureDate(int ideaId)

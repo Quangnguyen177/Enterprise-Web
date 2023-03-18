@@ -236,7 +236,7 @@
                         <div class="detail_idea nav_bar--item--separate2">
                             <div class="avata_information_idea" style="width: 100%">
                                 <figure>
-                                    <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
+                                    <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@Model.Profile.Id">
                                          @if (@Model.idea_anonymous)    @*Anonymous*@
                                                     {
                                                       <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
