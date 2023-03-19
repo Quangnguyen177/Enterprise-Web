@@ -53,6 +53,7 @@ namespace COMP1640.Controllers
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Department = Db.Departments.ToList();
             ViewBag.Total = Db.Ideas.Count();
             return View(page);
         }
@@ -325,6 +326,7 @@ namespace COMP1640.Controllers
         public async Task<IActionResult> DetailIdea(int id)
         {
             ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Department = Db.Departments.ToList();
             var user_of_idea = Db.Ideas.Include(u => u.Profile).FirstOrDefault(u => u.IdeaId == id);
             var name_of_user = user_of_idea.Profile.Name;
             ViewBag.Name = name_of_user;
@@ -456,6 +458,7 @@ namespace COMP1640.Controllers
         public IActionResult Profile(string? id)
         {
             ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Department = Db.Departments.ToList();
             if (id == null)
             {
                 return NotFound();
@@ -497,8 +500,27 @@ namespace COMP1640.Controllers
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Department = Db.Departments.ToList();
             ViewBag.Total = Db.Ideas.Count();
             return View("ViewPage",page);
+        }
+        public IActionResult DepIdea(int? id, int pageNum, string viewType)
+        {
+            if (pageNum == 1) ViewBag.PageNum = 1;
+            else ViewBag.PageNum = pageNum;
+            int skipPage = 5 * (pageNum - 1);
+            List<Idea> page = null;
+            if (viewType.Equals("depidea"))
+            {
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Skip(skipPage).Take(5).Include(i => i.Profile).ThenInclude(d=>d.Department).Where(i=>i.Profile.DepId == id).ToList();
+                ViewBag.ViewType = "depidea";
+            }
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+            ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Department = Db.Departments.ToList();
+            ViewBag.Total = Db.Ideas.Count();
+            return View("ViewPage", page);
         }
     }
 }
