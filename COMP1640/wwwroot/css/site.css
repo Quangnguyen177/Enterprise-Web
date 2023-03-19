@@ -76,11 +76,30 @@ body {
 .sub_nav li {
     display: inline-block;
     font-size: 19px;
-    padding-left: 16px;
     font-weight: bold;
     letter-spacing: 0.7px;
     text-decoration: none;
 }
+
+.drop_down {
+    display: inline-block;
+    display: flex;
+    float: right;
+    transform: translate(2em, -2em);
+}
+
+.dropdown-menu {
+    width: 4em;
+}
+
+    .dropdown-menu li {
+        list-style: none;
+        letter-spacing: 0px;
+        padding: 0em;
+        font-weight: 100;
+        padding-left: 0px;
+    }
+
 /*Search*/
 .header_search {
     display: inline-block;
@@ -209,7 +228,7 @@ ul a:active {
     justify-content: space-around;
 }
 .btn_add{
-padding-top: 2em;
+padding-top: 3em;
 }
 
 /*form address new idea*/
@@ -259,7 +278,9 @@ input[type="text" i] {
 .com_idea_avata {
     display: inline-block;
 }
-
+.comment .form-group {
+    width: 90%;
+}
 /*
 .attachments {
     display: flex;
@@ -319,25 +340,6 @@ input[type="text" i] {
     text-decoration: none;
 }
 
-.drop_down {
-    display: inline-block;
-    display: flex;
-    float: right;
-    transform: translate(2em, -2em);
-}
-
-.dropdown-menu {
-    width: 4em;
-}
-
-.drop_down li {
-    font-size: 17px;
-    list-style: none;
-       letter-spacing: 0px;
-        padding: 0em;
-     font-weight: 300;
-    padding-left: 0px;
-}
 
 .col-sm-6.multi-gd-img {
     left: -1.9em;
@@ -654,6 +656,13 @@ input:checked ~ .slider {
     display: flex;
     padding-top: 2em;
 }
+.form-group button {
+    transform: translate(25.6em, -3.3em);
+}
+
+textarea.form-control {
+    width: 450px;
+}
 
 /*Responsive*/
 /* When the checkbox is checked, add a blue background */
@@ -926,3 +935,62 @@ input[type]:checked ~ span.middle {
         width: 80%;
     }
 }
+
+
+/*Terms & condition*/
+.terms_conditions {
+    text-align: justify;
+    color: #4b4b4b;
+    line-height: 1.8em;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+.title_term {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+h1 {
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-weight: 500;
+}
+span, p {
+    font-size: 1.1em;
+}
+.btn_privacy {
+    padding-bottom: 2em;
+    float: right;
+}
+
+
+/*laptop*/
+@media only screen and (min-width: 73em) and (max-width: 81.25em) {
+    .sub_nav li {
+        letter-spacing: 0em;
+        font-size: 16px;
+    }
+
+    #nav_bar {
+        transform: translateX(-13%);
+        padding-top: 0.7em;
+    }
+
+    .input-group {
+        width: 0px;
+    }
+
+    textarea.form-control {
+        width: 350px;
+    }
+
+    .switch {
+        transform: translate(20em, -2.95em);
+    }
+
+    .form-group button {
+        transform: translate(19em, -3.3em);
+    }
+}
+
