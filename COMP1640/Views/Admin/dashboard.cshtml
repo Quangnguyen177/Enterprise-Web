@@ -2,6 +2,412 @@
     Layout = "_LayoutAdmin";
 }
 
-
-
-
+<!-- Main content -->
+<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+    <!-- Header -->
+    <header class="bg-surface-primary border-bottom pt-6">
+        <div class="container-fluid">
+            <div class="mb-npx">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                        <!-- Title -->
+                        <h1 class="h2 mb-0 ls-tight">Application</h1>
+                    </div>
+                    <!-- Actions -->
+                    <div class="col-sm-6 col-12 text-sm-end">
+                        <div class="mx-n1">
+                            @*<a href="#" class="btn d-inline-flex btn-sm btn-success mx-1" style="background-color:lawngreen">
+                            <span class=" pe-2">
+                            <i class="fa fa-pencil-square-o"></i>
+                            </span>
+                            <span>Edit</span>
+                            </a>*@
+                            <a class="btn d-inline-flex btn-sm btn-primary mx-1" asp-area="Identity" asp-page="/Account/Register">
+                                <span class=" pe-2">
+                                    <i class="fa fa-plus-circle"></i>
+                                </span>
+                                <span>Create</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav -->
+                <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                    <li class="nav-item ">
+                        <a asp-controller="Admin" asp-action="dashboard" class="nav-link active">All Content Idea</a>
+                    </li>
+                    @*<li class="nav-item">
+                    <a href="#" class="nav-link font-regular">Budget</a>
+                    </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link font-regular">Shared</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- Main -->
+    <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="row g-6 mb-6">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Idea Post</span>
+                                    <span class="h3 font-bold mb-0">200</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                        <i class="fa fa-newspaper-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 mb-0 text-sm">
+                                <span class="badge badge-pill bg-opacity-30 bg-success text-success me-2">
+                                    <i class="fa fa-arrow-up"></i>11%
+                                </span>
+                                <span class="text-nowrap text-xs text-muted">Since last week</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Like</span>
+                                    <span class="h3 font-bold mb-0">21k</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                        <i class="fa fa-thumbs-o-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 mb-0 text-sm">
+                                <span class="badge badge-pill bg-opacity-30 bg-success text-success me-2">
+                                    <i class="fa fa-arrow-up"></i>4%
+                                </span>
+                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Dislike</span>
+                                    <span class="h3 font-bold mb-0">149</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                                        <i class="fa fa-thumbs-o-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 mb-0 text-sm">
+                                <span class="badge badge-pill bg-opacity-30 bg-danger text-danger me-2">
+                                    <i class="fa fa-arrow-down"></i>  -5%
+                                </span>
+                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Comments</span>
+                                    <span class="h3 font-bold mb-0">31k</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                                        <i class="fa fa-comments-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 mb-0 text-sm">
+                                <span class="badge badge-pill bg-opacity-30 bg-success text-success me-2">
+                                    <i class="fa fa-arrow-up"></i>15%
+                                </span>
+                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-7">
+                <div class="card-header">
+                    <h5 class="mb-0">Idea Information</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Created date</th>
+                                <th scope="col">Anonymous</th>
+                                <th scope="col">View</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Harris
+                                    </a>
+                                </td>
+                                <td>
+                                    Sport
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Frontend Developer
+                                    </a>
+                                </td>
+                                <td>
+                                    Feb 17, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Mike Tke Duke
+                                    </a>
+                                </td>
+                                <td>
+                                    Gaming
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Backend Developer
+                                    </a>
+                                </td>
+                                <td>
+                                    Feb 17, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t1.6435-1/171830266_1017338032130536_2499925604087986830_n.jpg?stp=dst-jpg_s320x320&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=T2-wHnnniUoAX_ydlvB&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDxfES3mJqNC5bJGp4MROu5c70dsxZDfW7pmbRNlioJlw&oe=641FF165" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Quang Doi
+                                    </a>
+                                </td>
+                                <td>
+                                    Cooking
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Scrum Master
+                                    </a>
+                                </td>
+                                <td>
+                                    Feb 17, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Thuy Duong
+                                    </a>
+                                </td>
+                                <td>
+                                    Shopping
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Business Analysis
+                                    </a>
+                                </td>
+                                <td>
+                                    Sep 22, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Harris
+                                    </a>
+                                </td>
+                                <td>
+                                    Chilling
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Frontend Developer
+                                    </a>
+                                </td>
+                                <td>
+                                    Feb 17, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Mike Tke Duke
+                                    </a>
+                                </td>
+                                <td>
+                                    Coding
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Backend Developer
+                                    </a>
+                                </td>
+                                <td>
+                                    Feb 17, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://scontent.fhan5-8.fna.fbcdn.net/v/t1.6435-1/171830266_1017338032130536_2499925604087986830_n.jpg?stp=dst-jpg_s320x320&_nc_cat=108&ccb=1-7&_nc_sid=7206a8&_nc_ohc=T2-wHnnniUoAX_ydlvB&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDxfES3mJqNC5bJGp4MROu5c70dsxZDfW7pmbRNlioJlw&oe=641FF165" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Quang Doi
+                                    </a>
+                                </td>
+                                <td>
+                                    Hang out
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Scrum Master
+                                    </a>
+                                </td>
+                                <td>
+                                    Feb 17, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Thuy Duong
+                                    </a>
+                                </td>
+                                <td>
+                                    Gym
+                                </td>
+                                <td>
+                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="#">
+                                        Business Analysis
+                                    </a>
+                                </td>
+                                <td>
+                                    Sep 22, 2023
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                                <td>
+                                    300
+                                </td>
+                                @*<td class="text-end">
+                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
+                                </td>*@
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer border-0 py-5">
+                    <span class="text-muted text-sm">Showing 8 post idea out of 100 results found</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
