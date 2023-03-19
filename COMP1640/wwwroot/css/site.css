@@ -5,6 +5,9 @@
     font-family: Open Sans;
     box-sizing: border-box;
 }
+.form-group{
+    width: 80%;
+}
 
 :root {
     --text-color: #fdfdfd;
@@ -69,16 +72,14 @@ body {
 /*nav*/
 #nav_bar {
     display: inline-block;
-    transform: translateX(-20%);
+    transform: translateX(-10%);
     padding-top: 9px;
 }
 
 .sub_nav li {
     display: inline-block;
-    font-size: 19px;
-    padding-left: 16px;
+    font-size: 16px;
     font-weight: bold;
-    letter-spacing: 0.7px;
     text-decoration: none;
 }
 /*Search*/
@@ -209,7 +210,7 @@ ul a:active {
     justify-content: space-around;
 }
 .btn_add{
-padding-top: 2em;
+padding-top: 3em;
 }
 
 /*form address new idea*/

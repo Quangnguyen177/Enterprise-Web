@@ -61,10 +61,10 @@
                                 <div class="row">
                                     <div class="col-sm-6 multi-gd-img">
                                         <ul>
-                                            <li>Cat1</li>
-                                            <li>Cat2</li>
-                                            <li>Cat3</li>
-                                            <li>Cat4</li>
+                                            @foreach(var c in ViewBag.Category)
+                                            {
+                                                <li><a href="/Staff/CatIdea?id=@c.CategoryId&pagenum=1&viewtype=catidea">@c.category_name</a></li>
+                                            }
                                         </ul>
                                     </div>
                                 </div>
