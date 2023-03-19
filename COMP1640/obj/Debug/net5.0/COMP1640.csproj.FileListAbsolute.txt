@@ -2963,7 +2963,6 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
-C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageInformation.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageInformation.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageClosureDate.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
@@ -3540,3 +3539,4 @@ F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccountInformation.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccountInformation.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccountInformation.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccountInformation.cshtml.g.cs
