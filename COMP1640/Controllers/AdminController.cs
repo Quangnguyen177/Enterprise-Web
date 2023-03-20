@@ -91,7 +91,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ManageAccountInformation(string? id)
+        public async Task<IActionResult> EditAccount(string? id)
         {
             if (id == "")
             {
@@ -108,7 +108,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ManageAccountInformation(IFormFile uploadedAva)
+        public async Task<IActionResult> EditAccount(IFormFile uploadedAva)
         {
             var user = Db.Profile.FirstOrDefault(u => u.Id == Input.Id);
             var currentRoles = await _userManager.GetRolesAsync(user);
@@ -141,7 +141,7 @@ namespace COMP1640.Controllers
             {
                 await _userManager.RemoveFromRoleAsync(user, currentRoles.Last());
                 await _userManager.AddToRoleAsync(user, Input.Role);
-            }    
+            }
 
             if (ModelState.IsValid)
             {

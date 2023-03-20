@@ -3,45 +3,6 @@
 @{
     Layout = "_LayoutManageAccount";
 }
-@*@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-{
-    <div class="content_post">
-        <div class="add_btn">
-        </div>
-        <div class="category_table">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">User ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Action</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var acc in Model)
-                    {
-                        <tr>
-                            <td>@acc.Id</td>
-                            <td>@acc.Name</td>
-                            <td>@acc.Email</td>
-                            <td>
-                                <a asp-controller="Admin" asp-action="ManageAccountInformation" asp-route-id="@acc.Id">
-                                    <button class="edit">
-                                        <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#FFFFFF" height="24" width="24" viewBox="0 0 24 24">
-                                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                        </svg>
-                                        Edit
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-}*@
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
@@ -73,9 +34,6 @@
                         <li class="nav-item ">
                             <a asp-controller="Admin" asp-action="dashboard" class="nav-link active">All Content</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link font-regular">Shared</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -105,16 +63,15 @@
                                         <td>@acc.Email</td>
                                         <td>@acc.Name</td>
                                         <td class="text-end">
-                                            <a class="btn btn-sm btn-set" asp-controller="Admin" asp-action="ManageAccountInformation" asp-route-id="@acc.Id">Edit</a>
-                                            <a class="btn btn-sm btn-edit">Delete</a>
+                                            <a class="btn btn-sm btn-set" asp-controller="Admin" asp-action="EditAccount" asp-route-id="@acc.Id">Edit</a>
                                         </td>
-                                    </tr>                                  
+                                    </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer border-0 py-5">
-                        <span class="text-muted text-sm">Showing 8 account out of 100 results found</span>
+                        <span class="text-muted text-sm">Showing 4 account out of 100 results found</span>
                     </div>
                 </div>
             </div>
