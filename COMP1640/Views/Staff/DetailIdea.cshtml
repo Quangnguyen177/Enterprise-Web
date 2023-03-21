@@ -348,7 +348,9 @@
                             </div>
                             <div class="comment" style=" position: static; z-index: 5;">
                                 <div class="form-group">
-                                    <form method="POST">
+                                    @if(ViewBag.Date > DateTime.Now)
+                                    {
+                                        <form method="POST">
                                         <div style="text-decoration: none">
                                             <textarea rows="9" cols="70"style="height: 40px" class="form-control" rows="5" id="com-content" placeholder="Post your comment..."></textarea>
                                         </div>
@@ -364,7 +366,24 @@
                                         <input type="hidden" id="profileId" value="@userid" />
                                         <input type="hidden" id="ideaId" value="@Model.IdeaId" />
                                         <button type="button" class="btn btn-outline-success" id="btnComment" onclick="SubmitComment()">Add</button>
-                                    </form>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <div style="text-decoration: none">
+                                            <textarea disabled rows="9" cols="70" style="height: 40px" class="form-control" rows="5" id="com-content" placeholder="Post your comment..."></textarea>
+                                        </div>
+                                        <label class="switch" value="true">
+                                            <input type="checkbox" id="com-anonymous">
+
+                                            <div class="slider"></div>
+                                            <div class="slider-card">
+                                                <div class="slider-card-face slider-card-front"></div>
+                                                <div class="slider-card-face slider-card-back"></div>
+                                            </div>
+                                        </label>
+                                        <button type="button" class="btn btn-outline-success">Add</button>
+                                    }
                                 </div>
                             </div>
 

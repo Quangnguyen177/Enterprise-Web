@@ -51,55 +51,67 @@ namespace COMP1640.Controllers
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
             ViewBag.Total = Db.Ideas.Count();
+            var d = Db.Events.ToList().Last();
+            ViewBag.Date = d.First_closure_date;
             return View(page);
         }
 
         [HttpGet]
         public IActionResult AddIdea()
         {
+            var EvtL = Db.Events.ToList().Where(e => e.Status == false).Where(e => e.First_closure_date > DateTime.Now);
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
-            ViewBag.Event = Db.Events.ToList();
+            ViewBag.Event = EvtL;
             return View(Db.Categories.ToList());
         }
 
         [HttpPost]
-        public IActionResult AddIdea(List<IFormFile> uploadedFiles, string title, string content, string categoryName, string isAnonymous, string profileId)
+        public IActionResult AddIdea(List<IFormFile> uploadedFiles, string title, string content, int theevent, string categoryName, string isAnonymous, string profileId)
         {
-            ////Create reactpoint entity to relate to Idea entity
-            ReactPoint newReactPoint = new ReactPoint
+            var Evt = Db.Events.FirstOrDefault(e => e.EventId == theevent);
+            
+            if (Evt.First_closure_date > DateTime.Now)
             {
-                ThumbDown = 0,
-                ThumbUp = 0,
-            };
-            Db.Add(newReactPoint);
-            Db.SaveChanges();
-            var reactPoint = Db.ReactPoints.OrderBy(r => r.ReactPointId).Last();
-            Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
-            Boolean anonynous = true;
-            if (isAnonymous == null) anonynous = false;
-            Idea newIdea = new Idea()
-            {
-                idea_title = title,
-                idea_content = content,
-                idea_anonymous = anonynous,
-                created_date = DateTime.Now,
-                idea_view = 0,
-                ProfileId = profileId,
-                Profile = Db.Profile.FirstOrDefault(p => p.Id == profileId),
-                CategoryId = category.CategoryId,
-                Category = category,
-                ReactPointId = reactPoint.ReactPointId,
-                Reacpoint = reactPoint,
-                
-            };
-            Db.Add(newIdea);
-            Db.SaveChanges();
-            if (uploadedFiles.Count > 0)
-            {
-                HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
+                ////Create reactpoint entity to relate to Idea entity
+                ReactPoint newReactPoint = new ReactPoint
+                {
+                    ThumbDown = 0,
+                    ThumbUp = 0,
+                };
+                Db.Add(newReactPoint);
+                Db.SaveChanges();
+                var reactPoint = Db.ReactPoints.OrderBy(r => r.ReactPointId).Last();
+                Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
+                Boolean anonynous = true;
+                if (isAnonymous == null) anonynous = false;
+                Idea newIdea = new Idea()
+                {
+                    idea_title = title,
+                    idea_content = content,
+                    idea_anonymous = anonynous,
+                    created_date = DateTime.Now,
+                    idea_view = 0,
+                    ProfileId = profileId,
+                    Profile = Db.Profile.FirstOrDefault(p => p.Id == profileId),
+                    CategoryId = category.CategoryId,
+                    Category = category,
+                    ReactPointId = reactPoint.ReactPointId,
+                    Reacpoint = reactPoint,
+
+                };
+                Db.Add(newIdea);
+                Db.SaveChanges();
+                if (uploadedFiles.Count > 0)
+                {
+                    HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
+                }
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
             }
-            return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
+            else
+            {
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
+            }
 
         }
 
@@ -145,38 +157,53 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult EditIdea(int id)
         {
-            var a = id;
-            Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
-            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
-            ViewBag.Category = Db.Categories.ToList();
-            //if (currentIdea.first_closure != null)
-            //    if (!CheckFirtClosureDate(currentIdea)){
-            //        ViewBag.Error = "You can not edit your idea when firt colosure date is due";
-            //        return null;
-            return View(currentIdea);
+            var Evt = Db.Events.FirstOrDefault(i => i.EventId == id);
+            if (Evt.First_closure_date > DateTime.Now)
+            {
+                Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+                string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+                ViewBag.Category = Db.Categories.ToList();
+                //if (currentIdea.first_closure != null)
+                //    if (!CheckFirtClosureDate(currentIdea)){
+                //        ViewBag.Error = "You can not edit your idea when firt colosure date is due";
+                //        return null;
+                return View(currentIdea);
+            }
+            else
+            {
+                return RedirectToAction("DetailIdea", "Staff", new { id });
+            }
         }
 
         [HttpPost]
         public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName, string isAnonymous)
         {
-            bool anonynous = true;
-            if (isAnonymous == null) anonynous = false;
-            Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
-            var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == ideaId);
-            idea.idea_title = title;
-            idea.idea_content = content;
-            idea.idea_anonymous = anonynous;
-            idea.created_date = DateTime.Now;
-            idea.CategoryId = category.CategoryId;
-            idea.Category = category;
-            if (uploadedFiles.Count > 0)
+            var Evt = Db.Events.FirstOrDefault(i => i.EventId == ideaId);
+            if (Evt.First_closure_date > DateTime.Now)
             {
-                HandleFile(uploadedFiles, ideaId, "UPDATE"); //edit file
+                bool anonynous = true;
+                if (isAnonymous == null) anonynous = false;
+                Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
+                var idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == ideaId);
+                idea.idea_title = title;
+                idea.idea_content = content;
+                idea.idea_anonymous = anonynous;
+                idea.created_date = DateTime.Now;
+                idea.CategoryId = category.CategoryId;
+                idea.Category = category;
+                if (uploadedFiles.Count > 0)
+                {
+                    HandleFile(uploadedFiles, ideaId, "UPDATE"); //edit file
+                }
+                Db.Update(idea);
+                Db.SaveChanges();
+                return RedirectToAction("EditIdea", new { id = ideaId });
             }
-            Db.Update(idea);
-            Db.SaveChanges();
-            return RedirectToAction("EditIdea", new { id = ideaId });
+            else
+            {
+                return RedirectToAction("DetailIdea", "Staff", new { ideaId });
+            }
         }
 
         //comment
@@ -186,41 +213,50 @@ namespace COMP1640.Controllers
             //get user to use name and toEmail
             var profile = Db.Profile.FirstOrDefault(u => u.Id == com.ProfileId);
             var idea = Db.Ideas.Include(i => i.Profile).FirstOrDefault(i => i.IdeaId == com.IdeaId);
-            //default sender is system, so from email is not needed.
-            //var sendMail = SendEmail("dantruong2002tq@gmail.com", "Dan Truong", com.com_content);
-            //var sendMail = SendEmail(idea.Profile.Email, idea.Profile.Name, com.com_content);
-            if (true) // check if sending mail is successfull!
-            {
-                //add comment 
-                Comment newComment = new Comment()
-                {
-                    com_content = com.com_content,
-                    ProfileId = com.ProfileId,
-                    Profile = profile,
-                    created_date = DateTime.Now,
-                    com_anonymous = com.com_anonymous,
-                    IdeaId = com.IdeaId,
-                    Idea = idea
-                };
-                Db.Add(newComment);
-                Db.SaveChanges();
-                var result = new
-                {
-                    Name = profile.Name,
-                    Avatar = profile.Avatar,
-                    Anonymous = com.com_anonymous,
-                    Content = com.com_content,
-                    Time = String.Format("{0:g}", newComment.created_date),
-                    ComNumber = Db.Comments.Where(c => c.IdeaId == com.IdeaId).Count()
-                };
 
-                var response = JsonConvert.SerializeObject(result);
-                return Json(response);
-            }
+            var Evt = Db.Events.FirstOrDefault(i => i.EventId == com.IdeaId);
+            if (Evt.Last_closure_date > DateTime.Now)
+            {
+                //default sender is system, so from email is not needed.
+                //var sendMail = SendEmail("dantruong2002tq@gmail.com", "Dan Truong", com.com_content);
+                //var sendMail = SendEmail(idea.Profile.Email, idea.Profile.Name, com.com_content);
+                //if (true) // check if sending mail is successfull!
+                //{
+                    //add comment 
+                    Comment newComment = new Comment()
+                    {
+                        com_content = com.com_content,
+                        ProfileId = com.ProfileId,
+                        Profile = profile,
+                        created_date = DateTime.Now,
+                        com_anonymous = com.com_anonymous,
+                        IdeaId = com.IdeaId,
+                        Idea = idea
+                    };
+                    Db.Add(newComment);
+                    Db.SaveChanges();
+                    var result = new
+                    {
+                        Name = profile.Name,
+                        Avatar = profile.Avatar,
+                        Anonymous = com.com_anonymous,
+                        Content = com.com_content,
+                        Time = String.Format("{0:g}", newComment.created_date),
+                        ComNumber = Db.Comments.Where(c => c.IdeaId == com.IdeaId).Count()
+                    };
+
+                    var response = JsonConvert.SerializeObject(result);
+                    return Json(response);
+                //}
+                //else
+                //{
+                //    return Json(null);
+                //}
+            }    
             else
             {
                 return Json(null);
-            }
+            }    
 
         }
 
@@ -328,6 +364,7 @@ namespace COMP1640.Controllers
             idea.idea_view++;
             Db.Ideas.Update(idea);
             Db.SaveChanges();
+
             //ducmt1
             var reactpoint_of_idea = Db.Ideas.Include(r => r.Reacpoint).FirstOrDefault(u => u.IdeaId == id);
             var number_of_upvote = reactpoint_of_idea.Reacpoint.ThumbUp;
@@ -351,6 +388,10 @@ namespace COMP1640.Controllers
             {
                 ViewBag.UserReact = null;
             }
+
+            //ducmt3
+            var Evt = Db.Events.FirstOrDefault(i => i.EventId == id);
+            ViewBag.Date = Evt.Last_closure_date;
 
             return View(idea);
         }
