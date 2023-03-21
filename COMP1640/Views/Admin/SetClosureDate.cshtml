@@ -5,7 +5,7 @@
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
     <div class="container">
-        <a class="back" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
+        <a class="back" asp-action="ManageClosureDate" asp-controller="Admin"><img src="~/fb-icons/bx-arrow-back.svg" /></a>@*href="javascript:history.back()"*@
         <div class="title">Set Closure Date</div>
         <div class="content">
             <form asp-action="SetClosureDate" asp-controller="Admin" method="post">

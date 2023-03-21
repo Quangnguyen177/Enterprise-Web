@@ -21,7 +21,7 @@ namespace COMP1640.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<Profile> _userManager;
 
-        public AdminController(ApplicationDbContext context, 
+        public AdminController(ApplicationDbContext context,
                                RoleManager<IdentityRole> roleManager,
                                UserManager<Profile> userManager)
         {
@@ -35,7 +35,7 @@ namespace COMP1640.Controllers
         public class InputModel
         {
             public string Id { get; set; }
-             
+
             public string Name { get; set; }
 
             [EmailAddress]
@@ -85,9 +85,18 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult SetClosureDate(Event eve)
         {
-            Db.Events.Add(eve);
-            Db.SaveChanges();
-            return RedirectToAction(nameof(ManageClosureDate));
+            if (eve.First_closure_date >= eve.Last_closure_date)
+            {
+                ViewBag.Message = "The first closure date can not be later than the last closure date";
+                return View(eve);
+            }
+            else
+            {
+                Db.Events.Add(eve);
+                Db.SaveChanges();
+                return RedirectToAction(nameof(ManageClosureDate));
+            }
+
         }
 
         [HttpGet]
@@ -103,15 +112,16 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult EditClosureDate(Event eve)
         {
-            if (ModelState.IsValid)
+            if (eve.First_closure_date >= eve.Last_closure_date)
+            {
+                ViewBag.Message = "The first closure date can not be later than the last closure date";
+                return View(eve);
+            }
+            else
             {
                 Db.Events.Update(eve);
                 Db.SaveChanges();
                 return RedirectToAction(nameof(ManageClosureDate));
-            }
-            else
-            {
-                return View(eve);
             }
         }
 
@@ -127,7 +137,7 @@ namespace COMP1640.Controllers
             }
             return RedirectToAction(nameof(ManageClosureDate));
         }
-        
+
         public IActionResult ManageAccount()
         {
             var accs = Db.Profile.AsNoTracking().ToList();
