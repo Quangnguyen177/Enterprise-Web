@@ -10,6 +10,7 @@
         <div class="content">
             <form asp-action="EditClosureDate" asp-controller="Admin" method="post">
                 <div class="user-details">
+                    <input hidden class="form-control" asp-for="@Model.EventId">
                     <div class="search" action="">
                         <input type="search" placeholder="Search title...">
                         <button type="submit">Search</button>
