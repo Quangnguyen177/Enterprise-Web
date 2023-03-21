@@ -5,21 +5,14 @@
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
-    <style>
+     <style>
         .profile {
-            /*   padding: 0em;
-                                                                                            margin: 0em;*/
             display: block;
             justify-content: center;
             width: 100%;
             padding-left: 4em;
             padding-right: 4em;
         }
-
-        .row merged20 {
-            transform: translate(2em, 2em);
-        }
-
         .file_idea img {
             text-align: center;
             margin-left: 2em;
@@ -30,6 +23,7 @@
             width: 100%;
             display: inherit;
             justify-content: center;
+            margin-top: -8em;
         }
 
         .cover_img {
@@ -37,9 +31,8 @@
             height: 30em;
             transform: translateY(-3em);
         }
-
         .avata_profile {
-            transform: translate(6em, -16.3em);
+               transform: translate(6em, -8.3em);
         }
 
             .avata_profile img {
@@ -88,19 +81,6 @@
             border-radius: 7px;
             position: static;
         }
-
-        /*.sub_container.col-lg-3 {
-                                                                                            transform: translateX(4em);
-                                                                                        }
-
-                                                                                        .sub_container2.col-lg-3 {
-                                                                                            transform: translateX(4em);
-                                                                                        }
-
-                                                                                        .sub_container.col-lg-6 {
-                                                                                            transform: translateX(3em);
-                                                                                            width: auto;
-                                                                                        }*/
         .Shortcuts {
             width: auto;
         }
@@ -170,7 +150,15 @@
             margin-top: 2em;
             padding-top: 0.1em;
         }
-    </style>
+
+     @*   Add*@
+       .row.merged20 {
+     padding-left: 11.5em;
+          }
+        .sidebar.static{
+            margin-left: -8em;
+        }
+ </style>
     <div class="profile">
         <div class="header_pro">
             <img class="cover_img" src="/images/anhbia.jpg" alt="cover image">
@@ -232,7 +220,6 @@
                                     <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-action="Index" asp-controller="Home">Most Viewed Ideas</a></li>
                                     <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-action="Index" asp-controller="Home">Most Emotion ideas</a></li>
                                     <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-action="" asp-controller="">Latest Ideas</a></li>
-                                    <li class="nav_bar--item "><i class="fa-regular fa-comments"></i><a asp-action="PostIdea" asp-controller="Home">Latest Comments</a></li>
                                 </ul>
                             </div>
                         </div>
