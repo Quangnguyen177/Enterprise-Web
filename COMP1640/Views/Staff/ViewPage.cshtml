@@ -30,7 +30,7 @@
                 </div>
             </div>
             @*        <div class="new_idea">
-            <div class="post">*@
+        <div class="post">*@
 
 
             <div class="sub_container col-lg-6">
@@ -44,12 +44,12 @@
                             </a>
                         </figure>
                     </div>
-                     <div class="form_add_idea">
+                    <div class="form_add_idea">
                         <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
-                        <input class="form_control" type="text" placeholder="Readonly input here" readonly>
+                            <input class="form_control" type="text" placeholder="Readonly input here" readonly>
                         </a>
                     </div>
-                      <div class="btn_add">
+                    <div class="btn_add">
                         <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
                             <button type="button" class="btn btn-success">Add</button>
                         </a>
@@ -67,13 +67,13 @@
                                         <figure>
                                             <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
                                                 @if (@idea.idea_anonymous)    @*Anonymous*@
-                                                    {
-                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
-                                                    }
-                                                    else
-                                                    {
-                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
-                                                    }
+                                                {
+                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
+                                                }
+                                                else
+                                                {
+                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
+                                                }
                                                 <div class="name_account">
                                                     @if (@idea.idea_anonymous)    @*Anonymous*@
                                                     {
@@ -88,43 +88,43 @@
                                             </a>
                                         </figure>
                                     </div>
-                               
-                                        <div class="content">
-                                    
-                                            <div class="img_idea">
-                                                <div class="title_idea">
-                                                    <div class="tag">
-                                                        <a asp-action="" asp-controller="">
-                                                            @foreach (var c in @ViewBag.Category)
+
+                                    <div class="content">
+
+                                        <div class="img_idea">
+                                            <div class="title_idea">
+                                                <div class="tag">
+                                                    <a asp-action="" asp-controller="">
+                                                        @foreach (var c in @ViewBag.Category)
+                                                        {
+                                                            if (@c.CategoryId == @idea.CategoryId)
                                                             {
-                                                                if (@c.CategoryId == @idea.CategoryId)
-                                                                {
-                                                                    <span>@c.category_name</span>     @*Category*@
-                                                                }
+                                                                <span>@c.category_name</span>     @*Category*@
                                                             }
-                                                        </a>
-                                                    </div>
-                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
-                                                       <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
-                                                    </a> 
+                                                        }
+                                                    </a>
                                                 </div>
-                                            
-                                                 <div class="file_idea ">
-                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
-                                                        <h2 class="content_post">@idea.idea_content</h2>
-                                                    </a> @*Content*@
-                                                </div>
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                    <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
+                                                </a>
+                                            </div>
+
+                                            <div class="file_idea ">
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                    <h2 class="content_post">@idea.idea_content</h2>
+                                                </a> @*Content*@
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
-                             
+
                                 <div class="felling  nav_bar--item--separate3">
                                     <div class="more">
                                         <ul class="felling_idea">
                                             <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
                                             @*  <li>
-                                        <label placeholder="React point: "><p id="total">@react_point</p></label>
-                                        </li>*@
+                                    <label placeholder="React point: "><p id="total">@react_point</p></label>
+                                    </li>*@
                                             <li>
                                                 <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
                                             </li>
@@ -142,7 +142,7 @@
                                         <a asp-action="Profile" asp-controller="Staff">
                                             <figure class="avata_comment">
                                                 <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
-                                                 alt="avata" />
+                                                     alt="avata" />
                                             </figure>
                                         </a>
                                     </div>
@@ -187,14 +187,14 @@
             <div class="prev">
                 @if (@pre > 0)
                 {
-                    <span class="text"  onclick="BtnPre()" >Prev</span>
+                    <span class="text" onclick="BtnPre()">Prev</span>
                     <div class="left">
                     </div>
                 }
-            </div>    
-        
+            </div>
+
             <div class="next">
-                 @if (@next*5-@ViewBag.Total<5)
+                @if (@next * 5 - @ViewBag.Total < 5)
                 {
                     <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
                     <div class="right">
@@ -205,12 +205,11 @@
     </div>
 
     <script>
-  
-        function BtnNext(){
-            window.location.replace('/Staff/ViewPage?pageNum=@next&viewType=@viewType');
+        function BtnNext() {
+                window.location.replace('/Staff/ViewPage?pageNum=@next&viewType=@viewType');
         }
-        function BtnPre(){
-            window.location.replace('/Staff/ViewPage?pageNum=@pre&viewType=@viewType');
+        function BtnPre() {
+                window.location.replace('/Staff/ViewPage?pageNum=@pre&viewType=@viewType');
         }
     </script>
 }
