@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "_LayoutManageClosureDate";
+    var count = 1;
 }
 
 @*Main content*@
@@ -51,7 +52,7 @@
                     <table class="table table-hover table-nowrap">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">Event ID</th>
+                                <th scope="col">No.</th>
                                 <th scope="col">Event Name</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -60,7 +61,7 @@
                             @foreach (var e in ViewBag.Events)
                             {
                                 <tr>
-                                    <td>@e.EventId</td>
+                                    <td>@count</td>
                                     <td>@e.EventName</td>
                                     <td class="text-end">
                                         <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
@@ -68,6 +69,7 @@
                                         <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
                                     </td>
                                 </tr>
+                                count = count + 1;
                             }
                         </tbody>
                     </table>
