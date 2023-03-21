@@ -99,6 +99,33 @@ namespace COMP1640.Controllers
 
         }
 
+        //[HttpGet]
+        //public IActionResult SetStatus(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(Db.Events.Find(id));
+        //}
+        [HttpPost]
+        public IActionResult SetStatus(int id)
+        {
+            var eve = Db.Events.FirstOrDefault(i => i.EventId == id);
+            if(eve.Status == true) { eve.Status = false; }
+            else if (eve.Status == false) { eve.Status = true; }
+            if (ModelState.IsValid)
+            {
+                Db.Events.Update(eve);
+                Db.SaveChanges();
+                return RedirectToAction(nameof(ManageClosureDate));
+            }
+            else
+            {
+                return View(eve);
+            }
+        }
+
         [HttpGet]
         public IActionResult EditClosureDate(int? id)
         {

@@ -17,6 +17,8 @@ namespace COMP1640.Models
         [DataType(DataType.Date)]
         public Nullable<DateTime> Last_closure_date { get; set; }
 
+        public Boolean Status { get; set; }
+
         //-------------------------
         public ICollection<Idea> Ideas { get; set; }
     }
