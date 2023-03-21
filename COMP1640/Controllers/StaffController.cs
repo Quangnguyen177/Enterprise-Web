@@ -3,23 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Newtonsoft.Json;
-using static Microsoft.EntityFrameworkCore.Internal.AsyncLock;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using System.IO.Compression;
 using Microsoft.AspNetCore.Authorization;
 
 namespace COMP1640.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Staff")]
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext Db;
@@ -63,6 +59,7 @@ namespace COMP1640.Controllers
         {
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+            ViewBag.Event = Db.Events.ToList();
             return View(Db.Categories.ToList());
         }
 
@@ -94,7 +91,7 @@ namespace COMP1640.Controllers
                 Category = category,
                 ReactPointId = reactPoint.ReactPointId,
                 Reacpoint = reactPoint,
-
+                
             };
             Db.Add(newIdea);
             Db.SaveChanges();
@@ -181,7 +178,6 @@ namespace COMP1640.Controllers
             Db.SaveChanges();
             return RedirectToAction("EditIdea", new { id = ideaId });
         }
-
 
         //comment
         [HttpPost]
@@ -314,15 +310,6 @@ namespace COMP1640.Controllers
             return Json(result);
         }
 
-        //check if current time is earlier than 1st closure date 
-        //public bool CheckFirtClosureDate(Idea idea)
-        //    {
-        //        DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-        //        if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
-        //        else return false;
-        //    }
-
-        [Authorize(Roles = "Staff")]
         public async Task<IActionResult> DetailIdea(int id)
         {
             ViewBag.Category = Db.Categories.ToList();
@@ -447,14 +434,6 @@ namespace COMP1640.Controllers
             return Json(result);
         }
 
-
-
-
-        // What the actual k? why login here?
-        public IActionResult Login()
-        {
-            return View();
-        }
         public IActionResult Profile(string? id)
         {
             ViewBag.Category = Db.Categories.ToList();
@@ -474,17 +453,11 @@ namespace COMP1640.Controllers
             return View(Db.Profile.FirstOrDefault(p => p.Id.Equals(id)));
         }
 
-        //public bool CheckFinalClosureDate(int ideaId)
-        //{
-        //    Idea idea = Db.Ideas.Find(ideaId);
-        //    DateTime finalClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-        //    if (DateTime.Compare(DateTime.Now, finalClosureDate) < 0) return true;
-        //    else return false;
-        //}
         public IActionResult TermsConditions()
         {
             return View();
         }
+
         public IActionResult CatIdea(int? id, int pageNum, string viewType)
         {
             if (pageNum == 1) ViewBag.PageNum = 1;
@@ -505,6 +478,7 @@ namespace COMP1640.Controllers
             ViewBag.CatId = id;
             return View("ViewPage",page);
         }
+
         public IActionResult DepIdea(int? id, int pageNum, string viewType)
         {
             if (pageNum == 1) ViewBag.PageNum = 1;
@@ -524,5 +498,22 @@ namespace COMP1640.Controllers
             ViewBag.DepId = id;
             return View("ViewPage", page);
         }
+
+        //check if current time is earlier than 1st closure date 
+        //public bool CheckFirtClosureDate(Idea idea)
+        //{
+
+        //    DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
+        //    if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
+        //    else return false;
+        //}
+
+        //public bool CheckFinalClosureDate(int ideaId)
+        //{
+        //    Idea idea = Db.Ideas.Find(ideaId);
+        //    DateTime finalClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
+        //    if (DateTime.Compare(DateTime.Now, finalClosureDate) < 0) return true;
+        //    else return false;
+        //}
     }
 }
