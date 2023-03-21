@@ -73,8 +73,8 @@ namespace COMP1640.Controllers
 
         public IActionResult ManageClosureDate()
         {
-            ViewBag.Events = Db.Events.ToList();
-            return View();
+/*            ViewBag.Events = */
+            return View(Db.Events.ToList());
         }
 
         [HttpGet]
@@ -163,6 +163,16 @@ namespace COMP1640.Controllers
                 return RedirectToAction(nameof(ManageClosureDate));
             }
             return RedirectToAction(nameof(ManageClosureDate));
+        }
+        [HttpPost]
+        public IActionResult SearchEvent(string keyword)
+        {
+            var events = Db.Events.Where(p => p.EventName.Contains(keyword)).ToList();
+            if (events.Count == 0)
+            {
+                TempData["Message"] = "No event found !";
+            }
+            return View("ManageClosureDate", events);
         }
 
         public IActionResult ManageAccount()

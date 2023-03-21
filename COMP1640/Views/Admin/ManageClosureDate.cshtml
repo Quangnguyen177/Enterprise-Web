@@ -1,4 +1,4 @@
-﻿@model COMP1640.Models.Event;
+﻿@model List<Event>;
 @{
     Layout = "_LayoutManageClosureDate";
     var count = 1;
@@ -50,6 +50,12 @@
                     <h5 class="mb-0">Setting event</h5>
                 </div>
                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
+                <form asp-action="SearchEvent" asp-controller="Admin" method="post">
+                        <input type="search" placeholder="Search title..." name="keyword">
+                        <button type="submit">Search</button>
+                </form>
+                <a asp-action="ManageClosureDate" asp-controller="Admin">Reset</a>
+                
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
                         <thead class="table-light">
@@ -61,13 +67,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var e in ViewBag.Events)
+                            @foreach (var e in Model)
                             {
                                 <tr>
                                     <td>@count</td>
                                     <td>@e.EventName</td>
                                     <form asp-action="SetStatus" asp-controller="Admin" method="post">
-                                        <input hidden class="form-control" asp-for="@Model.EventId" name="id" value="@e.EventId">
+                                        <input hidden class="form-control" asp-for="@e.EventId" name="id" value="@e.EventId">
                                         @if (e.Status == true)
                                         {
                                             <td>
