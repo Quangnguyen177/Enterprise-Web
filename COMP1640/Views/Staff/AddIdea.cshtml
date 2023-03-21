@@ -2,6 +2,7 @@
 @{
     Layout = "_LayoutPostIdea";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
+    var evt = ViewBag.Event;
 }
 
 <!doctype html>
@@ -54,6 +55,19 @@
                 <textarea form="add" name="content" placeholder="Post content idea here..." required></textarea>   @*content*@
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
+
+                    @*ducmt*@
+                    <div class="form-group">
+                        <select class="form-select" name="event" required>
+                            @*event*@
+                            @foreach (var e in evt)
+                            {
+                                <option style="color:white" value="@e.EventId">@e.EventName</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
                 <div class="options">
@@ -81,6 +95,9 @@
                         </ul>
                     </div>
                 </div>
+
+                
+
                 <button type="button" data-toggle="modal" data-target="#exampleModal">
                     Post
                 </button>

@@ -23,7 +23,7 @@
     <div class="app">
         <header class="header">
             <div class="logo">
-                <a href="/staff/viewpage?pagenum=1&viewtype=mostview">
+                <a href="/staff/viewpage?pagenum=1&viewtype=lastest">
                     <img style="display: inline-block;" src="/images/logo.png"
                          width="100px" />
                 </a>
@@ -110,9 +110,9 @@
             </div>
             <div class="nav_icon">
                 <ul class="menu icon">
-                    <li><a style="color: #373b3f; text-decoration: none" href="/staff/viewpage?pagenum=1&viewtype=mostview"><i class="fa-solid fa-house"></i></a></li>
-                    <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; text-decoration: none" asp-action="Login" asp-controller="Staff"><i class="fa-solid fa-right-from-bracket"></i></a></li>  &nbsp &nbsp
-                    <li><a style="color: #373b3f; text-decoration: none" asp-area="Identity" asp-page="/Account/Login"><i class="fa-solid fa-user"></i></a></li>
+                    
+                    <li><a style="color: #373b3f; text-decoration: none" href="/staff/viewpage?pagenum=1&viewtype=lastest"><i class="fa-solid fa-house"></i></a></li>
+                    <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; text-decoration: none" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F"><i class="fa-solid fa-right-from-bracket"></i></a></li>  &nbsp &nbsp
                 </ul>
             </div>
             

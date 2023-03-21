@@ -10,6 +10,7 @@ using System.Text;
 using COMP1640.ChartModels;
 using Newtonsoft.Json;
 using System;
+using COMP1640.ViewModels;
 
 namespace COMP1640.Controllers
 {
@@ -83,7 +84,16 @@ namespace COMP1640.Controllers
 
         public IActionResult Dashboard()
         {
-            return View();
+            List<TopContributor> list = new List<TopContributor>();
+            var ideas = context.Ideas.Include(i => i.Profile.Department).ToList();
+            var groupById = ideas.GroupBy(i => i.Profile);
+            foreach (var group in groupById)
+            {
+                list.Add(new TopContributor(group.Key, group.Count()));
+            }
+            list = list.OrderByDescending(i => i.PostedIdea).Take(5).ToList();
+
+            return View(list);
         }
         public IActionResult Idea()
         {

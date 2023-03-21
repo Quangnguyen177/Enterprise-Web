@@ -1,0 +1,160 @@
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .idea_mobile {
+        display: block;
+    }
+
+    .col-xl-3 {
+        width: 100%;
+    }
+
+    .mx-n1 {
+        display: none;
+    }
+        .table th {
+            display: none;
+        }
+
+    table th,
+    table td {
+        display: flex;
+        border-bottom: none;
+    }
+
+    table {
+        margin-bottom: 2em;
+    }
+
+        table tr:last-child td {
+            border-bottom: 1px solid #ccc;
+        }
+
+
+        table td:nth-of-type(1):before {
+            content: "ID";
+            padding-right: 9em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(2):before {
+            content: "Content";
+            padding-right: 6em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(3):before {
+            content: "Date";
+            padding-right: 7.5em;
+            font-weight: 600;
+        }
+
+
+        table td:nth-of-type(4):before {
+            content: "Anonymous";
+            padding-right: 4em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(5):before {
+            content: "Profile ID";
+            padding-right: 6em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(6):before {
+            content: "Idea ID";
+            padding-right: 7em;
+            font-weight: 600;
+        }
+
+
+    #table {
+        overflow-x: auto;
+    }
+
+    .card-header {
+        text-align: center;
+        padding-bottom: 2em;
+    }
+}
+
+@media only screen and (width: 37.5em) {
+    .card-header h5 {
+        font-size: 1.3em;
+    }
+
+    .table {
+        font-size: 1em;
+    }
+
+    .col-xl-3 {
+        width: 50%;
+    }
+
+    table td:nth-of-type(1):before {
+        content: "ID";
+        padding-right: 9em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(2):before {
+        content: "Content";
+        padding-right: 6em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(3):before {
+        content: "Date";
+        padding-right: 7.5em;
+        font-weight: 600;
+    }
+
+
+    table td:nth-of-type(4):before {
+        content: "Anonymous";
+        padding-right: 4em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(5):before {
+        content: "Profile ID";
+        padding-right: 6em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(6):before {
+        content: "Idea ID";
+        padding-right: 7em;
+        font-weight: 600;
+    }
+
+    #table {
+        overflow-x: auto;
+    }
+
+    .card-header {
+        text-align: center;
+        padding-bottom: 2em;
+    }
+}
+
+/*Tablet: width>=740px and width < 1024px*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .table {
+        font-size: 0.7em;
+    }
+    .header_app {
+        font-size: 0.8em;
+    }
+    .body_dashboard {
+        margin-left: -2em;
+        margin-right: -2em;
+    }
+    .comment_table {
+        padding-top: 8em;
+    }
+
+    .text_center {
+        font-size: 0.9em;
+    }
+}

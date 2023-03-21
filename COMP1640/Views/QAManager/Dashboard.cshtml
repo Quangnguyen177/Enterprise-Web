@@ -1,9 +1,10 @@
-﻿@{
-    Layout = "_QAM";
-}
+﻿@using COMP1640.ViewModels
+@model List<TopContributor>
 @{
     ViewData["Title"] = "Dashboard";
+    Layout = "_QAM";
 }
+
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
     <div class="dashboard">
@@ -77,29 +78,32 @@
                 </div>
             </div>
             <div class="contributor">
-                <h4>Contributor table</h4>
+                <h4>Top 5 Contributors</h4>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
+                        <tr>                       
                             <th scope="col">Profile ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">DoB</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Address</th>
                             <th scope="col">DepID</th>
+                            <th scope="col">Number of Posted Ideas</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>P1</td>
-                            <td>Minh Luu thi</td>
-                            <td>28/06/2002</td>
-                            <td>Female</td>
-                            <td>Hung Yen</td>
-                            <td>1</td>
-                        </tr>
+                        @foreach(var item in @Model)
+                        {                     
+                            <tr>                         
+                                <td>@item.Infor.Id</td>
+                                <td>@item.Infor.Name</td>
+                                <td>@item.Infor.DoB.ToString("MM/dd/yyyy")</td>
+                                <td>@item.Infor.Gender</td>
+                                <td>@item.Infor.Address</td>
+                                <td>@item.Infor.Department.Dep_name</td>
+                                <td>@item.PostedIdea</td>
+                            </tr>                         
+                        }                       
                     </tbody>
                 </table>
             </div>
@@ -109,5 +113,4 @@
 ]
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
 <script src="~/js/create-chart.js"></script>

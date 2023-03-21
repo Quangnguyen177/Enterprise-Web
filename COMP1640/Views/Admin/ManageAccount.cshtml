@@ -2,6 +2,7 @@
 
 @{
     Layout = "_LayoutManageAccount";
+    var count = 1;
 }
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
@@ -59,13 +60,14 @@
                                 @foreach (var acc in Model)
                                 {
                                     <tr>
-                                        <td>@acc.Id</td>
+                                        <td>@count</td>
                                         <td>@acc.Email</td>
                                         <td>@acc.Name</td>
                                         <td class="text-end">
                                             <a class="btn btn-sm btn-set" asp-controller="Admin" asp-action="EditAccount" asp-route-id="@acc.Id">Edit</a>
                                         </td>
                                     </tr>
+                                    count = count + 1;
                                 }
                             </tbody>
                         </table>

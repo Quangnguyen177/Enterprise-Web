@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Security.Claims;
+using System.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace COMP1640.Controllers
 {
@@ -12,9 +14,12 @@ namespace COMP1640.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext Db;
-        public HomeController(ApplicationDbContext context)
+        private readonly UserManager<Profile> _userManager;
+        public HomeController(ApplicationDbContext context,
+                              UserManager<Profile> userManager)
         {
             Db = context;
+            _userManager = userManager;
         }
 
         [Route("/")]
@@ -22,13 +27,31 @@ namespace COMP1640.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = Db.Profile.FirstOrDefault(a => a.Id == userId);
+            var userRole = await _userManager.GetRolesAsync(user);
+            var ur = userRole.Last();
             if (user.Name == null)
             {
                 return Redirect("Identity/Account/Manage/Index");
             }
-            else
+            else if (ur == "Staff")
             {
                 return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
+            }
+            else if (ur == "Quality Assurance Manager")
+            {
+                return RedirectToAction("Index", "QAManager");
+            }
+            else if (ur == "Quality Assurance Coordinator")
+            {
+                return RedirectToAction("ListIdea", "QACoordinator");
+            }
+            else if (ur == "Administrator")
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            else 
+            {
+                return View();    
             }
         }
 

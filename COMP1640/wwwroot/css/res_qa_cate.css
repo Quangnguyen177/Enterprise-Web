@@ -1,0 +1,159 @@
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .col-xl-3 {
+        width: 100%;
+    }
+
+    .mx-n1 {
+        display: none;
+    }
+
+    .table {
+        font-size: 0.9em;
+    }
+
+        .table th {
+            display: none;
+        }
+
+    table th,
+    table td {
+        display: flex;
+        border-bottom: none;
+    }
+
+    table {
+        margin-bottom: 2em;
+    }
+
+        table tr:last-child td {
+            border-bottom: 1px solid #ccc;
+        }
+
+
+        table td:nth-of-type(1):before {
+            content: "Category ID";
+            padding-right: 5em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(2):before {
+            content: "Category Name";
+            padding-right: 3em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(3):before {
+            content: "Edit";
+            padding-right: 8em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(4):before {
+            content: "Delete";
+            padding-right: 7em;
+            font-weight: 600;
+        }
+
+    .delete .icon {
+        display: none;
+    }
+
+    .delete {
+        width: 5.5em;
+    }
+
+    #table {
+        overflow-x: auto;
+    }
+
+    .card-header {
+        text-align: center;
+        padding-bottom: 2em;
+    }
+
+    .title {
+        font-size: 1.8em;
+    }
+}
+
+/*Tablet: 600px*/
+@media only screen and (width: 37.5em) {
+
+    .col-10 {
+        margin-left: -1.5em;
+        margin-top: 2em;
+    }
+    .card-header h5 {
+        font-size: 1.3em;
+    }
+
+    .table {
+        font-size: 1em;
+    }
+
+    .col-xl-3 {
+        width: 50%;
+    }
+
+    table td:nth-of-type(1):before {
+        content: "Category ID";
+        padding-right: 5em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(2):before {
+        content: "Category Name";
+        padding-right: 3em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(3):before {
+        content: "Edit";
+        padding-right: 8em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(4):before {
+        content: "Delete";
+        padding-right: 7em;
+        font-weight: 600;
+    }
+
+
+    #table {
+        overflow-x: auto;
+    }
+
+    .card-header {
+        text-align: center;
+        padding-bottom: 2em;
+    }
+    .table {
+        font-size: 1.1em;
+    }
+}
+
+/*Tablet: width>=740px and width < 1024px*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .table {
+        font-size: 1em;
+    }
+    .header_app {
+        margin-left: -9em;
+    }
+
+    .title {
+        font-size: 1.8em;
+    }
+    .category_table {
+        padding-top: 8em;
+    }
+
+    .text_center {
+        font-size: 0.9em;
+    }
+    .table {
+        font-size: 0.7em;
+    }
+}
