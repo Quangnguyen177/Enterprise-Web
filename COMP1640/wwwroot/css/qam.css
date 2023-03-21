@@ -734,3 +734,99 @@ thead {
     font-size: 1.3em;
     margin-left: -30px;
 }
+
+/*Mobile & tablet: width<1024px*/
+@media only screen and (max-width: 63.9375em) {
+    .search {
+        display: none;
+    }
+
+    .text_center {
+        display: none;
+    }
+
+    .header_app {
+        margin-left: -6em;
+    }
+
+    .nav_bar--item--separate::after {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .nav.iterm {
+        display: none;
+    }
+
+    .logout {
+        display: none;
+    }
+
+
+}
+
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .icon_email {
+        display: none;
+    }
+    .app_qam {
+        margin-left: -3.5em;
+        margin-right: 0.4em;
+    }
+    .account_info {
+        display: none;
+    }
+   /* main {
+        margin-left: -32%;
+        font-size: 0.8em;
+    }
+    .content_post {
+        padding-top: 4em;
+    }
+    .add_btn {
+        margin-left: -38em;
+    }
+    .table {
+        font-size: 0.7em;
+    }
+    .burger {
+        top: 1em;
+    }
+    .title {
+        margin-left: -1.3em;
+        font-size: 1.5em;
+    }
+    .cssbuttons-io-button {
+        font-size: 0.9em;
+    }
+    .edit {
+        font-size: 1em;
+    }
+    .delete .icon {
+        display: none;
+    }
+    .delete .text {
+        font-size: 1em;
+    }
+    .delete{
+        width: 6em;
+    }
+    .category_table {
+        margin-left: 2em
+    }*/
+}
+
+@media only screen and (width: 37.5em) {
+   
+}
+
+/*Tablet: width>=740px and width < 1024px*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .table {
+        font-size: 0.9em;
+    }
+}

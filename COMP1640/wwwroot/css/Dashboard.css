@@ -139,7 +139,8 @@ a {
 }
 
 .flex-grow-1 {
-    flex-grow: 1 !important;
+   /* flex-grow: 1 !important;*/
+    width: 1245px
 }
 
 .h-screen {
@@ -629,8 +630,6 @@ figcaption, figure, main {
     margin: 0;
 }
 
-
-
 .mb-6 {
     margin-bottom: 1.5rem !important;
 }
@@ -675,12 +674,6 @@ figcaption, figure, main {
 .col {
     flex: 1 0 0%;
 }
-
-
-/*.text-muted {
-    --x-text-opacity: 1;
-    color: rgba(var(--x-muted-rgb), var(--x-text-opacity)) !important;
-}*/
 
 .mb-2 {
     margin-bottom: 0.5rem !important;
@@ -855,18 +848,6 @@ h5, .h5 {
         vertical-align: bottom;
     }
 
-/*.table-light {
-    --x-table-bg: #FFF;
-    --x-table-striped-bg: #f2f2f2;
-    --x-table-striped-color: #000;
-    --x-table-active-bg: #e6e6e6;
-    --x-table-active-color: #000;
-    --x-table-hover-bg: #fafafa;
-    --x-table-hover-color: #000;
-    color: #000;
-    border-color: #e6e6e6;
-}*/
-
 thead, tbody, tfoot, tr, td, th {
     border-color: inherit;
     border-style: solid;
@@ -896,13 +877,6 @@ thead, tbody, tfoot, tr, td, th {
     vertical-align: middle;
 }
 
-/*.table > :not(caption) > * > * {
-    padding: 1rem 1.5rem;
-    background-color: var(--x-table-bg);
-    border-bottom-width: 1px;
-    box-shadow: inset 0 0 0 9999px var(--x-table-accent-bg);
-}*/
-
 .card-footer:last-child {
     border-radius: 0 0 0.75rem 0.75rem;
 }
@@ -930,6 +904,184 @@ thead, tbody, tfoot, tr, td, th {
 /*icon hide password*/
 .field-icon::before {
     cursor:pointer
+}
+/*Bar*/
+.icon_bar {
+    display: none;
+}
+
+input[type = "checkbox"] {
+    -webkit-appearance: none;
+    display: none;
+    visibility: hidden;
+}
+
+.bar {
+    position: relative;
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    top: 20%;
+}
+
+    .bar span {
+        position: absolute;
+        width: 30px;
+        height: 4px;
+        background: black;
+        border-radius: 100px;
+        display: inline-block;
+        transition: 0.3s ease;
+        left: 0;
+    }
+
+        .bar span.top {
+            top: 11px;
+        }
+
+        .bar span.middle {
+            top: 19px;
+        }
+
+        .bar span.bottom {
+            bottom: 9px;
+        }
+
+input[type]:checked ~ span.top {
+    transform: rotate(45deg);
+    transform-origin: top left;
+    width: 33px;
+    left: 1.7px;
+}
+
+input[type]:checked ~ span.bottom {
+    transform: rotate(-49deg);
+    transform-origin: top left;
+    width: 33px;
+    bottom: -0.2px;
+}
+
+input[type]:checked ~ span.middle {
+    transform: translateX(-20px);
+    opacity: 0;
+}
+
+/*icon hide password*/
+.field-icon::before {
+    cursor:pointer
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: fadeIn linear 0.2s;
+    z-index: 1000;
+}
+
+.idea_mobile {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 360px;
+    background: white;
+    transform: translateX(-100%);
+    float: right;
+    opacity: 0;
+    transition: transform linear 0.2s, opacity linear 0.3s;
+    border-radius: 7px;
+    letter-spacing: 0.2px;
+}
+
+.all_idea_mobile {
+    margin-top: 2em;
+}
+
+.shortcuts_mobile {
+    display: inline-block;
+    list-style: outside none none;
+    font-size: 18px;
+    text-transform: capitalize;
+    display: inline-block;
+    position: relative;
+    color: #757575;
+    line-height: 65px;
+    padding-left: 1.3em;
+    font-weight: 500;
+}
+.shortcuts_mobile li{
+ margin-bottom: -0.9em;
+}
+
+        .shortcuts_mobile a:hover {
+            text-decoration: none;
+        }
+
+.idea_mobile h1 {
+    color: #424242;
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 20px 20px 0px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 1em;
+}
+
+.input_check:checked ~ .overlay {
+    display: block;
+}
+
+.input_check:checked ~ .idea_mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+.nav_bar--item--separate2::after {
+    content: "";
+    display: block;
+    margin-left: 0.9em;
+    height: 0.3px;
+    transform: translateY(21px);
+    background-color: #e3e5e8;
+    width: 95%;
+}
+
+/*Mobile & tablet: width<1024px*/
+@media only screen and (max-width: 63.9375em){
+    .navbar-vertical.navbar-expand-lg {
+        display: none;
+    }
+    .col-xl-3 {
+        width: 50%;
+    }
+
+    .icon_bar {
+        display: inline-block;
+/*        width: 20%;*/
+        padding-left: 92%;
+        margin-top: -2em;
+    }
+    .mx-n1{
+        display: none;
+    }
+    .shortcuts_mobile a{
+        padding-right: 2em;
+        font-size: 0.95em;
+        font-weight: 500;
+    }
+    .shortcuts_mobile i{
+       padding-right: 1.2em;
+    }    
 }
 
 

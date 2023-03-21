@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FhSg0dWuBvI75JcQMUQOnPRSNUkZ88UEQaZrNKbqLBIr6RFz3Urwa97j6YIraQ2GNg3j0UDpNiZKI+nOejnFGQ==",
+  "dgSpecHash": "bBqcjV06t+FYma2XmTVKOvqGPK1QkAZd7MeyVTz7DQxmncaubM+0g+d8eGLktkHBmQHku5BEJo/F0q9g527grg==",
   "success": true,
-  "projectFilePath": "D:\\FinalProject\\WEB\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+  "projectFilePath": "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\COMP1640.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dan Truong\\.nuget\\packages\\bootstrap\\5.2.3\\bootstrap.5.2.3.nupkg.sha512",
     "C:\\Users\\Dan Truong\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -142,12 +142,5 @@
     "C:\\Users\\Dan Truong\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Dan Truong\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\FinalProject\\WEB\\Enterprise-Web\\COMP1640\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

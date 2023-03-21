@@ -1,0 +1,226 @@
+﻿/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .idea_mobile {
+        display: block;
+    }
+
+    .col-xl-3 {
+        width: 100%;
+    }
+
+    .mx-n1 {
+        display: none;
+    }
+
+    .table {
+        font-size: 0.8em;
+    }
+
+        .table th {
+            display: none;
+        }
+
+    table th,
+    table td {
+        display: flex;
+        border-bottom: none;
+    }
+
+    table {
+        margin-bottom: 2em;
+    }
+
+        table tr:last-child td {
+            border-bottom: 1px solid #ccc;
+        }
+
+    .table_db td:nth-of-type(1):before {
+        content: "ID";
+        padding-right: 5em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(2):before {
+        content: "TITLE";
+        padding-right: 4em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(3):before {
+        content: "CONTENT";
+        padding-right: 5em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(4):before {
+        content: "FIRST_CLOURSE";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(5):before {
+        content: "FINAL_CLOURSE";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(6):before {
+        content: "ANONYMOUS";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(7):before {
+        content: "Action";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+    table td:nth-of-type(8):before {
+        content: "VIEW";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(9):before {
+        content: "PROFILE ID";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(10):before {
+        content: "CATEGORY ID";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(11):before {
+        content: "REACT POINT";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(12):before {
+        content: "DOCUMENT";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+
+    #table {
+        overflow-x: auto;
+    }
+
+    .card-header {
+        text-align: center;
+        padding-bottom: 2em;
+    }
+
+    .btn {
+        line-height: 0.6;
+    }
+}
+/*37.5em*/
+@media only screen and (width: 37.5em) {
+    .card-header h5 {
+        font-size: 1.3em;
+    }
+
+    .table {
+        font-size: 0.8em;
+    }
+
+    .col-xl-3 {
+        width: 50%;
+    }
+
+    .table_db td:nth-of-type(1):before {
+        content: "ID";
+        padding-right: 5em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(2):before {
+        content: "TITLE";
+        padding-right: 4em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(3):before {
+        content: "CONTENT";
+        padding-right: 5em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(4):before {
+        content: "FIRST_CLOURSE";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(5):before {
+        content: "FINAL_CLOURSE";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(6):before {
+        content: "ANONYMOUS";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(7):before {
+        content: "Action";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(8):before {
+        content: "VIEW";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(9):before {
+        content: "PROFILE ID";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(10):before {
+        content: "CATEGORY ID";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(11):before {
+        content: "REACT POINT";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(12):before {
+        content: "DOCUMENT";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+
+
+
+    #table {
+        overflow-x: auto;
+    }
+
+    .card-header {
+        text-align: center;
+        padding-bottom: 2em;
+    }
+}
+
+/*Tablet: width>=740px and width < 1024px*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .table {
+        font-size: 0.9em;
+    }
+}

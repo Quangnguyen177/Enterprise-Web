@@ -46,8 +46,12 @@
                     </div>
                      <div class="form_add_idea">
                         <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
-                        <input class="form-control" type="text" placeholder="Readonly input here" readonly>
-                           <button type="button" class="btn btn-success">Add</button>
+                        <input class="form_control" type="text" placeholder="Readonly input here" readonly>
+                        </a>
+                    </div>
+                      <div class="btn_add">
+                        <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
+                            <button type="button" class="btn btn-success">Add</button>
                         </a>
                     </div>
                 </div>
@@ -61,7 +65,7 @@
                                 <div class="detail_idea nav_bar--item--separate2">
                                     <div class="avata_information_idea">
                                         <figure>
-                                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
+                                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
                                                 @if (@idea.idea_anonymous)    @*Anonymous*@
                                                     {
                                                       <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
@@ -146,7 +150,7 @@
                                         <div class="form-group">
 
                                             <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration: none">
-                                                <input style="height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
+                                                <input style="width: 80%; height: 40px" class="form-control" rows="5" id="comment" placeholder="Post your comment..." />
                                             </a>
                                         </div>
                                     </div>

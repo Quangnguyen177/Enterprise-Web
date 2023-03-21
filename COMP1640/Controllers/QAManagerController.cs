@@ -7,6 +7,9 @@ using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
+using COMP1640.ChartModels;
+using Newtonsoft.Json;
+using System;
 
 namespace COMP1640.Controllers
 {
@@ -166,6 +169,81 @@ namespace COMP1640.Controllers
             }
             byte[] bytes = Encoding.ASCII.GetBytes(csv.ToString());
             return File(bytes, "text/csv", "Ideas.csv");
+        }
+
+        public JsonResult GetPieChartData()
+        {
+            var pieChartData = new List<PieChart>();
+            var departmentNames = context.Departments.Select(d => d.Dep_name).ToList();
+            var total = context.Profile.Count();
+            foreach (var name in departmentNames)
+            {
+
+                //i.created_date.Value.Month == DateTime.Now.Month &&
+                var ideas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.Profile.Department.Dep_name.Equals(name)).ToList();
+                int contributors = ideas.GroupBy(i => i.Profile.Id).Count();
+                double percent = (double)contributors * 100 / total;
+                pieChartData.Add(new PieChart(name, Math.Round(percent, 2)));
+
+            }
+            var result = JsonConvert.SerializeObject(pieChartData);
+            return Json(result);
+        }
+
+        public JsonResult GetLineChartData()
+        {
+            List<LineChart> res = new List<LineChart>();
+            var ideas = context.Ideas.Include(i => i.Profile.Department).ToList();
+            var departments = context.Departments.Select(d => d.Dep_name).ToList();
+            int[] totalIdeas = new int[12];
+            foreach (var department in departments)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    totalIdeas[i] = ideas.Where(idea => idea.Profile.Department.Dep_name.Equals(department) && idea.created_date.Value.Month == i + 1).Count();
+                }
+                LineChart data = new LineChart()
+                {
+                    Department = department,
+                    Total = totalIdeas.ToList(),
+                };
+                res.Add(data);
+            }
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+        public JsonResult GetBarChartData()
+        {
+            var data = new List<BarChart>();
+            var categories = context.Categories.ToList();
+            foreach (var cate in categories)
+            {
+                var total = context.Ideas.Where(i => i.CategoryId == cate.CategoryId).Count();
+                data.Add(new BarChart(cate.category_name, total));
+            }
+            data = data.OrderByDescending(d => d.NumOfUses).ToList();
+            var result = JsonConvert.SerializeObject(data);
+            return Json(result);
+        }
+
+        public JsonResult GetMixedChartData()
+        {
+            List<MixedChart> data = new List<MixedChart>();
+            //lay du lieu nhung idea trong vong 7 ngay ke tu idea gan nhan.
+            var lastestDate = context.Ideas.OrderByDescending(i => i.created_date).First().created_date;
+            var bound = lastestDate.Value.Date.AddDays(-6);
+            var ideas = context.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.created_date).Where(i => i.created_date >= bound).ToList();
+            while (bound <= lastestDate)
+            {
+                var selectedIdeas = ideas.Where(i => i.created_date.Value.Day == bound.Day).ToList();
+                var view = selectedIdeas.Sum(i => i.idea_view);
+                var point = selectedIdeas.Sum(i => i.Reacpoint.ThumbUp - i.Reacpoint.ThumbDown);
+                data.Add(new MixedChart(point, view, bound.ToString("MM/dd")));
+                bound = bound.AddDays(1);
+            }
+            var result = JsonConvert.SerializeObject(data);
+            return Json(result);
         }
     }
 }
