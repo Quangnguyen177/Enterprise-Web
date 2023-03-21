@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace COMP1640.Migrations
 {
-    public partial class run : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -366,10 +366,10 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "A", "79fc203f-176c-4ca6-b915-a21be5a7b64c", "Administrator", "Administrator" },
-                    { "B", "e4008b21-c243-4e92-9967-5e9212f31142", "Staff", "Staff" },
-                    { "C", "a2cb615c-af5e-47ed-881a-a788efed0eec", "Quality Assurance Manager", "Quality Assurance Manager" },
-                    { "D", "ff99b332-2e2d-4326-a52a-44755163ea2d", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+                    { "A", "f1da33d3-fe05-45de-a256-5dd6d4b60fdb", "Administrator", "Administrator" },
+                    { "B", "4a508958-ab2a-48be-9f4a-c39254fdee5c", "Staff", "Staff" },
+                    { "C", "2e781d74-d819-4734-83ce-9a0de9c740bb", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "aa06f74c-2a0d-4cc2-b187-169996beb3f5", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
                 });
 
             migrationBuilder.InsertData(
@@ -410,10 +410,10 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "Somewhere in the big gray sky", "", "55b207c5-c905-4708-bae4-425f5b417cd2", 1, new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEPIFrKciMIBMTCQolQcgBxgv3U8sXZKG35TKeCHmbIOAsVBrGS0qaV5VZ68S1ob//A==", "0983337621", false, "1f36fb80-a8b7-4f2e-8306-3caed34b481e", false, "Truong" },
-                    { "2", 0, "Somewhere in the big gray sky", "", "c3e1f7fe-0068-4981-8a46-b6430becbdda", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEBllEuCwH2AmMtf4PR2EBsXBgOUBJ46iTcKwC2qKb5Yy7o+22Ne4Ta/jJ7lGz2GxKQ==", "0329226528", false, "db545ecc-fc3c-4d04-aaab-f0b12fec3728", false, "Duke Mike The" },
-                    { "3", 0, "Somewhere in the big gray sky", "", "cf688151-7215-4f4c-bc8e-543a0bb1ba5b", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qam1@gmail.com", false, "Male", false, null, "Mike The Duke", null, "qam1@gmail.com", "AQAAAAEAACcQAAAAEENN6ec59kamCMtKvJeHpd+2YtQxj2ktPKWq+igIQiioJT5FjnZ6CoqCCn0XT0W59g==", "0329226528", false, "d080bf2e-5c59-4de0-a1a4-6648893c3bb2", false, "Mike The Duke" },
-                    { "4", 0, "Somewhere in the big gray sky", "", "e03140da-d7e2-4b64-b87e-202c4b1b2a77", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qac1@gmail.com", false, "Female", false, null, "Mai The Clone Duke", null, "qac1@gmail.com", "AQAAAAEAACcQAAAAEPOV/BwN7PmmKhYSXWlYLXmxMzzoFxfBPAoSVeQqP4xwjQL094cwWd0iT9XO4PDi/Q==", "0329226528", false, "d8df3617-e19a-4ce6-8ce3-eb2b422e65b3", false, "Mai The Duc" }
+                    { "1", 0, "Somewhere in the big gray sky", "", "fad3bf3c-c467-4bc8-ba82-8661e90d8d70", 1, new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEGsM2GUl+Qma3cXCanKS+9nmSZsszirTORhhd9QIz6eXDb7qEi9HP1UZYES9Ic/NLQ==", "0983337621", false, "02cfd4d8-de69-4ecc-bade-20cbc2dfce23", false, "Truong" },
+                    { "2", 0, "Somewhere in the big gray sky", "", "2190dc3c-3a66-43e9-8d38-210815544486", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAENifggwa/4vQVzZ/OQ48cjhOivYQAILejDlEO7N7dV5ejRne/z9Oa1UM/eJu+Ilh8w==", "0329226528", false, "3d801263-8f5e-4794-9047-54f7a8a56e73", false, "Duke Mike The" },
+                    { "3", 0, "Somewhere in the big gray sky", "", "83f85671-664e-4de5-9700-83331a0ab55c", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qam1@gmail.com", false, "Male", false, null, "Mike The Duke", null, "qam1@gmail.com", "AQAAAAEAACcQAAAAEOLcIao/AkBoPHKE06mun32lzVQRs8BC/UKE6RfrT+3cwagZqoIz+Uf+yJajNPDYQA==", "0329226528", false, "26192ec6-53ee-43ba-8f6f-24dfdb9f34bc", false, "Mike The Duke" },
+                    { "4", 0, "Somewhere in the big gray sky", "", "07a2d68b-93f4-4ca2-a3a2-eb55a49b02d0", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qac1@gmail.com", false, "Female", false, null, "Mai The Clone Duke", null, "qac1@gmail.com", "AQAAAAEAACcQAAAAEJn8adlHPupPq91vf6Q2XS8xI0w2u1Mo6gmiVGFnlioq+d8hJkj/u411Zgo1+02Z9g==", "0329226528", false, "8004abd2-7e6a-45e9-ae12-383e34c98747", false, "Mai The Duc" }
                 });
 
             migrationBuilder.InsertData(

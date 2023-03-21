@@ -2330,7 +2330,6 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\EditIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\EditIdea.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
@@ -2921,7 +2920,6 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SetClosureDate.cshtml.g.cs

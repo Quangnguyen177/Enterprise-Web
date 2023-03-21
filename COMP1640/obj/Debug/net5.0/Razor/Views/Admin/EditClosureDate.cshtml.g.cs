@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
+#line 1 "E:\GitHub\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
 using COMP1640;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
+#line 2 "E:\GitHub\Enterprise-Web\COMP1640\Views\_ViewImports.cshtml"
 using COMP1640.Models;
 
 #line default
@@ -69,7 +69,7 @@ using COMP1640.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 2 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\EditClosureDate.cshtml"
+#line 2 "E:\GitHub\Enterprise-Web\COMP1640\Views\Admin\EditClosureDate.cshtml"
   
     Layout = "_LayoutSetClosureDate";
 
@@ -77,7 +77,7 @@ using COMP1640.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\Views\Admin\EditClosureDate.cshtml"
+#line 5 "E:\GitHub\Enterprise-Web\COMP1640\Views\Admin\EditClosureDate.cshtml"
  if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
 

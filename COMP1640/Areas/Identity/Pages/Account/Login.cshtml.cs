@@ -45,6 +45,7 @@ namespace COMP1640.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
+            [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters", MinimumLength = 6)]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
