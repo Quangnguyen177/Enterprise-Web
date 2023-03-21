@@ -73,15 +73,55 @@ namespace COMP1640.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult SetClosureDate()
         {
             return View();
         }
-
-        public IActionResult EditClosureDate()
+        [HttpPost]
+        public IActionResult SetClosureDate(Event eve)
         {
-            return View();
+            Db.Events.Add(eve);
+            Db.SaveChanges();
+            return RedirectToAction(nameof(ManageClosureDate));
+        }
+
+        [HttpGet]
+        public IActionResult EditClosureDate(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View(Db.Events.Find(id));
+        }
+
+        [HttpPost]
+        public IActionResult EditClosureDate(Event eve)
+        {
+            if (ModelState.IsValid)
+            {
+                Db.Events.Update(eve);
+                Db.SaveChanges();
+                return RedirectToAction(nameof(ManageClosureDate));
+            }
+            else
+            {
+                return View(eve);
+            }
+        }
+
+        public IActionResult DeleteClosureDate(int? id)
+        {
+            var ideas_event = Db.Ideas.Where(ideas => ideas.EventId == id).ToList();
+            if (ideas_event.Count == 0)
+            {
+                var eve = Db.Events.Find(id);
+                Db.Events.Remove(eve);
+                Db.SaveChanges();
+                return RedirectToAction(nameof(ManageClosureDate));
+            }
+            return RedirectToAction(nameof(ManageClosureDate));
         }
         
         public IActionResult ManageAccount()
@@ -176,6 +216,7 @@ namespace COMP1640.Controllers
 
         public IActionResult ManageClosureDate()
         {
+            ViewBag.Events = Db.Events.ToList();
             return View();
         }
     }

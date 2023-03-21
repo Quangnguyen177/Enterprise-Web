@@ -1,4 +1,5 @@
-﻿@{
+﻿@model COMP1640.Models.Event;
+@{
     Layout = "_LayoutSetClosureDate";
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
@@ -7,28 +8,34 @@
         <a class="back" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
         <div class="title">Edit Closure Date</div>
         <div class="content">
-            <form action="#">
+            <form asp-action="EditClosureDate" asp-controller="Admin" method="post">
                 <div class="user-details">
                     <div class="search" action="">
-                        <input type="search" placeholder="Search title..." required>
+                        <input type="search" placeholder="Search title...">
                         <button type="submit">Search</button>
                     </div>
+                    @*Duong code*@
+                    <div class="input-box">
+                        <span class="details">Event Name</span>
+                        <input type="text" asp-for="@Model.EventName" required>
+                    </div>
+                    @*End*@
                     <div class="input-box">
                         <span class="details"><b>Old</b> First Closure Date</span>
-                        <input type="date" placeholder="Enter old first closure date" required>
+                        <input type="date" asp-for="@Model.First_closure_date" placeholder="Enter old first closure date" required>
                     </div>
-                    <div class="input-box">
+@*                    <div class="input-box">
                         <span class="details"><b>New</b> First Closure Date</span>
-                        <input type="date" placeholder="Enter new first closure date" required>
-                    </div>
+                        <input type="date" placeholder="Enter new first closure date">
+                    </div>*@
                     <div class="input-box">
                         <span class="details"><b>Old</b> Final Closure Date</span>
-                        <input type="date" placeholder="Enter old final closure date" required>
+                        <input type="date" asp-for="@Model.Last_closure_date" placeholder="Enter old final closure date" required>
                     </div>
-                    <div class="input-box">
+@*                    <div class="input-box">
                         <span class="details"><b>New</b> Final Closure Date</span>
-                        <input type="date" placeholder="Enter new final closure date" required>
-                    </div>
+                        <input type="date" placeholder="Enter new final closure date">
+                    </div>*@
                 </div>
                 <div class="button">
                     <input type="submit" value="Save">

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model COMP1640.Models.Event
+@{
     Layout = "_LayoutSetClosureDate";
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
@@ -7,19 +8,25 @@
         <a class="back" href="javascript:history.back()"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
         <div class="title">Set Closure Date</div>
         <div class="content">
-            <form action="#">
+            <form asp-action="SetClosureDate" asp-controller="Admin" method="post">
                 <div class="user-details">
                     <div class="search" action="">
-                        <input type="search" placeholder="Search title..." required>
+                        <input type="search" placeholder="Search title...">
                         <button type="submit">Search</button>
                     </div>
+                    @*Duong code*@
+                    <div class="input-box">
+                        <span class="details">Event Name</span>
+                        <input type="text" asp-for="EventName" required>
+                    </div>
+                    @*End*@
                     <div class="input-box">
                         <span class="details">First Closure Date</span>
-                        <input type="date" placeholder="Enter new first closure date" required>
+                        <input type="date" asp-for="First_closure_date" placeholder="Enter new first closure date" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Final Closure Date</span>
-                        <input type="date" placeholder="Enter new final closure date" required>
+                        <input type="date" asp-for="Last_closure_date" placeholder="Enter new final closure date" required>
                     </div>
                 </div>
                 <div class="button">
