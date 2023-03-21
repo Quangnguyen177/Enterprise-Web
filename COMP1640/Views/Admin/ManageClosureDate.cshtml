@@ -54,8 +54,8 @@
                         <input type="search" placeholder="Search title..." name="keyword">
                         <button type="submit">Search</button>
                 </form>
-                <a asp-action="ManageClosureDate" asp-controller="Admin">Reset</a>
-                
+                <a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-set">Reset</a>
+
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
                         <thead class="table-light">
@@ -76,21 +76,21 @@
                                         <input hidden class="form-control" asp-for="@e.EventId" name="id" value="@e.EventId">
                                         @if (e.Status == true)
                                         {
-                                            <td>
-                                                Inactive
-                                            </td>
+                                        <td>
+                                            Inactive
+                                        </td>
                                         }
                                         @if (e.Status == false)
                                         {
-                                            <td>
-                                                Active
-                                            </td>
-                                        }
-                                        <td class="text-end">
-                                            <button type="submit" class="btn btn-sm btn-set">Pull the trigger</button>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Edit</a>
-                                            <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
+                                        <td>
+                                            Active
                                         </td>
+                                        }
+                                    <td class="text-end">
+                                        <button type="submit" class="btn btn-sm btn-set">Pull the trigger</button>
+                                        <a asp-controller="Admin" asp-action="EditClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Edit</a>
+                                        <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
+                                    </td>
                                     </form>
                                 </tr>
                                 count = count + 1;
@@ -107,7 +107,7 @@
 </div>
 @*<script type="text/javascript">
     $(document).ready(function () {
-        if ("@Model.Status" == 0) 
+        if ("@Model.Status" == 0)
         {
             $('#status').val("Active");
         }
