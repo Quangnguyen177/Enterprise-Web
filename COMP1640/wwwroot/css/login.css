@@ -8,12 +8,13 @@ body {
 .logo_login {
     width: 9em;
     height: 6em;
-    transform: translate(0.8em, -2em);
+    margin-bottom: 3em;
+    margin-left: 1em;
 }
 
 .login-page {
     width: 360px;
-    padding: 6% 0 0;
+    padding: 6% 0 1em;
     margin: auto;
 }
 
@@ -120,4 +121,28 @@ body {
 
 .login-form {
     margin-top: 6em;
+}
+
+
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .form {
+        margin-left: 0em;
+        margin-right: 5.3em;
+    }
+    .logo_login {
+        margin-bottom: 1em;
+    }
+    .logo_login img {
+        width: 13em;
+        margin-left: -21%;
+    }
+}
+/*Tablet: width>=740px and width < 1024px*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+}
+@media only screen and (width: 64em) {
+}
+/*laptop*/
+@media only screen and (min-width: 73em) and (max-width: 81.25em) {
 }

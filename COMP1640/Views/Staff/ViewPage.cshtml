@@ -14,7 +14,6 @@
                         <ul class="Shortcuts">
                             <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">New Feed</a></li>
                             <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
-                            <li class="nav_bar--item "><i class="fa-regular fa-file"></i><a asp-action="Profile" asp-controller="Staff">My page</a></li>
                             <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
                         </ul>
                     </div>
@@ -68,7 +67,7 @@
                                             <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
                                                 @if (@idea.idea_anonymous)    @*Anonymous*@
                                                     {
-                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avatar" />
+                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar_anonymous.png" alt="avatar" />
                                                     }
                                                     else
                                                     {
