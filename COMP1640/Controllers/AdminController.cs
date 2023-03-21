@@ -3,7 +3,6 @@ using COMP1640.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System.Dynamic;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Threading.Tasks;
@@ -12,8 +11,6 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using Microsoft.AspNetCore.Identity;
 
 namespace COMP1640.Controllers
 {
@@ -73,6 +70,13 @@ namespace COMP1640.Controllers
         {
             return View();
         }
+
+        public IActionResult ManageClosureDate()
+        {
+            ViewBag.Events = Db.Events.ToList();
+            return View();
+        }
+
         [HttpGet]
         public IActionResult SetClosureDate()
         {
@@ -214,10 +218,6 @@ namespace COMP1640.Controllers
             }
         }
 
-        public IActionResult ManageClosureDate()
-        {
-            ViewBag.Events = Db.Events.ToList();
-            return View();
-        }
+
     }
 }
