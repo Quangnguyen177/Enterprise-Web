@@ -3452,7 +3452,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\d
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditClosureDate.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageClosureDate.cshtml.g.cs
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageInformation.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\SetClosureDate.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
@@ -3478,10 +3477,8 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutCreateAccount.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageInformation.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutPostIdea.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutSetClosureDate.cshtml.g.cs
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
@@ -3491,7 +3488,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\A
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Comment.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\EditIdea.cshtml.g.cs
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\TermsConditions.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
@@ -4052,3 +4048,5 @@ D:\FinalProject\Enterprise-Web-main\COMP1640\obj\Debug\net5.0\COMP1640.genruntim
 D:\FinalProject\Enterprise-Web-main\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditAccount.cshtml.g.cs
 G:\Git\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutEditAccountStaff.cshtml.g.cs
+D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditAccount.cshtml.g.cs
+D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutEditAccountStaff.cshtml.g.cs

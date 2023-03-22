@@ -39,7 +39,7 @@ namespace COMP1640.Controllers
             }
             else if (ur == "Quality Assurance Manager")
             {
-                return RedirectToAction("Index", "QAManager");
+                return RedirectToAction("Dashboard", "QAManager");
             }
             else if (ur == "Quality Assurance Coordinator")
             {
