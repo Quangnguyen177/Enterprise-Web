@@ -273,9 +273,17 @@
                                         <div class="row">
                                             <div class="col-sm-6 multi-gd-img">
                                                 <ul>
-                                                    <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId">Edit</a></li>
-                                                    <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
-                                                </ul>
+                                                    @if (ViewBag.FDate > DateTime.Now)
+                                                    {
+                                                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId">Edit</a></li>
+                                                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
+                                                        }
+                                                    else
+                                                    {
+                                                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" >Edit</a></li>
+                                                        <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" >Delete</a></li>
+                                                    }
+                                                    </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +356,7 @@
                             </div>
                             <div class="comment" style=" position: static; z-index: 5;">
                                 <div class="form-group">
-                                    @if(ViewBag.Date > DateTime.Now)
+                                    @if (ViewBag.LDate > DateTime.Now)
                                     {
                                         <form method="POST">
                                         <div style="text-decoration: none">

@@ -185,7 +185,7 @@ namespace COMP1640.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int>("EventId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProfileId")
@@ -339,7 +339,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "4040240e-2257-4a0e-bc90-19d23a6816a1",
+                            ConcurrencyStamp = "68b09016-534f-4e84-b71e-78ba5c49c02a",
                             DepId = 1,
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -348,10 +348,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB+8EdMmXgMhV5619CfL16/zd2XyhEfh8wHuQoR27ZamZ3V3ybAqSAWqgtzzmUYe0g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEqWfVjhzoFcVM7foxO3zmYRnZ5LafDHc9yVtxwWU0xBbfaBywj2Glotiviw5PDRaw==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "60e25315-b8c0-42da-9cc8-9a53683be967",
+                            SecurityStamp = "1e6598de-201f-4845-b337-a76380850ac4",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -361,7 +361,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "f97095c1-8855-4d42-b8c7-120b0aad4942",
+                            ConcurrencyStamp = "7c127bca-74a7-4244-a43a-c715258b10e3",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -370,10 +370,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEdzoZK6K5o3LhWYpFPjbVDu3ObBkYNXjC2Ua+olBfoS+nYQH8sQ1u2s9mky/wz+QA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELE2FJEVOxopTjtm+RpVOFMRfJqS4NIdqKQpC7Hh5dC9Thv6Y7p2ZZGlpFfRC/RCyQ==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "76f92a73-e0fd-4bfe-b299-32f92e5a8fe6",
+                            SecurityStamp = "12488d68-b727-41d9-a360-b572a17d64ac",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         },
@@ -383,7 +383,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "9fab9543-ee4b-4250-beca-6b393cbb6631",
+                            ConcurrencyStamp = "12d0c2d2-df1e-4a53-8c74-13fd011f0b1b",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "qam1@gmail.com",
@@ -392,10 +392,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Mike The Duke",
                             NormalizedUserName = "qam1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOLtrWA4M1T/aRMstkM/zaBsl28AkiXgHth4jiNHAWsYpqlDZRTjQI00GiJmMnlCYQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAZJC65ajuK6aZw0qMVTvKOdkMoRxD4OUCsaKtzZDdZMup2+gOArBw4OF5bRJAts4w==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "01a2fa93-f35b-4843-a228-f1879ee4070b",
+                            SecurityStamp = "f1a2ce91-54ec-44f3-8306-67e10b3d3e8b",
                             TwoFactorEnabled = false,
                             UserName = "Mike The Duke"
                         },
@@ -405,7 +405,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "0c6d7126-a3bf-474b-aed4-019c07a85dbf",
+                            ConcurrencyStamp = "55abd4dd-2cf7-49b1-b5d8-0905b1accebc",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "qac1@gmail.com",
@@ -414,10 +414,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Mai The Clone Duke",
                             NormalizedUserName = "qac1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKeVTS3yyRPhK+XRW3yVEWaTWOI4MshfdE73kymC1Z6I+aC8dDWmMVXcXgHwHMWUgw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECPitMW5MeuDu/4y/WghVzI/MWORZDLuyy/g+46CXUbRGrSbOLdtoxlWJa5SQguM7g==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2085cc1b-e1d2-4ea9-8b00-44c032967f06",
+                            SecurityStamp = "cc703c83-616f-4245-b2f2-4da0bfdb949b",
                             TwoFactorEnabled = false,
                             UserName = "Mai The Duc"
                         });
@@ -530,28 +530,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "9aa6f1ba-9ceb-471a-8d5f-639ca86166b9",
+                            ConcurrencyStamp = "8ef44c45-96e9-422c-ae04-b071347166b4",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "bb2bb89f-fe81-453e-aa2b-34d0f6f80dbc",
+                            ConcurrencyStamp = "1ae2c738-a895-4631-b185-e372d54c98d9",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "67455d11-9cae-4c92-b108-a5702de27290",
+                            ConcurrencyStamp = "180857a7-d95a-4bfc-8d46-020a3b73f153",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "8f96070b-16b1-46d3-971d-b57dd565235c",
+                            ConcurrencyStamp = "f4095956-5863-41a5-8014-9fd3be95a6fe",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
@@ -724,7 +724,9 @@ namespace COMP1640.Migrations
 
                     b.HasOne("COMP1640.Models.Event", "Event")
                         .WithMany("Ideas")
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("COMP1640.Models.Profile", "Profile")
                         .WithMany()

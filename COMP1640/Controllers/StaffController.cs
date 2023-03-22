@@ -391,7 +391,8 @@ namespace COMP1640.Controllers
 
             //ducmt3
             var Evt = Db.Events.FirstOrDefault(i => i.EventId == id);
-            ViewBag.Date = Evt.Last_closure_date;
+            ViewBag.FDate = Evt.First_closure_date;
+            ViewBag.LDate = Evt.Last_closure_date;
 
             return View(idea);
         }
