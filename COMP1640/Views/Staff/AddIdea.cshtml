@@ -51,22 +51,22 @@
                 <div class="box">
                     <input type="text" name="title" placeholder="Title" required />   @*title*@
                 </div>
-                <input type="hidden" name="profileId" value="1"> @*profileid*@
+                <input type="hidden" name="profileId" value="@logginnedUser.Id"> @*profileid*@
                 <textarea form="add" name="content" placeholder="Post content idea here..." required></textarea>   @*content*@
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
 
                     @*ducmt*@
-                    <div class="form-group">
+                   @* <div class="form-group">
                         <select class="form-select" name="theevent" required>
-                            @*event*@
+                            event
                             @foreach (var e in evt)
-                            {
+                            {   <option></option>
                                 <option style="color:white" value="@e.EventId">@e.EventName</option>
                             }
                         </select>
                         <span class="text-danger"></span>
-                    </div>
+                    </div>*@
 
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
@@ -82,17 +82,18 @@
                                     <option value="@c.category_name">@c.category_name</option>
                                 }
                             </select>
-                            <span class="text-danger"></span>
+                            <span class="text-danger"></span>                           
                         </div>
-
-
-                        <ul class="list col-5">
-                            <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/tag.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/emoji.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/mic.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/more.svg" alt="gallery"></li>
-                        </ul>
+                        <select class="form-select" name="eventId" required>
+                                @*event*@
+                                <option style="color:white" value="">Event</option>
+                                @foreach (var e in evt)
+                                {
+                                    <option value="@e.EventId">@e.EventName</option>
+                                }
+                        </select>
+                        <span class="text-danger"></span>
+                        
                     </div>
                 </div>
 

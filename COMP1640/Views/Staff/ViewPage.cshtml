@@ -2,6 +2,10 @@
 @{
     Layout = "_Staff";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
+    int Point(int thumbUp, int thumbDown)
+    {
+        return thumbUp - thumbDown;
+    }
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
@@ -12,7 +16,7 @@
                     <div class="widget">
                         <h4 class="widget-title"><b> Shortcuts</b></h4>
                         <ul class="Shortcuts">
-                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">New Feed</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Idea List</a></li>
                             <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
                             <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
                         </ul>
@@ -138,7 +142,7 @@
                                         <ul class="felling_idea">
                                             <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
                                             <li>
-                                                <label placeholder="React point: "><p id="total">10</p></label>
+                                                <label placeholder="React point: "><p id="total">@Point(@idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)</p></label>
                                             </li>
                                             <li>
                                                 <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>

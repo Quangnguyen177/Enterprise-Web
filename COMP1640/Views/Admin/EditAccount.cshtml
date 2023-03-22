@@ -141,6 +141,7 @@
     </nav>
     <hr class="mt-0 mb-4">*@
         <div class="row">
+            <form asp-controller="Admin" asp-action="EditAccount" method="post" enctype="multipart/form-data">
             <div class="col-xl-4">
                 <!--Profile picture-->
                 <div class="card mb-4 mb-xl-0">
@@ -159,7 +160,7 @@
                 <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                        <form asp-controller="Admin" asp-action="EditAccount" method="post" enctype="multipart/form-data">
+                        @*<form asp-controller="Admin" asp-action="EditAccount" method="post" enctype="multipart/form-data">*@
                             <!--Form Group-->
                             <div class="mb-3">
                                 <input hidden class="form-control" asp-for="Input.Id" value="@ViewBag.User.Id">
@@ -221,10 +222,11 @@
                             </div>
                             <!--Save changes-->
                             <button class="btn btn-danger" type="submit">Save changes</button>
-                        </form>
+                        @*</form>*@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 
