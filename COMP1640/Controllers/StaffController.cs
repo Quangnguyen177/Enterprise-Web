@@ -33,12 +33,12 @@ namespace COMP1640.Controllers
             List<Idea> page = null;
             if (viewType.Equals("mostview"))
             {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i=>i.Reacpoint).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
                 ViewBag.ViewType = "mostview";
             }
             else if (viewType.Equals("lastest"))
             {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.created_date).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.created_date).Include(i => i.Reacpoint).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
                 ViewBag.ViewType = "lastest";
             }
             else if (viewType.Equals("popular"))
@@ -67,12 +67,13 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddIdea(List<IFormFile> uploadedFiles, string title, string content, int theevent, string categoryName, string isAnonymous, string profileId)
+        public IActionResult AddIdea(List<IFormFile> uploadedFiles, string title, string content, int eventId, string categoryName, string isAnonymous, string profileId)
         {
-            var Evt = Db.Events.FirstOrDefault(e => e.EventId == theevent);
+            var evt = Db.Events.FirstOrDefault(e => e.EventId == eventId);
             
-            if (Evt.First_closure_date > DateTime.Now)
+            if (evt.First_closure_date > DateTime.Now)
             {
+                
                 ////Create reactpoint entity to relate to Idea entity
                 ReactPoint newReactPoint = new ReactPoint
                 {
@@ -98,7 +99,8 @@ namespace COMP1640.Controllers
                     Category = category,
                     ReactPointId = reactPoint.ReactPointId,
                     Reacpoint = reactPoint,
-                    EventId = theevent
+                    EventId =evt.EventId,
+                    Event = evt
                 };
                 Db.Add(newIdea);
                 Db.SaveChanges();
@@ -107,11 +109,11 @@ namespace COMP1640.Controllers
                     HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
                 }
                 return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-            }
-            else
-            {
-                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-            }
+                }
+                else
+                {
+                    return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
+                }
 
         }
 
@@ -218,11 +220,11 @@ namespace COMP1640.Controllers
             if (Evt.Last_closure_date > DateTime.Now)
             {
                 //default sender is system, so from email is not needed.
-                //var sendMail = SendEmail("dantruong2002tq@gmail.com", "Dan Truong", com.com_content);
-                //var sendMail = SendEmail(idea.Profile.Email, idea.Profile.Name, com.com_content);
-                //if (true) // check if sending mail is successfull!
-                //{
-                    //add comment 
+                var name = (com.com_anonymous) ? "An anonymous user" : profile.Name;
+                var subject = name + " has commented your \"" + idea.idea_title + "\" idea";
+                var sendMail = SendEmail(/*idea.Profile.Email*/"dantruong2002tq@gmail.com", subject, com.com_content);
+                if (sendMail) // check if sending mail is successfull!
+                {
                     Comment newComment = new Comment()
                     {
                         com_content = com.com_content,
@@ -247,20 +249,15 @@ namespace COMP1640.Controllers
 
                     var response = JsonConvert.SerializeObject(result);
                     return Json(response);
-                //}
-                //else
-                //{
-                //    return Json(null);
-                //}
-            }    
-            else
-            {
-                return Json(null);
-            }    
-
+                }
+                else
+                {
+                    return Json(null);
+                }
+            }
+            return Json(null);
         }
-
-        public bool SendEmail(string toEmail, string name, string content)
+        public bool SendEmail(string toEmail, string subject, string content)
         {
             try
             {
@@ -268,13 +265,13 @@ namespace COMP1640.Controllers
                 MailMessage message = new MailMessage();
 
                 // Set the sender's email address
-                message.From = new MailAddress("truongtd2002tq@gmail.com");
+                message.From = new MailAddress("truongtd2002tq@gmail.com","Notification System");
 
                 // Add a recipient email address
-                message.To.Add("dantruong2002tq@gmail.com");
+                message.To.Add(toEmail);
 
                 // Set the subject and body of the email
-                message.Subject = name + " comments your idea";
+                message.Subject = subject;
                 message.Body = content;
 
                 // Create a new SmtpClient object
