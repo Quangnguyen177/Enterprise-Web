@@ -50,6 +50,7 @@ namespace COMP1640.Controllers
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
+            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
             ViewBag.Total = Db.Ideas.Count();
             var d = Db.Events.ToList().Last();
             ViewBag.Date = d.First_closure_date;
@@ -366,7 +367,7 @@ namespace COMP1640.Controllers
             ViewBag.ThumbUp = number_of_upvote;
             var number_of_downvote = reactpoint_of_idea.Reacpoint.ThumbDown;
             ViewBag.ThumbDown = number_of_downvote;
-
+            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
 
             //ducmt2
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -505,7 +506,7 @@ namespace COMP1640.Controllers
 
             if (viewType.Equals("catidea"))
             {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i => i.Profile).Where(ideas => ideas.CategoryId == id).Skip(skipPage).Take(5).ToList();
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i => i.Profile).Where(ideas => ideas.CategoryId == id).Include(i =>i.Reacpoint).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "catidea";
             }
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -525,7 +526,7 @@ namespace COMP1640.Controllers
             List<Idea> page = null;
             if (viewType.Equals("depidea"))
             {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i => i.Profile).ThenInclude(d=>d.Department).Where(i=>i.Profile.DepId == id).Skip(skipPage).Take(5).ToList();
+                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i => i.Profile).ThenInclude(d=>d.Department).Where(i=>i.Profile.DepId == id).Include(i => i.Reacpoint).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "depidea";
             }
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
