@@ -134,33 +134,26 @@
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
     <div class="container-xl px-4 mt-4">
-        <!-- Account page navigation-->
-        @*<nav class="nav nav-borders">
-    <a class="nav-link ms-0" asp-controller="Admin" asp-action="EditAccount">Profile</a>
-    <a class="nav-link" href="#">Reset Pasword</a>
-    </nav>
-    <hr class="mt-0 mb-4">*@
         <div class="row">
             <form asp-controller="Admin" asp-action="EditAccount" method="post" enctype="multipart/form-data">
-            <div class="col-xl-4">
-                <!--Profile picture-->
-                <div class="card mb-4 mb-xl-0">
-                    <div class="card-header">Profile Picture</div>
-                    <div class="card-body text-center">
-                        <img class="img-account-profile rounded-circle mb-2" src="https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png" alt="avatarprofile">
-                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                        <div class="avatar-form">
-                            <input class="buttonUpload" type="file" id="uploadedAva" name="uploadedAva">
+                <div class="col-xl-4">
+                    <!--Profile picture-->
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Profile Picture</div>
+                        <div class="card-body text-center">
+                            <img class="img-account-profile rounded-circle mb-2" src="https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png" alt="avatarprofile">
+                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                            <div class="avatar-form">
+                                <input class="buttonUpload" type="file" id="uploadedAva" name="uploadedAva">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-8">
-                <!--Account details-->
-                <div class="card mb-4">
-                    <div class="card-header">Account Details</div>
-                    <div class="card-body">
-                        @*<form asp-controller="Admin" asp-action="EditAccount" method="post" enctype="multipart/form-data">*@
+                <div class="col-xl-8">
+                    <!--Account details-->
+                    <div class="card mb-4">
+                        <div class="card-header">Account Details</div>
+                        <div class="card-body">
                             <!--Form Group-->
                             <div class="mb-3">
                                 <input hidden class="form-control" asp-for="Input.Id" value="@ViewBag.User.Id">
@@ -222,10 +215,9 @@
                             </div>
                             <!--Save changes-->
                             <button class="btn btn-danger" type="submit">Save changes</button>
-                        @*</form>*@
+                        </div>
                     </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>

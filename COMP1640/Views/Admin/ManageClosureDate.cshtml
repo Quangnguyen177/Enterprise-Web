@@ -28,7 +28,7 @@
                                 <span class=" pe-2">
                                     <i class="fa fa-plus-circle"></i>
                                 </span>
-                                <span>Create</span>
+                                <span>Create account</span>
                             </a>
                         </div>
                     </div>
@@ -49,13 +49,19 @@
                 <div class="card-header">
                     <h5 class="mb-0">Setting event</h5>
                 </div>
-                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                <form asp-action="SearchEvent" asp-controller="Admin" method="post">
+                <div style="display: flex; position:relative; left:5px">
+                    <div class="form-group"><a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a></div>
+                    <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-set">Reset</a></div>
+                </div>
+
+                <div>
+                    <form asp-action="SearchEvent" asp-controller="Admin" method="post">
                         <input type="search" placeholder="Search title..." name="keyword">
                         <button type="submit">Search</button>
-                </form>
-                <a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-set">Reset</a>
+                    </form>
+                </div>
 
+                <hr />
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
                         <thead class="table-light">

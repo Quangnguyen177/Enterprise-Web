@@ -2,6 +2,8 @@
 @{
     Layout = "_LayoutPostIdea";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
+    var evt = ViewBag.Event;
+
 }
 
 <!doctype html>
@@ -68,8 +70,7 @@
                 <div class="options">
                     <div class="row">
                         <input type="file" id="uploadedFiles" name="uploadedFiles" class="buttonDownload col-3" multiple> @*file*@
-                        @*<button class="buttonDownload col-4">Upload File</button>   *@
-                        <div class="form-group col-4">
+                        <div class="form-group col-5">
                             <select class="form-select" name="categoryName" required>
                                 @*category*@
                                 <option style="color:white" value="">Category</option>
@@ -88,15 +89,20 @@
                             <span class="text-danger"></span>
                         </div>
 
-                        <ul class="list col-5">
-                            <li><img src="~/fb-icons/gallery.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/tag.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/emoji.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/mic.svg" alt="gallery"></li>
-                            <li><img src="~/fb-icons/more.svg" alt="gallery"></li>
-                        </ul>
+                        <div class="form-group col-4">
+                            <select class="form-select-event" name="eventId" required>
+                                @*event*@
+                                <option style="color:white" value="">Event</option>
+                                @foreach (var e in ViewBag.Event)
+                                {
+                                    <option value="@e.EventId">@e.EventName</option>
+                                }
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
+
                 <button type="button" data-toggle="modal" data-target="#exampleModalCenter">
                     Update
                 </button>

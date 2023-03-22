@@ -29,7 +29,6 @@
                 <div class="col-8">Create Idea</div>
             </header>
 
-
             <form asp-action="AddIdea" asp-controller="Staff" method="post" id="add" enctype="multipart/form-data">
                 <div class="content">
                     <img src="/Avatars/@logginnedUser.Avatar" alt="logo">
@@ -55,26 +54,13 @@
                 <textarea form="add" name="content" placeholder="Post content idea here..." required></textarea>   @*content*@
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
-
-                    @*ducmt*@
-                   @* <div class="form-group">
-                        <select class="form-select" name="theevent" required>
-                            event
-                            @foreach (var e in evt)
-                            {   <option></option>
-                                <option style="color:white" value="@e.EventId">@e.EventName</option>
-                            }
-                        </select>
-                        <span class="text-danger"></span>
-                    </div>*@
-
                     <img src="~/fb-icons/smile.svg" alt="smile">
                 </div>
                 <div class="options">
                     <div class="row">
                         <input type="file" id="uploadedFiles" name="uploadedFiles" class="buttonDownload col-3" multiple> @*file*@
-                        <div class="form-group col-4">
-                            <select class="form-select" name="categoryName" required>
+                        <div class="form-group col-5">
+                            <select class="form-select-category" name="categoryName" required>
                                 @*category*@
                                 <option style="color:white" value="">Category</option>
                                 @foreach (var c in Model)
@@ -82,22 +68,21 @@
                                     <option value="@c.category_name">@c.category_name</option>
                                 }
                             </select>
-                            <span class="text-danger"></span>                           
+                            <span class="text-danger"></span>
                         </div>
-                        <select class="form-select" name="eventId" required>
+                        <div class="form-group col-4">
+                            <select class="form-select-event" name="eventId" required>
                                 @*event*@
                                 <option style="color:white" value="">Event</option>
                                 @foreach (var e in evt)
                                 {
                                     <option value="@e.EventId">@e.EventName</option>
                                 }
-                        </select>
-                        <span class="text-danger"></span>
-                        
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-
-                
 
                 <button type="button" data-toggle="modal" data-target="#exampleModal">
                     Post
@@ -115,7 +100,7 @@
                             </div>
                             <div class="modal-body">
                                 <input type="checkbox" required />
-                               <span>I agree <a asp-action="TermsConditions" asp-controller="Staff">Terms & Conditions of Website Use </a></span>
+                                <span>I agree <a asp-action="TermsConditions" asp-controller="Staff">Terms & Conditions of Website Use </a></span>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

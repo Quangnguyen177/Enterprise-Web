@@ -60,7 +60,7 @@ namespace COMP1640.Controllers
             public string Password { get; set; }
         }
 
-        public IActionResult Dashboard()
+        public IActionResult Home()
         {
             var roles = _roleManager.Roles.ToList();
             return View(roles);

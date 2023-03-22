@@ -200,7 +200,7 @@ form .options {
     display:inline-block;
     height: 57px;
     margin: 15px 0;
-    padding: 0 15px;
+    padding: 0 43px;
     border-radius: 7px;
     border: 1px solid #B9B9B9;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -224,7 +224,9 @@ form .options {
         list-style: none;
     }
 
-.form-select {
+.form-select-category {
+    position: relative;
+    left: 20px;
     width: 105px;
     height: 48px;
     margin: 5px;
@@ -235,6 +237,27 @@ form .options {
     color: ghostwhite;
     font-weight: 500;
 }
+.form-select-category:hover {
+    background-color: #808080
+}
+
+.form-select-event {
+    width: 105px;
+    height: 48px;
+    margin: 5px;
+    color: ghostwhite;
+    font-weight: 500;
+    background: coral;
+    border-radius: 30px;
+    color: ghostwhite;
+    font-weight: 500;
+}
+
+    .form-select-event:hover {
+        background-color: #808080
+    }
+
+
 
 .options .list li {
     height: 42px;
@@ -365,9 +388,9 @@ form textarea:valid ~ button {
 /* Css UploadFile */
 .buttonDownload {
     display: inline-block;
-    height: 45px;
+    height: 49px;
     width: 123px;
-    top: 7px;
+    top: 4px;
     left:5px;
     position: relative;
     padding: 10px 15px;
@@ -381,19 +404,20 @@ form textarea:valid ~ button {
     border: none;
     border-radius: 2em;
     font-weight: bold;
+
 }
 
-.buttonDownload:hover {
-    background-color: #1a60a2;
-    color: white;
-}
+    .buttonDownload:hover {
+        background-color: #808080;
+        color: white;
+    }
 
 .buttonDownload:before, .buttonDownload:after {
     content: ' ';
     display: block;
     position: absolute;
-    left: 15px;
-    top: 52%;
+    left: 45px;
+    top: 58%;
 }
 
 .buttonDownload:before {
@@ -406,7 +430,7 @@ form textarea:valid ~ button {
 .buttonDownload:after {
     width: 0;
     height: 0;
-    margin-left: 3px;
+    margin-left: 1px;
     margin-top: -7px;
     border-style: solid;
     border-width: 4px 4px 0 4px;
@@ -448,4 +472,8 @@ form textarea:valid ~ button {
         margin-top: 0;
         opacity: 0.4;
     }
+}
+
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden;
 }

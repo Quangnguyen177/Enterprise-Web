@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj": {}
+    "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
   },
   "projects": {
-    "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj": {
+    "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj",
+        "projectUniqueName": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
         "projectName": "COMP1640",
-        "projectPath": "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj",
-        "packagesPath": "C:\\Users\\Dan Truong\\.nuget\\packages\\",
-        "outputPath": "D:\\FinalProject\\Newest\\COMP1640\\obj\\",
+        "projectPath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\COMP1640_EnterpriseWeb\\Code\\Enterprise-Web\\COMP1640\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Dan Truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +84,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -93,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
