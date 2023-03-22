@@ -3445,7 +3445,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identit
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditClosureDate.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageClosureDate.cshtml.g.cs
@@ -4566,3 +4565,4 @@ D:\FinalProject\Newest\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 D:\FinalProject\Newest\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 D:\FinalProject\Newest\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
+D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs

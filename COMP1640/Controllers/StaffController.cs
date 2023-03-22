@@ -159,17 +159,13 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult EditIdea(int id)
         {
-            var Evt = Db.Events.FirstOrDefault(i => i.EventId == id);
-            if (Evt.First_closure_date > DateTime.Now)
-            {
-                Idea currentIdea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+            Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
+            if (currentIdea.Event.First_closure_date > DateTime.Now)
+            {             
                 string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
                 ViewBag.Category = Db.Categories.ToList();
-                //if (currentIdea.first_closure != null)
-                //    if (!CheckFirtClosureDate(currentIdea)){
-                //        ViewBag.Error = "You can not edit your idea when firt colosure date is due";
-                //        return null;
+                ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
                 return View(currentIdea);
             }
             else
@@ -179,10 +175,10 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName, string isAnonymous)
+        public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName,int eventId, string isAnonymous)
         {
-            var Evt = Db.Events.FirstOrDefault(i => i.EventId == ideaId);
-            if (Evt.First_closure_date > DateTime.Now)
+            var evt = Db.Events.FirstOrDefault(i => i.EventId == eventId);
+            if (evt.First_closure_date > DateTime.Now)
             {
                 bool anonynous = true;
                 if (isAnonymous == null) anonynous = false;
@@ -194,6 +190,8 @@ namespace COMP1640.Controllers
                 idea.created_date = DateTime.Now;
                 idea.CategoryId = category.CategoryId;
                 idea.Category = category;
+                idea.EventId = evt.EventId;
+                idea.Event = evt;
                 if (uploadedFiles.Count > 0)
                 {
                     HandleFile(uploadedFiles, ideaId, "UPDATE"); //edit file
