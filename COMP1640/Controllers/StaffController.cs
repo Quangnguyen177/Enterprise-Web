@@ -98,7 +98,7 @@ namespace COMP1640.Controllers
                     Category = category,
                     ReactPointId = reactPoint.ReactPointId,
                     Reacpoint = reactPoint,
-
+                    EventId = theevent
                 };
                 Db.Add(newIdea);
                 Db.SaveChanges();
@@ -390,7 +390,8 @@ namespace COMP1640.Controllers
             }
 
             //ducmt3
-            var Evt = Db.Events.FirstOrDefault(i => i.EventId == id);
+            var UE = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+            var Evt = Db.Events.FirstOrDefault(i => i.EventId == UE.EventId);
             ViewBag.FDate = Evt.First_closure_date;
             ViewBag.LDate = Evt.Last_closure_date;
 

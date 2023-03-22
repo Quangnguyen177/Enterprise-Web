@@ -322,7 +322,8 @@ namespace COMP1640
                     idea_title = "Test",
                     idea_content = "This is a Test",
                     idea_anonymous = false,
-                    idea_view = 0
+                    idea_view = 0,
+                    created_date = DateTime.Parse("2023-03-17"),
                 },
                 new Idea
                 {
@@ -335,6 +336,33 @@ namespace COMP1640
                     idea_content = "This is a Test #2",
                     idea_anonymous = false,
                     idea_view = 0,
+                    created_date = DateTime.Parse("2023-03-18")
+                },
+                new Idea
+                {
+                    IdeaId = 3,
+                    ProfileId = "1",
+                    CategoryId = 1,
+                    ReactPointId = 3,
+                    EventId = 1,
+                    idea_title = "Test #3",
+                    idea_content = "This is a Test #3",
+                    idea_anonymous = false,
+                    idea_view = 0,
+                    created_date = DateTime.Parse("2023-03-17"),
+                },
+                new Idea
+                {
+                    IdeaId = 4,
+                    ProfileId = "2",
+                    CategoryId = 1,
+                    ReactPointId = 4,
+                    EventId = 2,
+                    idea_title = "Test #4",
+                    idea_content = "This is a Test #4",
+                    idea_anonymous = false,
+                    idea_view = 0,
+                    created_date = DateTime.Parse("2023-03-18")
                 }
             ); 
         }
@@ -377,6 +405,18 @@ namespace COMP1640
                 new ReactPoint
                 {
                     ReactPointId = 2,
+                    ThumbUp = 0,
+                    ThumbDown = 0,
+                },
+                new ReactPoint
+                 {
+                     ReactPointId = 3,
+                     ThumbUp = 0,
+                     ThumbDown = 0,
+                 },
+                new ReactPoint
+                {
+                    ReactPointId = 4,
                     ThumbUp = 0,
                     ThumbDown = 0,
                 }
