@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Security.Claims;
 using System.IO.Compression;
 using Microsoft.AspNetCore.Authorization;
+using COMP1640.ViewModels;
 
 namespace COMP1640.Controllers
 {
@@ -25,35 +26,33 @@ namespace COMP1640.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewPage(int pageNum, string viewType)
-        {
-            if (pageNum == 1) ViewBag.PageNum = 1;
-            else ViewBag.PageNum = pageNum;
+        public IActionResult ViewPage(int pageNum, string orderBy, string viewType, int id)
+        {                   
             int skipPage = 5 * (pageNum - 1);
-            List<Idea> page = null;
-            if (viewType.Equals("mostview"))
-            {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i=>i.Reacpoint).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
-                ViewBag.ViewType = "mostview";
+            var temp = new List<Idea>();
+            List<Idea> page = GetIdeaByType(viewType, id);
+            ViewBag.Total = page.Count();
+            if (orderBy.Equals("mostview"))
+            {               
+                temp = page.OrderByDescending(i => i.idea_view).ToList();         
             }
-            else if (viewType.Equals("lastest"))
+            else if (orderBy.Equals("lastest"))
             {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.created_date).Include(i => i.Reacpoint).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
-                ViewBag.ViewType = "lastest";
+                temp = page.OrderByDescending(i => i.created_date).ToList();         
             }
-            else if (viewType.Equals("popular"))
+            else if (orderBy.Equals("popular"))
             {
-                page = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbDown + i.Reacpoint.ThumbUp).Include(i => i.Comments).Skip(skipPage).Take(5).Include(i => i.Profile).ToList();
-                ViewBag.ViewType = "lastest";
+                temp = page.OrderByDescending(i => i.Reacpoint.ThumbUp - i.Reacpoint.ThumbDown).ToList();          
             }
+            page = temp.Skip(skipPage).Take(5).ToList();
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
-            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
-            ViewBag.Total = Db.Ideas.Count();
+            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();           
+            ViewBag.Page = new ViewPage(pageNum, orderBy, viewType, id);
             var d = Db.Events.ToList().Last();
-            ViewBag.Date = d.First_closure_date;
+            ViewBag.Date = d.First_closure_date;         
             return View(page);
         }
 
@@ -255,92 +254,7 @@ namespace COMP1640.Controllers
                 }
             }
             return Json(null);
-        }
-        public bool SendEmail(string toEmail, string subject, string content)
-        {
-            try
-            {
-                // Create a new MailMessage object
-                MailMessage message = new MailMessage();
-
-                // Set the sender's email address
-                message.From = new MailAddress("truongtd2002tq@gmail.com","Notification System");
-
-                // Add a recipient email address
-                message.To.Add(toEmail);
-
-                // Set the subject and body of the email
-                message.Subject = subject;
-                message.Body = content;
-
-                // Create a new SmtpClient object
-                SmtpClient client = new SmtpClient();
-
-                // Set the SMTP server and port number
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.UseDefaultCredentials = false;
-                // Set the credentials used to authenticate with the SMTP server (if required)
-                client.Credentials = new System.Net.NetworkCredential("truongtd2002tq@gmail.com", "uqjavdcqqzxrsjmo");
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                // Enable SSL if required
-                client.EnableSsl = true;
-                client.Timeout = 200000;
-                // Send the email
-                client.Send(message);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> ReactPoint([FromBody] ReactPoint obj)
-        {
-            Db.ReactPoints.Update(obj);
-            await Db.SaveChangesAsync();
-            ReactPoint data = Db.ReactPoints.FirstOrDefault(o => o.ReactPointId == obj.ReactPointId);
-            string result = JsonConvert.SerializeObject(data);
-            return Json(result);
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> React([FromBody] React save)
-        {
-            var check = Db.React.FirstOrDefault(r => r.ProfileId == save.ProfileId);
-
-            if (check != null)
-            {
-                check.Reacted = save.Reacted;
-                Db.React.Update(check);
-                await Db.SaveChangesAsync();
-            }
-            else if (check == null)
-            {
-                Db.React.Add(save);
-                await Db.SaveChangesAsync();
-            }
-            string result = JsonConvert.SerializeObject(save);
-            return Json(result);
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> DeleteReact([FromBody] React save)
-        {
-            var the_idea = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == save.IdeaId);
-            var the_profile = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == save.ProfileId);
-            var the_result = Db.React.Where(a => a.IdeaId == the_idea.IdeaId).Where(b => b.ProfileId == the_profile.ProfileId).Single();
-
-            if (the_result != null)
-            {
-                Db.React.Remove(the_result);
-                await Db.SaveChangesAsync();
-            }
-            string result = JsonConvert.SerializeObject(save);
-            return Json(result);
-        }
+        }      
 
         public async Task<IActionResult> DetailIdea(int id)
         {
@@ -495,66 +409,119 @@ namespace COMP1640.Controllers
         public IActionResult TermsConditions()
         {
             return View();
-        }
+        }      
 
-        public IActionResult CatIdea(int? id, int pageNum, string viewType)
+        public JsonResult SearchIdea(string keyword)
         {
-            if (pageNum == 1) ViewBag.PageNum = 1;
-            else ViewBag.PageNum = pageNum;
-            int skipPage = 5 * (pageNum - 1);
-            List<Idea> page = null;
-
-            if (viewType.Equals("catidea"))
-            {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i => i.Profile).Where(ideas => ideas.CategoryId == id).Include(i =>i.Reacpoint).Skip(skipPage).Take(5).ToList();
-                ViewBag.ViewType = "catidea";
-            }
-            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
-            ViewBag.Category = Db.Categories.ToList();
-            ViewBag.Department = Db.Departments.ToList();
-            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
-            ViewBag.Total = Db.Ideas.Count();
-            ViewBag.CatId = id;
-            return View("ViewPage",page);
+            var results = Db.Ideas.Where(i => i.idea_title.Contains(keyword)).OrderBy(i => i.created_date).Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
+            results = results.Take(5).ToList();          
+            var res = JsonConvert.SerializeObject(results);
+            return Json(results);
         }
 
-        public IActionResult DepIdea(int? id, int pageNum, string viewType)
+        public List<Idea> GetIdeaByType(string type, int id)
         {
-            if (pageNum == 1) ViewBag.PageNum = 1;
-            else ViewBag.PageNum = pageNum;
-            int skipPage = 5 * (pageNum - 1);
-            List<Idea> page = null;
-            if (viewType.Equals("depidea"))
-            {
-                page = Db.Ideas.Include(i => i.Comments).OrderByDescending(i => i.idea_view).Include(i => i.Profile).ThenInclude(d=>d.Department).Where(i=>i.Profile.DepId == id).Include(i => i.Reacpoint).Skip(skipPage).Take(5).ToList();
-                ViewBag.ViewType = "depidea";
+            List<Idea> output = new List<Idea>();
+            switch (type) {
+                case "idea":
+                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
+                    break;
+                case "dep":
+                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ThenInclude(d => d.Department).Where(i => i.Profile.Department.DepId == id).ToList();
+                    break;
+                case "cat":
+                    output = Db.Ideas.Include(i=>i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).Where(i => i.Category.CategoryId == id).ToList();
+                    break;
+                case "evt":
+                    output = Db.Ideas.Where(i => i.EventId == id).Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();              
+                    break;
             }
-            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
-            ViewBag.Category = Db.Categories.ToList();
-            ViewBag.Department = Db.Departments.ToList();
-            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
-            ViewBag.Total = Db.Ideas.Count();
-            ViewBag.DepId = id;
-            return View("ViewPage", page);
+            return output;
+        }
+        public bool SendEmail(string toEmail, string subject, string content)
+        {
+            try
+            {
+                // Create a new MailMessage object
+                MailMessage message = new MailMessage();
+
+                // Set the sender's email address
+                message.From = new MailAddress("truongtd2002tq@gmail.com", "Notification System");
+
+                // Add a recipient email address
+                message.To.Add(toEmail);
+
+                // Set the subject and body of the email
+                message.Subject = subject;
+                message.Body = content;
+
+                // Create a new SmtpClient object
+                SmtpClient client = new SmtpClient();
+
+                // Set the SMTP server and port number
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.UseDefaultCredentials = false;
+                // Set the credentials used to authenticate with the SMTP server (if required)
+                client.Credentials = new System.Net.NetworkCredential("truongtd2002tq@gmail.com", "uqjavdcqqzxrsjmo");
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                // Enable SSL if required
+                client.EnableSsl = true;
+                client.Timeout = 200000;
+                // Send the email
+                client.Send(message);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        //check if current time is earlier than 1st closure date 
-        //public bool CheckFirtClosureDate(Idea idea)
-        //{
+        [HttpPost]
+        public async Task<JsonResult> ReactPoint([FromBody] ReactPoint obj)
+        {
+            Db.ReactPoints.Update(obj);
+            await Db.SaveChangesAsync();
+            ReactPoint data = Db.ReactPoints.FirstOrDefault(o => o.ReactPointId == obj.ReactPointId);
+            string result = JsonConvert.SerializeObject(data);
+            return Json(result);
+        }
 
-        //    DateTime firtClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-        //    if (DateTime.Compare(DateTime.Now, firtClosureDate) < 0) return true;
-        //    else return false;
-        //}
+        [HttpPost]
+        public async Task<JsonResult> React([FromBody] React save)
+        {
+            var check = Db.React.FirstOrDefault(r => r.ProfileId == save.ProfileId);
 
-        //public bool CheckFinalClosureDate(int ideaId)
-        //{
-        //    Idea idea = Db.Ideas.Find(ideaId);
-        //    DateTime finalClosureDate = DateTime.Parse(idea.first_closure.ToString()); //not accept nullable datetime type
-        //    if (DateTime.Compare(DateTime.Now, finalClosureDate) < 0) return true;
-        //    else return false;
-        //}
+            if (check != null)
+            {
+                check.Reacted = save.Reacted;
+                Db.React.Update(check);
+                await Db.SaveChangesAsync();
+            }
+            else if (check == null)
+            {
+                Db.React.Add(save);
+                await Db.SaveChangesAsync();
+            }
+            string result = JsonConvert.SerializeObject(save);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> DeleteReact([FromBody] React save)
+        {
+            var the_idea = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == save.IdeaId);
+            var the_profile = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == save.ProfileId);
+            var the_result = Db.React.Where(a => a.IdeaId == the_idea.IdeaId).Where(b => b.ProfileId == the_profile.ProfileId).Single();
+
+            if (the_result != null)
+            {
+                Db.React.Remove(the_result);
+                await Db.SaveChangesAsync();
+            }
+            string result = JsonConvert.SerializeObject(save);
+            return Json(result);
+        }
     }
 }

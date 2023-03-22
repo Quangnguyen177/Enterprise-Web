@@ -35,7 +35,7 @@ namespace COMP1640.Controllers
             }
             else if (ur == "Staff")
             {
-                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype="idea", id=1 });
             }
             else if (ur == "Quality Assurance Manager")
             {
@@ -47,7 +47,7 @@ namespace COMP1640.Controllers
             }
             else if (ur == "Administrator")
             {
-                return RedirectToAction("Dashboard", "Admin");
+                return RedirectToAction("Home", "Admin");
             }
             else 
             {

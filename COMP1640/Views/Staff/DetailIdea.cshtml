@@ -6,16 +6,7 @@
 }
 @{
     var nums_coms = ViewBag.Comments.Count;
-
-    var react_point = 0;
-    if (ViewBag.ThumbDown >= 0)
-    {
-        react_point = ViewBag.ThumbUp - ViewBag.ThumbDown;
-    }
-    if (ViewBag.ThumbDown < 0)
-    {
-        react_point = ViewBag.ThumbUp + ViewBag.ThumbDown;
-    }
+    var react_point = ViewBag.ThumbUp - ViewBag.ThumbDown;
     string userid = UserManager.GetUserId(User);
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
     var info = "2";

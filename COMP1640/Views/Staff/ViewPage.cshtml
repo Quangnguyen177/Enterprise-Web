@@ -1,3 +1,4 @@
+@using COMP1640.ViewModels
 @model List<Idea>;
 @{
     Layout = "_Staff";
@@ -6,6 +7,7 @@
     {
         return thumbUp - thumbDown;
     }
+    ViewPage pageInfor = (ViewPage)ViewBag.Page;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
@@ -16,7 +18,7 @@
                     <div class="widget">
                         <h4 class="widget-title"><b> Shortcuts</b></h4>
                         <ul class="Shortcuts">
-                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Idea List</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea">Idea List</a></li>
                             <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
                             <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
                         </ul>
@@ -25,9 +27,9 @@
                     <div class="idea">
                         <h4 class="widget-title"><b>Filter Ideas</b></h4>
                         <ul class="Shortcuts">
-                            <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
-                            <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pageNum=1&viewtype=popular">Most Emotion ideas</a></li>
-                            <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&orderby=mostview&viewtype=@pageInfor.ViewType&id=@pageInfor.Id">Most Viewed Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pagenum=1&orderby=popular&viewtype=@pageInfor.ViewType&id=@pageInfor.Id">Most Popular Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pagenum=1&orderby=lastest&viewtype=@pageInfor.ViewType&id=@pageInfor.Id">Latest Ideas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +49,7 @@
                     {
                         <div class="form_add_idea">
                             <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
-                                <input class="form_control" type="text" placeholder="Readonly input here" readonly>
+                                <input class="form_control" type="text" placeholder="Typing your idea here..." readonly>
                             </a>
                         </div>
                         <div class="btn_add">
@@ -193,9 +195,8 @@
             </div>
         </div>
         @{
-            int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
-            int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
-            var viewType = @ViewBag.ViewType;
+            int next = pageInfor.PageNum + 1;
+            int pre = pageInfor.PageNum - 1;
         }
         <div class="pagination" style=" border-radius: 3em">
              @if (@pre > 0)
@@ -212,14 +213,13 @@
              }
         </div>
     </div>
-
     <script>
   
         function BtnNext(){
-            window.location.replace('/Staff/ViewPage?pageNum=@next&viewType=@viewType');
+            window.location.replace('/staff/viewpage?pagenum=@next&orderby=@pageInfor.OrderBy&viewtype=@pageInfor.ViewType&id=@pageInfor.Id');
         }
         function BtnPre(){
-            window.location.replace('/Staff/ViewPage?pageNum=@pre&viewType=@viewType');
+            window.location.replace('/staff/viewpage?pagenum=@pre&orderby=@pageInfor.OrderBy&viewtype=@pageInfor.ViewType&id=@pageInfor.Id');
         }
     </script>
 }

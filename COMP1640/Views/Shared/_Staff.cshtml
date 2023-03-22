@@ -42,7 +42,7 @@
                                         <ul class="dropdown">
                                             @foreach(var e in ViewBag.Event)
                                             {
-                                                <li><a href="#">@e.EventName</a></li>
+                                                <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=evt&id=@e.EventId">@e.EventName</a></li>
                                             }
                                         </ul>
                                     </div>
@@ -63,7 +63,7 @@
                                         <ul>
                                             @foreach(var c in ViewBag.Category)
                                             {
-                                                <li><a href="/Staff/CatIdea?id=@c.CategoryId&pagenum=1&viewtype=catidea">@c.category_name</a></li>
+                                                <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=cat&id=@c.CategoryId">@c.category_name</a></li>
                                             }
                                         </ul>
                                     </div>
@@ -83,7 +83,7 @@
                                         <ul>
                                             @foreach (var d in ViewBag.Department)
                                             {
-                                                <li><a href="/Staff/DepIdea?id=@d.DepId&pagenum=1&viewtype=depidea">@d.Dep_name</a></li>
+                                                <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=dep&id=@d.DepId">@d.Dep_name</a></li>
                                             }
                                         </ul>
                                     </div>
@@ -95,13 +95,12 @@
             </nav>
             <div class="header_search">
                 <div class="search">
-                    <form asp-controller="" asp-action="" method="POST">
+                    <form asp-controller="Staff" asp-action="SearchIdea" method="POST">
                         <div class="input-group">
                             <div class="form-outline">
-                                <input style="width: 250px; height: 32.5px; border-radius: 5px" type="search" id="form1" class="form-control" />
-                                <label class="form-label" for="form1">Search</label>
+                                <input style="width: 250px; height: 32.5px; border-radius: 5px" type="text" name="keyword" id="form1" class="form-control" placeholder="Type idea title to search"/>                                
                             </div>
-                            <button type="button" class="btn btn-outline-success">
+                            <button type="submit" class="btn btn-outline-success">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -110,8 +109,7 @@
             </div>
             <div class="nav_icon">
                 <ul class="menu icon">
-                    
-                    <li><a style="color: #373b3f; text-decoration: none" href="/staff/viewpage?pagenum=1&viewtype=lastest"><i class="fa-solid fa-house"></i></a></li>
+                    <li><a style="color: #373b3f; text-decoration: none" href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea"><i class="fa-solid fa-house"></i></a></li>
                     <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; text-decoration: none" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F"><i class="fa-solid fa-right-from-bracket"></i></a></li>  &nbsp &nbsp
                 </ul>
             </div>
