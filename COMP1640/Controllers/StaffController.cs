@@ -513,6 +513,7 @@ namespace COMP1640.Controllers
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
+            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
             ViewBag.Total = Db.Ideas.Count();
             ViewBag.CatId = id;
             return View("ViewPage",page);
@@ -533,6 +534,7 @@ namespace COMP1640.Controllers
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
+            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
             ViewBag.Total = Db.Ideas.Count();
             ViewBag.DepId = id;
             return View("ViewPage", page);
