@@ -82,59 +82,67 @@
                                 <div class="detail_idea nav_bar--item--separate2">
                                     <div class="avata_information_idea">
                                         <figure>
-                                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
-                                                @if (@idea.idea_anonymous)    @*Anonymous*@
-                                                    {
-                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar_anonymous.png" alt="avatar" />
-                                                    }
-                                                    else
-                                                    {
-                                                      <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
-                                                    }
-                                                <div class="name_account">
-                                                    @if (@idea.idea_anonymous)    @*Anonymous*@
-                                                    {
-                                                        <h4 style="font-size: 16px;padding-top: -600px; width: 230px;">Anonymous</h4>
-                                                    }
-                                                    else
-                                                    {
-                                                        <h4 style="font-size: 16px">@idea.Profile.Name</h4>
-                                                    }
-                                                    <h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
-                                                </div>
-                                            </a>
+
+                                            @if (@idea.idea_anonymous)    @*Anonymous*@
+                                            {
+                                                <a style="text-decoration: none">
+                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/images/avatar_anonymous.png" alt="avatar" />
+                                                    <div class="name_account">
+                                                        <h4 style="font-size: 16px;padding-top: -600px; width: 230px;">Anonymous</h4><h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
+                                                    <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
+                                                    <div class="name_account">
+                                                        <h4 style="font-size: 16px">@idea.Profile.Name</h4><h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
+                                                    </div>
+                                                </a>
+                                            }
+
+                                            @if (@idea.idea_anonymous)    @*Anonymous*@
+                                            {
+
+                                            }
+                                            else
+                                            {
+
+                                            }
+
                                         </figure>
                                     </div>
-                               
-                                        <div class="content">
-                                    
-                                            <div class="img_idea">
-                                                <div class="title_idea">
-                                                    <div class="tag">
-                                                        <a asp-action="" asp-controller="">
-                                                            @foreach (var c in @ViewBag.Category)
+
+                                    <div class="content">
+
+                                        <div class="img_idea">
+                                            <div class="title_idea">
+                                                <div class="tag">
+                                                    <a asp-action="" asp-controller="">
+                                                        @foreach (var c in @ViewBag.Category)
+                                                        {
+                                                            if (@c.CategoryId == @idea.CategoryId)
                                                             {
-                                                                if (@c.CategoryId == @idea.CategoryId)
-                                                                {
-                                                                    <span>@c.category_name</span>     @*Category*@
-                                                                }
+                                                                <span>@c.category_name</span>     @*Category*@
                                                             }
-                                                        </a>
-                                                    </div>
-                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId"  style="text-decoration:none; color: black;"> 
-                                                       <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
-                                                    </a> 
+                                                        }
+                                                    </a>
                                                 </div>
-                                            
-                                                 <div class="file_idea ">
-                                                    <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
-                                                        <h2 class="content_post">@idea.idea_content</h2>
-                                                    </a> @*Content*@
-                                                </div>
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                    <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
+                                                </a>
+                                            </div>
+
+                                            <div class="file_idea ">
+                                                <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                    <h2 class="content_post">@idea.idea_content</h2>
+                                                </a> @*Content*@
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
-                             
+
                                 <div class="felling  nav_bar--item--separate3">
                                     <div class="more">
                                         <ul class="felling_idea">
@@ -159,7 +167,7 @@
                                         <a asp-action="Profile" asp-controller="Staff">
                                             <figure class="avata_comment">
                                                 <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
-                                                 alt="avata" />
+                                                     alt="avata" />
                                             </figure>
                                         </a>
                                     </div>
@@ -199,26 +207,26 @@
             int pre = pageInfor.PageNum - 1;
         }
         <div class="pagination" style=" border-radius: 3em">
-             @if (@pre > 0)
-             {
+            @if (@pre > 0)
+            {
                 <div class="prev">
-                     <span onclick="BtnPre()">Prev</span>
-                </div>    
-             }
-             @if (@next*5-@ViewBag.Total<5)
-             {
-                <div class="next">
-                    <span id="BtnNext" onclick="BtnNext()">Next</span>               
+                    <span onclick="BtnPre()">Prev</span>
                 </div>
-             }
+            }
+            @if (@next * 5 - @ViewBag.Total < 5)
+            {
+                <div class="next">
+                    <span id="BtnNext" onclick="BtnNext()">Next</span>
+                </div>
+            }
         </div>
     </div>
     <script>
-  
-        function BtnNext(){
+
+        function BtnNext() {
             window.location.replace('/staff/viewpage?pagenum=@next&orderby=@pageInfor.OrderBy&viewtype=@pageInfor.ViewType&id=@pageInfor.Id');
         }
-        function BtnPre(){
+        function BtnPre() {
             window.location.replace('/staff/viewpage?pagenum=@pre&orderby=@pageInfor.OrderBy&viewtype=@pageInfor.ViewType&id=@pageInfor.Id');
         }
     </script>

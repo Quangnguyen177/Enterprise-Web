@@ -114,12 +114,12 @@ namespace COMP1640.Controllers
                 {
                     HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
                 }
-                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-                }
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+            }
                 else
                 {
-                    return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-                }
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+            }
 
         }
 
