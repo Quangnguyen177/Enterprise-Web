@@ -51,16 +51,14 @@
                 </div>
                 <div style="display: flex; position:relative; left:5px">
                     <div class="form-group"><a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a></div>
-                    <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-set">Reset</a></div>
+                    <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-set">Refresh</a></div>
                 </div>
-
-                <div>
-                    <form asp-action="SearchEvent" asp-controller="Admin" method="post">
-                        <input type="search" placeholder="Search title..." name="keyword">
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-
+                <form asp-action="SearchEvent" asp-controller="Admin" method="post">
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search" name="keyword"/>
+                    <button type="button" class="btn btn-outline-primary">search</button>
+                    </div>
+                </form>
                 <hr />
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">

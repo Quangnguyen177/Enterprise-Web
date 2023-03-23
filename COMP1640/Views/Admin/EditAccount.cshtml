@@ -141,10 +141,16 @@
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center">
-                            <img class="img-account-profile rounded-circle mb-2" src="https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png" alt="avatarprofile">
+                            @if(ViewBag.User.Avatar == null)
+                            {
+                                <img class="img-account-profile rounded-circle mb-2" src="https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png" alt="avatarprofile">
+                            }else{
+                                <img class="img-account-profile rounded-circle mb-2" src="/Avatars/@ViewBag.User.Avatar" alt="avatarprofile">
+                            }
+                            
                             <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                             <div class="avatar-form">
-                                <input class="buttonUpload" type="file" id="uploadedAva" name="uploadedAva">
+                                <input class="buttonUpload" type="file" id="uploadedAva" name="uploadedAva" nullable>
                             </div>
                         </div>
                     </div>
