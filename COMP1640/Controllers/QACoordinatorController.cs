@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Linq;
+using System.Security.Claims;
 
 namespace COMP1640.Controllers
 {
@@ -16,6 +17,8 @@ namespace COMP1640.Controllers
         }
         public IActionResult ListIdea()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             var ideas = context.Ideas.Include(e=>e.Event).Include(p=>p.Profile).Include(c=>c.Category).Include(r=>r.Reacpoint).ToList();
             return View(ideas);
         }
