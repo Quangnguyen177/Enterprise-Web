@@ -1,4 +1,4 @@
-﻿@model List<Event>;
+@model List<Event>;
 @{
     Layout = "_LayoutManageClosureDate";
     var count = 1;
@@ -18,12 +18,6 @@
                     <!-- Actions -->
                     <div class="col-sm-6 col-12 text-sm-end">
                         <div class="mx-n1">
-                            @*<a href="#" class="btn d-inline-flex btn-sm btn-success mx-1" style="background-color:lawngreen">
-                            <span class=" pe-2">
-                            <i class="fa fa-pencil-square-o"></i>
-                            </span>
-                            <span>Edit</span>
-                            </a>*@
                             <a class="btn d-inline-flex btn-sm btn-primary mx-1" asp-area="Identity" asp-page="/Account/Register">
                                 <span class=" pe-2">
                                     <i class="fa fa-plus-circle"></i>
@@ -47,21 +41,25 @@
         <div class="container-fluid">
             <div class="card mb-7">
                 <div class="card-header">
-                    <h5 class="mb-0">Setting event</h5>
-                </div>
-                <div style="display: flex; position:relative; left:5px">
-                    <div class="form-group"><a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a></div>
-                    <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-set">Reset</a></div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5 class="mb-0">Setting event</h5>
+                        </div>
+                        <div class="col-sm">
+                            <div>
+                                <form asp-action="SearchEvent" asp-controller="Admin" method="post">
+                                    <input type="text" class="searchTerm" placeholder="Search event..." name="keyword">
+                                    <button class="searchButton" type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="set-btn col-sm">
+                            <div class="form-group"><a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a></div>
+                            <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-edit">Reset</a></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <form asp-action="SearchEvent" asp-controller="Admin" method="post">
-                        <input type="search" placeholder="Search title..." name="keyword">
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-
-                <hr />
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
                         <thead class="table-light">
@@ -69,6 +67,7 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">Event Name</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Change Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -80,23 +79,26 @@
                                     <td>@e.EventName</td>
                                     <form asp-action="SetStatus" asp-controller="Admin" method="post">
                                         <input hidden class="form-control" asp-for="@e.EventId" name="id" value="@e.EventId">
-                                        @if (e.Status == true)
-                                        {
+                                            @if (e.Status == true)
+                                            {
+                                            <td>
+                                                Inactive
+                                            </td>
+                                            }
+                                            @if (e.Status == false)
+                                            {
+                                            <td>
+                                                Active
+                                            </td>
+                                            }
                                         <td>
-                                            Inactive
+                                            <button type="submit" class="btn btn-sm btn-set">Pull the trigger</button>
                                         </td>
-                                        }
-                                        @if (e.Status == false)
-                                        {
+
                                         <td>
-                                            Active
+                                            <a asp-controller="Admin" asp-action="EditClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Edit</a>
+                                            <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
                                         </td>
-                                        }
-                                    <td class="text-end">
-                                        <button type="submit" class="btn btn-sm btn-set">Pull the trigger</button>
-                                        <a asp-controller="Admin" asp-action="EditClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Edit</a>
-                                        <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
-                                    </td>
                                     </form>
                                 </tr>
                                 count = count + 1;
@@ -104,9 +106,6 @@
                         </tbody>
                     </table>
                 </div>
-                @*<div class="card-footer border-0 py-5">
-                <span class="text-muted text-sm">Showing 8 post idea out of 100 results found</span>
-                </div>*@
             </div>
         </div>
     </main>
