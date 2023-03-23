@@ -3158,7 +3158,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Drawing.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Drawing.Primitives.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Dynamic.Runtime.dll
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Formats.Asn1.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.Calendars.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.Extensions.dll
@@ -3214,7 +3213,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Reflect
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.Reader.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.ResourceManager.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.Writer.dll
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.Extensions.dll
@@ -3245,7 +3243,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Securit
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Security.SecureString.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.ServiceModel.Web.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.ServiceProcess.dll
-D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.CodePages.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.Extensions.dll
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encodings.Web.dll
@@ -4566,3 +4563,12 @@ D:\FinalProject\Newest\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\MailKit.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\MimeKit.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Formats.Asn1.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Security.Cryptography.Pkcs.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Text.Encoding.CodePages.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+D:\FinalProject\Web\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll

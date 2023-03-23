@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
@@ -13,6 +12,8 @@ using System.Security.Claims;
 using System.IO.Compression;
 using Microsoft.AspNetCore.Authorization;
 using COMP1640.ViewModels;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace COMP1640.Controllers
 {
@@ -114,12 +115,12 @@ namespace COMP1640.Controllers
                 {
                     HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
                 }
-                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-                }
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+            }
                 else
                 {
-                    return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, viewType = "lastest" });
-                }
+                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+            }
 
         }
 
@@ -217,17 +218,16 @@ namespace COMP1640.Controllers
         public JsonResult Comment(Comment com)
         {
             //get user to use name and toEmail
-            var profile = Db.Profile.FirstOrDefault(u => u.Id == com.ProfileId);
             var idea = Db.Ideas.Include(i => i.Profile).FirstOrDefault(i => i.IdeaId == com.IdeaId);
-
-            var Evt = Db.Events.FirstOrDefault(i => i.EventId == com.IdeaId);
-            if (Evt.Last_closure_date > DateTime.Now)
+            var evt = Db.Events.FirstOrDefault(e => e.EventId == idea.EventId);
+            if (evt.Last_closure_date > DateTime.Now)
             {
                 //default sender is system, so from email is not needed.
+                var profile = Db.Profile.FirstOrDefault(u => u.Id == com.ProfileId);
                 var name = (com.com_anonymous) ? "An anonymous user" : profile.Name;
                 var subject = name + " has commented your \"" + idea.idea_title + "\" idea";
-                var sendMail = SendEmail(/*idea.Profile.Email*/"dantruong2002tq@gmail.com", subject, com.com_content);
-                if (sendMail) // check if sending mail is successfull!
+                //SendEmail(/*idea.Profile.Email*/"dantruong2002tq@gmail.com", subject, com.com_content);
+                if (true) // check if sending mail is successfull!
                 {
                     Comment newComment = new Comment()
                     {
@@ -454,38 +454,24 @@ namespace COMP1640.Controllers
         {
             try
             {
-                // Create a new MailMessage object
-                MailMessage message = new MailMessage();
-
-                // Set the sender's email address
-                message.From = new MailAddress("truongtd2002tq@gmail.com", "Notification System");
-
-                // Add a recipient email address
-                message.To.Add(toEmail);
-
-                // Set the subject and body of the email
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Notification System", "truongtd2002tq@gmail.com"));
+                message.To.Add(MailboxAddress.Parse(toEmail));
                 message.Subject = subject;
-                message.Body = content;
-
-                // Create a new SmtpClient object
+                message.Body = new TextPart("plain")
+                {
+                    Text = content,
+                };
                 SmtpClient client = new SmtpClient();
-
-                // Set the SMTP server and port number
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.UseDefaultCredentials = false;
-                // Set the credentials used to authenticate with the SMTP server (if required)
-                client.Credentials = new System.Net.NetworkCredential("truongtd2002tq@gmail.com", "uqjavdcqqzxrsjmo");
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                // Enable SSL if required
-                client.EnableSsl = true;
-                client.Timeout = 200000;
-                // Send the email
+                client.Connect("smtp.gmail.com", 465, true);
+                client.Authenticate("truongtd2002tq@gmail.com", "dyltswxzsrmvqbfv");
                 client.Send(message);
+                client.Disconnect(true);
+                client.Dispose();
                 return true;
             }
-            catch
-            {
+            catch(Exception ex)
+            {          
                 return false;
             }
         }
