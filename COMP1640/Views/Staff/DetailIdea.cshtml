@@ -3,8 +3,6 @@
 @model COMP1640.Models.Idea
 @{
     Layout = "_Staff";
-}
-@{
     var nums_coms = ViewBag.Comments.Count;
     var react_point = ViewBag.ThumbUp - ViewBag.ThumbDown;
     string userid = UserManager.GetUserId(User);
@@ -262,16 +260,23 @@
                                             <div class="row">
                                                 <div class="col-sm-6 multi-gd-img">
                                                     <ul>
-                                                        @if (ViewBag.FDate > DateTime.Now)
+                                                        @if (ViewBag.FDate > DateTime.Now && @Model.ProfileId.Equals(@logginnedUser.Id))
                                                         {
                                                             <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId">Edit</a></li>
-                                                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Home">Delete</a></li>
+                                                            <li class="nav_bar--item ">
+                                                                <a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId"
+                                                                onclick="alert('Are you sure to remove this idea?')">
+                                                                Delete
+                                                                </a>
+                                                            </li>
                                                         }
-                                                        else
-                                                        {
-                                                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none">Edit</a></li>
-                                                            <li class="nav_bar--item "><a style="color: #797979; text-decoration: none">Delete</a></li>
-                                                        }
+                                                        else if (@Model.ProfileId.Equals(@logginnedUser.Id))
+                                                        {   
+                                                            <a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId"
+                                                                onclick="alert('Are you sure to remove this idea?')">
+                                                                Delete
+                                                            </a>
+                                                        }                                                      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -535,13 +540,6 @@
                             $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="/Avatars/' + result.Avatar + '" alt="avata" /> </a> </figure> </div>')
                             $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">' + result.Name + '</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
                         }
-
-
-                        //if (result.Anonymous){
-                        //  $("#display-comment").append('<h4 style="font-size: 16px; font-weight: bold;">Anonymous</h4>')
-                        //}else{
-                        //  $("#display-comment").append('<h4 style="font-size: 16px; font-weight: bold;">'+result.Name+'</h4>')
-                        //}
                     }
                 },
                 error: function (err) {

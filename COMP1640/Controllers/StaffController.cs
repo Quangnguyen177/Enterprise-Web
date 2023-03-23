@@ -314,6 +314,31 @@ namespace COMP1640.Controllers
             return View(idea);
         }
 
+        public IActionResult DeleteIdea(int id)
+        {
+            Idea idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+            var docs = Db.Documents.Where(i =>i.IdeaId == id).ToList();
+            var reacts = Db.React.Where(i => i.IdeaId == id).ToList();
+            var reactpoint = Db.ReactPoints.FirstOrDefault(i => i.ReactPointId == idea.ReactPointId);
+            var coms = Db.Comments.Where(i => i.IdeaId == id).ToList();           
+            if (docs.Count() > 0)
+            {
+                Db.RemoveRange(docs);
+            }
+            if (reacts.Count() > 0)
+            {
+                Db.RemoveRange(reacts);
+            }
+            if (coms.Count() > 0)
+            {
+                Db.RemoveRange(coms);
+            }
+            Db.Remove(reactpoint);
+            Db.Remove(idea);
+            Db.SaveChanges();
+            return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+        }
+
         public IActionResult DownloadFile(int id)
         {
             var file = Db.Documents.Find(id);
@@ -325,7 +350,7 @@ namespace COMP1640.Controllers
 
             DirectoryInfo dirInfo = new DirectoryInfo(fileSavePath);
 
-            int i = 0;
+            int i = 0; 
 
             foreach (var item in dirInfo.GetFiles())
             {
