@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Linq;
 
 namespace COMP1640.Controllers
 {
@@ -14,7 +16,8 @@ namespace COMP1640.Controllers
         }
         public IActionResult ListIdea()
         {
-            return View();
+            var ideas = context.Ideas.Include(e=>e.Event).Include(p=>p.Profile).Include(c=>c.Category).Include(r=>r.Reacpoint).ToList();
+            return View(ideas);
         }
         public IActionResult LatestComment()
         {
