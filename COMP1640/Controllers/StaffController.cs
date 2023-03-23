@@ -397,6 +397,12 @@ namespace COMP1640.Controllers
         {
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
+            var Evt = Db.Events.Where(e => e.Status == false).ToList();
+            if (Evt != null)
+            {
+                ViewBag.Event = Evt;
+            }
+            else { ViewBag.Event = null; }
             if (id == null)
             {
                 return NotFound();
