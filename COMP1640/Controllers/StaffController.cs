@@ -49,7 +49,13 @@ namespace COMP1640.Controllers
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
-            ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();           
+            var Evt = Db.Events.Where(e => e.Status == false).ToList();
+            if (Evt != null)
+            {
+                ViewBag.Event = Evt;
+            }
+            else { ViewBag.Event = null; }
+
             ViewBag.Page = new ViewPage(pageNum, orderBy, viewType, id);
             var d = Db.Events.ToList().Last();
             ViewBag.Date = d.First_closure_date;         

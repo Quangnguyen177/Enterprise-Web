@@ -73,8 +73,7 @@ namespace COMP1640.Controllers
 
         public IActionResult ManageClosureDate()
         {
-/*            ViewBag.Events = */
-            return View(Db.Events.ToList());
+            return View(Db.Events.OrderByDescending(e => e.EventId).ToList());
         }
 
         [HttpGet]
@@ -85,6 +84,11 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult SetClosureDate(Event eve)
         {
+            if (eve.First_closure_date <= DateTime.Now | eve.Last_closure_date <= DateTime.Now)
+            {
+                ViewBag.Message = "The first closure date or last closure date must be later than today";
+                return View(eve);
+            }
             if (eve.First_closure_date >= eve.Last_closure_date)
             {
                 ViewBag.Message = "The first closure date can not be later than the last closure date";
@@ -112,7 +116,7 @@ namespace COMP1640.Controllers
         public IActionResult SetStatus(int id)
         {
             var eve = Db.Events.FirstOrDefault(i => i.EventId == id);
-            if(eve.Status == true) { eve.Status = false; }
+            if (eve.Status == true) { eve.Status = false; }
             else if (eve.Status == false) { eve.Status = true; }
             if (ModelState.IsValid)
             {
@@ -167,7 +171,7 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult SearchEvent(string keyword)
         {
-            var events = Db.Events.Where(p => p.EventName.Contains(keyword)).ToList();
+            var events = Db.Events.Where(p => p.EventName.Contains(keyword)).OrderByDescending(e => e.EventId).ToList();
             if (events.Count == 0)
             {
                 TempData["Message"] = "No event found !";
@@ -205,7 +209,6 @@ namespace COMP1640.Controllers
             var currentRoles = await _userManager.GetRolesAsync(user);
 
             user.Id = Input.Id;
-            user.Avatar = uploadedAva.FileName;
             user.Name = Input.Name;
             user.Email = Input.Email;
             user.PhoneNumber = Input.PhoneNumber;
@@ -213,21 +216,29 @@ namespace COMP1640.Controllers
             user.Gender = Input.Gender;
             user.Address = Input.Address;
             user.DepId = Input.DepartmentId;
-
-            //Upload Avatar
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Avatars");
-
-            //create folder if not exist
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
-
-            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            if (uploadedAva != null)
             {
-                uploadedAva.CopyTo(stream); //đoạn này add vô root 
+                user.Avatar = uploadedAva.FileName;
+                //Upload Avatar
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Avatars");
 
+                //create folder if not exist
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    uploadedAva.CopyTo(stream); //đoạn này add vô root 
+
+                }
             }
+            else
+            {
+                user.Avatar = null;
+            }
+
             if (currentRoles.Last() != Input.Role)
             {
                 await _userManager.RemoveFromRoleAsync(user, currentRoles.Last());
