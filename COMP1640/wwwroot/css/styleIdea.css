@@ -479,3 +479,13 @@ form textarea:valid ~ button {
 input[type=file]::-webkit-file-upload-button {
     visibility: hidden;
 }
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .container .wrapper {
+        width: 395px;
+    }
+
+    form .options .list {
+        display: none;
+    }
+}

@@ -445,6 +445,7 @@ namespace COMP1640.Controllers
 
         public IActionResult TermsConditions()
         {
+
             return View();
         }      
 

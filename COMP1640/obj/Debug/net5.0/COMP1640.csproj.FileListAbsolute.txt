@@ -2495,7 +2495,6 @@ C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Drawing.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Drawing.Primitives.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Dynamic.Runtime.dll
-C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Formats.Asn1.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.Calendars.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.Extensions.dll
@@ -2551,7 +2550,6 @@ C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Reflection.TypeExtension
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.Reader.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.ResourceManager.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.Writer.dll
-C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.Extensions.dll
@@ -2582,7 +2580,6 @@ C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Security.Principal.Windo
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Security.SecureString.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.ServiceModel.Web.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.ServiceProcess.dll
-C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.CodePages.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.Extensions.dll
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encodings.Web.dll
@@ -2790,25 +2787,15 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Error.csh
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\EditIdea.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\PostIdea.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddTag.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\EditTag.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Index.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutCreateAccount.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_layoutPostIdea.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\AddIdea.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Comment.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\EditIdea.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
@@ -2822,7 +2809,6 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\refint\COMP1640.dll
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.pdb
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
@@ -2888,16 +2874,11 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-lock.json
 C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\InformationStaff.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutInformationStaff.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Login.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Profile.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\ViewPage.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Staff.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CategoryManager.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
-C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAM.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
@@ -4578,3 +4559,20 @@ F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Text.Encoding.CodePages.dll
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\MailKit.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\MimeKit.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Formats.Asn1.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Security.Cryptography.Pkcs.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Text.Encoding.CodePages.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\EditAccount.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageClosureDate.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutEditAccountStaff.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
+C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\TermsConditions.cshtml.g.cs

@@ -1018,16 +1018,17 @@ input[type]:checked ~ span.middle {
     padding-left: 1.3em;
     font-weight: 500;
 }
-.shortcuts_mobile li{
- margin-bottom: -0.9em;
-}
 
-        .shortcuts_mobile a:hover {
-            text-decoration: none;
-        }
+    .shortcuts_mobile li {
+        margin-bottom: -0.9em;
+    }
+
+    .shortcuts_mobile a:hover {
+        text-decoration: none;
+    }
 
 .idea_mobile h1 {
-    color: #424242;
+    color: #525f7f;
     display: inline-block;
     font-size: 28px;
     font-weight: 600;
@@ -1057,31 +1058,52 @@ input[type]:checked ~ span.middle {
 }
 
 /*Mobile & tablet: width<1024px*/
-@media only screen and (max-width: 63.9375em){
+@media only screen and (max-width: 63.9375em) {
     .navbar-vertical.navbar-expand-lg {
         display: none;
     }
+
     .col-xl-3 {
         width: 50%;
     }
 
     .icon_bar {
         display: inline-block;
-/*        width: 20%;*/
         padding-left: 92%;
         margin-top: -2em;
     }
-    .mx-n1{
+
+    .mx-n1 {
         display: none;
     }
-    .shortcuts_mobile a{
+
+    .shortcuts_mobile a {
         padding-right: 2em;
         font-size: 0.95em;
         font-weight: 500;
     }
-    .shortcuts_mobile i{
-       padding-right: 1.2em;
-    }    
+
+    .shortcuts_mobile i {
+        padding-right: 1.2em;
+    }
+
+    .bg-surface-secondary {
+        width: 62%;
+    }
+
+    .bg-surface-primary {
+        width: 62%;
+    }
 }
 
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
 
+    .bg-surface-secondary {
+        width: 33%;
+    }
+
+    .bg-surface-primary {
+        width: 31%;
+    }
+}

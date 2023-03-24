@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "_QAM";
+    <link rel="stylesheet" href="~/css/res_qa_db.css" />
 }
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))

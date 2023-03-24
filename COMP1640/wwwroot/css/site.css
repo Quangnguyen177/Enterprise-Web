@@ -15,23 +15,12 @@ html {
     width: 100%;
     box-sizing: border-box;
 }
-/*.app{
-    width: 100%;
-    display: block;
-    padding: 0;
-}
-.app.wide{
-    max-width: 1200px;
-    margin: 0 auto;
-}*/
+
 body {
     height: 100%;
     width: 100%;
     background: linear-gradient(#e8f2e3, #e8f2e3);
 }
-    body a:hover {
-        color: dimgrey;
-    }
 
 .container-fluid {
     height: 100%;
@@ -44,6 +33,7 @@ body {
     width: 100%;
     padding-bottom: 4em;
 }
+
 /*Header*/
 .header {
     height: 60px;
@@ -61,15 +51,15 @@ body {
     }
 /*logo*/
 .logo img {
-    width: 170px;
-    height: 65px;
-    padding-left: 37px;
-    margin-top: -9px;
+    width: 116px;
+    height: 112px;
+    margin-left: 71px;
+    margin-top: -36px;
 }
 /*nav*/
 #nav_bar {
     display: inline-block;
-    transform: translateX(-20%);
+    transform: translateX(-14%);
     padding-top: 9px;
 }
 
@@ -89,27 +79,30 @@ body {
 }
 
 .dropdown-menu {
-    width: 4em;
+    width: 23em;
 }
 
-    .dropdown-menu li a{
-        list-style: none;
-        letter-spacing: 0px;
-        padding: 0em;
-        font-weight: 500;
-        padding-left: 0px;
-        text-decoration: none;
-        color: inherit;
+    .dropdown-menu li {
+        width: 20em;
     }
 
-/*Search*/
+        .dropdown-menu li a {
+            list-style: none;
+            letter-spacing: 0px;
+            padding: 0em;
+            font-weight: 500;
+            padding-left: 0px;
+            text-decoration: none;
+            color: inherit;
+        }
+/*    Search*/
 .header_search {
     display: inline-block;
-    transform: translateX(-20%);
-    margin-top: 14px;
+    transform: translateX(-12%);
+    margin-top: 11px;
 }
 
-    .header_search form label {
+/*.header_search form label {
         transform: translate(9px, -30px);
         color: #808080;
         font-size: 13px;
@@ -123,8 +116,29 @@ input[type="search" i] {
     width: 300px;
     height: 14px;
     padding-left: 300px;
+}*/
+
+.input {
+    width: 20em;
+    color: #242424;
+    padding: .15rem .5rem;
+    min-height: 35px;
+    border-radius: 1em;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+    border: 1px solid green;
 }
 
+input:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
+}
+
+input:hover {
+    outline: 1px solid lightgrey;
+}
 
 /*nav icon*/
 .nav_icon {
@@ -138,17 +152,22 @@ input[type="search" i] {
         font-size: 16px;
         padding-left: 20px;
     }
+
 .icon_account {
     position: relative;
 }
 
-ul:hover {
+li:hover {
     color: green;
 }
 
-ul a:active {
-    position: relative;
+ul a:hover {
     color: green;
+}
+
+li:active {
+    position: relative;
+    background-color: antiquewhite;
 }
 
 .ul_icon_idea .fa-regular fa-file {
@@ -167,7 +186,7 @@ ul a:active {
     top: 70%;
     transform: translateY(-50%);
 }
-/*Edit*/
+
 .nav_bar--item--separate2::after {
     content: "";
     display: block;
@@ -177,7 +196,7 @@ ul a:active {
     background-color: #e3e5e8;
     width: 95%;
 }
-/*Edit*/
+
 .nav_bar--item--separate3::after {
     content: "";
     display: block;
@@ -229,8 +248,9 @@ ul a:active {
     display: inline-block;
     justify-content: space-around;
 }
-.btn_add{
-padding-top: 3em;
+
+.btn_add {
+    padding-top: 3em;
 }
 
 /*form address new idea*/
@@ -238,22 +258,21 @@ input[type="text" i] {
     width: 420px;
     height: 60px;
     font-size: 14px;
-    transform: translateX(2%);
-    border-radius: 5px;
-    border: 1px solid #808080;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
+
 .form_add_idea {
     width: 100%;
-    padding-left: 1.4em;
+    padding-left: 1.0em;
     margin-top: 0em;
 }
-.form_add_idea .form_control {
-    background-color: white;
-    width: 95%;
-    background: linear-gradient(#e8f2e3, #e8f2e3);
-    margin-top: 2.5em;
-}
+
+    .form_add_idea .form_control {
+        background-color: white;
+        width: 95%;
+        margin-top: 2.5em;
+        border: 1px solid green;
+    }
 
 .avata_post img {
     display: inline-block;
@@ -280,6 +299,7 @@ input[type="text" i] {
 .com_idea_avata {
     display: inline-block;
 }
+
 .comment .form-group {
     width: 90%;
 }
@@ -324,6 +344,7 @@ input[type="text" i] {
     text-align: center;
     margin-top: 2em;
 }
+
     .file_idea img {
         width: 550px;
         height: 400px;
@@ -362,13 +383,18 @@ input[type="text" i] {
     transform: translateY(23px);
     margin-left: 30px;
 }
+
 .tag {
     display: inline-block;
     background-color: white;
-    border: 0.1em solid gray;
+    border: 0.1em dotted gray;
     border-radius: 0.5em;
     /* width: 3em;*/
     transform: translate(1.4em, -0.4em);
+}
+
+.tag a:hover {
+    text-decoration: none;
 }
 
 .title_idea h1 {
@@ -578,6 +604,8 @@ input:checked ~ .slider {
     transform: translate(1.3em, -2em);
 }
 
+
+
 .pagination a {
     text-decoration: none;
     outline: none;
@@ -616,6 +644,7 @@ input:checked ~ .slider {
     background: white;
     transition: .5s linear .2s;
 }
+
 .pagination {
     background: #FCFCFC;
     color: #4D4644;
@@ -628,7 +657,7 @@ input:checked ~ .slider {
     width: 20em;
     height: 3em;
     border-radius: 3em;
-    transform: translateX(70em);
+    transform: translateX(65em);
     padding-top: 1.8em;
 }
 
@@ -644,6 +673,7 @@ input:checked ~ .slider {
     background: #97bfa1;
     opacity: 1;
 }
+
 .prev:before {
     content: "\f104";
     font-family: FontAwesome;
@@ -658,6 +688,7 @@ input:checked ~ .slider {
     display: flex;
     padding-top: 2em;
 }
+
 .form-group button {
     transform: translate(25.6em, -3.3em);
 }
@@ -666,6 +697,9 @@ textarea.form-control {
     width: 450px;
 }
 
+.comment .form-control {
+    border-radius: 10px;
+}
 /*Responsive*/
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
@@ -876,21 +910,22 @@ input[type]:checked ~ span.middle {
     .pagination {
         margin-top: 2em;
         width: 12em;
-        margin-left: -65em;
+        margin-left: -59em;
     }
 
     .sub_container2 {
         display: none;
     }
 
-    .tag span {
+    .tag span{
         font-size: 0.9em;
     }
 
     .title_idea h1 {
         font-size: 0.9em;
     }
-        .form-control input{
+
+    .form-control input {
         width: 80%;
     }
 }
@@ -933,7 +968,8 @@ input[type]:checked ~ span.middle {
     .form_add_idea button {
         display: none;
     }
-      .comment {
+
+    .comment {
         width: 80%;
     }
 }
@@ -953,14 +989,17 @@ input[type]:checked ~ span.middle {
     padding-top: 2em;
     padding-bottom: 1em;
 }
+
 h1 {
     padding-bottom: 0.5em;
     text-align: center;
     font-weight: 500;
 }
+
 span, p {
     font-size: 1.1em;
 }
+
 .btn_privacy {
     padding-bottom: 2em;
     float: right;
@@ -976,21 +1015,24 @@ span, p {
         transform: translateX(-13%);
         padding-top: 0.7em;
     }
-    .search{
+
+    .search {
         display: none;
     }
+
     .pagination {
         border-radius: 3em;
         margin-left: -60%;
     }
+
     .sub_container2 img {
         width: 286px;
         height: 187px;
     }
+
     .sidebar.static {
         margin-left: -4.8em;
     }
-
 }
 
 
@@ -1003,8 +1045,12 @@ span, p {
     }
 
     #nav_bar {
-        transform: translateX(-13%);
+        transform: translateX(-3%);
         padding-top: 0.7em;
+    }
+
+    .header_search {
+        transform: translateX(5%);
     }
 
     .input-group {
@@ -1031,7 +1077,7 @@ span, p {
     .sidebar.static {
         margin-left: -2em;
     }
-   /*Responsive details*/
+    /*Responsive details */
 
     .commented .appear_idea {
         transform: translate(-30em, 7em);
@@ -1042,17 +1088,16 @@ span, p {
     }
 
     /* Res Profile*/
-    .profile .content_post{
+    .profile .content_post {
         width: 100%;
     }
 
-   .profile .sub_container2 img {
+    .profile .sub_container2 img {
         width: 289px;
         height: 206px;
     }
+
     .profile .row.merged20 {
         margin-right: 2em;
     }
 }
-
-

@@ -5,6 +5,7 @@
     Layout = "_LayoutEditAccountStaff";
     var Roles = ViewData["Roles"] as List<IdentityRole>;
     var Deps = ViewData["Departments"] as List<COMP1640.Models.Department>;
+    ViewData["Title"] = "Edit Account";
 }
 
 @*@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))

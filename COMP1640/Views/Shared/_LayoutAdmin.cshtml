@@ -164,6 +164,92 @@
         </nav>
         <!-- Main content -->
         <main role="main" class="pb-3">
+            <!-- Header -->
+            <header class="bg-surface-primary border-bottom pt-6">
+                <div class="container-fluid">
+                    <div class="mb-npx">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                                <!-- Title -->
+                                <h1 class="h2 mb-0 ls-tight">Application</h1>
+                            </div>
+
+                            @* Responsive mobile and tablet*@
+                            <div class="icon_bar">
+                                <label for="check" class="bar">
+                                    <input id="check_icon" type="checkbox">
+                                    <span class="top"></span>
+                                    <span class="middle"></span>
+                                    <span class="bottom"></span>
+                                </label>
+
+                            </div>
+                            <input id="check" hidden type="checkbox" class="input_check">
+                            <label for="check" class="overlay"></label>
+
+                            <div class="idea_mobile">
+                                <div class="all_idea_mobile">
+                                    <h1>Menu</h1>
+                                    <ul class="shortcuts_mobile">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fa fa-user-circle-o"></i> Account
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="shortcuts_mobile">
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Admin" asp-action="dashboard">
+                                                <i class="fa fa-home"></i> Dashboard
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Admin" asp-action="ManageAccount">
+                                                <i class="fa fa-pencil-square-o"></i> Manage account staff
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Admin" asp-action="ManageClosureDate">
+                                                <i class="fa fa-cog"></i> Setting event
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fa fa-sign-out"></i> Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="col-sm-6 col-12 text-sm-end">
+                                <div class="mx-n1">
+                                    @*<a href="#" class="btn d-inline-flex btn-sm btn-success mx-1" style="background-color:lawngreen">
+                                    <span class=" pe-2">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                    </span>
+                                    <span>Edit</span>
+                                    </a>*@
+                                    <a class="btn d-inline-flex btn-sm btn-primary mx-1" asp-area="Identity" asp-page="/Account/Register">
+                                        <span class=" pe-2">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </span>
+                                        <span>Create</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nav -->
+                        <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                            <li class="nav-item ">
+                                <a asp-controller="Admin" asp-action="dashboard" class="nav-link active">@ViewData["Title"]</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
             @RenderBody()
         </main>
     </div>
