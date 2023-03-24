@@ -569,7 +569,6 @@ E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Drawing.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Drawing.Primitives.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Dynamic.Runtime.dll
-E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Formats.Asn1.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.Calendars.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Globalization.Extensions.dll
@@ -625,7 +624,6 @@ E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Reflection.TypeEx
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.Reader.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.ResourceManager.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Resources.Writer.dll
-E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Runtime.Extensions.dll
@@ -656,7 +654,6 @@ E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Security.Principa
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Security.SecureString.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.ServiceModel.Web.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.ServiceProcess.dll
-E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.CodePages.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encoding.Extensions.dll
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\refs\System.Text.Encodings.Web.dll
@@ -786,12 +783,7 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.TagHelpers.input.cac
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.TagHelpers.output.cache
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.RazorCoreGenerate.cache
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\dashboard.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\PostIdea.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddTag.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\EditTag.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Index.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
@@ -799,7 +791,6 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutCre
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\AddIdea.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\Comment.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\EditIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
@@ -2322,9 +2313,6 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntimeconfig.cache
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\EditIdea.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\EditIdea.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Detail.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\EditIdea.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
@@ -2814,7 +2802,6 @@ C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Vi
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\DetailIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\package-lock.json
 E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\package.json
@@ -3471,7 +3458,6 @@ D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\COMP1640.genruntime
 D:\FinalProject\WEB\Enterprise-Web\COMP1640\obj\Debug\net5.0\ref\COMP1640.dll
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageAccount.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\ManageClosureDate.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Home\DeleteIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\LatestComment.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QACoordinator\ListIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\AddCate.cshtml.g.cs
@@ -3479,7 +3465,6 @@ E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Categor
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\CommentIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Dashboard.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\Idea.cshtml.g.cs
-E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\QAManager\ListIdea.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_QAC.cshtml.g.cs
@@ -4576,3 +4561,13 @@ C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutEditAccoun
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageAccount.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Shared\_LayoutManageClosureDate.cshtml.g.cs
 C:\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Staff\TermsConditions.cshtml.g.cs
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\MailKit.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\MimeKit.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Formats.Asn1.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Security.Cryptography.Pkcs.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\System.Text.Encoding.CodePages.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+E:\GitHub\Enterprise-Web\COMP1640\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
