@@ -8,130 +8,6 @@
     ViewData["Title"] = "Edit Account";
 }
 
-@*@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-{
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <form asp-controller="Admin" asp-action="ManageAccountInformation" method="post" enctype="multipart/form-data">
-                    <h1 class="display-6">Edit this Account</h1>
-                    <div class="form-group">
-                        <input hidden class="form-control" asp-for="Input.Id" value="@ViewBag.User.Id" />
-                    </div>
-
-                    <div class="avatar-form">
-                        <label class="font-weight-bold">Avatar</label>
-                        <input class="buttonUpload" type="file" id="uploadedAva" name="uploadedAva">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Name</label>
-                        <input type="text" class="form-control" id="name" asp-for="Input.Name" value="@ViewBag.User.Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Email</label>
-                        <input type="email" class="form-control" asp-for="Input.Email" value="@ViewBag.User.Email">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Phone number</label>
-                        <input type="tel" class="form-control" asp-for="Input.PhoneNumber" value="@ViewBag.User.PhoneNumber">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold" >Date of Birth</label>
-                        <input type="date" class="form-control" asp-for="Input.DoB" value=@ViewBag.UserDoB>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Gender</label>
-                        <div class="gender-option">
-                            <div class="gender">
-                                <input id="male" type="radio" asp-for="Input.Gender" value="Male"/>
-                                <label for="check-male">Male</label>
-                            </div>
-                            <div class="gender">
-                                <input id="female" type="radio" asp-for="Input.Gender" value="Female"/>
-                                <label for="check-female">Female</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Address</label>
-                        <input class="form-control" asp-for="Input.Address" value="@ViewBag.User.Address" />
-                    </div>
-
-                    <div class="form-group">
-                        <select class="form-select form-control" id="role" asp-for="Input.Role" >
-                            @foreach (var role in Roles)
-                            {
-                                <option value="@role.Name">@role.Name</option>
-                            }
-                        </select>
-                        <span class="text-danger" asp-validation-for="Input.Role"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <select class="form-select form-control" id="dep" asp-for="Input.DepartmentId" >
-                            @foreach (var dep in Deps)
-                            {
-                                <option value="@dep.DepId">@dep.Dep_name</option>
-                            }
-                        </select>
-                        <span class="text-danger" asp-validation-for="Input.DepartmentId"></span>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">Update</button>
-                </form>
-
-                <form asp-controller="Admin" asp-action="ResetPassword" method="post">
-                    <h2 class="display-6">Reset Password</h2>
-                    <div class="form-group">
-                        <input hidden class="form-control" asp-for="Input.Id" value="@ViewBag.User.Id" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Password</label>
-                        <input class="form-control" asp-for="Input.Password" placeholder="Enter new password" required>
-                    </div>
-
-                    <a type="button" class="btn btn-secondary" data-dismiss="modal" asp-controller="Admin" asp-action="ManageAccount">
-                        Close
-                    </a>
-
-                    <button type="submit" class="btn btn-success">Update</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //Role
-            $('#role').val("@ViewBag.UserRole");
-
-            //Dep
-            $('#dep').val(@ViewBag.User.DepId);
-
-            //Gender
-            if ("@ViewBag.User.Gender" == "") {
-                $("#male").attr("checked");
-                $("#female").attr("checked");
-            }
-            else if ("@ViewBag.User.Gender" == "Male") {
-                $("#male").attr("checked", "checked");
-                $("#female").attr("checked");
-            }
-            else if ("@ViewBag.User.Gender" == "Female") {
-                $("#male").attr("checked");
-                $("#female").attr("checked", "checked");
-            }
-        });
-    </script>
-}*@
-
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
     <div class="container-xl px-4 mt-4">
@@ -245,8 +121,6 @@
                             <label class="font-weight-bold">Password</label>
                             <input class="form-control" asp-for="Input.Password" placeholder="Enter new password" required>
                         </div>
-
-                        @*<a type="button" class="btn btn-secondary" data-dismiss="modal" asp-controller="Admin" asp-action="ManageAccount">Close</a>*@
 
                         <button type="submit" class="btn btn-success">Update</button>
                     </div>

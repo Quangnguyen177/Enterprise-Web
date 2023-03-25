@@ -5,15 +5,11 @@
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
     <div class="container">
-        <a class="back" asp-action="ManageClosureDate" asp-controller="Admin"><img src="~/fb-icons/bx-arrow-back.svg" /></a>@*href="javascript:history.back()"*@
+        <a class="back" asp-action="ManageClosureDate" asp-controller="Admin"><img src="~/fb-icons/bx-arrow-back.svg" /></a>
         <div class="title">Set Closure Date</div>
         <div class="content">
             <form asp-action="SetClosureDate" asp-controller="Admin" method="post">
                 <div class="user-details">
-@*                    <div class="search" action="">
-                        <input type="search" placeholder="Search title...">
-                        <button type="submit">Search</button>
-                    </div>*@
                     @*Duong code*@
                     <div class="input-box">
                         <span class="details">Event Name</span>

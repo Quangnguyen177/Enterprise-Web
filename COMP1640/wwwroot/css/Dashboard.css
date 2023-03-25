@@ -519,6 +519,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.set-btn {
+    display: flex;
+    justify-content: end;
+}
+
 .btn-set {
     color: #16192c;
     background-color: #98FB98;
@@ -1055,6 +1060,44 @@ input[type]:checked ~ span.middle {
     transform: translateY(21px);
     background-color: #e3e5e8;
     width: 95%;
+}
+
+/*Search manage closure date*/
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    position: relative;
+    bottom: 1px;
+    width: 80%;
+    border: 2px solid #000000;
+    border-right: none;
+    padding: 5px;
+    height: 35px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #000000;
+}
+
+    .searchTerm:focus {
+        color: #000000;
+    }
+
+.searchButton {
+    position: relative;
+    right: 6px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #000000;
+    background: #484848;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 /*Mobile & tablet: width<1024px*/
