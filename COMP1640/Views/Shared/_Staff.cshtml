@@ -103,7 +103,14 @@
             <div class="nav_icon">
                 <ul class="menu icon">
                     <li class="icon_account nav_bar--item--separate" style="color: #373b3f; font-weight: bold">Minh Lưu Thị</li>
-                    <li class="icon_account"><a style="color: #373b3f; text-decoration: none" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F"><i class="fa-solid fa-right-from-bracket"></i></a></li>  &nbsp &nbsp
+                    @*<li class="icon_account"><a style="color: #373b3f; text-decoration: none" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F"><i class="fa-solid fa-right-from-bracket"></i></a></li>  &nbsp &nbsp*@
+                    <li class="icon_account">
+                        <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                            <button class="btn btn-light" style="color: #373b3f; text-decoration: none" type="submit">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
             
@@ -131,7 +138,13 @@
                         <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
                         <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pageNum=1&viewtype=popular">Most Emotion ideas</a></li>
                         <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F">Logout</a></li>
+                        @*<li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F">Logout</a></li>*@
+                        <li class="nav_bar--item ">
+                            <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

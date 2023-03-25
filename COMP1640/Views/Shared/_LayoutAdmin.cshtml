@@ -154,9 +154,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F">
+                            @*<a class="nav-link" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F">
                                 <i class="fa fa-sign-out"></i> Logout
-                            </a>
+                            </a>*@
+                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                <button class="btn btn-light" type="submit">Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
