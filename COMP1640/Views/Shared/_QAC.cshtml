@@ -25,8 +25,8 @@
                         <div class="nav iterm">
                             <ul>
                                 <li><i class="fa-solid fa-face-laugh-wink"></i><a asp-action="ListIdea" asp-controller="QACoordinator">Ideas</a></li>
-                                <li><i class="fa-regular fa-eye"></i><a asp-action="ListIdea" asp-controller="QACoordinator">Most Viewed Ideas</a></li>
-                                <li><i class="fa-regular fa-lightbulb"></i><a asp-action="ListIdea" asp-controller="QACoordinator">Latest Ideas</a></li>
+                                <li><i class="fa-regular fa-eye"></i><a asp-action="MostViewedIdea" asp-controller="QACoordinator">Most Viewed Ideas</a></li>
+                                <li><i class="fa-regular fa-lightbulb"></i><a asp-action="LatestIdea" asp-controller="QACoordinator">Latest Ideas</a></li>
                                 <li><i class="fa-regular fa-comments"></i><a asp-action="LatestComment" asp-controller="QACoordinator">Latest Comments</a></li>
                             </ul>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="text_center ">
                             <div class="date">
                                 <div class="dash"></div>
-                                <span>Department: IT - Today: </span>
+                                <span>Department: @ViewBag.LogginedUser.Department.Dep_name - Today: </span>
                                 <p id="time"></p>
                             </div>
                         </div>

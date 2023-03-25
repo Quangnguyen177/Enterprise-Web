@@ -11,6 +11,7 @@ using COMP1640.ChartModels;
 using Newtonsoft.Json;
 using System;
 using COMP1640.ViewModels;
+using System.Security.Claims;
 
 namespace COMP1640.Controllers
 {
@@ -30,6 +31,8 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult AddCate()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             return View();
         }
 
@@ -59,6 +62,8 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult EditTag(int? id)
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             if (id == null)
             {
                 return NotFound();
@@ -80,6 +85,7 @@ namespace COMP1640.Controllers
             {
                 return View(cate);
             }
+
         }
 
         public IActionResult Dashboard()
@@ -93,18 +99,44 @@ namespace COMP1640.Controllers
             }
             list = list.OrderByDescending(i => i.PostedIdea).Take(5).ToList();
 
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             return View(list);
         }
-        public IActionResult Idea()
+        public IActionResult Idea(int pageNum, string viewType)
         {
-            return View();
+            if (pageNum == 1) ViewBag.PageNum = 1;
+            else ViewBag.PageNum = pageNum;
+            int skipPage = 5* (pageNum - 1);
+            List<Idea> list = null;
+            if (viewType.Equals("mostview"))
+            {
+                list = context.Ideas.OrderByDescending(i=>i.idea_view).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(5).ToList();
+                ViewBag.ViewType = "mostview";
+            }else if (viewType.Equals("lastest"))
+            {
+                list = context.Ideas.OrderByDescending(i=>i.created_date).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(5).ToList();
+                ViewBag.ViewType = "lastest";
+            }else if (viewType.Equals("popular"))
+            {
+                list = context.Ideas.Include(i=>i.Reacpoint).OrderByDescending(i=>i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Skip(skipPage).Take(5).ToList();
+                ViewBag.ViewType = "popular";
+            }
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+            ViewBag.Total = context.Ideas.Count();
+            return View(list);
         }
         public IActionResult CommentIdea()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             return View();
         }
         public IActionResult CategoryManager()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             return View(context.Categories.ToList());
         }
         public IActionResult DownloadFile()

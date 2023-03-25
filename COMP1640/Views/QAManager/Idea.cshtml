@@ -7,29 +7,41 @@
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
-    <div class="idea">
-        <div class="paginations" style=" border-radius: 3em">
-            <div class="prev">
-                <span class="text" onclick="BtnPre()">Prev</span>
-                <div class="left">
-                </div>
-            </div>
 
-            <div class="next">
-                <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
-                <div class="right">
+    <div class="idea">
+        @{
+            int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
+            int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
+            var viewType = @ViewBag.ViewType;
+        }
+        <div class="paginations" style=" border-radius: 3em">
+            @if (pre > 0)
+            {
+                <div class="prev">
+                    <span class="text" onclick="BtnPre()">Prev</span>
+                    <div class="left">
+                    </div>
                 </div>
-            </div>
+            }
+            @if (next * 5 - ViewBag.Total < 5)
+            {
+                <div class="next">
+                    <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                    <div class="right">
+                    </div>
+                </div>
+            }
         </div>
+
         @* <h1>Evalue Idea</h1>*@
         <div class="dropdown">
             <button class="btn_dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa-solid fa-filter"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Most Popular Ideas</a>
-                <a class="dropdown-item" href="#">Most Viewed Ideas</a>
-                <a class="dropdown-item" href="#">Latest Ideas</a>
+                <a class="dropdown-item" href="/QAManager/Idea?pagenum=1&viewtype=popular">Most Popular Ideas</a>
+                <a class="dropdown-item" href="/QAManager/Idea?pagenum=1&viewtype=mostview">Most Viewed Ideas</a>
+                <a class="dropdown-item" href="/QAManager/Idea?pagenum=1&viewtype=lastest">Latest Ideas</a>
             </div>
         </div>
 
@@ -44,6 +56,7 @@
             </a>
         </div>
 
+
         <div class="download_csv">
             <a asp-controller="QAManager" asp-action="DownloadCSV">
                 <button class="download-button">
@@ -54,7 +67,7 @@
                 </button>
             </a>
         </div>
-        
+
         <table class="table">
             <thead>
                 <tr>
@@ -62,103 +75,45 @@
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Frist_clourse</th>
-                    <th scope="col">Last_closure</th>
+                    <th scope="col">First Closure</th>
+                    <th scope="col">Last Closure</th>
                     <th scope="col">Anonymous</th>
                     <th scope="col">View</th>
-                    <th scope="col">Profile ID</th>
-                    <th scope="col">Category ID</th>
-                    <th scope="col">React Point</th>
-                    <th scope="col">Documnet</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category </th>
+                    <th scope="col">Thumbs Up</th>
+                    <th scope="col">Thumbs Down</th>
+                    <th scope="col">Document</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>HI</td>
-                    <td>I am a student of GW</td>
-                    <td>3/5/2023 3:45 PM</td>
-                    <td>13/5/2023 3:45 PM</td>
-                    <td>18/5/2023 3:45 PM</td>
-                    <td>False</td>
-                    <td>300</td>
-                    <td>1</td>
-                    <td>20</td>
-                    <td>1</td>
-                    <td>doc.file</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>HI</td>
-                    <td>I am a student of GW</td>
-                    <td>3/5/2023 3:45 PM</td>
-                    <td>13/5/2023 3:45 PM</td>
-                    <td>18/5/2023 3:45 PM</td>
-                    <td>False</td>
-                    <td>300</td>
-                    <td>1</td>
-                    <td>20</td>
-                    <td>1</td>
-                    <td>doc.file</td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>HI</td>
-                    <td>I am a student of GW</td>
-                    <td>3/5/2023 3:45 PM</td>
-                    <td>13/5/2023 3:45 PM</td>
-                    <td>18/5/2023 3:45 PM</td>
-                    <td>False</td>
-                    <td>300</td>
-                    <td>1</td>
-                    <td>20</td>
-                    <td>1</td>
-                    <td>doc.file</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>HI</td>
-                    <td>I am a student of GW</td>
-                    <td>3/5/2023 3:45 PM</td>
-                    <td>13/5/2023 3:45 PM</td>
-                    <td>18/5/2023 3:45 PM</td>
-                    <td>False</td>
-                    <td>300</td>
-                    <td>1</td>
-                    <td>20</td>
-                    <td>1</td>
-                    <td>doc.file</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>HI</td>
-                    <td>I am a student of GW</td>
-                    <td>3/5/2023 3:45 PM</td>
-                    <td>13/5/2023 3:45 PM</td>
-                    <td>18/5/2023 3:45 PM</td>
-                    <td>False</td>
-                    <td>300</td>
-                    <td>1</td>
-                    <td>20</td>
-                    <td>1</td>
-                    <td>doc.file</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>HI</td>
-                    <td>I am a student of GW</td>
-                    <td>3/5/2023 3:45 PM</td>
-                    <td>13/5/2023 3:45 PM</td>
-                    <td>18/5/2023 3:45 PM</td>
-                    <td>False</td>
-                    <td>300</td>
-                    <td>1</td>
-                    <td>20</td>
-                    <td>1</td>
-                    <td>doc.file</td>
-                </tr>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>@i.IdeaId</td>
+                        <td>@i.idea_title</td>
+                        <td>@i.idea_content</td>
+                        <td>@i.created_date</td>
+                        <td>@i.Event.First_closure_date</td>
+                        <td>@i.Event.Last_closure_date</td>
+                        <td>@i.idea_anonymous</td>
+                        <td>@i.idea_view</td>
+                        <td>@i.Profile.Name</td>
+                        <td>@i.Category.category_name</td>
+                        <td>@i.Reacpoint.ThumbUp</td>
+                        <td>@i.Reacpoint.ThumbDown</td>
+                        <td>doc.file</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
+    <script>
+        function BtnNext() {
+            window.location.replace('/QAManager/Idea?pageNum=@next&viewType=@viewType');
+        }
+        function BtnPre() {
+            window.location.replace('/QAManager/Idea?pageNum=@pre&viewType=@viewType');
+        }
+    </script>
 }
