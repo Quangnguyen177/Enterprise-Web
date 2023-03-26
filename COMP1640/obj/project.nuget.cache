@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q2T/MdJsR7GV4hb+BETAV995UMkzCLAiGMBNCYvrkSTZLuzbA1Z492bZ5eZU0vpJxexvOdBlAQ4zEdSkkQM9cQ==",
+  "dgSpecHash": "UH/EMUf/mTp5ZaxLhnfpvM/H0pDJNgXqtZ+t1grHYOfhpYmo80x/7GElJGhppdef6kwvf+1ezPbbGvbdp057XA==",
   "success": true,
-  "projectFilePath": "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj",
+  "projectFilePath": "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\COMP1640.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dan Truong\\.nuget\\packages\\bootstrap\\5.2.3\\bootstrap.5.2.3.nupkg.sha512",
     "C:\\Users\\Dan Truong\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

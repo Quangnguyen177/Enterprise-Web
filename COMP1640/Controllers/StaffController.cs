@@ -451,12 +451,34 @@ namespace COMP1640.Controllers
             return View();
         }      
 
-        public JsonResult SearchIdea(string keyword)
+        public JsonResult SearchIdea(string searchString)
         {
-            var results = Db.Ideas.Where(i => i.idea_title.Contains(keyword)).OrderBy(i => i.created_date).Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
-            results = results.Take(5).ToList();          
-            var res = JsonConvert.SerializeObject(results);
-            return Json(results);
+            var results = Db.Ideas.Where(i => i.idea_title.Contains(searchString)).OrderBy(i => i.created_date).Include(i => i.Event).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).Include(i => i.Comments).ToList();
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var uAvatar = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId)).Avatar;
+            var data = new List<SearchResult>();
+            foreach (var result in results)
+            {
+                data.Add(new SearchResult
+                {
+                    IdeaId = result.IdeaId,
+                    IdeaTile = result.idea_title,
+                    IdeaContent = result.idea_content,
+                    View = result.idea_view,
+                    Point = result.Reacpoint.ThumbUp- result.Reacpoint.ThumbUp,
+                    CreatedDate = String.Format("{0:g}", result.created_date),
+                    OwnerName = result.Profile.Name,
+                    OwnerId = result.Profile.Id,
+                    Category = result.Category.category_name, 
+                    Anonymous = result.idea_anonymous,
+                    Avatar = result.Profile.Avatar,
+                    CommentCount = result.Comments.Count(),
+                    UAvatar =uAvatar,
+                    CateId = result.CategoryId
+                });
+            }
+            var res = JsonConvert.SerializeObject(data);          
+            return Json(res);
         }
 
         public List<Idea> GetIdeaByType(string type, int id)

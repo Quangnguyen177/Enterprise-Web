@@ -74,7 +74,7 @@
                 </div>
 
                 @*A post*@
-                <div class="block">
+                <div class="block" id="display-idea">
                     @foreach (var idea in Model)
                     {
                         <div class="information_idea">
@@ -102,14 +102,7 @@
                                                 </a>
                                             }
 
-                                            @if (@idea.idea_anonymous)    @*Anonymous*@
-                                            {
-
-                                            }
-                                            else
-                                            {
-
-                                            }
+                   
 
                                         </figure>
                                     </div>
@@ -119,14 +112,8 @@
                                         <div class="img_idea">
                                             <div class="title_idea">
                                                 <div class="tag">
-                                                    <a asp-action="" asp-controller="">
-                                                        @foreach (var c in @ViewBag.Category)
-                                                        {
-                                                            if (@c.CategoryId == @idea.CategoryId)
-                                                            {
-                                                                <span>@c.category_name</span>     @*Category*@
-                                                            }
-                                                        }
+                                                    <a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=cat&id=@idea.CategoryId">
+                                                        <span>@idea.Category.category_name</span>
                                                     </a>
                                                 </div>
                                                 <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
@@ -181,10 +168,10 @@
                                     </div>
                                 </div>
 
-                                @*END*@
+                                
                             </div>
                         </div>
-                    }
+                    }@*END*@
                 </div>
             </div>
             <div class="sub_container2 col-lg-3">
@@ -230,4 +217,5 @@
             window.location.replace('/staff/viewpage?pagenum=@pre&orderby=@pageInfor.OrderBy&viewtype=@pageInfor.ViewType&id=@pageInfor.Id');
         }
     </script>
+    <script src="~/js/serach-idea.js"></script>
 }

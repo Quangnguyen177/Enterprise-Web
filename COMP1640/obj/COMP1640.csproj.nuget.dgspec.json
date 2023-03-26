@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj": {}
+    "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\COMP1640.csproj": {}
   },
   "projects": {
-    "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj": {
+    "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\COMP1640.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj",
+        "projectUniqueName": "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\COMP1640.csproj",
         "projectName": "COMP1640",
-        "projectPath": "D:\\FinalProject\\Newest\\COMP1640\\COMP1640.csproj",
+        "projectPath": "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\COMP1640.csproj",
         "packagesPath": "C:\\Users\\Dan Truong\\.nuget\\packages\\",
-        "outputPath": "D:\\FinalProject\\Newest\\COMP1640\\obj\\",
+        "outputPath": "D:\\FinalProject\\Enterprise-Web-main\\COMP1640\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dan Truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
