@@ -84,7 +84,7 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult SetClosureDate(Event eve)
         {
-            if (eve.First_closure_date <= DateTime.Now | eve.Last_closure_date <= DateTime.Now)
+            if (eve.First_closure_date <= DateTime.UtcNow | eve.Last_closure_date <= DateTime.UtcNow)
             {
                 ViewBag.Message = "The first closure date or last closure date must be later than today";
                 return View(eve);

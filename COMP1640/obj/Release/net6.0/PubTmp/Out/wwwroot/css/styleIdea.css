@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /*background: linear-gradient(#00C6FF, #5FCE6E);*/
+    background: linear-gradient(#e8f2e3, #e8f2e3);
+}
+
+p {
+    font-size: 20px;
+    text-decoration: underline
+}
+
+/* Css switch */
+.switch {
+    --circle-dim: 1.4em;
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f5aeae;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.slider-card {
+    position: absolute;
+    content: "";
+    height: var(--circle-dim);
+    width: var(--circle-dim);
+    border-radius: 20px;
+    left: 0.3em;
+    bottom: 0.3em;
+    transition: .4s;
+    pointer-events: none;
+}
+
+.slider-card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    border-radius: 50%;
+    transition: .4s transform;
+}
+
+.slider-card-front {
+    background-color: #DC3535;
+}
+
+.slider-card-back {
+    background-color: #379237;
+    transform: rotateY(180deg);
+}
+
+input:checked ~ .slider-card .slider-card-back {
+    transform: rotateY(0);
+}
+
+input:checked ~ .slider-card .slider-card-front {
+    transform: rotateY(-180deg);
+}
+
+input:checked ~ .slider-card {
+    transform: translateX(1.5em);
+}
+
+input:checked ~ .slider {
+    background-color: #9ed99c;
+}
+
+h5 {
+    font-size: small;
+}
+
+.container {
+    width: 540px;
+    height: 500px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    transition: height 0.2s ease;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.container.active {
+    height: 590px;
+}
+
+.container .wrapper {
+    width: 1000px;
+    display: flex;
+}
+
+.container .wrapper section {
+    width: 500px;
+    background: #fff;
+}
+
+.container img {
+    cursor: pointer;
+}
+
+.container .post {
+    transition: margin-left 0.18s ease;
+}
+
+.container.active .post {
+    margin-left: -500px;
+}
+
+.post header {
+    font-size: 30px;
+    font-weight: 600;
+    padding: 17px 0;
+    text-align: center;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+.post form {
+    margin: 20px 25px;
+}
+
+    .post form .content,
+    .audience .list li .column {
+        display: flex;
+        align-items: center;
+    }
+
+        .post form .content img {
+            cursor: default;
+            max-width: 52px;
+        }
+
+        .post form .content .details {
+            margin: -3px 0 0 12px;
+        }
+
+
+form :where(textarea, button) {
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+form textarea {
+    resize: none;
+    font-size: 18px;
+    margin-top: 30px;
+    min-height: 100px;
+}
+
+    form textarea::placeholder {
+        color: #858585;
+    }
+
+    form textarea:focus::placeholder {
+        color: #b3b3b3;
+    }
+
+form :where(.theme-emoji, .options) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theme-emoji img:last-child {
+    max-width: 24px;
+}
+
+form .options {
+    display:inline-block;
+    height: 57px;
+    margin: 15px 0;
+    padding: 0 43px;
+    border-radius: 7px;
+    border: 1px solid #B9B9B9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+    form .options :where(.list, li),
+    .audience :where(.arrow-back, .icon, li .radio) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form .options p {
+        color: #595959;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: default;
+    }
+
+    form .options .list {
+        list-style: none;
+    }
+
+.form-select-category {
+    position: relative;
+    left: 20px;
+    width: 105px;
+    height: 48px;
+    margin: 5px;
+    color: ghostwhite;
+    border: coral;
+    font-weight: 500;
+    background: coral;
+    border-radius: 30px;
+    color: ghostwhite;
+    font-weight: 500;
+}
+.form-select-category:hover {
+    background-color: #808080
+}
+
+.form-select-event {
+    width: 105px;
+    height: 48px;
+    margin: 5px;
+    color: ghostwhite;
+    border: coral;
+    font-weight: 500;
+    background: coral;
+    border-radius: 30px;
+    color: ghostwhite;
+    font-weight: 500;
+}
+
+    .form-select-event:hover {
+        background-color: #808080
+    }
+
+
+
+.options .list li {
+    height: 42px;
+    width: 42px;
+    margin: 0 -1px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+    .options .list li:hover {
+        background: #f0f1f4;
+    }
+
+    .options .list li img {
+        width: 23px;
+    }
+
+form button {
+    height: 53px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #BCC0C4;
+    cursor: no-drop;
+    border-radius: 7px;
+    background: #e2e5e9;
+    transition: all 0.3s ease;
+}
+
+/*Title*/
+.box {
+    position: relative
+}
+
+input {
+    border: solid 1.5px green;
+    border-radius: 5px;
+    background:none;
+    padding: .5rem;
+    font-size: 1rem;
+    transition: 150ms cubic-bezier(.4, 0, .2, 1);
+}
+
+form textarea:valid ~ button {
+    color: black;
+    cursor: pointer;
+    background: linear-gradient(#00C6FF, #5FCE6E);
+}
+
+    form textarea:valid ~ button:hover {
+        background: linear-gradient(#5FCE6E,#00C6FF);
+    }
+
+/*Checkbox modal*/
+.cbx {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -12px;
+    border: 2px solid #e8e8eb;
+    border-radius: 4px;
+    transform: translate3d(0, 0, 0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.flip {
+    display: block;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+#cbx {
+    display: none;
+}
+
+    #cbx:checked + .cbx {
+        border-color: #0b76ef;
+    }
+
+    #cbx:checked + .flip {
+        transform: rotateY(180deg);
+    }
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+}
+
+.front {
+    background: #fff;
+    z-index: 1;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background: #0b76ef;
+    color: #fff;
+    line-height: 20px;
+    box-shadow: 0 0 0 1px #0b76ef;
+}
+
+    .back svg {
+        margin-top: 3px;
+        fill: none;
+    }
+
+        .back svg path {
+            stroke: #fff;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+
+
+
+/* Css UploadFile */
+.buttonDownload {
+    display: inline-block;
+    height: 49px;
+    width: 123px;
+    top: 4px;
+    left:5px;
+    position: relative;
+    padding: 10px 15px;
+    background-color: #4CC713;
+    color: white;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-align: center;
+    text-indent: 15px;
+    border: none;
+    border-radius: 2em;
+    font-weight: bold;
+
+}
+
+    .buttonDownload:hover {
+        background-color: #808080;
+        color: white;
+    }
+
+.buttonDownload:before, .buttonDownload:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 45px;
+    top: 58%;
+}
+
+.buttonDownload:before {
+    width: 10px;
+    height: 2px;
+    border-style: solid;
+    border-width: 0 2px 2px;
+}
+
+.buttonDownload:after {
+    width: 0;
+    height: 0;
+    margin-left: 1px;
+    margin-top: -7px;
+    border-style: solid;
+    border-width: 4px 4px 0 4px;
+    border-color: transparent;
+    border-top-color: inherit;
+    animation: downloadArrow 1s linear infinite;
+    animation-play-state: paused;
+}
+
+.buttonDownload:hover:before {
+    border-color: #bdd3ef;
+}
+
+.buttonDownload:hover:after {
+    border-top-color: #eff1f7;
+    animation-play-state: running;
+}
+
+.close {
+    width:50px
+}
+
+@keyframes downloadArrow {
+    0% {
+        margin-top: -7px;
+        opacity: 1;
+    }
+
+    0.001% {
+        margin-top: -15px;
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 0;
+        opacity: 0.4;
+    }
+}
+
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden;
+}

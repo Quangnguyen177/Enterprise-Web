@@ -2,8 +2,7 @@
 
 @{
     Layout = "_QAM";
-}
-@{
+    <link rel="stylesheet" href="~/css/res_qa_cate.css" />
     ViewData["Title"] = "Category Manager";
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))

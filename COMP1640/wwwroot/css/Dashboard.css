@@ -519,6 +519,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.set-btn {
+    display: flex;
+    justify-content: end;
+}
+
 .btn-set {
     color: #16192c;
     background-color: #98FB98;
@@ -1018,16 +1023,17 @@ input[type]:checked ~ span.middle {
     padding-left: 1.3em;
     font-weight: 500;
 }
-.shortcuts_mobile li{
- margin-bottom: -0.9em;
-}
 
-        .shortcuts_mobile a:hover {
-            text-decoration: none;
-        }
+    .shortcuts_mobile li {
+        margin-bottom: -0.9em;
+    }
+
+    .shortcuts_mobile a:hover {
+        text-decoration: none;
+    }
 
 .idea_mobile h1 {
-    color: #424242;
+    color: #525f7f;
     display: inline-block;
     font-size: 28px;
     font-weight: 600;
@@ -1056,32 +1062,91 @@ input[type]:checked ~ span.middle {
     width: 95%;
 }
 
+/*Search manage closure date*/
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    position: relative;
+    bottom: 1px;
+    width: 80%;
+    border: 2px solid #000000;
+    border-right: none;
+    padding: 5px;
+    height: 35px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #000000;
+}
+
+    .searchTerm:focus {
+        color: #000000;
+    }
+
+.searchButton {
+    position: relative;
+    right: 6px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #000000;
+    background: #484848;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
 /*Mobile & tablet: width<1024px*/
-@media only screen and (max-width: 63.9375em){
+@media only screen and (max-width: 63.9375em) {
     .navbar-vertical.navbar-expand-lg {
         display: none;
     }
+
     .col-xl-3 {
         width: 50%;
     }
 
     .icon_bar {
         display: inline-block;
-/*        width: 20%;*/
         padding-left: 92%;
         margin-top: -2em;
     }
-    .mx-n1{
+
+    .mx-n1 {
         display: none;
     }
-    .shortcuts_mobile a{
+
+    .shortcuts_mobile a {
         padding-right: 2em;
         font-size: 0.95em;
         font-weight: 500;
     }
-    .shortcuts_mobile i{
-       padding-right: 1.2em;
-    }    
+
+    .shortcuts_mobile i {
+        padding-right: 1.2em;
+    }
+
+    .bg-surface-secondary {
+        width: 62%;
+    }
+
+    .bg-surface-primary {
+        width: 62%;
+    }
 }
 
+/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
 
+    .bg-surface-secondary {
+        width: 33%;
+    }
+
+    .bg-surface-primary {
+        width: 31%;
+    }
+}

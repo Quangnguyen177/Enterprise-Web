@@ -7,6 +7,13 @@
     .mx-n1 {
         display: none;
     }
+    .add_btn {
+        margin-top: 6em;
+        margin-left: -36em;
+    }
+    .cssbuttons-io-button {
+        font-size: 13px;
+    }
 
     .table {
         font-size: 0.9em;

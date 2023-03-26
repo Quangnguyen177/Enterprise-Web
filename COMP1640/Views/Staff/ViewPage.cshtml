@@ -3,6 +3,7 @@
 @{
     Layout = "_Staff";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
+    ViewData["LoginedUserName"] = logginnedUser.Name;
     int Point(int thumbUp, int thumbDown)
     {
         return thumbUp - thumbDown;
@@ -20,7 +21,6 @@
                         <ul class="Shortcuts">
                             <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea">Idea List</a></li>
                             <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff">Profile</a></li>
-                            <li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a asp-action="Login" asp-controller="Staff">Logout</a></li>
                         </ul>
                     </div>
                     <br>
@@ -45,7 +45,7 @@
                             </a>
                         </figure>
                     </div>
-                    @if (ViewBag.Date > DateTime.Now)
+                    @if (ViewBag.Date > DateTime.UtcNow)
                     {
                         <div class="form_add_idea">
                             <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">

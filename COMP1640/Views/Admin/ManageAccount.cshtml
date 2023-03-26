@@ -1,7 +1,9 @@
 ﻿@model List<Profile>
 
 @{
-    Layout = "_LayoutManageAccount";
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "All content";
+    <link rel="stylesheet" href="~/css/res_admin_account.css" />
     var count = 1;
 }
 
@@ -9,36 +11,6 @@
 {
     @*Main content*@
     <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-        <!-- Header -->
-        <header class="bg-surface-primary border-bottom pt-6">
-            <div class="container-fluid">
-                <div class="mb-npx">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-                            <!-- Title -->
-                            <h1 class="h2 mb-0 ls-tight">Application</h1>
-                        </div>
-                        <!-- Actions -->
-                        <div class="col-sm-6 col-12 text-sm-end">
-                            <div class="mx-n1">
-                                <a class="btn d-inline-flex btn-sm btn-primary mx-1" asp-area="Identity" asp-page="/Account/Register">
-                                    <span class=" pe-2">
-                                        <i class="fa fa-plus-circle"></i>
-                                    </span>
-                                    <span>Create account</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Nav -->
-                    <ul class="nav nav-tabs mt-4 overflow-x border-0">
-                        <li class="nav-item ">
-                            <a asp-controller="Admin" asp-action="Home" class="nav-link active">All Content</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
         <!-- Main -->
         <main class="py-6 bg-surface-secondary">
             <div class="container-fluid">

@@ -8,7 +8,7 @@
 <h1>@ViewData["Title"]</h1>*@
 @*Code chay*@
 <style>
-        p {
+        a {
         color: #353836c4;
         text-decoration: none;
         background-color: transparent;
@@ -18,7 +18,7 @@
 <div class="login-page">
     <div class="form">
         <div class="logo_login">
-                <img style="display: inline-block;" src="/images/logo.png"
+                <img style="display: inline-block;" src="/images/logo1.png"
                    />
         </div>
         @*  <form class="register-form" asp-action="Index" asp-controller="Home">*@
@@ -29,17 +29,18 @@
                 <input asp-for="Input.Password" type="password" placeholder="password" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
-                @*<div class="checkbox">
-                    <label asp-for="Input.RememberMe">
-                        <input asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>*@
-                @*<p class="message">Already registered? <a href="#">Sign In</a></p>*@
+              
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Log in</button>
             </div>
+        @*    <div class="checkbox">
+                <input asp-for="Input.RememberMe" checked="" class="check" type="checkbox">  Remember me?*@
+              @*  <label asp-for="Input.RememberMe">
+                    <input asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>*@
+          @*  </div>*@
             <div class="form-group">
                 <p>
                     <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>

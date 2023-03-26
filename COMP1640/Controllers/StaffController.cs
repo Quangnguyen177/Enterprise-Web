@@ -66,7 +66,7 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult AddIdea()
         {
-            var EvtL = Db.Events.ToList().Where(e => e.Status == false).Where(e => e.First_closure_date > DateTime.Now);
+            var EvtL = Db.Events.ToList().Where(e => e.Status == false).Where(e => e.First_closure_date > DateTime.UtcNow.AddHours(7));
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Event = EvtL;
@@ -78,7 +78,7 @@ namespace COMP1640.Controllers
         {
             var evt = Db.Events.FirstOrDefault(e => e.EventId == eventId);
             
-            if (evt.First_closure_date > DateTime.Now)
+            if (evt.First_closure_date > DateTime.UtcNow.AddHours(7))
             {
                 
                 ////Create reactpoint entity to relate to Idea entity
@@ -90,18 +90,20 @@ namespace COMP1640.Controllers
                 Db.Add(newReactPoint);
                 Db.SaveChanges();
                 var reactPoint = Db.ReactPoints.OrderBy(r => r.ReactPointId).Last();
+                var profile = Db.Profile.FirstOrDefault(p => p.Id == profileId);
                 Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
-                Boolean anonynous = true;
-                if (isAnonymous == null) anonynous = false;
+                var subject = profile.Name + " has posted a new idea with title \"" + title + "\"";
+                //SendEmail(profile.Email, subject, content);
+                Boolean anonynous = isAnonymous == null ? false : true;               
                 Idea newIdea = new Idea()
                 {
                     idea_title = title,
                     idea_content = content,
                     idea_anonymous = anonynous,
-                    created_date = DateTime.Now,
+                    created_date = DateTime.UtcNow.AddHours(7),
                     idea_view = 0,
                     ProfileId = profileId,
-                    Profile = Db.Profile.FirstOrDefault(p => p.Id == profileId),
+                    Profile = profile,
                     CategoryId = category.CategoryId,
                     Category = category,
                     ReactPointId = reactPoint.ReactPointId,
@@ -167,7 +169,7 @@ namespace COMP1640.Controllers
         public IActionResult EditIdea(int id)
         {
             Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
-            if (currentIdea.Event.First_closure_date > DateTime.Now)
+            if (currentIdea.Event.First_closure_date > DateTime.UtcNow.AddHours(7))
             {             
                 string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
@@ -185,7 +187,7 @@ namespace COMP1640.Controllers
         public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName,int eventId, string isAnonymous)
         {
             var evt = Db.Events.FirstOrDefault(i => i.EventId == eventId);
-            if (evt.First_closure_date > DateTime.Now)
+            if (evt.First_closure_date > DateTime.UtcNow.AddHours(7))
             {
                 bool anonynous = true;
                 if (isAnonymous == null) anonynous = false;
@@ -194,7 +196,7 @@ namespace COMP1640.Controllers
                 idea.idea_title = title;
                 idea.idea_content = content;
                 idea.idea_anonymous = anonynous;
-                idea.created_date = DateTime.Now;
+                idea.created_date = DateTime.UtcNow.AddHours(7);
                 idea.CategoryId = category.CategoryId;
                 idea.Category = category;
                 idea.EventId = evt.EventId;
@@ -215,12 +217,12 @@ namespace COMP1640.Controllers
 
         //comment
         [HttpPost]
-        public JsonResult Comment(Comment com)
+        public  JsonResult Comment(Comment com)
         {
             //get user to use name and toEmail
             var idea = Db.Ideas.Include(i => i.Profile).FirstOrDefault(i => i.IdeaId == com.IdeaId);
             var evt = Db.Events.FirstOrDefault(e => e.EventId == idea.EventId);
-            if (evt.Last_closure_date > DateTime.Now)
+            if (evt.Last_closure_date > DateTime.UtcNow.AddHours(7))
             {
                 //default sender is system, so from email is not needed.
                 var profile = Db.Profile.FirstOrDefault(u => u.Id == com.ProfileId);
@@ -234,7 +236,7 @@ namespace COMP1640.Controllers
                         com_content = com.com_content,
                         ProfileId = com.ProfileId,
                         Profile = profile,
-                        created_date = DateTime.Now,
+                        created_date = DateTime.UtcNow.AddHours(7),
                         com_anonymous = com.com_anonymous,
                         IdeaId = com.IdeaId,
                         Idea = idea
@@ -445,6 +447,7 @@ namespace COMP1640.Controllers
 
         public IActionResult TermsConditions()
         {
+
             return View();
         }      
 
@@ -475,7 +478,7 @@ namespace COMP1640.Controllers
             }
             return output;
         }
-        public bool SendEmail(string toEmail, string subject, string content)
+        public void SendEmail(string toEmail, string subject, string content)
         {
             try
             {
@@ -492,12 +495,11 @@ namespace COMP1640.Controllers
                 client.Authenticate("truongtd2002tq@gmail.com", "dyltswxzsrmvqbfv");
                 client.Send(message);
                 client.Disconnect(true);
-                client.Dispose();
-                return true;
+                client.Dispose();               
             }
             catch(Exception ex)
             {          
-                return false;
+                
             }
         }
 

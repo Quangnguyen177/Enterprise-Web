@@ -1,5 +1,8 @@
-/*Mobile: width<780px*/
+﻿/*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
+    .paginations{
+        display: none;
+    }
     .idea_mobile {
         display: block;
     }
@@ -11,7 +14,6 @@
     .mx-n1 {
         display: none;
     }
-
     .table {
         font-size: 0.9em;
     }
