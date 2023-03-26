@@ -1,14 +1,20 @@
 ﻿@using COMP1640.ViewModels
 @model List<TopContributor>
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Dashboard"; 
+    var logginedUser = (Profile)ViewBag.LogginedUser;
+    ViewData["Avatar"] = logginedUser.Avatar;
+    ViewData["Name"] = logginedUser.Name;
+    var statistic = (Statistic)ViewBag.Statistic;
     Layout = "_QAM";
-    <link rel="stylesheet" href="~/css/res_qa_db.css" />
+    
 }
-
+<link rel="stylesheet" href="~/css/res_qa_db.css" />
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
+    
     <div class="dashboard">
+        <h3 style="text-align: center">Statistic For @DateTime.UtcNow.AddHours(7).ToString("MMMM")</h3>
         <div class="header_db">
             <div class="numOf_idea">
                 <div class="col-4">
@@ -16,7 +22,7 @@
                 </div>
                 <div class="col-8">
                     <h5>Total Idea</h5>
-                    <span>1000</span>
+                    <span>@statistic.Idea</span>
                 </div>
             </div>
             <div class="numOf_contributors">
@@ -25,7 +31,7 @@
                 </div>
                 <div class="col-8">
                     <h5>Total Contributor</h5>
-                    <span>100</span>
+                    <span>@statistic.Contributor</span>
                 </div>
             </div>
             <div class="react_idea">
@@ -33,8 +39,8 @@
                     <span>100%</span>
                 </div>
                 <div class="col-8">
-                    <h5>React Idea</h5>
-                    <span>1000</span>
+                    <h5>Total View</h5>
+                    <span>@statistic.View</span>
                 </div>
             </div>
             <div class="numOf_comment">
@@ -42,8 +48,8 @@
                     <span>100%</span>
                 </div>
                 <div class="col-8">
-                    <h5>Comment</h5>
-                    <span>1000</span>
+                    <h5>Total Comment</h5>
+                    <span>@statistic.Comment</span>
                 </div>
             </div>
         </div>
@@ -52,13 +58,13 @@
                 <div class="colom1">
                     <div class="chartCard">
                         <div class="chartBox">
-                            <h5>Number of ideas per department/year </h5>
+                            <h5>Number of Ideas per Department/Year </h5>
                             <canvas id="line-chart" width="500" height="300"></canvas>
                         </div>
                     </div>
                     <div class="chart_contributor">
                         <div class="chart_contributors">
-                            <h5>Numbers of contributors per departments </h5>
+                            <h5>Percent of Contributors per Departments </h5>
                             <canvas id="pie-chart"></canvas>
                         </div>
                     </div>
@@ -66,20 +72,20 @@
                 <div class="colom1">
                     <div class="chartCard">
                         <div class="chartBox">
-                            <h5>Category per year </h5>
+                            <h5>Number of Ideas per Category</h5>
                             <canvas id="bar-chart" width="500" height="300"></canvas>
                         </div>
                     </div>
                     <div class="chartCard">
                         <div class="chartBox">
-                               <h5>Number of point per event </h5>
+                               <h5>Number of Points and Views within 7 Lastest Days </h5>
                             <canvas id="mixed-chart" width="500" height="300"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="contributor">
-                <h4>Top 5 Contributors</h4>
+                <h4>Top 5 Contributors in @DateTime.UtcNow.AddHours(7).ToString("MMMM")</h4>
                 <table class="table">
                     <thead>
                         <tr>                       
@@ -89,7 +95,7 @@
                             <th scope="col">Gender</th>
                             <th scope="col">Address</th>
                             <th scope="col">DepID</th>
-                            <th scope="col">Number of Posted Ideas</th>
+                            <th scope="col">Posted Ideas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,7 +117,6 @@
         </div>
     </div>
 }
-]
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="~/js/create-chart.js"></script>

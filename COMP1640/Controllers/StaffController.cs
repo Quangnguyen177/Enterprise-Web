@@ -217,7 +217,7 @@ namespace COMP1640.Controllers
 
         //comment
         [HttpPost]
-        public  JsonResult Comment(Comment com)
+        public JsonResult Comment(Comment com)
         {
             //get user to use name and toEmail
             var idea = Db.Ideas.Include(i => i.Profile).FirstOrDefault(i => i.IdeaId == com.IdeaId);

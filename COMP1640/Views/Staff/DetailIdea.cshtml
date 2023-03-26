@@ -58,7 +58,7 @@
                                             <div class="row">
                                                 <div class="col-sm-6 multi-gd-img">
                                                     <ul>
-                                                        @if (ViewBag.FDate > DateTime.Now && @Model.ProfileId.Equals(@logginnedUser.Id))
+                                                        @if (ViewBag.FDate > DateTime.UtcNow && @Model.ProfileId.Equals(@logginnedUser.Id))
                                                         {
                                                             <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId">Edit</a></li>
                                                             <li class="nav_bar--item ">
@@ -148,7 +148,7 @@
                             </div>
                             <div class="comment" style=" position: static; z-index: 5;">
                                 <div class="form-group">
-                                    @if (ViewBag.LDate > DateTime.Now)
+                                    @if (ViewBag.LDate > DateTime.UtcNow)
                                     {
                                         <form method="POST">
                                             <div style="text-decoration: none">
@@ -313,38 +313,46 @@
             alert("Thank you for following me!");
         }
         //send comment to controller
-        function SubmitComment() {
-            var anonymous = false;
-            if ($("#com-anonymous").prop("checked")) anonymous = true
-            $.ajax({
-                url: "/Staff/Comment",
-                type: "POST",
-                data: {
-                    com_content: $("#com-content").val(),
-                    com_anonymous: anonymous,
-                    ProfileId: $("#profileId").val(),
-                    IdeaId: $("#ideaId").val()
-                },
-                success: function (res) {
-                    console.log(res)
-                    var result = JSON.parse(res)
-                    console.log(result)
-                    if (result.Content != null) {
-                        $("#comment-numbers").html(`${result.ComNumber}`)
-                        if (result.Anonymous) {
-                            $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avata" /> </a> </figure> </div>')
-                            $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">Anonymous</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
-                        } else {
-                            $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="/Avatars/' + result.Avatar + '" alt="avata" /> </a> </figure> </div>')
-                            $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">' + result.Name + '</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
-                        }
-                    }
-                },
-                error: function (err) {
 
-                    console.log(err)
-                }
-            })
+        $("#com-content").keyup(function(event) {
+        if (event.keyCode === 13) {
+            SubmitComment();
+            $("#com-content").val("");
+        }
+        });
+
+        function SubmitComment() {
+            if ($("#com-content").val().length>0){
+                var anonymous = false;
+                if ($("#com-anonymous").prop("checked")) anonymous = true
+                $.ajax({
+                    url: "/Staff/Comment",
+                    type: "POST",
+                    data: {
+                        com_content: $("#com-content").val(),
+                        com_anonymous: anonymous,
+                        ProfileId: $("#profileId").val(),
+                        IdeaId: $("#ideaId").val()
+                    },
+                    success: function (res) {
+                        var result = JSON.parse(res)
+                        if (result.Content != null) {
+                            $("#comment-numbers").html(`${result.ComNumber}`)
+                            if (result.Anonymous) {
+                                $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avata" /> </a> </figure> </div>')
+                                $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">Anonymous</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
+                            } else {
+                                $("#display-comment").append('<div class="ap_idea_avata"> <figure class="account"> <a asp-action="Profile" asp-controller="Staff"> <img src="/Avatars/' + result.Avatar + '" alt="avata" /> </a> </figure> </div>')
+                                $("#display-comment").append('<div class="info_comment"> <div class="comment1_idea"><h4 style="font-size: 16px; font-weight: bold;">' + result.Name + '</h4><span>' + result.Content + '</span></div> <h5 style="font-size: 12px; width: 100%; color: dimgray;">' + result.Time + '</h5></div>')
+                            }
+                        }
+                    },
+                    error: function (err) {
+
+                        console.log(err)
+                    }
+                })
+            }
 
         }
         ////

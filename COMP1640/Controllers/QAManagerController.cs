@@ -23,11 +23,6 @@ namespace COMP1640.Controllers
         {
             this.context = context;
         }
-        public IActionResult Index()
-        {
-            return View(context.Categories.ToList());
-        }
-
         [HttpGet]
         public IActionResult AddCate()
         {
@@ -91,16 +86,21 @@ namespace COMP1640.Controllers
         public IActionResult Dashboard()
         {
             List<TopContributor> list = new List<TopContributor>();
-            var ideas = context.Ideas.Include(i => i.Profile.Department).ToList();
+            var ideas = context.Ideas.Where(i=>i.created_date.Value.Month == GetCurrentVnTime().Month).Include(i => i.Profile.Department).ToList();
             var groupById = ideas.GroupBy(i => i.Profile);
             foreach (var group in groupById)
             {
                 list.Add(new TopContributor(group.Key, group.Count()));
             }
             list = list.OrderByDescending(i => i.PostedIdea).Take(5).ToList();
-
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+            var totalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var totalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var totalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
+            var totalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
+            ViewBag.Statistic = new Statistic(totalIdea, totalContributor, totalView, totalComment);
+            
             return View(list);
         }
         public IActionResult Idea(int pageNum, string viewType)
@@ -189,9 +189,9 @@ namespace COMP1640.Controllers
         }
         public IActionResult DownloadCSV()
         {
-            var data = context.Ideas.ToList();
+            var data = context.Ideas.Include(i => i.Profile).Include(i=>i.Category).Include(i => i.Reacpoint).Include(i => i.Event).ToList();
             var csv = new StringBuilder();
-            string heading = "IdeaId,idea_title,idea_content,created_date,idea_anonymous,idea_view,ProfileId,CategoryId,ReactPointId,EventId";
+            string heading = "IdeaId,Title,Content,Created Date,Anonymous,Total View,Owner Name,Category,Point,Event";
             csv.AppendLine(heading);
             foreach (var row in data)
             {
@@ -202,10 +202,10 @@ namespace COMP1640.Controllers
                                 row.created_date,
                                 row.idea_anonymous,
                                 row.idea_view,
-                                row.ProfileId,
-                                row.CategoryId,
-                                row.ReactPointId,
-                                row.EventId
+                                row.idea_anonymous ? "Anonymous" : row.Profile.Name,
+                                row.Category.category_name,
+                                row.Reacpoint.ThumbUp- row.Reacpoint.ThumbDown,
+                                row.Event.EventName
                               );
                 csv.AppendLine(newRow);
             }
@@ -221,7 +221,7 @@ namespace COMP1640.Controllers
             foreach (var name in departmentNames)
             {
 
-                //i.created_date.Value.Month == DateTime.Now.Month &&
+                //i.created_date.Value.Month == DateTime.UtcNow.Month &&
                 var ideas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.Profile.Department.Dep_name.Equals(name)).ToList();
                 int contributors = ideas.GroupBy(i => i.Profile.Id).Count();
                 double percent = (double)contributors * 100 / total;
@@ -264,7 +264,7 @@ namespace COMP1640.Controllers
                 var total = context.Ideas.Where(i => i.CategoryId == cate.CategoryId).Count();
                 data.Add(new BarChart(cate.category_name, total));
             }
-            data = data.OrderByDescending(d => d.NumOfUses).ToList();
+            data = data.OrderByDescending(d => d.NumOfUses).Take(5).ToList();
             var result = JsonConvert.SerializeObject(data);
             return Json(result);
         }
@@ -272,7 +272,7 @@ namespace COMP1640.Controllers
         public JsonResult GetMixedChartData()
         {
             List<MixedChart> data = new List<MixedChart>();
-            //lay du lieu nhung idea trong vong 7 ngay ke tu idea gan nhan.
+            //lay du lieu nhung idea trong vong 7 ngay ke tu idea gan nhat.
             var lastestDate = context.Ideas.OrderByDescending(i => i.created_date).First().created_date;
             var bound = lastestDate.Value.Date.AddDays(-6);
             var ideas = context.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.created_date).Where(i => i.created_date >= bound).ToList();
@@ -280,12 +280,17 @@ namespace COMP1640.Controllers
             {
                 var selectedIdeas = ideas.Where(i => i.created_date.Value.Day == bound.Day).ToList();
                 var view = selectedIdeas.Sum(i => i.idea_view);
-                var point = selectedIdeas.Sum(i => i.Reacpoint.ThumbUp - i.Reacpoint.ThumbDown);
+                var point = selectedIdeas.Sum(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown);
                 data.Add(new MixedChart(point, view, bound.ToString("MM/dd")));
                 bound = bound.AddDays(1);
             }
             var result = JsonConvert.SerializeObject(data);
             return Json(result);
+        }
+
+        public DateTime GetCurrentVnTime()
+        {
+            return DateTime.UtcNow.AddHours(7);
         }
     }
 }
