@@ -35,7 +35,7 @@
                                     }
                                     else
                                     {
-                                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@Model.Profile.Id">
+                                        <a style="text-decoration: none" href="/Staff/Profile?id=@Model.Profile.Id&pagenum=1&viewtype=latest">
                                             <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@Model.Profile.Avatar" alt="avatar" /> <div class="name_account">
                                                 <h4 style="font-size: 16px;padding-top: -600px; width: 230px">@ViewBag.Name</h4><h5 style="font-size: 14px;padding-top: -600px; width: 230px; color: black; margin-left: 70px">@Model.created_date</h5>
                                             </div>
@@ -140,7 +140,7 @@
                         <div class="comment_idea">
                             <div class="com_idea_avata">
                                 <figure class="avata_comment">
-                                    <a asp-action="Profile" asp-controller="Staff">
+                                    <a href ="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
                                         <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
                                          alt="avata" />
                                     </a>
@@ -206,12 +206,12 @@
                                             <figure class="account">
                                                 @if (@com.com_anonymous)
                                                 {
-                                                    <a asp-action="Profile" asp-controller="Staff"><img src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avata" /></a>
+                                                    <a href=""><img src="https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_1280.png" alt="avata" /></a>
 
                                                 }
                                                 else
                                                 {
-                                                    <a asp-action="Profile" asp-controller="Staff"><img src="/Avatars/@com.Profile.Avatar" alt="avatar" /></a>
+                                                    <a href="/Staff/Profile?id=@com.Profile.Id&pagenum=1&viewtype=latest"><img src="/Avatars/@com.Profile.Avatar" alt="avatar" /></a>
                                                 }
                                             </figure>
                                             <div class="info_comment">
@@ -244,7 +244,7 @@
                     </div>
                     <div class="avata_information_idea">
                         <figure>
-                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff">
+                            <a style="text-decoration: none" href="/Staff/Profile?id=@Model.Profile.Id&pagenum=1&viewtype=latest">
                                 <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@Model.Profile.Avatar"
                                  alt="avata" />
                                 <div class="name_account">

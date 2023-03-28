@@ -20,7 +20,7 @@
                         <h4 class="widget-title"><b> Shortcuts</b></h4>
                         <ul class="Shortcuts">
                             <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea">Idea List</a></li>
-                            <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-action="Profile" asp-controller="Staff" asp-route-id="@logginnedUser.Id">Profile</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">Profile</a></li>
                         </ul>
                     </div>
                     <br>
@@ -39,7 +39,7 @@
                     <div class="avata_post">
                         <figure>
                             @*AVATAR*@
-                            <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@logginnedUser.Id">
+                            <a style="text-decoration: none" href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
                                 <img src="/Avatars/@logginnedUser.Avatar"
                                      alt="avata" />
                             </a>
@@ -94,7 +94,7 @@
                                             }
                                             else
                                             {
-                                                <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
+                                                <a style="text-decoration: none" href="/Staff/Profile?id=@idea.Profile.Id&pagenum=1&viewtype=latest">
                                                     <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
                                                     <div class="name_account">
                                                         <h4 style="font-size: 16px">@idea.Profile.Name</h4><h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
@@ -151,7 +151,7 @@
 
                                 <div class="comment_idea">
                                     <div class="com_idea_avata">
-                                        <a asp-action="Profile" asp-controller="Staff" asp-route-id="@logginnedUser.Id">
+                                        <a href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
                                             <figure class="avata_comment">
                                                 <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
                                                      alt="avata" />

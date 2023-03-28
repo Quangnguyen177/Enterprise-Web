@@ -12,7 +12,7 @@
             <div class="avata_profile">
                 <figure>
                     <img src="/Avatars/@Model.Avatar"
-                     alt="avata" />
+                         alt="avata" />
                 </figure>
                 <div class="name_profile">
                     <h4>@Model.Name</h4>
@@ -54,19 +54,20 @@
                                     <span>Wellcome to my wall &nbsp<i style="color: #d391b2" class="fa-regular fa-face-smile-wink"></i></span>
                                 </div>
                                 <ul class="Shortcuts">
-                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i>Works at: @Model.Address</li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i>Address: @Model.Address</li>
                                     <li class="nav_bar--item "><i class="fa-solid fa-transgender"></i>Gender: @Model.Gender</li>
                                     <li class="nav_bar--item "><i class="fa-solid fa-phone-volume"></i>Phone: @Model.PhoneNumber</li>
                                     <li class="nav_bar--item "><i class="fa-solid fa-envelope-open-text"></i>Email: @Model.Email</li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-envelope-open-text"></i>Department: @Model.Department.Dep_name</li>
                                 </ul>
                             </div>
                             <br>
                             <div class="idea">
                                 <h4 class="widget-title"><b>Most Popular Ideas</b></h4>
                                 <ul class="Shortcuts">
-                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-action="Index" asp-controller="Home">Most Viewed Ideas</a></li>
-                                    <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-action="Index" asp-controller="Home">Most Emotion ideas</a></li>
-                                    <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-action="" asp-controller="">Latest Ideas</a></li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/Staff/Profile?id=@Model.Id&pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/Staff/Profile?id=@Model.Id&pagenum=1&viewtype=popular">Most Popular ideas</a></li>
+                                    <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/Staff/Profile?id=@Model.Id&pagenum=1&viewtype=latest">Latest Ideas</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -81,9 +82,9 @@
                                 <div class="avata_post">
                                     <figure>
                                         @*AVATAR*@
-                                        <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@logginnedUser.Id">
+                                        <a style="text-decoration: none" href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
                                             <img src="/Avatars/@logginnedUser.Avatar"
-                                         alt="avata" />
+                                                 alt="avata" />
                                         </a>
                                     </figure>
                                 </div>
@@ -110,7 +111,7 @@
                                         <div class="detail_idea nav_bar--item--separate2">
                                             <div class="avata_information_idea">
                                                 <figure>
-                                                    <a style="text-decoration: none" asp-action="Profile" asp-controller="Staff" asp-route-id="@idea.Profile.Id">
+                                                    <a style="text-decoration: none" href="/Staff/Profile?id=@idea.Profile.Id&pagenum=1&viewtype=latest">
                                                         <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
 
                                                         <div class="name_account">
@@ -179,10 +180,10 @@
 
                                         <div class="comment_idea">
                                             <div class="com_idea_avata">
-                                                <a asp-action="Profile" asp-controller="Staff">
+                                                <a href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
                                                     <figure class="avata_comment">
                                                         <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@ViewBag.logginedUser.Avatar"
-                                                     alt="avata" />
+                                                             alt="avata" />
                                                     </figure>
                                                 </a>
                                             </div>
@@ -209,40 +210,46 @@
                         <br>
                         <div class="advertisement2">
                             <img src="https://media.kenhtuyensinh.vn/images/article/240123/daihocgreenwich.jpg"
-                             title="QC" />
+                                 title="QC" />
                         </div>
                         <div class="advertisement3">
                             <img src="https://vtv1.mediacdn.vn/thumb_w/640/2022/5/28/6-16537503950961937725457.jpg"
-                             title="QC" />
+                                 title="QC" />
                         </div>
                     </div>
                 </div>
-                @*                @{
-            int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
-            int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
-            var viewType = @ViewBag.ViewType;
-            }*@
-                <div class="pagination" style=" border-radius: 3em">
-
-                    <div class="prev">
-                        @*                        @if (@pre > 0)
-                    {*@
-                        <span class="text" onclick="BtnPre()">Prev</span>
-                        @*                           <div class="left">
-                    </div>
-                    }*@
-                    </div>
-
-                    <div class="next">
-                        @*                        @if (@next * 5 - @ViewBag.Total < 5)
-                    {*@
-                        <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
-                        @*                            <div class="right">
-                    </div>
-                    }*@
-                    </div>
+                @{
+                    int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
+                    int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
+                    var viewType = @ViewBag.ViewType;
+                }
+                <div class="paginations" style=" border-radius: 3em">
+                    @if (pre > 0)
+                    {
+                        <div class="prev">
+                            <span class="text" onclick="BtnPre()">Prev</span>
+                            <div class="left">
+                            </div>
+                        </div>
+                    }
+                    @if (next * 5 - ViewBag.Total < 5)
+                    {
+                        <div class="next">
+                            <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                            <div class="right">
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function BtnNext() {
+            window.location.replace('/Staff/Profile?id=@Model.Id&pageNum=@next&viewType=@viewType');
+        }
+        function BtnPre() {
+            window.location.replace('/Staff/Profile?id=@Model.Id&pageNum=@pre&viewType=@viewType');
+        }
+    </script>
 }
