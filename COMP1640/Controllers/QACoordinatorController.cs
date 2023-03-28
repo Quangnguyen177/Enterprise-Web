@@ -41,6 +41,7 @@ namespace COMP1640.Controllers
         {
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = context.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(currentUserId));
+            ViewBag.Comments = context.Comments.OrderByDescending(d=>d.created_date).Include(i=>i.Idea).Include(p=>p.Profile).ToList();
             return View();
         }
     }
