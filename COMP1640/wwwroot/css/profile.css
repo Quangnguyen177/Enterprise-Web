@@ -1,22 +1,31 @@
-﻿.profile {
+.profile {
     display: block;
     justify-content: center;
     width: 100%;
     padding-left: 4em;
     padding-right: 4em;
+    margin-top: 9em;
+}
+
+.col-lg-12 {
+    width: 82%;
 }
 
 .file_idea img {
     text-align: center;
     margin-left: 2em;
 }
+.infor_account {
+    padding-top: 3em;
+}
+
 
 .header_pro {
     height: 30.25em;
     width: 100%;
     display: inherit;
     justify-content: center;
-    margin-top: -8em;
+    margin-top: -10em;
 }
 
 .cover_img {
@@ -26,7 +35,8 @@
 }
 
 .avata_profile {
-    transform: translate(6em, -8.3em);
+    display: flex;
+    transform: translate(6em, -16.3em);
 }
 
     .avata_profile img {
@@ -54,9 +64,9 @@
         display: inline-block;
     }
 
-.section {
+/*.section {
     transform: translate(-4em, -23.3em);
-}
+}*/
 
 .widget {
     display: block;
@@ -132,17 +142,13 @@ aside img {
     width: 100%;
 }
 
-.row.merged20 {
-    padding-left: 4.5em;
-}
-
 .pagination {
     margin-top: 2em;
     padding-top: 0.1em;
 }
 
 .row.merged20 {
-    padding-left: 11.5em;
+    margin: -2em 3em 0em 6em;
 }
 
 .sidebar.static {
@@ -151,52 +157,32 @@ aside img {
 
 /*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
-    .avata_profile {
-        transform: translate(4em, -1.3em);
-    }
-
     .profile {
-        margin-left: -4em;
-        width: 135%;
-    }
-
-    .header_pro {
-        margin-left: -3em;
-    }
-
-    .row.merged20 {
-        width: 36.5em;
-    }
-
-    .block {
-        margin-left: -8.5em;
-        margin-top: -2em;
+        width: 100%;
+        padding-left: 0em;
+        padding-right: 0em;
     }
 
     .cover_img {
         height: 13em;
     }
 
-    .info {
-        font-size: 0.8em;
-        margin-left: 18em;
-        margin-top: -10em;
+    .avata_profile {
+        transform: translate(1em, -9em);
+    }
+        .avata_profile img {
+            width: 5em;
+            height: 5em;
+            border-radius: 50%;
+        }
+
+    .name_profile {
+        font-size: 0.7em;
+    }
+    .infor_account {
+        padding-top: 2em;
     }
 
-    .title {
-        transform: none;
-    }
-
-    .name_profile h4 {
-        font-size: 1.6em;
-        margin-left: -7em;
-        margin-top: 4em;
-    }
-
-    .avata_profile img {
-        width: 5em;
-        height: 5em;
-    }
 
     .users-thumb-list {
         display: none;
@@ -206,65 +192,39 @@ aside img {
         display: none;
     }
 
-    .pagination {
-        margin-left: -61.5em;
+    .row.merged20 {
+        margin: -19em -2em 0em -2em;
     }
-}
-/*Mobile: width<780px*/
-@media only screen and (max-width: 46.25em) {
-    .new_post {
-       display: none;
-    }
+
 }
 /*Tablet: width>=740px and width < 1024px*/
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-    .new_post {
-        display: none;
-    }
     .profile {
-        margin-left: -4em;
-        width: 135%;
+        padding-left: 0em;
+        padding-right: 0em;
     }
 
-    .info {
-        font-size: 0.8em;
-        margin-left: 8.5em;
-        margin-top: -8em;
-    }
-
-    .name_profile h4 {
-        font-size: 1.6em;
-    }
-
-    .avata_profile img {
-        width: 6em;
-        height: 6em;
-    }
-
-    .profile img {
-        height: 20em;
-    }
-
-    .header_pro img {
-        width: 6em;
-        height: 6em;
+    .cover_img {
+        height: 19em;
     }
 
     .avata_profile {
-        margin-top: 5em;
-        margin-left: -2em;
+        transform: translate(3em, -14.3em);
+    }
+        .avata_profile img {
+            width: 9em;
+            height: 9em;
+            border-radius: 50%;
+        }
+
+    .name_profile h4 {
+        font-size: 1.8em;
+    }
+    .row.merged20 {
+        margin: -13em 0em 0em 0em;
+    }
+    .infor_account {
+        padding-top: 0em;
     }
 
-    .block {
-        margin-left: -5.5em;
-        margin-top: -6em;
-    }
-
-    .sub_container2.col-lg-3 {
-        margin-left: -6em;
-    }
-
-    .pagination {
-        margin-left: 4em;
-    }
 }
