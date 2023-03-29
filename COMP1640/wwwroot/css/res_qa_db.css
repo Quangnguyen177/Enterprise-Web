@@ -1,4 +1,4 @@
-﻿
+
 /*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
     .col-10 {
@@ -43,24 +43,77 @@
         padding-bottom: 2em;
     }
 
-    .numOf_idea {
-        margin-bottom: 1em;
+    .card_db {
         width: 100%;
+        margin-bottom: 1em;
+        margin-left: 2em;
     }
 
-    .numOf_contributors {
-        margin-bottom: 1em;
-        width: 100%;
+    .dashboard h3 {
+        font-size: 1.0em
     }
 
-    .react_idea {
-        margin-bottom: 1em;
-        width: 100%;
+    .chart_contributors {
+        margin-left: -4em;
+        width: 280px;
     }
 
-    .numOf_comment {
-        width: 100%;
+    .chart_contributor h5 {
+        font-size: 1.0em;
+        text-align: center;
     }
+
+    #pie-chart {
+        width: 320px;
+        height: 350px;
+    }
+
+    .table {
+        font-size: 0.9em;
+    }
+
+        .table th {
+            display: none;
+        }
+
+    table th,
+    table td {
+        display: flex;
+        border-bottom: none;
+    }
+
+    table {
+        margin-bottom: 2em;
+    }
+
+        table tr:last-child td {
+            border-bottom: 1px solid #ccc;
+        }
+
+
+        table td:nth-of-type(1):before {
+            content: "Category ID";
+            padding-right: 5em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(2):before {
+            content: "Category Name";
+            padding-right: 3em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(3):before {
+            content: "Edit";
+            padding-right: 8em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(4):before {
+            content: "Delete";
+            padding-right: 7em;
+            font-weight: 600;
+        }
 }
 
 /*Tablet: width>=740px and width < 1024px*/
@@ -83,13 +136,20 @@
         width: 446px;
     }
 
-    .chart_contributor {
-        margin-left: 7em;
+    .chart_contributors {
+        margin-left: 5em;
+        width: 310px;
     }
 
-        .chart_contributor h5 {
+        .chart_contributors h5 {
             font-size: 1.1em;
+            text-align: center;
         }
+
+    .chart_contributor canvas {
+        width: 320px;
+        height: 200px;
+    }
 
     .chartCard {
         padding-bottom: 2em;
