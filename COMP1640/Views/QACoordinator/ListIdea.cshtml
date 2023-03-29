@@ -4,10 +4,34 @@
     Layout = "_QAC";
     ViewData["Title"] = "List Idea";
     <link rel="stylesheet" href="~/css/res_qa_idea.css" />
+    var count = 0;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Coordinator"))
 {
     <div class="idea">
+        @{
+            int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
+            int pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
+            var viewType = @ViewBag.ViewType;
+        }
+        <div class="paginations" style=" border-radius: 3em">
+            @if (pre > 0)
+            {
+                <div class="prev">
+                    <span class="text" onclick="BtnPre()">Prev</span>
+                    <div class="left">
+                    </div>
+                </div>
+            }
+            @if (next * 25 - ViewBag.Total < 25)
+            {
+                <div class="next">
+                    <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                    <div class="right">
+                    </div>
+                </div>
+            }
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -36,16 +60,50 @@
                         <td>@i.created_date</td>
                         <td>@i.Event.First_closure_date</td>
                         <td>@i.Event.Last_closure_date</td>
-                        <td>@i.idea_anonymous</td>
+                        @if (i.idea_anonymous == true)
+                        {
+                            <td>Yes</td>
+                        }
+                        else
+                        {
+                            <td>No</td>
+                        }
                         <td>@i.idea_view</td>
                         <td>@i.Profile.Name</td>
                         <td>@i.Category.category_name</td>
                         <td>@i.Reacpoint.ThumbUp</td>
                         <td>@i.Reacpoint.ThumbDown</td>
-                        <td>doc.file</td>
+                        @foreach(var d in ViewBag.Documents)
+                        {
+                            if(d.IdeaId == i.IdeaId)
+                            {
+                                 count++; 
+                            }
+                            else
+                            {
+                                count = 0;
+                            }
+                        }
+                        @if(count == 0)
+                        {
+                            <td>None</td>
+                        }
+                        else
+                        {
+                            <td><a asp-action="DownloadEachFile" asp-controller="QACoordinator" asp-route-id="@i.IdeaId">@count documents</a></td>
+                        }
+
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+    <script>
+        function BtnNext() {
+            window.location.replace('/QAManager/Idea?pageNum=@next&viewType=@viewType');
+        }
+        function BtnPre() {
+            window.location.replace('/QAManager/Idea?pageNum=@pre&viewType=@viewType');
+        }
+    </script>
 }

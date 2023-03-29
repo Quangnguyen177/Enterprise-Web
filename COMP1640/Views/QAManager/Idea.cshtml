@@ -4,10 +4,10 @@
     Layout = "_QAM";
     <link rel="stylesheet" href="~/css/res_qa_idea.css" />
     ViewData["Title"] = "List Idea";
+    var count = 0;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
-
     <div class="idea">
         @{
             int next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             }
-            @if (next * 5 - ViewBag.Total < 5)
+            @if (next * 25 - ViewBag.Total < 25)
             {
                 <div class="next">
                     <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
@@ -96,13 +96,36 @@
                         <td>@i.created_date</td>
                         <td>@i.Event.First_closure_date</td>
                         <td>@i.Event.Last_closure_date</td>
-                        <td>@i.idea_anonymous</td>
+                        @if (i.idea_anonymous == true)
+                        {
+                            <td>Yes</td>
+                        }
+                        else
+                        {
+                            <td>No</td>
+                        }
                         <td>@i.idea_view</td>
                         <td>@i.Profile.Name</td>
                         <td>@i.Category.category_name</td>
                         <td>@i.Reacpoint.ThumbUp</td>
                         <td>@i.Reacpoint.ThumbDown</td>
-                        <td>doc.file</td>
+                        @foreach (var d in ViewBag.Documents)
+                        {
+                            if (d.IdeaId == i.IdeaId)
+                            {
+                                 count++; 
+                            }
+                            else
+                            {
+                                count = 0;
+                            }
+                        }
+                        @if (count == 0)
+                        {
+                            <td>None</td>
+                        }else{
+                            <td><a asp-action="DownloadEachFile" asp-controller="QAManager" asp-route-id="@i.IdeaId">@count documents</a></td>
+                        }
                     </tr>
                 }
             </tbody>

@@ -86,7 +86,7 @@ namespace COMP1640.Controllers
         public IActionResult Dashboard()
         {
             List<TopContributor> list = new List<TopContributor>();
-            var ideas = context.Ideas.Where(i=>i.created_date.Value.Month == GetCurrentVnTime().Month).Include(i => i.Profile.Department).ToList();
+            var ideas = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Include(i => i.Profile.Department).ToList();
             var groupById = ideas.GroupBy(i => i.Profile);
             foreach (var group in groupById)
             {
@@ -100,28 +100,32 @@ namespace COMP1640.Controllers
             var totalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
             var totalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
             ViewBag.Statistic = new Statistic(totalIdea, totalContributor, totalView, totalComment);
-            
+
             return View(list);
         }
         public IActionResult Idea(int pageNum, string viewType)
         {
             if (pageNum == 1) ViewBag.PageNum = 1;
             else ViewBag.PageNum = pageNum;
-            int skipPage = 5* (pageNum - 1);
+            int skipPage = 25 * (pageNum - 1);
             List<Idea> list = null;
             if (viewType.Equals("mostview"))
             {
-                list = context.Ideas.OrderByDescending(i=>i.idea_view).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(5).ToList();
+                list = context.Ideas.OrderByDescending(i => i.idea_view).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(25).ToList();
                 ViewBag.ViewType = "mostview";
-            }else if (viewType.Equals("lastest"))
+            }
+            else if (viewType.Equals("lastest"))
             {
-                list = context.Ideas.OrderByDescending(i=>i.created_date).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(5).ToList();
+                list = context.Ideas.OrderByDescending(i => i.created_date).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(25).ToList();
                 ViewBag.ViewType = "lastest";
-            }else if (viewType.Equals("popular"))
+            }
+            else if (viewType.Equals("popular"))
             {
-                list = context.Ideas.Include(i=>i.Reacpoint).OrderByDescending(i=>i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Skip(skipPage).Take(5).ToList();
+                list = context.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Skip(skipPage).Take(25).ToList();
                 ViewBag.ViewType = "popular";
             }
+            var documents = context.Documents.Include(d => d.Idea);
+            ViewBag.Documents = context.Documents.ToList();
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Total = context.Ideas.Count();
@@ -190,7 +194,7 @@ namespace COMP1640.Controllers
         }
         public IActionResult DownloadCSV()
         {
-            var data = context.Ideas.Include(i => i.Profile).Include(i=>i.Category).Include(i => i.Reacpoint).Include(i => i.Event).ToList();
+            var data = context.Ideas.Include(i => i.Profile).Include(i => i.Category).Include(i => i.Reacpoint).Include(i => i.Event).ToList();
             var csv = new StringBuilder();
             string heading = "IdeaId,Title,Content,Created Date,Anonymous,Total View,Owner Name,Category,Point,Event";
             csv.AppendLine(heading);
@@ -205,7 +209,7 @@ namespace COMP1640.Controllers
                                 row.idea_view,
                                 row.idea_anonymous ? "Anonymous" : row.Profile.Name,
                                 row.Category.category_name,
-                                row.Reacpoint.ThumbUp- row.Reacpoint.ThumbDown,
+                                row.Reacpoint.ThumbUp - row.Reacpoint.ThumbDown,
                                 row.Event.EventName
                               );
                 csv.AppendLine(newRow);
@@ -292,6 +296,67 @@ namespace COMP1640.Controllers
         public DateTime GetCurrentVnTime()
         {
             return DateTime.UtcNow.AddHours(7);
+        }
+        public IActionResult SearchCat(string keyword)
+        {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+            var results = context.Categories.Where(p => p.category_name.Contains(keyword)).OrderByDescending(c => c.CategoryId).ToList();
+            if (results.Count == 0)
+            {
+                TempData["Message"] = "No category found !";
+            }
+            return View("CategoryManager", results);
+        }
+        public IActionResult DownloadEachFile(int id)
+        {
+            var file = context.Documents.Where(d => d.IdeaId == id).ToList();
+            /*            var filename = file.doc_name;*/
+            List<Document> listFiles = new List<Document>();
+
+            //Path For download From Network Path.
+            string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files"); ;
+
+            DirectoryInfo dirInfo = new DirectoryInfo(fileSavePath);
+
+            int i = 0;
+            foreach (var f in file)
+            {
+                foreach (var item in dirInfo.GetFiles())
+                {
+                    if (item.Name == f.doc_name)
+                    {
+                        listFiles.Add(new Document()
+                        {
+
+                            DocId = i + 1,
+
+                            doc_name = item.Name,
+
+                            doc_path = dirInfo.FullName + @"\" + item.Name
+
+                        });
+                    }
+
+
+                    i = i + 1;
+                }
+            }
+
+            var fileColumns = listFiles.ToList();
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var ziparchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    for (int j = 0; j < fileColumns.Count; j++)
+                    {
+                        ziparchive.CreateEntryFromFile(fileColumns[j].doc_path, fileColumns[j].doc_name);
+
+                    }
+                }
+
+                return File(memoryStream.ToArray(), "application/zip", "Documents.zip");
+            }
         }
     }
 }

@@ -144,7 +144,12 @@
                                             <li>
                                                 <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                             </li>
-                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>@idea.Comments.Count()</li>
+                                            <li>
+                                                <a style="color:green" asp-action="" asp-controller="">
+                                                    <i class="fa-regular fa-comment"></i>
+                                                </a>
+                                                @idea.Comments.Count()
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

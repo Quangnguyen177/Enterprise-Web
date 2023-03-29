@@ -440,21 +440,22 @@ namespace COMP1640.Controllers
             List<Idea> list = null;
             if (viewType.Equals("mostview"))
             {
-                list = Db.Ideas.OrderByDescending(i => i.idea_view).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.OrderByDescending(i => i.idea_view).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c=>c.Comments).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "mostview";
             }
             else if (viewType.Equals("latest"))
             {
-                list = Db.Ideas.OrderByDescending(i => i.created_date).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.OrderByDescending(i => i.created_date).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c=>c.Comments).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "latest";
             }
             else if (viewType.Equals("popular"))
             {
-                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(c=>c.Comments).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "popular";
             }
             ViewBag.Numberofidea = Db.Ideas.Include(c => c.Comments).Include(p => p.Profile).Include(i => i.Category).Where(ideas => ideas.ProfileId.Equals(id)).ToList();
             ViewBag.Ideas = list;
+            
             ViewBag.Total = ViewBag.Numberofidea.Count;
 
             var documents = Db.Documents.Include(d => d.Idea);

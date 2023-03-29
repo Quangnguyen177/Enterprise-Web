@@ -3,6 +3,7 @@
     Layout = "_Staff";
     <link rel="stylesheet" href="~/css/profile.css" />
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
+    var ideas = ViewBag.Ideas as List<Idea>;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
@@ -108,7 +109,7 @@
 
                         @*A post*@
                         <div class="block">
-                            @foreach (var idea in ViewBag.Ideas)
+                            @foreach (var idea in ideas)
                             {
                                 <div class="information_idea">
                                     <div class="Infor_idea">
@@ -177,7 +178,12 @@
                                                     <li>
                                                         <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                                     </li>
-                                                    <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-comment"></i></a>22</li>
+                                                    <li>
+                                                        <a style="color:green" asp-action="" asp-controller="">
+                                                            <i class="fa-regular fa-comment"></i>
+                                                        </a>
+                                                        @idea.Comments.Count()
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -232,16 +238,12 @@
                     {
                         <div class="prev">
                             <span class="text" onclick="BtnPre()">Prev</span>
-                            <div class="left">
-                            </div>
                         </div>
                     }
                     @if (next * 5 - ViewBag.Total < 5)
                     {
                         <div class="next">
                             <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
-                            <div class="right">
-                            </div>
                         </div>
                     }
                 </div>

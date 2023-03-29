@@ -43,7 +43,7 @@ namespace COMP1640.Controllers
             }
             else if (ur == "Quality Assurance Coordinator")
             {
-                return RedirectToAction("ListIdea", "QACoordinator");
+                return RedirectToAction("ListIdea", "QACoordinator", new {pageNum = 1, viewType="latest"});
             }
             else if (ur == "Administrator")
             {
