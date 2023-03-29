@@ -1,4 +1,4 @@
-﻿
+
 * {
     margin: 0px;
     padding: 0px;
@@ -124,15 +124,11 @@ thead {
 
 .logo {
     padding-top: 2em;
-    /*   width: 100%;
-    background-color: white;
-    border-radius: 7px;*/
-    margin-left: -1.8em;
 }
 
     .logo img {
-        width: 260px;
-        height: 125px;
+        width: 200px;
+        height: 180px;
     }
 
 .col-10 {
@@ -233,7 +229,9 @@ thead {
     width: 30px;
     height: 2px;
     background-color: #e3e5e8;
-    transform: translate(9.0em, -0.6em);
+   /* transform: translate(9.0em, -0.6em);*/
+   margin-top: -0.7em;
+   margin-left: 10em;
 }
 
 /* search icon */
@@ -245,6 +243,7 @@ thead {
     justify-content: center;
     align-items: center;
 }
+
 /* arrow-icon*/
 .swap-off {
     transform: rotate(-80deg);
@@ -484,19 +483,25 @@ thead {
     margin-top: 3em;
     /* background-color: wheat;*/
 }
+    .dashboard h3 {
+        text-align: center;
+        font-family: inherit;
+        color: gray;
+        padding-bottom: 1em;
+        font-size: 1.7em;
+    }
 
-.numOf_idea {
-    display: flex;
+    .numOf_idea {
+        display: flex;
+    }
+.card_db {
+    width: 20%;
     background: linear-gradient(#d4e5f4, #d7f7e7);
     border-radius: 0.5em;
-    width: 20%;
 }
 
 .numOf_contributors {
     display: flex;
-    background: linear-gradient(#d4e5f4, #d7f7e7);
-    border-radius: 0.5em;
-    width: 22%;
 }
 
 .dashboard h5 {
@@ -506,19 +511,17 @@ thead {
 
 .react_idea {
     display: flex;
-    background: linear-gradient(#d4e5f4, #d7f7e7);
-    border-radius: 0.5em;
-    width: 20%;
 }
 
 .numOf_comment {
     display: flex;
-    background: linear-gradient(#d4e5f4, #d7f7e7);
-    border-radius: 0.5em;
-    width: 20%;
 }
 
-.col-4 {
+.inf_percent {
+    margin-top: -1em;
+    margin-bottom: 1em;
+}
+.percent {
     /* margin-top: 1em;*/
     text-align: center;
     background-color: white;
@@ -527,6 +530,23 @@ thead {
     margin-left: 1em;
     border: 1px dotted #b1154a;
     margin-top: 2em;
+    width: 30%;
+}
+    .percent i {
+        padding-left: 0.3em;
+        padding-right: 0.5em;
+        color: #7e906f;
+    }
+
+.col-4 {
+    height: 50%;
+    margin-top: 1.5em;
+}
+.col-4 span {
+    font-size: 1.7em;
+}
+.text-muted{
+    padding-left: 1em;
 }
 
 .col-8 {
@@ -754,14 +774,10 @@ thead {
 }
 
 .chart_contributors {
-    width: 340px;
-    margin-left: -20px;
-    border-radius: 20px;
-    border: solid 3px white;
+    width: 320px;
 }
-
-#contributors {
-    transform: translateX(-3em);
+.chart_contributor {
+    margin-left: -50em;
 }
 
 .chartBox h5 {
@@ -773,7 +789,7 @@ thead {
 .chart_contributors h5 {
     padding-bottom: 1.2em;
     font-size: 1.3em;
-    margin-left: -30px;
+    text-align: center;
 }
 
 
@@ -920,6 +936,7 @@ input[type]:checked ~ span.middle {
     display: block;
 }
 
+
 .input_check:checked ~ .idea_mobile {
     transform: translateX(0%);
     opacity: 1;
@@ -1028,8 +1045,8 @@ input[type]:checked ~ span.middle {
 /*Tablet: width>=740px and width < 1024px*/
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
     .logo img {
-        width: 9em;
-        height: 4.3em;
+        width: 6em;
+        height: 6.3em;
         margin-top: 5em;
     }
 
