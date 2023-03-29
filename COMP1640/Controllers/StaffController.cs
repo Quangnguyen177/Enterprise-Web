@@ -59,7 +59,9 @@ namespace COMP1640.Controllers
 
             ViewBag.Page = new ViewPage(pageNum, orderBy, viewType, id);
             var d = Db.Events.ToList().Last();
-            ViewBag.Date = d.First_closure_date;         
+            ViewBag.Date = d.First_closure_date;
+            var documents = Db.Documents.Include(d => d.Idea);
+            ViewBag.Documents = Db.Documents.ToList();
             return View(page);
         }
 

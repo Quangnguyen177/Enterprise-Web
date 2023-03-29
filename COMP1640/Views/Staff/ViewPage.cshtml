@@ -120,6 +120,18 @@
                                                     <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
                                                 </a>
                                             </div>
+                                            @foreach (var doc in ViewBag.Documents)
+                                            { if(doc.IdeaId == idea.IdeaId)
+                                                {
+                                                    <div class="file_idea" style="text-align: center">
+                                                        <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
+                                                        @doc.doc_name
+                                                    </a>
+
+                                                </div>
+                                                }
+                                                
+                                            }
 
                                             <div class="file_idea ">
                                                 <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
