@@ -62,6 +62,8 @@ namespace COMP1640.Controllers
 
         public IActionResult Home()
         {
+            var ideas = Db.Ideas.OrderByDescending(c => c.created_date).Include(p => p.Profile).ThenInclude(d=>d.Department).ToList();
+            ViewBag.Ideas = ideas;
             var roles = _roleManager.Roles.ToList();
             return View(roles);
         }

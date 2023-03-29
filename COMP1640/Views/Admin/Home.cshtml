@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "_LayoutAdmin";
     <link rel="stylesheet" href="~/css/res_admin_db.css" />
+    var ideas = ViewBag.Ideas as List<Idea>;
 }
 
 <!-- Main content -->
@@ -121,36 +122,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach(var i in ideas)
+                            {
+                                <tr>
                                 <td>
-                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
+                                    <img alt="..." src="/Avatars/@i.Profile.Avatar" class="avatar avatar-sm rounded-circle me-2">
                                     <a class="text-heading font-semibold" href="#">
-                                        Harris
+                                        @i.Profile.Name
                                     </a>
                                 </td>
                                 <td>
-                                    Sport
+                                    @i.idea_title
                                 </td>
                                 <td>
                                     <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
                                     <a class="text-heading font-semibold" href="#">
-                                        Frontend Developer
+                                        @i.Profile.Department.Dep_name
                                     </a>
                                 </td>
                                 <td>
-                                    Feb 17, 2023
+                                    @i.created_date
                                 </td>
+                                    @if (i.idea_anonymous == true)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
                                 <td>
-                                    False
+                                    @i.idea_view
                                 </td>
-                                <td>
-                                    300
-                                </td>
-                                @*<td class="text-end">
-                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
                             </tr>
+                            }
+@*                            
                             <tr>
                                 <td>
                                     <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
@@ -179,7 +185,7 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -209,7 +215,7 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -239,7 +245,7 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -269,7 +275,7 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -299,7 +305,7 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -329,7 +335,7 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -359,8 +365,9 @@
                                 @*<td class="text-end">
                                 <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
                                 <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>*@
+                                </td>
                             </tr>
+*@
                         </tbody>
                     </table>
                 </div>
