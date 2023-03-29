@@ -1,58 +1,89 @@
 ﻿@using COMP1640.ViewModels
 @model List<TopContributor>
 @{
-    ViewData["Title"] = "Dashboard"; 
+        ViewData["Title"] = "Statistic For " + @DateTime.UtcNow.AddHours(7).ToString("MMMM");
     var logginedUser = (Profile)ViewBag.LogginedUser;
     ViewData["Avatar"] = logginedUser.Avatar;
     ViewData["Name"] = logginedUser.Name;
     var statistic = (Statistic)ViewBag.Statistic;
     Layout = "_QAM";
-    
 }
 <link rel="stylesheet" href="~/css/res_qa_db.css" />
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
     
     <div class="dashboard">
-        <h3 style="text-align: center">Statistic For @DateTime.UtcNow.AddHours(7).ToString("MMMM")</h3>
-        <div class="header_db">
-            <div class="numOf_idea">
-                <div class="col-4">
-                    <span>70%</span>
+         <div class="header_db">
+            <div class="card_db">
+                <div class="numOf_idea">
+                    <div class="col-4">
+                        <span>@statistic.Idea</span>
+                    </div>
+                    <div class="col-8">
+                        <h5>Total Idea</h5>
+                    </div>
                 </div>
-                <div class="col-8">
-                    <h5>Total Idea</h5>
-                    <span>@statistic.Idea</span>
-                </div>
-            </div>
-            <div class="numOf_contributors">
-                <div class="col-4">
-                    <span>98%</span>
-                </div>
-                <div class="col-8">
-                    <h5>Total Contributor</h5>
-                    <span>@statistic.Contributor</span>
+                <div class="inf_percent">
+                    <span class="percent">
+                        <i class="fa-solid fa-up-long"></i>11%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last week</span>
                 </div>
             </div>
-            <div class="react_idea">
-                <div class="col-4">
-                    <span>100%</span>
+            <div class="card_db">
+                <div class="numOf_contributors">
+                    <div class="col-4">
+                        <span>@statistic.Contributor</span>
+                    </div>
+                    <div class="col-8">
+                        <h5>Total Contributor</h5>
+
+                    </div>
+
                 </div>
-                <div class="col-8">
-                    <h5>Total View</h5>
-                    <span>@statistic.View</span>
+                <div class="inf_percent">
+                    <span class="percent">
+                        <i class="fa-solid fa-up-long"></i>11%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last week</span>
                 </div>
             </div>
-            <div class="numOf_comment">
-                <div class="col-4">
-                    <span>100%</span>
+            <div class="card_db">
+                <div class="react_idea">
+                    <div class="col-4">
+                        <span>@statistic.View</span>
+                    </div>
+                    <div class="col-8">
+                        <h5>Total View</h5>
+
+                    </div>
                 </div>
-                <div class="col-8">
-                    <h5>Total Comment</h5>
-                    <span>@statistic.Comment</span>
+                <div class="inf_percent">
+                    <span class="percent">
+                        <i class="fa-solid fa-up-long"></i>11%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last week</span>
+                </div>
+            </div>
+            <div class="card_db">
+                <div class="numOf_comment">
+                    <div class="col-4">
+                        <span>@statistic.Comment</span>
+                    </div>
+                    <div class="col-8">
+                        <h5>Total Comment</h5>
+
+                    </div>
+                </div>
+                <div class="inf_percent">
+                    <span class="percent">
+                        <i class="fa-solid fa-up-long"></i>11%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last week</span>
                 </div>
             </div>
         </div>
+        
          <div class="body_db">
             <div class="dashboard">
                 <div class="colom1">
