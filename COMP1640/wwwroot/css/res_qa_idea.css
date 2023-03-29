@@ -1,4 +1,7 @@
-﻿/*Mobile: width<780px*/
+.nav_bar--item--separate::after {
+    margin-left: 6em;
+}﻿
+/*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
     .paginations{
         display: none;
