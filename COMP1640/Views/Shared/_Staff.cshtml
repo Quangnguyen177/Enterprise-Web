@@ -101,7 +101,7 @@
             <div class="nav_icon">
                 <ul class="menu icon">
                     <li class="icon_account nav_bar--item--separate" style="color: #373b3f; font-weight: bold">@ViewBag.LoginedUserName</li>
-                    @*<li class="icon_account"><a style="color: #373b3f; text-decoration: none" href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F"><i class="fa-solid fa-right-from-bracket"></i></a></li>  &nbsp &nbsp*@
+                    <li class="icon_account"><a style="color: #373b3f; text-decoration: none" href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea"><i class="fa-solid fa-house"></i></a></li> &nbsp &nbsp
                     <li class="icon_account">
                         <form asp-area="Identity" asp-page="/Account/Logout" method="post">
                             <button class="btn btn-light" style="color: #373b3f; text-decoration: none" type="submit">
@@ -138,10 +138,73 @@
                         <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
                         @*<li class="nav_bar--item "><i class="fa-solid fa-right-from-bracket"></i><a href="/Identity/Account/Logout?returnUrl=%2F%3Fpage%3D%252F">Logout</a></li>*@
                         <li class="nav_bar--item ">
-                            <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                            <form class="logout_moblie" asp-area="Identity" asp-page="/Account/Logout" method="post">
                                 <i class="fa-solid fa-right-from-bracket"></i>
                                 <button type="submit">Logout</button>
                             </form>
+                        </li>
+                    </ul>
+                     <ul class="sub_nav shortcuts_mobile">
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link dropdown-toggle" style="color: #373b3f" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Event
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="agile_inner_drop_nav_info p-4">
+                                    <div class="row">
+                                        <div class="col-sm-6 multi-gd-img">
+                                            <ul class="dropdown">
+                                                @foreach (var e in ViewBag.Event)
+                                                {
+                                                    <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=evt&id=@e.EventId">@e.EventName</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link dropdown-toggle" style="color: #373b3f" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Category
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="agile_inner_drop_nav_info p-4">
+                                    <div class="row">
+                                        <div class="col-sm-6 multi-gd-img">
+                                            <ul>
+                                                @foreach (var c in ViewBag.Category)
+                                                {
+                                                    <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=cat&id=@c.CategoryId">@c.category_name</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                            <a class="nav-link dropdown-toggle" style="color: #373b3f" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Department
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="agile_inner_drop_nav_info p-4">
+                                    <div class="row">
+                                        <div class="col-sm-6 multi-gd-img">
+                                            <ul>
+                                                @foreach (var d in ViewBag.Department)
+                                                {
+                                                    <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=dep&id=@d.DepId">@d.Dep_name</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
