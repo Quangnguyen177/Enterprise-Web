@@ -167,7 +167,7 @@ ul a:hover {
 
 li:active {
     position: relative;
-    background-color: antiquewhite;
+    background-color: #efeaea;
 }
 
 .ul_icon_idea .fa-regular fa-file {
@@ -831,6 +831,31 @@ input[type]:checked ~ span.middle {
             text-decoration: none;
         }
 
+.sub_nav.shortcuts_mobile {
+    display: grid;
+}
+
+    .sub_nav.shortcuts_mobile a {
+        color: #333;
+    }
+
+    .sub_nav.shortcuts_mobile li {
+        margin-left: -1.2em;
+        line-height: 2em;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 530;
+    }
+
+.logout_moblie button {
+    background: none;
+    border: none;
+    color: #333;
+}
+
+.logout_moblie i {
+    padding-right: 1.1em;
+}
 .idea_mobile h1 {
     color: #424242;
     display: inline-block;
