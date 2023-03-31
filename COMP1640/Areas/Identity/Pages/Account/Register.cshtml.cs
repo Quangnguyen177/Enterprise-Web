@@ -61,7 +61,7 @@ namespace COMP1640.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Department")]
-            public int DepartmentId { get; set; }
+            public int? DepartmentId { get; set; }
 
             [Required]
             [EmailAddress]
@@ -92,6 +92,11 @@ namespace COMP1640.Areas.Identity.Pages.Account
         {
             ViewData["Roles"] = new List<IdentityRole>(await _roleManager.Roles.ToListAsync());
             ViewData["Departments"] = new List<Department>(Db.Departments.ToList());
+
+            if (Input.Role == "Administrator")
+            {
+                Input.DepartmentId = null;
+            }
 
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
