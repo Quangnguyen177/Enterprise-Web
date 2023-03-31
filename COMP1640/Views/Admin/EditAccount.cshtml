@@ -65,7 +65,7 @@
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1">Role</label>
-                                    <select class="form-select form-control" id="role" asp-for="Input.Role">
+                                    <select class="form-select form-control" id="role" onchange="CheckAd(this)" asp-for="Input.Role">
                                         @foreach (var role in Roles)
                                         {
                                             <option value="@role.Name">@role.Name</option>
@@ -81,6 +81,7 @@
                                         {
                                             <option value="@dep.DepId">@dep.Dep_name</option>
                                         }
+                                        <option value="-1" hidden disabled>Admin</option>
                                     </select>
                                     <span class="text-danger" asp-validation-for="Input.DepartmentId"></span>
                                 </div>
@@ -130,9 +131,32 @@
     </div>
 
     <script type="text/javascript">
+        function hide() {
+            var dep = document.getElementById('dep');
+            dep.style.visibility = 'hidden';
+        }
+        function show() {
+            var dep = document.getElementById('dep');
+            dep.style.visibility = 'visible';
+        }
+
+        function CheckAd(x) {
+            if (x.value == "Administrator") {
+                $('#dep').val("-1");
+                hide();
+            }
+            else {
+                $('#dep').val(@ViewBag.User.DepId);
+                show();
+            }
+        };
         $(document).ready(function () {
             //Role
             $('#role').val("@ViewBag.UserRole");
+            if ("@ViewBag.UserRole" == "Administrator") {
+                $('#dep').val("-1");
+                hide();
+            }
 
             //Dep
             $('#dep').val(@ViewBag.User.DepId);

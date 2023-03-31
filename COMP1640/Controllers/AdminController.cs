@@ -52,7 +52,7 @@ namespace COMP1640.Controllers
 
             public string Role { get; set; }
 
-            public int DepartmentId { get; set; }
+            public int? DepartmentId { get; set; }
 
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -209,6 +209,11 @@ namespace COMP1640.Controllers
         {
             var user = Db.Profile.FirstOrDefault(u => u.Id == Input.Id);
             var currentRoles = await _userManager.GetRolesAsync(user);
+
+            if (Input.Role == "Administrator")
+            {
+                Input.DepartmentId = null;
+            }
 
             user.Id = Input.Id;
             user.Name = Input.Name;
