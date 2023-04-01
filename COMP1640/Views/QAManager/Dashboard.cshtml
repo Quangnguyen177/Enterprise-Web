@@ -1,7 +1,7 @@
 ﻿@using COMP1640.ViewModels
 @model List<TopContributor>
 @{
-        ViewData["Title"] = "Statistic For " + @DateTime.UtcNow.AddHours(7).ToString("MMMM");
+    ViewData["Title"] = "Statistic For " + @DateTime.UtcNow.AddHours(7).ToString("MMMM");
     var logginedUser = (Profile)ViewBag.LogginedUser;
     ViewData["Avatar"] = logginedUser.Avatar;
     ViewData["Name"] = logginedUser.Name;
@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="~/css/res_qa_db.css" />
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
-    
+
     <div class="dashboard">
-         <div class="header_db">
+        <div class="header_db">
             <div class="card_db">
                 <div class="numOf_idea">
                     <div class="col-4">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="inf_percent">
                     <span class="percent">
-                        <i class="fa-solid fa-up-long"></i>11%
+                        <i class="fa-solid fa-down-long"></i>11%
                     </span>
                     <span class="text-nowrap text-xs text-muted">Since last week</span>
                 </div>
@@ -83,8 +83,8 @@
                 </div>
             </div>
         </div>
-        
-         <div class="body_db">
+
+        <div class="body_db">
             <div class="dashboard">
                 <div class="colom1">
                     <div class="chartCard">
@@ -93,10 +93,12 @@
                             <canvas id="line-chart" width="500" height="300"></canvas>
                         </div>
                     </div>
-                    <div class="chart_contributor">
-                        <div class="chart_contributors">
-                            <h5>Percent of Contributors per Departments </h5>
-                            <canvas id="pie-chart"></canvas>
+                    <div class="chartCard">
+                        <div class="chartBox">
+                            <div class="chart_contributors">
+                                <h5>Percent of Contributors per Departments </h5>
+                                <canvas id="pie-chart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +111,7 @@
                     </div>
                     <div class="chartCard">
                         <div class="chartBox">
-                               <h5>Number of Points and Views within 7 Lastest Days </h5>
+                            <h5>Number of Points and Views within 7 Lastest Days </h5>
                             <canvas id="mixed-chart" width="500" height="300"></canvas>
                         </div>
                     </div>
@@ -119,7 +121,7 @@
                 <h4>Top 5 Contributors in @DateTime.UtcNow.AddHours(7).ToString("MMMM")</h4>
                 <table class="table">
                     <thead>
-                        <tr>                       
+                        <tr>
                             <th scope="col">Profile ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">DoB</th>
@@ -130,9 +132,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var item in @Model)
-                        {                     
-                            <tr>                         
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
                                 <td>@item.Infor.Id</td>
                                 <td>@item.Infor.Name</td>
                                 <td>@item.Infor.DoB.ToString("MM/dd/yyyy")</td>
@@ -140,8 +142,8 @@
                                 <td>@item.Infor.Address</td>
                                 <td>@item.Infor.Department.Dep_name</td>
                                 <td>@item.PostedIdea</td>
-                            </tr>                         
-                        }                       
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

@@ -29,16 +29,6 @@
         width: 358px;
         margin-left: -4em;
     }
-
-    .chart_contributor {
-        margin-left: 2.5em;
-        width: 270px;
-    }
-
-        .chart_contributor h5 {
-            font-size: 1.1em;
-        }
-
     .chartCard {
         padding-bottom: 2em;
     }
@@ -54,8 +44,8 @@
     }
 
     .chart_contributors {
-        margin-left: -4em;
-        width: 280px;
+        margin-left: 1.8em;
+        width: 80%;
     }
 
     .chart_contributor h5 {
@@ -92,26 +82,45 @@
 
 
         table td:nth-of-type(1):before {
-            content: "Category ID";
+            content: "Profile ID";
             padding-right: 5em;
             font-weight: 600;
         }
 
         table td:nth-of-type(2):before {
-            content: "Category Name";
+            content: "Name";
             padding-right: 3em;
             font-weight: 600;
         }
 
         table td:nth-of-type(3):before {
-            content: "Edit";
+            content: "Dob";
             padding-right: 8em;
             font-weight: 600;
         }
 
         table td:nth-of-type(4):before {
-            content: "Delete";
+            content: "Gender";
             padding-right: 7em;
+            font-weight: 600;
+        }
+
+
+        table td:nth-of-type(5):before {
+            content: "Address";
+            padding-right: 5em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(6):before {
+            content: "DepId";
+            padding-right: 3em;
+            font-weight: 600;
+        }
+
+        table td:nth-of-type(7):before {
+            content: "Posted Ideas";
+            padding-right: 8em;
             font-weight: 600;
         }
 }
@@ -136,23 +145,13 @@
         width: 446px;
     }
 
-    .chart_contributors {
+    .chartCard .chart_contributors {
         margin-left: 5em;
-        width: 310px;
-    }
-
-        .chart_contributors h5 {
-            font-size: 1.1em;
-            text-align: center;
-        }
-
-    .chart_contributor canvas {
-        width: 320px;
-        height: 200px;
+        width: 60%;
     }
 
     .chartCard {
-        padding-bottom: 2em;
+        padding-bottom: 1em;
     }
 
     .header_db {
@@ -162,4 +161,5 @@
     .card {
         width: 50%;
     }
+
 }

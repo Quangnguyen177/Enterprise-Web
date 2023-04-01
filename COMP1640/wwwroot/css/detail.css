@@ -7,7 +7,7 @@
 .col-lg-4 {
     background-color: white;
     top: 0.15em;
-    border-radius: 0.4em;
+    border-radius: 1em;
     left: 6.5em;
     border: 0.1em solid gainsboro;
     box-sizing: border-box;
@@ -179,16 +179,6 @@
 .appear_idea h4 {
 }
 
-.information_idea {
-    background-color: var(--text-color);
-    height: 100%;
-    border-radius: 7px;
-    display: flex;
-    transform: translateY(20px);
-    box-shadow: 2px 3px 10px #e3e5e8;
-    display: block;
-}
-
 .dropdown_comment {
     padding-top: 4em;
 }
@@ -243,12 +233,12 @@
 }
 /*Tablet: width>=740px and width < 1024px*/
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-       .col-lg-12 {
-            width: 100%;
-            margin-left: -7em;
-        }
+    .col-lg-12 {
+        width: 100%;
+        margin-left: -7em;
+    }
 
-       .profile.col-lg-4 {
-            display: none;
-        }
+    .profile.col-lg-4 {
+        display: none;
+    }
 }

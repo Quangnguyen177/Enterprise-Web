@@ -9,14 +9,17 @@
 
 .col-lg-12 {
     width: 82%;
+    margin-top: 4em;
 }
 
 .file_idea img {
     text-align: center;
     margin-left: 2em;
 }
+
 .infor_account {
     padding-top: 3em;
+    padding-left: 1em;
 }
 
 
@@ -28,10 +31,13 @@
     margin-top: -10em;
 }
 
-.cover_img {
+.cover_img img {
     width: 100%;
-    height: 30em;
-    transform: translateY(-3em);
+    height: 31em;
+}
+
+.cover_img {
+    margin-bottom: 3em;
 }
 
 .avata_profile {
@@ -63,31 +69,6 @@
         height: 3em;
         display: inline-block;
     }
-
-/*.section {
-    transform: translate(-4em, -23.3em);
-}*/
-
-.widget {
-    display: block;
-    background-color: var(--text-color);
-    height: auto;
-    width: auto;
-    border-radius: 7px;
-}
-
-.idea {
-    display: block;
-    background-color: var(--text-color);
-    height: auto;
-    width: auto;
-    border-radius: 7px;
-    position: static;
-}
-
-.Shortcuts {
-    width: auto;
-}
 
 .widget h4 {
     font-size: 1.8em;
@@ -163,13 +144,14 @@ aside img {
         padding-right: 0em;
     }
 
-    .cover_img {
+    .cover_img img {
         height: 13em;
     }
 
     .avata_profile {
         transform: translate(1em, -9em);
     }
+
         .avata_profile img {
             width: 5em;
             height: 5em;
@@ -179,6 +161,7 @@ aside img {
     .name_profile {
         font-size: 0.7em;
     }
+
     .infor_account {
         padding-top: 2em;
     }
@@ -193,9 +176,8 @@ aside img {
     }
 
     .row.merged20 {
-        margin: -19em -2em 0em -2em;
+        margin: -20em -2em 0em -2em;
     }
-
 }
 /*Tablet: width>=740px and width < 1024px*/
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
@@ -204,13 +186,14 @@ aside img {
         padding-right: 0em;
     }
 
-    .cover_img {
+    .cover_img img {
         height: 19em;
     }
 
     .avata_profile {
         transform: translate(3em, -14.3em);
     }
+
         .avata_profile img {
             width: 9em;
             height: 9em;
@@ -220,11 +203,12 @@ aside img {
     .name_profile h4 {
         font-size: 1.8em;
     }
+
     .row.merged20 {
-        margin: -13em 0em 0em 0em;
+        margin: -14em 0em 0em 0em;
     }
+
     .infor_account {
         padding-top: 0em;
     }
-
 }

@@ -1,11 +1,12 @@
 .nav_bar--item--separate::after {
     margin-left: 6em;
-}﻿
+}
 /*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
-    .paginations{
-        display: none;
+    .paginations {
+        width: 38%;
     }
+
     .idea_mobile {
         display: block;
     }
@@ -17,6 +18,7 @@
     .mx-n1 {
         display: none;
     }
+
     .table {
         font-size: 0.9em;
     }
@@ -80,6 +82,7 @@
         padding-right: 6.5em;
         font-weight: 600;
     }
+
     table td:nth-of-type(8):before {
         content: "VIEW";
         padding-right: 7em;
@@ -124,6 +127,9 @@
         line-height: 0.6;
     }
 }
+
+
+
 /*600px*/
 @media only screen and (width: 37.5em) {
     .card-header h5 {
@@ -337,5 +343,4 @@
     .btn {
         line-height: 0.6;
     }
-
 }

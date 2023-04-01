@@ -45,15 +45,12 @@ thead {
     color: var(--text-color);
 }
 
-.table td:hover {
-    background-color: #e7eaf0;
-}
-/*table:hover {
-    border: 0 solid #e7eaf0;
-}*/
+    .table td:hover {
+        background-color: #e7eaf0;
+    }
+
 .nav {
     padding-top: 7em;
-    /*    padding-bottom: 1em;*/
 }
 
     .nav li, .nav a, .nav i {
@@ -149,7 +146,6 @@ thead {
         transition: all .2s;
         padding: 10px 20px;
         border-radius: 100px;
-        /*background: #cfef00;*/
         background: linear-gradient(#d4e5f4, #d7f7e7);
         border: 1px solid transparent;
         display: flex;
@@ -176,6 +172,14 @@ thead {
             transform: scale(0.95);
         }
 
+.logout_moblie button {
+    background: none;
+    border: none;
+    color: #525f7f;
+    line-height: 65px;
+    padding-left: 2em;
+    font-weight: 500;
+}
 /*Search*/
 .form {
     /*--input-bg: #e2dee0;*/
@@ -215,7 +219,6 @@ thead {
     }
     /* style for both icons -- search,close */
     .form svg {
-        /* display: block; */
         color: #111;
         transition: 0.3s cubic-bezier(.4,0,.2,1);
         position: absolute;
@@ -229,9 +232,8 @@ thead {
     width: 30px;
     height: 2px;
     background-color: #e3e5e8;
-   /* transform: translate(9.0em, -0.6em);*/
-   margin-top: -0.7em;
-   margin-left: 10em;
+    margin-top: -0.7em;
+    margin-left: 10em;
 }
 
 /* search icon */
@@ -388,7 +390,6 @@ thead {
     min-height: 33px;
     padding: 0 13px 0 13px;
     border-radius: 50px;
-    /* text-transform: uppercase;*/
     letter-spacing: 2px;
     transition: all .5s ease;
     font-size: 14px;
@@ -481,8 +482,8 @@ thead {
 
 .dashboard {
     margin-top: 3em;
-    /* background-color: wheat;*/
 }
+
     .dashboard h3 {
         text-align: center;
         font-family: inherit;
@@ -491,16 +492,16 @@ thead {
         font-size: 1.7em;
     }
 
-    .numOf_idea {
-        display: flex;
-    }
 .card_db {
     width: 20%;
     background: linear-gradient(#d4e5f4, #d7f7e7);
     border-radius: 0.5em;
 }
 
-.numOf_contributors {
+.numOf_idea,
+.numOf_contributors,
+.react_idea,
+.numOf_comment {
     display: flex;
 }
 
@@ -509,20 +510,12 @@ thead {
     font-size: 1em;
 }
 
-.react_idea {
-    display: flex;
-}
-
-.numOf_comment {
-    display: flex;
-}
-
 .inf_percent {
     margin-top: -1em;
     margin-bottom: 1em;
 }
+
 .percent {
-    /* margin-top: 1em;*/
     text-align: center;
     background-color: white;
     border-radius: 0.6em;
@@ -532,6 +525,7 @@ thead {
     margin-top: 2em;
     width: 30%;
 }
+
     .percent i {
         padding-left: 0.3em;
         padding-right: 0.5em;
@@ -542,10 +536,12 @@ thead {
     height: 50%;
     margin-top: 1.5em;
 }
-.col-4 span {
-    font-size: 1.7em;
-}
-.text-muted{
+
+    .col-4 span {
+        font-size: 1.7em;
+    }
+
+.text-muted {
     padding-left: 1em;
 }
 
@@ -582,7 +578,6 @@ thead {
 }
 
 .btn_dropdown {
-    /* background-image: linear-gradient(to top, #30cfd0 0%, #98b8d6 100%);*/
     background: linear-gradient(#d4e5f4, #d7f7e7);
     border: 0.1em dashed white;
     margin-bottom: -1em;
@@ -774,19 +769,15 @@ thead {
 }
 
 .chart_contributors {
-    width: 320px;
+    width: 55%;
+    margin-left: 22%;
 }
-.chart_contributor {
-    margin-left: -50em;
+
+.chartBox .chart_contributors {
+    background-color: none;
 }
 
 .chartBox h5 {
-    padding-bottom: 1.2em;
-    font-size: 1.3em;
-    text-align: center;
-}
-
-.chart_contributors h5 {
     padding-bottom: 1.2em;
     font-size: 1.3em;
     text-align: center;
@@ -1045,14 +1036,20 @@ input[type]:checked ~ span.middle {
 /*Tablet: width>=740px and width < 1024px*/
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
     .logo img {
-        width: 6em;
+        width: 7em;
         height: 6.3em;
         margin-top: 5em;
+        margin-left: -0.5em;
+    }
+
+    .nav.iterm i {
+        display: none;
     }
 
     .nav.iterm li {
-        font-size: 0.65em;
+        font-size: 0.7em;
         margin-left: -4em;
+        font-weight: 300;
     }
 
     .logout {
@@ -1106,5 +1103,26 @@ input[type]:checked ~ span.middle {
 
     .edit {
         font-size: 1.1em;
+    }
+}
+/*laptop*/
+@media only screen and (min-width: 73em) and (max-width: 81.25em) {
+    .logo img {
+        margin-top: -1em;
+        width: 176px;
+        height: 180px;
+    }
+
+    .nav.iterm {
+        margin-left: -1em;
+        margin-top: -4em;
+    }
+
+        .nav.iterm li {
+            font-size: 14.3px;
+        }
+
+    table {
+        font-size: 0.7em;
     }
 }
