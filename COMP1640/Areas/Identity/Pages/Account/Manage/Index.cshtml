@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
-    //Layout = "_LayoutInformationStaff";
 }
 @if (User.Identity.IsAuthenticated)
 {
@@ -57,6 +56,9 @@
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary profile-button" id="update-profile-button">Save Profile</button>
                     </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-success profile-button" asp-controller="Home" asp-action="Index">Main page</button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 border-right">
@@ -69,6 +71,7 @@
         </div>
     </form>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
         if ("@Model.Gender" == "") {
@@ -85,7 +88,6 @@
         }
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 }
 
 @section Scripts {

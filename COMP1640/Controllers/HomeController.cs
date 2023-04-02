@@ -55,22 +55,6 @@ namespace COMP1640.Controllers
             }
         }
 
-        //[HttpGet]
-        //public JsonResult LastestComment(int pageNum)
-        //{
-        //    int skipPage = 5 * (pageNum - 1);
-        //    var ideasList = Db.Comments.OrderByDescending(c => c.created_date);
-        //    var page = Db.Ideas.Skip(skipPage).Take(5).ToList();
-        //    ViewBag.Page = pageNum;
-        //    return Json();
-        //}
-
-
-
-
-
-
-
         public IActionResult Privacy()
         {
             return View();
