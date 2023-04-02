@@ -23,191 +23,194 @@
     var pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
     var viewType = @ViewBag.ViewType;
 }
-<!-- Main content -->
-<div class="h-screen flex-grow-1 overflow-y-lg-auto">
-    <!-- Header -->
-    <!-- Main -->
-    <main class="py-6 bg-surface-secondary">
-        <div class="container-fluid">
-            <!-- Card stats -->
-            <div class="row g-6 mb-6">
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Idea Post</span>
-                                    <span class="h3 font-bold mb-0">@statistic.Idea</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                        <i class="fa fa-newspaper-o"></i>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    <!-- Main content -->
+    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+        <!-- Header -->
+        <!-- Main -->
+        <main class="py-6 bg-surface-secondary">
+            <div class="container-fluid">
+                <!-- Card stats -->
+                <div class="row g-6 mb-6">
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Idea Post</span>
+                                        <span class="h3 font-bold mb-0">@statistic.Idea</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                            <i class="fa fa-newspaper-o"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-2 mb-0 text-sm">
-                                <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Idea,@statistic.OldIdea) text-@color(@statistic.Idea,@statistic.OldIdea) me-2">
-                                    <i class="fa fa-arrow-@upOrDown(@statistic.Idea,@statistic.OldIdea)"></i> @percent(@statistic.Idea,@statistic.OldIdea)%
-                                </span>
-                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                <div class="mt-2 mb-0 text-sm">
+                                    <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Idea,@statistic.OldIdea) text-@color(@statistic.Idea,@statistic.OldIdea) me-2">
+                                        <i class="fa fa-arrow-@upOrDown(@statistic.Idea,@statistic.OldIdea)"></i> @percent(@statistic.Idea,@statistic.OldIdea)%
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Like</span>
-                                    <span class="h3 font-bold mb-0">@statistic.Like</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                        <i class="fa fa-thumbs-o-up"></i>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Like</span>
+                                        <span class="h3 font-bold mb-0">@statistic.Like</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-2 mb-0 text-sm">
-                                 <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Like,@statistic.OldLike) text-@color(@statistic.Like,@statistic.OldLike) me-2">
-                                    <i class="fa fa-arrow-@upOrDown(@statistic.Like,@statistic.OldLike)"></i>@percent(@statistic.Like,@statistic.OldLike)%
-                                </span>
-                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                <div class="mt-2 mb-0 text-sm">
+                                     <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Like,@statistic.OldLike) text-@color(@statistic.Like,@statistic.OldLike) me-2">
+                                        <i class="fa fa-arrow-@upOrDown(@statistic.Like,@statistic.OldLike)"></i>@percent(@statistic.Like,@statistic.OldLike)%
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Dislike</span>
-                                    <span class="h3 font-bold mb-0">@statistic.Dislike</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                        <i class="fa fa-thumbs-o-down"></i>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Dislike</span>
+                                        <span class="h3 font-bold mb-0">@statistic.Dislike</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                                            <i class="fa fa-thumbs-o-down"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-2 mb-0 text-sm">
-                                 <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Dislike,@statistic.OldDislike) text-@color(@statistic.Dislike,@statistic.OldDislike) me-2">
-                                    <i class="fa fa-arrow-@upOrDown(@statistic.Dislike,@statistic.OldDislike)"></i>@percent(@statistic.Dislike,@statistic.OldDislike)%
-                                </span>
-                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                <div class="mt-2 mb-0 text-sm">
+                                     <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Dislike,@statistic.OldDislike) text-@color(@statistic.Dislike,@statistic.OldDislike) me-2">
+                                        <i class="fa fa-arrow-@upOrDown(@statistic.Dislike,@statistic.OldDislike)"></i>@percent(@statistic.Dislike,@statistic.OldDislike)%
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Comments</span>
-                                    <span class="h3 font-bold mb-0">@statistic.Comment</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                        <i class="fa fa-comments-o"></i>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Comments</span>
+                                        <span class="h3 font-bold mb-0">@statistic.Comment</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                                            <i class="fa fa-comments-o"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-2 mb-0 text-sm">
-                                <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Comment,@statistic.OldComment) text-@color(@statistic.Comment,@statistic.OldComment) me-2">
-                                    <i class="fa fa-arrow-@upOrDown(@statistic.Comment,@statistic.OldComment)"></i>@percent(@statistic.Comment,@statistic.OldComment)%
-                                </span>
-                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                <div class="mt-2 mb-0 text-sm">
+                                    <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Comment,@statistic.OldComment) text-@color(@statistic.Comment,@statistic.OldComment) me-2">
+                                        <i class="fa fa-arrow-@upOrDown(@statistic.Comment,@statistic.OldComment)"></i>@percent(@statistic.Comment,@statistic.OldComment)%
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="paginations" style=" border-radius: 3em">
-                @if (@pre > 0)
-                {
-                    <div class="prev">
-                        <span class="text" onclick="BtnPre()">Prev</span>
-                        <div class="left">
+                <div class="paginations" style=" border-radius: 3em">
+                    @if (@pre > 0)
+                    {
+                        <div class="prev">
+                            <span class="text" onclick="BtnPre()">Prev</span>
+                            <div class="left">
+                            </div>
                         </div>
-                    </div>
-                }
-                @if (@next * 25 - ViewBag.Total < 25)
-                {
-                    <div class="next">
-                        <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
-                        <div class="right">
+                    }
+                    @if (@next * 25 - ViewBag.Total < 25)
+                    {
+                        <div class="next">
+                            <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                            <div class="right">
+                            </div>
                         </div>
-                    </div>
-                }
-            </div>
-            <div class="card mb-7">
-                <div class="card-header">
-                    <h5 class="mb-0">Idea Information</h5>
+                    }
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover table-nowrap">
-                        <thead class="table-light">
-                            <tr>
-                                <th scope="col">Username</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Department</th>
-                                <th scope="col">Created date</th>
-                                <th scope="col">Anonymous</th>
-                                <th scope="col">View</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach(var i in Model)
-                            {
+                <div class="card mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Idea Information</h5>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap">
+                            <thead class="table-light">
                                 <tr>
-                                <td>
-                                    <img alt="..." src="/Avatars/@i.Profile.Avatar" class="avatar avatar-sm rounded-circle me-2">
-                                    <a class="text-heading font-semibold" href="#">
-                                        @i.Profile.Name
-                                    </a>
-                                </td>
-                                <td>
-                                    @i.idea_title
-                                </td>
-                                <td>
-                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
-                                    <a class="text-heading font-semibold" href="#">
-                                        @i.Profile.Department.Dep_name
-                                    </a>
-                                </td>
-                                <td>
-                                    @i.created_date
-                                </td>
-                                    @if (i.idea_anonymous == true)
-                                    {
-                                        <td>Yes</td>
-                                    }
-                                    else
-                                    {
-                                        <td>No</td>
-                                    }
-                                <td>
-                                    @i.idea_view
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer border-0 py-5">
-                    <span class="text-muted text-sm">Showing @ViewBag.Total post idea out of 100 results found</span>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Created date</th>
+                                    <th scope="col">Anonymous</th>
+                                    <th scope="col">View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var i in Model)
+                                {
+                                    <tr>
+                                    <td>
+                                        <img alt="..." src="/Avatars/@i.Profile.Avatar" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            @i.Profile.Name
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @i.idea_title
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            @i.Profile.Department.Dep_name
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @i.created_date
+                                    </td>
+                                        @if (i.idea_anonymous == true)
+                                        {
+                                            <td>Yes</td>
+                                        }
+                                        else
+                                        {
+                                            <td>No</td>
+                                        }
+                                    <td>
+                                        @i.idea_view
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer border-0 py-5">
+                        <span class="text-muted text-sm">Showing @ViewBag.Total post idea out of 100 results found</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
-<script>
-    function BtnNext() {
-        window.location.replace('/Admin/Home?pageNum=@next&viewType=@viewType');
-    }
-    function BtnPre() {
-        window.location.replace('/Admin/Home?pageNum=@pre&viewType=@viewType');
-    }
-</script>
+        </main>
+    </div>
+    <script>
+        function BtnNext() {
+            window.location.replace('/Admin/Home?pageNum=@next&viewType=@viewType');
+        }
+        function BtnPre() {
+            window.location.replace('/Admin/Home?pageNum=@pre&viewType=@viewType');
+        }
+    </script>
+}

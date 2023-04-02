@@ -55,39 +55,6 @@ namespace COMP1640.Controllers
             }
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult PostIdea()
-        {
-            return View();
-        }
-        public IActionResult Detail()
-        {
-            return View();
-        }
-        public IActionResult Comment()
-        {
-            return View();
-        }
-        public IActionResult EditIdea()
-        {
-            return View();
-        }
-        public IActionResult Login()
-        {
-            return View();
-        }
-        public IActionResult Profile()
-        {
-            return View();
-        }
-        public IActionResult DeleteIdea()
-        {
-            return View();
-        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

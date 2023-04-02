@@ -1,6 +1,7 @@
 ﻿@using COMP1640.ViewModels
 @model List<TopContributor>
 @{
+    <link rel="stylesheet" href="~/css/res_qa_db.css" />
     ViewData["Title"] = "Statistic For " + @DateTime.UtcNow.AddHours(7).ToString("MMMM");
     var logginedUser = (Profile)ViewBag.LogginedUser;
     ViewData["Avatar"] = logginedUser.Avatar;
@@ -18,7 +19,6 @@
         return now > prev ? "up" : "down";
     }
 }
-<link rel="stylesheet" href="~/css/res_qa_db.css" />
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
 
@@ -159,7 +159,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="~/js/create-chart.js"></script>
 }
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="~/js/create-chart.js"></script>

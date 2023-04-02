@@ -5,80 +5,82 @@
     ViewData["Title"] = "All Content";
     var count = 1;
 }
-
-@*Main content*@
-<div class="h-screen flex-grow-1 overflow-y-lg-auto">
-    <!-- Main -->
-    <main class="py-6 bg-surface-secondary">
-        <div class="container-fluid">
-            <div class="card mb-7">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm">
-                            <h5 class="mb-0">Setting event</h5>
-                        </div>
-                        <div class="col-sm">
-                            <div>
-                                <form asp-action="SearchEvent" asp-controller="Admin" method="post">
-                                    <input type="text" class="searchTerm" placeholder="Search event..." name="keyword">
-                                    <button class="searchButton" type="submit"><i class="fa fa-search"></i></button>
-                                </form>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    @*Main content*@
+    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+        <!-- Main -->
+        <main class="py-6 bg-surface-secondary">
+            <div class="container-fluid">
+                <div class="card mb-7">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h5 class="mb-0">Setting event</h5>
+                            </div>
+                            <div class="col-sm">
+                                <div>
+                                    <form asp-action="SearchEvent" asp-controller="Admin" method="post">
+                                        <input type="text" class="searchTerm" placeholder="Search event..." name="keyword">
+                                        <button class="searchButton" type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="set-btn col-sm">
+                                <div class="form-group"><a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a></div>
+                                <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-edit">Reset</a></div>
                             </div>
                         </div>
-                        <div class="set-btn col-sm">
-                            <div class="form-group"><a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a></div>
-                            <div class="form-group"><a asp-action="ManageClosureDate" asp-controller="Admin" class="btn btn-sm btn-edit">Reset</a></div>
-                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Event Name</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Change Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var e in Model)
+                                {
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@e.EventName</td>
+                                        <form asp-action="SetStatus" asp-controller="Admin" method="post">
+                                            <input hidden class="form-control" asp-for="@e.EventId" name="id" value="@e.EventId">
+                                                @if (e.Status == true)
+                                                {
+                                                <td>
+                                                    Inactive
+                                                </td>
+                                                }
+                                                @if (e.Status == false)
+                                                {
+                                                <td>
+                                                    Active
+                                                </td>
+                                                }
+                                            <td>
+                                                <button type="submit" class="btn btn-sm btn-set">Change</button>
+                                            </td>
+
+                                            <td>
+                                                <a asp-controller="Admin" asp-action="EditClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Edit</a>
+                                                <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    count = count + 1;
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div class="table-responsive">
-                    <table class="table table-hover table-nowrap">
-                        <thead class="table-light">
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Event Name</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Change Status</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var e in Model)
-                            {
-                                <tr>
-                                    <td>@count</td>
-                                    <td>@e.EventName</td>
-                                    <form asp-action="SetStatus" asp-controller="Admin" method="post">
-                                        <input hidden class="form-control" asp-for="@e.EventId" name="id" value="@e.EventId">
-                                            @if (e.Status == true)
-                                            {
-                                            <td>
-                                                Inactive
-                                            </td>
-                                            }
-                                            @if (e.Status == false)
-                                            {
-                                            <td>
-                                                Active
-                                            </td>
-                                            }
-                                        <td>
-                                            <button type="submit" class="btn btn-sm btn-set">Change</button>
-                                        </td>
-
-                                        <td>
-                                            <a asp-controller="Admin" asp-action="EditClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Edit</a>
-                                            <a asp-controller="Admin" asp-action="DeleteClosureDate" asp-route-id="@e.EventId" class="btn btn-sm btn-edit">Delete</a>
-                                        </td>
-                                    </form>
-                                </tr>
-                                count = count + 1;
-                            }
-                        </tbody>
-                    </table>
-                </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
+}

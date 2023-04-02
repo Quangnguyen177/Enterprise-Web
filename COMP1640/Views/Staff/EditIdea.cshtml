@@ -6,7 +6,8 @@
     var evt = ViewBag.Event;
 }
 
-
+@if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
+{
     <div class="wrapper">
         <section class="post">
             <header class="row">
@@ -113,18 +114,4 @@
             </form>
         </section>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
