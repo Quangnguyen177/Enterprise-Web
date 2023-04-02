@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Routing;
+using COMP1640.ViewModels;
 
 namespace COMP1640.Controllers
 {
@@ -66,6 +67,10 @@ namespace COMP1640.Controllers
         [Route("/Admin/Home")]
         public IActionResult Home(int pageNum = 1, string viewType = "latest")
         {
+            //Truong
+            ViewBag.Statistic = GetStatistic();
+
+            //Duc
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             if (pageNum == 1) ViewBag.PageNum = 1;
@@ -330,6 +335,21 @@ namespace COMP1640.Controllers
             }
         }
 
-
+        private AdminStatistic GetStatistic()
+        {
+            var totalIdea = Db.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var totalLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.Reacpoint.ThumbUp);
+            var totalDisLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.Reacpoint.ThumbDown);
+            var totalComment = Db.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var oldTotalIdea = Db.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Count();
+            var oldTotalLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Sum(i => i.Reacpoint.ThumbUp);
+            var oldTotalDisLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Sum(i => i.Reacpoint.ThumbDown);
+            var oldTotalComment = Db.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Count();
+            return new AdminStatistic(totalIdea, totalLike, totalDisLike, totalComment, oldTotalIdea, oldTotalLike, oldTotalDisLike, oldTotalComment);
+        }
+        public DateTime GetCurrentVnTime()
+        {
+            return DateTime.UtcNow.AddHours(7);
+        }
     }
 }

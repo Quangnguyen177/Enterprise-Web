@@ -1,4 +1,5 @@
-﻿@model List<Idea>
+﻿@using COMP1640.ViewModels;
+@model List<Idea>
 @{
     Layout = "_LayoutAdmin";
     <link rel="stylesheet" href="~/css/res_admin_db.css" />
@@ -21,7 +22,7 @@
     var next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
     var pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
     var viewType = @ViewBag.ViewType;
-
+}
 <!-- Main content -->
 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
     <!-- Header -->
