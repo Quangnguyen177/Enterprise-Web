@@ -11,7 +11,8 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using COMP1640.ViewModels;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Routing;
 
 namespace COMP1640.Controllers
 {
@@ -61,13 +62,62 @@ namespace COMP1640.Controllers
             public string Password { get; set; }
         }
 
-        public IActionResult Home()
+        [Route("/Admin")]
+        [Route("/Admin/Home")]
+        public IActionResult Home(int pageNum = 1, string viewType = "latest")
         {
-            var ideas = Db.Ideas.OrderByDescending(c => c.created_date).Include(p => p.Profile).ThenInclude(d=>d.Department).ToList();
-            ViewBag.Ideas = ideas;
-            ViewBag.Statistic = GetStatistic();
-            var roles = _roleManager.Roles.ToList();
-            return View(roles);
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+            if (pageNum == 1) ViewBag.PageNum = 1;
+            else ViewBag.PageNum = pageNum;
+            int skipPage = 25 * (pageNum - 1);
+            List<Idea> list = null;
+            if (viewType == "mostview")
+            {
+                list = Db.Ideas.OrderByDescending(i => i.idea_view)
+                    .Include(e => e.Event)
+                    .Include(p => p.Profile.Department)
+                    .Include(c => c.Category)
+                    .Include(r => r.Reacpoint)
+                    .Skip(skipPage).Take(25).ToList();
+
+                ViewBag.ViewType = "mostview";
+            }
+            else if (viewType == "latest")
+            {
+                list = Db.Ideas.OrderByDescending(i => i.created_date).Include(e => e.Event).Include(p => p.Profile.Department).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(25).ToList();
+
+                ViewBag.ViewType = "latest";
+            }
+            else if (viewType == "popular")
+            {
+                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile.Department).Include(c => c.Category).Skip(skipPage).Take(25).ToList();
+
+                ViewBag.ViewType = "popular";
+            }
+            ViewBag.Total = Db.Ideas.Count();
+            return View(list);
+        }
+        public IActionResult MostViewedIdea()
+        {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(currentUserId));
+            var ideas = Db.Ideas.OrderByDescending(i => i.idea_view).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).ToList();
+            return View("ListIdea", ideas);
+        }
+        public IActionResult LatestIdea()
+        {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(currentUserId));
+            var ideas = Db.Ideas.OrderByDescending(i => i.created_date).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).ToList();
+            return View("ListIdea", ideas);
+        }
+        public IActionResult LatestComment()
+        {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(currentUserId));
+            ViewBag.Comments = Db.Comments.OrderByDescending(d => d.created_date).Include(i => i.Idea).Include(p => p.Profile).ToList();
+            return View();
         }
 
         public IActionResult InformationStaff()
@@ -77,6 +127,8 @@ namespace COMP1640.Controllers
 
         public IActionResult ManageClosureDate()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             return View(Db.Events.OrderByDescending(e => e.EventId).ToList());
         }
 
@@ -107,15 +159,6 @@ namespace COMP1640.Controllers
 
         }
 
-        //[HttpGet]
-        //public IActionResult SetStatus(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(Db.Events.Find(id));
-        //}
         [HttpPost]
         public IActionResult SetStatus(int id)
         {
@@ -185,6 +228,8 @@ namespace COMP1640.Controllers
 
         public IActionResult ManageAccount()
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             var accs = Db.Profile.AsNoTracking().ToList();
             return View(accs);
         }
@@ -284,22 +329,7 @@ namespace COMP1640.Controllers
                 return View(user);
             }
         }
-        private AdminStatistic GetStatistic()
-        {
-            var totalIdea = Db.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
-            var totalLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.Reacpoint.ThumbUp);
-            var totalDisLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.Reacpoint.ThumbDown);
-            var totalComment = Db.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
-            var oldTotalIdea = Db.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Count();
-            var oldTotalLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.Reacpoint.ThumbUp);
-            var oldTotalDisLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.Reacpoint.ThumbDown);
-            var oldTotalComment = Db.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Count();
-            return new AdminStatistic(totalIdea,totalLike, totalDisLike, totalComment,oldTotalIdea,oldTotalLike, oldTotalDisLike, oldTotalComment);
-        }
-        public DateTime GetCurrentVnTime()
-        {
-            return DateTime.UtcNow.AddHours(7);
-        }
+
 
     }
 }

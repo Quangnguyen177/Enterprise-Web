@@ -1,0 +1,45 @@
+﻿@model List<Comment>
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Latest Comment";
+    <link rel="stylesheet" href="~/css/res_admin_db.css" />
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    <div class="comment">
+        <div class="comment_table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Anonymous</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Idea Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in ViewBag.Comments)
+                    {
+                        <tr>
+                            <td>@c.ComId</td>
+                            <td>@c.Profile.Name</td>
+                            @if (c.com_anonymous == true)
+                            {
+                                <td>Yes</td>
+                            }
+                            else
+                            {
+                                <td>No</td>
+                            }
+                            <td>@c.created_date</td>
+                            <td>@c.com_content</td>
+                            <td>@c.Idea.idea_title</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

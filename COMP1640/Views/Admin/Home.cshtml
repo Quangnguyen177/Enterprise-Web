@@ -1,8 +1,7 @@
-﻿@using COMP1640.ViewModels
+﻿@model List<Idea>
 @{
     Layout = "_LayoutAdmin";
     <link rel="stylesheet" href="~/css/res_admin_db.css" />
-    var ideas = ViewBag.Ideas as List<Idea>;
     var statistic = (AdminStatistic)ViewBag.Statistic;
     double percent(int now, int prev)
     {   
@@ -18,7 +17,10 @@
       {   
         return now > prev ? "success" : "danger";
       }
-}
+
+    var next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
+    var pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
+    var viewType = @ViewBag.ViewType;
 
 <!-- Main content -->
 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
@@ -121,6 +123,24 @@
                     </div>
                 </div>
             </div>
+            <div class="paginations" style=" border-radius: 3em">
+                @if (@pre > 0)
+                {
+                    <div class="prev">
+                        <span class="text" onclick="BtnPre()">Prev</span>
+                        <div class="left">
+                        </div>
+                    </div>
+                }
+                @if (@next * 25 - ViewBag.Total < 25)
+                {
+                    <div class="next">
+                        <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
+                        <div class="right">
+                        </div>
+                    </div>
+                }
+            </div>
             <div class="card mb-7">
                 <div class="card-header">
                     <h5 class="mb-0">Idea Information</h5>
@@ -138,7 +158,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var i in ideas)
+                            @foreach(var i in Model)
                             {
                                 <tr>
                                 <td>
@@ -172,45 +192,21 @@
                                 </td>
                             </tr>
                             }
-@*                            
-                            <tr>
-                                <td>
-                                    <img alt="..." src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" class="avatar avatar-sm rounded-circle me-2">
-                                    <a class="text-heading font-semibold" href="#">
-                                        Mike Tke Duke
-                                    </a>
-                                </td>
-                                <td>
-                                    Gaming
-                                </td>
-                                <td>
-                                    <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
-                                    <a class="text-heading font-semibold" href="#">
-                                        Backend Developer
-                                    </a>
-                                </td>
-                                <td>
-                                    Feb 17, 2023
-                                </td>
-                                <td>
-                                    False
-                                </td>
-                                <td>
-                                    300
-                                </td>
-                                @*<td class="text-end">
-                                <a asp-controller="Admin" asp-action="SetClosureDate" class="btn btn-sm btn-set">Set</a>
-                                <a asp-controller="Admin" asp-action="EditClosureDate" class="btn btn-sm btn-edit">Edit</a>
-                                </td>
-                            </tr>
-*@
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer border-0 py-5">
-                    <span class="text-muted text-sm">Showing 8 post idea out of 100 results found</span>
+                    <span class="text-muted text-sm">Showing @ViewBag.Total post idea out of 100 results found</span>
                 </div>
             </div>
         </div>
     </main>
 </div>
+<script>
+    function BtnNext() {
+        window.location.replace('/Admin/Home?pageNum=@next&viewType=@viewType');
+    }
+    function BtnPre() {
+        window.location.replace('/Admin/Home?pageNum=@pre&viewType=@viewType');
+    }
+</script>
