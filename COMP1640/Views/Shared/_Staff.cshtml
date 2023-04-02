@@ -100,7 +100,7 @@
             </div>
             <div class="nav_icon">
                 <ul class="menu icon">
-                    <li class="icon_account nav_bar--item--separate" style="color: #373b3f; font-weight: bold">@ViewBag.LogginedUser.Name</li>
+                    <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; font-weight: bold; text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">@ViewBag.LoginedUserName</a></li>
                     <li class="icon_account"><a style="color: #373b3f; text-decoration: none" href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea"><i class="fa-solid fa-house"></i></a></li> &nbsp &nbsp
                     <li class="icon_account">
                         <form asp-area="Identity" asp-page="/Account/Logout" method="post">
@@ -136,7 +136,10 @@
                         <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
                         <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pageNum=1&viewtype=popular">Most Emotion ideas</a></li>
                         <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
-
+                        <li class="nav_bar--item ">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">Account</a>
+                        </li>
                         <li class="nav_bar--item ">
                             <form class="logout_moblie" asp-area="Identity" asp-page="/Account/Logout" method="post">
                                 <i class="fa-solid fa-right-from-bracket"></i>
