@@ -95,12 +95,7 @@ namespace COMP1640.Controllers
             list = list.OrderByDescending(i => i.PostedIdea).Take(5).ToList();
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = context.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
-            var totalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
-            var totalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
-            var totalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
-            var totalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
-            ViewBag.Statistic = new Statistic(totalIdea, totalContributor, totalView, totalComment);
-
+            ViewBag.Statistic = GetStatistic();
             return View(list);
         }
         public IActionResult Idea(int pageNum, string viewType)
@@ -222,16 +217,18 @@ namespace COMP1640.Controllers
         {
             var pieChartData = new List<PieChart>();
             var departmentNames = context.Departments.Select(d => d.Dep_name).ToList();
-            var total = context.Profile.Count();
+            var totalIdeas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).ToList();
+            var totalContributors = totalIdeas.GroupBy(i => i.Profile.Id).Count();
             foreach (var name in departmentNames)
             {
-
-                //i.created_date.Value.Month == DateTime.UtcNow.Month &&
-                var ideas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.Profile.Department.Dep_name.Equals(name)).ToList();
-                int contributors = ideas.GroupBy(i => i.Profile.Id).Count();
-                double percent = (double)contributors * 100 / total;
-                pieChartData.Add(new PieChart(name, Math.Round(percent, 2)));
-
+                if (totalContributors == 0) pieChartData.Add(new PieChart(name, 0));
+                else
+                {
+                    var ideas = totalIdeas.Where(i => i.Profile.Department.Dep_name.Equals(name)).ToList();
+                    int contributors = ideas.GroupBy(i => i.Profile.Id).Count();
+                    double percent = (double)contributors * 100 / totalContributors;
+                    pieChartData.Add(new PieChart(name, Math.Round(percent, 2)));
+                }
             }
             var result = JsonConvert.SerializeObject(pieChartData);
             return Json(result);
@@ -357,6 +354,18 @@ namespace COMP1640.Controllers
 
                 return File(memoryStream.ToArray(), "application/zip", "Documents.zip");
             }
+        }
+        private Statistic GetStatistic()
+        {
+            var totalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var totalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var totalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
+            var totalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
+            var oldTotalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Count();
+            var oldTotalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Count();
+            var oldTotalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).GroupBy(i => i.ProfileId).Count();
+            var oldTotalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.idea_view);
+            return new Statistic(totalIdea, totalContributor, totalView, totalComment, oldTotalIdea, oldTotalContributor, oldTotalView, oldTotalComment);
         }
     }
 }

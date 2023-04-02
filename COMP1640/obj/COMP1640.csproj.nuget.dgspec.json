@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
+    "D:\\FinalProject\\Web\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {}
   },
   "projects": {
-    "C:\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
+    "D:\\FinalProject\\Web\\Enterprise-Web\\COMP1640\\COMP1640.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "projectUniqueName": "D:\\FinalProject\\Web\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
         "projectName": "COMP1640",
-        "projectPath": "C:\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
-        "packagesPath": "C:\\Users\\hps\\.nuget\\packages\\",
-        "outputPath": "C:\\Enterprise-Web\\COMP1640\\obj\\",
+        "projectPath": "D:\\FinalProject\\Web\\Enterprise-Web\\COMP1640\\COMP1640.csproj",
+        "packagesPath": "C:\\Users\\Dan Truong\\.nuget\\packages\\",
+        "outputPath": "D:\\FinalProject\\Web\\Enterprise-Web\\COMP1640\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hps\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dan Truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,8 +85,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -98,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -11,6 +11,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using COMP1640.ViewModels;
 
 namespace COMP1640.Controllers
 {
@@ -64,6 +65,7 @@ namespace COMP1640.Controllers
         {
             var ideas = Db.Ideas.OrderByDescending(c => c.created_date).Include(p => p.Profile).ThenInclude(d=>d.Department).ToList();
             ViewBag.Ideas = ideas;
+            ViewBag.Statistic = GetStatistic();
             var roles = _roleManager.Roles.ToList();
             return View(roles);
         }
@@ -282,7 +284,22 @@ namespace COMP1640.Controllers
                 return View(user);
             }
         }
-
+        private AdminStatistic GetStatistic()
+        {
+            var totalIdea = Db.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var totalLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.Reacpoint.ThumbUp);
+            var totalDisLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.Reacpoint.ThumbDown);
+            var totalComment = Db.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            var oldTotalIdea = Db.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Count();
+            var oldTotalLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.Reacpoint.ThumbUp);
+            var oldTotalDisLike = Db.Ideas.Include(i => i.Reacpoint).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.Reacpoint.ThumbDown);
+            var oldTotalComment = Db.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month - 1).Count();
+            return new AdminStatistic(totalIdea,totalLike, totalDisLike, totalComment,oldTotalIdea,oldTotalLike, oldTotalDisLike, oldTotalComment);
+        }
+        public DateTime GetCurrentVnTime()
+        {
+            return DateTime.UtcNow.AddHours(7);
+        }
 
     }
 }

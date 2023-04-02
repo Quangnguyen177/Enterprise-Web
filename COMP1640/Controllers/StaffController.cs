@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using COMP1640.ViewModels;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Configuration;
 
 namespace COMP1640.Controllers
 {
@@ -21,9 +22,11 @@ namespace COMP1640.Controllers
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext Db;
-        public StaffController(ApplicationDbContext context)
+        private readonly IConfiguration _configuration; 
+        public StaffController(ApplicationDbContext context, IConfiguration configuration)
         {
             Db = context;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -81,8 +84,7 @@ namespace COMP1640.Controllers
             var evt = Db.Events.FirstOrDefault(e => e.EventId == eventId);
             
             if (evt.First_closure_date > DateTime.UtcNow.AddHours(7))
-            {
-                
+            {              
                 ////Create reactpoint entity to relate to Idea entity
                 ReactPoint newReactPoint = new ReactPoint
                 {
@@ -95,7 +97,7 @@ namespace COMP1640.Controllers
                 var profile = Db.Profile.FirstOrDefault(p => p.Id == profileId);
                 Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
                 var subject = profile.Name + " has posted a new idea with title \"" + title + "\"";
-                //SendEmail(profile.Email, subject, content);
+                //SendEmail(/*profile.Email*/"dantruong2002tq@gmail.com", subject, content);
                 Boolean anonynous = isAnonymous == null ? false : true;               
                 Idea newIdea = new Idea()
                 {
@@ -118,14 +120,9 @@ namespace COMP1640.Controllers
                 if (uploadedFiles.Count > 0)
                 {
                     HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
-                }
-                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
-            }
-                else
-                {
-                return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
-            }
-
+                }             
+            } 
+            return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
         }
 
         public void HandleFile(List<IFormFile> uploadedFiles, int idIdea, string type)
@@ -208,16 +205,13 @@ namespace COMP1640.Controllers
                     HandleFile(uploadedFiles, ideaId, "UPDATE"); //edit file
                 }
                 Db.Update(idea);
-                Db.SaveChanges();
-                return RedirectToAction("EditIdea", new { id = ideaId });
+                Db.SaveChanges();               
             }
-            else
-            {
-                return RedirectToAction("DetailIdea", "Staff", new { ideaId });
-            }
+            return RedirectToAction("DetailIdea", "Staff", new { ideaId });
+            
         }
 
-        //comment
+  
         [HttpPost]
         public JsonResult Comment(Comment com)
         {
@@ -231,8 +225,6 @@ namespace COMP1640.Controllers
                 var name = (com.com_anonymous) ? "An anonymous user" : profile.Name;
                 var subject = name + " has commented your \"" + idea.idea_title + "\" idea";
                 //SendEmail(/*idea.Profile.Email*/"dantruong2002tq@gmail.com", subject, com.com_content);
-                if (true) // check if sending mail is successfull!
-                {
                     Comment newComment = new Comment()
                     {
                         com_content = com.com_content,
@@ -254,14 +246,8 @@ namespace COMP1640.Controllers
                         Time = String.Format("{0:g}", newComment.created_date),
                         ComNumber = Db.Comments.Where(c => c.IdeaId == com.IdeaId).Count()
                     };
-
                     var response = JsonConvert.SerializeObject(result);
                     return Json(response);
-                }
-                else
-                {
-                    return Json(null);
-                }
             }
             return Json(null);
         }      
@@ -534,11 +520,11 @@ namespace COMP1640.Controllers
                 message.Subject = subject;
                 message.Body = new TextPart("plain")
                 {
-                    Text = content,
+                    Text = "content: " + content,
                 };
                 SmtpClient client = new SmtpClient();
                 client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("truongtd2002tq@gmail.com", "dyltswxzsrmvqbfv");
+                client.Authenticate(_configuration["Email:Username"], _configuration["Email:Password"]);
                 client.Send(message);
                 client.Disconnect(true);
                 client.Dispose();               

@@ -7,6 +7,16 @@
     ViewData["Name"] = logginedUser.Name;
     var statistic = (Statistic)ViewBag.Statistic;
     Layout = "_QAM";
+    double percent(int now, int prev)
+    {   
+        var result = Math.Round(100 - (double) now / prev * 100, 2);
+        return Math.Abs(result);
+        
+    }
+     string upOrDown(int now, int prev)
+    {   
+        return now > prev ? "up" : "down";
+    }
 }
 <link rel="stylesheet" href="~/css/res_qa_db.css" />
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
@@ -25,9 +35,9 @@
                 </div>
                 <div class="inf_percent">
                     <span class="percent">
-                        <i class="fa-solid fa-up-long"></i>11%
+                        <i class="fa-solid fa-@upOrDown(@statistic.Idea,@statistic.OldIdea)-long"></i>@percent(@statistic.Idea,@statistic.OldIdea)%
                     </span>
-                    <span class="text-nowrap text-xs text-muted">Since last week</span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
                 </div>
             </div>
             <div class="card_db">
@@ -43,9 +53,9 @@
                 </div>
                 <div class="inf_percent">
                     <span class="percent">
-                        <i class="fa-solid fa-down-long"></i>11%
+                        <i class="fa-solid fa-@upOrDown(@statistic.Contributor,@statistic.OldContributor)-long"></i>@percent(@statistic.Contributor,@statistic.OldContributor)%
                     </span>
-                    <span class="text-nowrap text-xs text-muted">Since last week</span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
                 </div>
             </div>
             <div class="card_db">
@@ -60,9 +70,9 @@
                 </div>
                 <div class="inf_percent">
                     <span class="percent">
-                        <i class="fa-solid fa-up-long"></i>11%
+                         <i class="fa-solid fa-@upOrDown(@statistic.View,@statistic.OldView)-long"></i>@percent(@statistic.View,@statistic.OldView)%
                     </span>
-                    <span class="text-nowrap text-xs text-muted">Since last week</span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
                 </div>
             </div>
             <div class="card_db">
@@ -77,9 +87,9 @@
                 </div>
                 <div class="inf_percent">
                     <span class="percent">
-                        <i class="fa-solid fa-up-long"></i>11%
+                        <i class="fa-solid fa-@upOrDown(@statistic.Comment,@statistic.OldComment)-long"></i>@percent(@statistic.Comment,@statistic.OldComment)%
                     </span>
-                    <span class="text-nowrap text-xs text-muted">Since last week</span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
                 </div>
             </div>
         </div>
