@@ -5,29 +5,30 @@
     <link rel="stylesheet" href="~/css/res_admin_db.css" />
     var statistic = (AdminStatistic)ViewBag.Statistic;
     double percent(int now, int prev)
-    {   
-        var result = Math.Round(100 - (double) now / prev * 100, 1);
+    {
+        var result = Math.Round(100 - (double)now / prev * 100, 1);
         return Math.Abs(result);
     }
-     string upOrDown(int now, int prev)
-     {   
+    string upOrDown(int now, int prev)
+    {
         return now > prev ? "up" : "down";
-     }
+    }
 
-      string color(int now, int prev)
-      {   
+    string color(int now, int prev)
+    {
         return now > prev ? "success" : "danger";
-      }
+    }
 
     var next = int.Parse(@ViewBag.PageNum.ToString()) + 1;
     var pre = int.Parse(@ViewBag.PageNum.ToString()) - 1;
     var viewType = @ViewBag.ViewType;
+    var count = 1;
+
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
     <!-- Main content -->
     <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-        <!-- Header -->
         <!-- Main -->
         <main class="py-6 bg-surface-secondary">
             <div class="container-fluid">
@@ -48,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-2 mb-0 text-sm">
-                                    <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Idea,@statistic.OldIdea) text-@color(@statistic.Idea,@statistic.OldIdea) me-2">
+                                    <span id="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Idea,@statistic.OldIdea) text-@color(@statistic.Idea,@statistic.OldIdea) me-2">
                                         <i class="fa fa-arrow-@upOrDown(@statistic.Idea,@statistic.OldIdea)"></i> @percent(@statistic.Idea,@statistic.OldIdea)%
                                     </span>
                                     <span class="text-nowrap text-xs text-muted">Since last month</span>
@@ -71,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-2 mb-0 text-sm">
-                                     <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Like,@statistic.OldLike) text-@color(@statistic.Like,@statistic.OldLike) me-2">
+                                    <span id="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Like,@statistic.OldLike) text-@color(@statistic.Like,@statistic.OldLike) me-2">
                                         <i class="fa fa-arrow-@upOrDown(@statistic.Like,@statistic.OldLike)"></i>@percent(@statistic.Like,@statistic.OldLike)%
                                     </span>
                                     <span class="text-nowrap text-xs text-muted">Since last month</span>
@@ -94,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-2 mb-0 text-sm">
-                                     <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Dislike,@statistic.OldDislike) text-@color(@statistic.Dislike,@statistic.OldDislike) me-2">
+                                    <span id="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Dislike,@statistic.OldDislike) text-@color(@statistic.Dislike,@statistic.OldDislike) me-2">
                                         <i class="fa fa-arrow-@upOrDown(@statistic.Dislike,@statistic.OldDislike)"></i>@percent(@statistic.Dislike,@statistic.OldDislike)%
                                     </span>
                                     <span class="text-nowrap text-xs text-muted">Since last month</span>
@@ -117,7 +118,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-2 mb-0 text-sm">
-                                    <span id ="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Comment,@statistic.OldComment) text-@color(@statistic.Comment,@statistic.OldComment) me-2">
+                                    <span id="percent" class="badge badge-pill bg-opacity-30 bg-@color(@statistic.Comment,@statistic.OldComment) text-@color(@statistic.Comment,@statistic.OldComment) me-2">
                                         <i class="fa fa-arrow-@upOrDown(@statistic.Comment,@statistic.OldComment)"></i>@percent(@statistic.Comment,@statistic.OldComment)%
                                     </span>
                                     <span class="text-nowrap text-xs text-muted">Since last month</span>
@@ -125,24 +126,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="paginations" style=" border-radius: 3em">
-                    @if (@pre > 0)
-                    {
-                        <div class="prev">
-                            <span class="text" onclick="BtnPre()">Prev</span>
-                            <div class="left">
-                            </div>
-                        </div>
-                    }
-                    @if (@next * 25 - ViewBag.Total < 25)
-                    {
-                        <div class="next">
-                            <span class="text" id="BtnNext" onclick="BtnNext()">Next</span>
-                            <div class="right">
-                            </div>
-                        </div>
-                    }
                 </div>
                 <div class="card mb-7">
                     <div class="card-header">
@@ -152,6 +135,7 @@
                         <table class="table table-hover table-nowrap">
                             <thead class="table-light">
                                 <tr>
+                                    <th scope="col">No.</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Department</th>
@@ -161,27 +145,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(var i in Model)
+                                @foreach (var i in Model)
                                 {
                                     <tr>
-                                    <td>
-                                        <img alt="..." src="/Avatars/@i.Profile.Avatar" class="avatar avatar-sm rounded-circle me-2">
-                                        <a class="text-heading font-semibold" href="#">
-                                            @i.Profile.Name
-                                        </a>
-                                    </td>
-                                    <td>
-                                        @i.idea_title
-                                    </td>
-                                    <td>
-                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
-                                        <a class="text-heading font-semibold" href="#">
-                                            @i.Profile.Department.Dep_name
-                                        </a>
-                                    </td>
-                                    <td>
-                                        @i.created_date
-                                    </td>
+                                        <td>@count</td>
+                                        <td>
+                                            <img alt="..." src="/Avatars/@i.Profile.Avatar" class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                @i.Profile.Name
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @i.idea_title
+                                        </td>
+                                        <td>
+                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                @i.Profile.Department.Dep_name
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @i.created_date
+                                        </td>
                                         @if (i.idea_anonymous == true)
                                         {
                                             <td>Yes</td>
@@ -190,16 +175,29 @@
                                         {
                                             <td>No</td>
                                         }
-                                    <td>
-                                        @i.idea_view
-                                    </td>
-                                </tr>
+                                        <td>
+                                            @i.idea_view
+                                        </td>
+                                    </tr>
+                                    count = count + 1;
+
                                 }
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer border-0 py-5">
-                        <span class="text-muted text-sm">Showing @ViewBag.Total post idea out of 100 results found</span>
+                    <div class="card-footer row align-items-center border-0 py-5">
+                        <span class="text-muted col-sm-6 col-12 mb-4 mb-sm-0 text-sm">Showing @ViewBag.Total post idea out of 100 results found</span>
+                        <div class="next_previous col-sm-6 col-12 text-sm-end">
+                            @*                    @if (@pre > 0)
+                        {*@
+                            <a onclick="BtnPre()" class="prev">‹</a>
+
+                            @*}*@
+                            @*                    @if (@next * 25 - ViewBag.Total < 25)
+                        {*@
+                            <a onclick="BtnNext()" class="next">›</a>
+                            @*}*@
+                        </div>
                     </div>
                 </div>
             </div>
