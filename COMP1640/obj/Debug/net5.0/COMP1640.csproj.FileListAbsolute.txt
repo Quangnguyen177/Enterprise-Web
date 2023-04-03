@@ -4536,3 +4536,4 @@ D:\FinalProject\Enterprise-Web-main\COMP1640\bin\Debug\net5.0\runtimes\win\lib\n
 D:\FinalProject\Enterprise-Web-main\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\Home.cshtml.g.cs
 E:\GitHub\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\LatestComment.cshtml.g.cs
 F:\F2G - UOG\COMP1640 - Enterprise Web Software Development\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\LatestComment.cshtml.g.cs
+C:\COMP1640_EnterpriseWeb\Code\Enterprise-Web\COMP1640\obj\Debug\net5.0\Razor\Views\Admin\LatestComment.cshtml.g.cs

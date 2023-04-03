@@ -125,11 +125,6 @@ namespace COMP1640.Controllers
             return View();
         }
 
-        public IActionResult InformationStaff()
-        {
-            return View();
-        }
-
         public IActionResult ManageClosureDate()
         {
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
