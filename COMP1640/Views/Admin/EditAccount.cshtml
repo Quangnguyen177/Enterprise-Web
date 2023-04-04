@@ -85,7 +85,6 @@
                                         {
                                             <option value="@dep.DepId">@dep.Dep_name</option>
                                         }
-                                        <option value="-1" hidden disabled>Admin</option>
                                     </select>
                                     <span class="text-danger" asp-validation-for="Input.DepartmentId"></span>
                                 </div>
@@ -146,7 +145,7 @@
 
         function CheckAd(x) {
             if (x.value == "Administrator") {
-                $('#dep').val("-1");
+                $('#dep').prop('selectedIndex', 0);
                 hide();
             }
             else {
@@ -158,7 +157,7 @@
             //Role
             $('#role').val("@ViewBag.UserRole");
             if ("@ViewBag.UserRole" == "Administrator") {
-                $('#dep').val("-1");
+                $('#dep').prop('selectedIndex', 0);
                 hide();
             }
 

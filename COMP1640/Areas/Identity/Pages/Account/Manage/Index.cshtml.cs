@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using COMP1640.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -80,8 +81,9 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
             await LoadAsync(user);
+
+            ViewData["User"] = user;
             return Page();
         }
 
@@ -116,14 +118,20 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
-
-            string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
-
-            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            if (uploadedAva != null)
             {
-                uploadedAva.CopyTo(stream); //đoạn này add vô root 
+                string fileNameWithPath = Path.Combine(path, uploadedAva.FileName);
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    uploadedAva.CopyTo(stream); //đoạn này add vô root 
+                }
 
+                user.Avatar = uploadedAva.FileName;
             }
+            else
+            {
+                user.Avatar = user.Avatar;
+            }   
 
             //Update the rest
             if (ModelState.IsValid)
@@ -132,7 +140,6 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
                 user.DoB = DoB;
                 user.Gender = Gender;
                 user.Address = Address;
-                user.Avatar = uploadedAva.FileName;
                 Db.Profile.Update(user);
                 await Db.SaveChangesAsync();
             }

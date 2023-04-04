@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
+    var userPro = ViewData["User"] as COMP1640.Models.Profile;
 }
 @if (User.Identity.IsAuthenticated)
 {
@@ -60,9 +61,16 @@
             </div>
             <div class="col-md-6 border-right">
                 <div class="d-flex flex-column align-items-center text-center py-5" style="position: relative;bottom: 125px;">
-                    <img class="rounded-circle mt-5" style="width:150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">Harris</span>
-                    <span class="text-black-50">harris@gmail.com</span>
+                    @if (@userPro.Avatar != "")
+                    {
+                        <img class="rounded-circle mt-5" style="width:150px" src="/Avatars/@userPro.Avatar">
+                    }
+                    else
+                    {
+                        <img class="rounded-circle mt-5" src="https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png" alt="avatarprofile">
+                    }
+                    <span class="font-weight-bold">@userPro.Name</span>
+                    <span class="text-black-50">@userPro.Email</span>
                 </div>
             </div>
         </div>

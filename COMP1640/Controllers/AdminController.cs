@@ -290,7 +290,7 @@ namespace COMP1640.Controllers
             }
             else
             {
-                user.Avatar = null;
+                user.Avatar = user.Avatar;
             }
 
             if (currentRoles.Last() != Input.Role)

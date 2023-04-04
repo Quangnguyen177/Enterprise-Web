@@ -30,7 +30,6 @@
             <div class="form-group-department">
                 <select class="form-select form-control" id="dep" asp-for="Input.DepartmentId" required>
                     <option selected disabled>Choose the account department</option>
-                    <option value="-1" hidden disabled>Admin</option>
                     @foreach (var dep in Deps)
                     {
                         <option value="@dep.DepId">@dep.Dep_name</option>
@@ -73,11 +72,10 @@
     }
     function CheckAd(x) {
         if (x.value == "Administrator") {
-            $('#dep').val("-1");
+            $('#dep').prop('selectedIndex', 1);
             hide();
         }
         else {
-            $('#dep').prop('selectedIndex', 0);
             show();
         }
     };
