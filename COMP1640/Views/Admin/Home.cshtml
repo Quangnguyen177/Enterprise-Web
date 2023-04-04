@@ -160,9 +160,17 @@
                                         </td>
                                         <td>
                                             <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
-                                            <a class="text-heading font-semibold" href="#">
-                                                @i.Profile.Department.Dep_name
-                                            </a>
+                                            @if (i.Profile.DepId != null )
+                                            {
+                                                <a class="text-heading font-semibold" href="#">
+                                                    @i.Profile.Department.Dep_name
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="text-heading font-semibold" href="#">None</a>
+                                            }
+
                                         </td>
                                         <td>
                                             @i.created_date

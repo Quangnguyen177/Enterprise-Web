@@ -50,6 +50,10 @@
                                 <label class="small mb-1">Email</label>
                                 <input class="form-control" type="email" asp-for="Input.Email" value="@ViewBag.User.Email">
                             </div>
+                            <div class="mb-3">
+                                <label class="small mb-1">Address</label>
+                                <input class="form-control" type="text" asp-for="Input.Address" value="@ViewBag.User.Address">
+                            </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
@@ -90,12 +94,12 @@
                             <div class="row">
                                 <label class="small mb-1 col-2">Gender:</label>
                                 <div class="gender col-2">
-                                    <input id="male" type="radio" name="Gender" asp-for="Input.Gender" value="Male" />
-                                    <label for="check-male">Male</label>
+                                    <input id="male" type="radio" asp-for="Input.Gender" value="Male" />
+                                    <label for="male">Male</label>
                                 </div>
                                 <div class="gender col-2">
-                                    <input id="female" type="radio" name="Gender" asp-for="Input.Gender" value="Female" />
-                                    <label for="check-female">Female</label>
+                                    <input id="female" type="radio" asp-for="Input.Gender" value="Female" />
+                                    <label for="female">Female</label>
                                 </div>
                             </div>
                             <!--Save changes-->

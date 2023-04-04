@@ -111,6 +111,11 @@ a {
     text-decoration: none;
 }
 
+.table td, .table th {
+    vertical-align: central;
+}
+
+
 .navbar-vertical.navbar-expand-lg .navbar-collapse {
     flex: 1;
     display: flex;

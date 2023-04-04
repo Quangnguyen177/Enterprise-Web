@@ -91,7 +91,7 @@ namespace COMP1640.Controllers
             else if (viewType == "latest")
             {
                 list = Db.Ideas.OrderByDescending(i => i.created_date).Include(e => e.Event).Include(p => p.Profile.Department).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(25).ToList();
-
+                
                 ViewBag.ViewType = "latest";
             }
             else if (viewType == "popular")
