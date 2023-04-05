@@ -995,9 +995,13 @@ input[type]:checked ~ span.middle {
     opacity: 0;
 }
 
+.mainpage-button {
+    position:relative;
+    left:150px
+}
 /*icon hide password*/
 .field-icon::before {
-    cursor:pointer
+    cursor: pointer
 }
 
 

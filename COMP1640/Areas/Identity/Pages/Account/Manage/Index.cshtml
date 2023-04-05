@@ -54,9 +54,17 @@
                             <input asp-for="Address" class="form-control">
                         </div>
                     </div>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" id="update-profile-button">Save Profile</button>
+                    <div class="row">
+                        <div class="col mt-4">
+                            <button class="btn btn-success mainpage-button" asp-controller="Home" asp-action="Index" style="position:relative;left:150px">
+                                Main page
+                            </button>
+                        </div>
+                        <div class="col mt-4">
+                            <button class="btn btn-primary profile-button" id="update-profile-button">Save Profile</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div class="col-md-6 border-right">
