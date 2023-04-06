@@ -19,7 +19,10 @@ namespace COMP1640.Controllers
         {
             this.context = context;
         }
-        public IActionResult ListIdea(int pageNum, string viewType)
+
+        [Route("/QACoordinator")]
+        [Route("/QACoordinator/ListIdea")]
+        public IActionResult ListIdea(int pageNum = 1, string viewType = "latest")
         {
             var documents = context.Documents.Include(d => d.Idea);
             ViewBag.Documents = context.Documents.ToList();

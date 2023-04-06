@@ -19,17 +19,17 @@
                     <div class="widget">
                         <h4 class="widget-title"><b> Shortcuts</b></h4>
                         <ul class="Shortcuts">
-                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea">Idea List</a></li>
-                            <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">Profile</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-paste"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea">Idea List</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-user"></i><a asp-controller="Staff" asp-action="Profile" asp-route-id="@logginnedUser.Id">Profile</a></li>
                         </ul>
                     </div>
                     <br>
                     <div class="idea">
                         <h4 class="widget-title"><b>Filter Ideas</b></h4>
                         <ul class="Shortcuts">
-                            <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&orderby=mostview&viewtype=@pageInfor.ViewType&id=@pageInfor.Id">Most Viewed Ideas</a></li>
-                            <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pagenum=1&orderby=popular&viewtype=@pageInfor.ViewType&id=@pageInfor.Id">Most Popular Ideas</a></li>
-                            <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pagenum=1&orderby=lastest&viewtype=@pageInfor.ViewType&id=@pageInfor.Id">Latest Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="mostview" asp-route-viewType="@pageInfor.ViewType" asp-route-id="@pageInfor.Id">Most Viewed Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="popular" asp-route-viewType="@pageInfor.ViewType" asp-route-id="@pageInfor.Id">Most Popular Ideas</a></li>
+                            <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="latest" asp-route-viewType="@pageInfor.ViewType" asp-route-id="@pageInfor.Id">Latest Ideas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="avata_post">
                         <figure>
                             @*AVATAR*@
-                            <a style="text-decoration: none" href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
+                            <a style="text-decoration: none" asp-controller="Staff" asp-action="Profile" asp-route-id="@logginnedUser.Id">
                                 <img src="/Avatars/@logginnedUser.Avatar"
                                      alt="avata" />
                             </a>
@@ -94,7 +94,7 @@
                                             }
                                             else
                                             {
-                                                <a style="text-decoration: none" href="/Staff/Profile?id=@idea.Profile.Id&pagenum=1&viewtype=latest">
+                                                <a style="text-decoration: none" asp-controller="Staff" asp-action="Profile" asp-route-id="@idea.Profile.Id">
                                                     <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
                                                     <div class="name_account">
                                                         <h4 style="font-size: 16px">@idea.Profile.Name</h4><h5 style="font-size: 14px;padding-top: -600px; color: black; margin-left: 70px;">@String.Format("{0:g}", @idea.created_date)</h5>   @*CreatedTime*@
@@ -112,7 +112,7 @@
                                         <div class="img_idea">
                                             <div class="title_idea">
                                                 <div class="tag">
-                                                    <a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=cat&id=@idea.CategoryId">
+                                                    <a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="cat" asp-route-id="@idea.CategoryId">
                                                         <span>@idea.Category.category_name</span>
                                                     </a>
                                                 </div>
@@ -145,7 +145,7 @@
                                 <div class="felling  nav_bar--item--separate3">
                                     <div class="more">
                                         <ul class="felling_idea">
-                                            <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
+                                            <li><a style="color:green"><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
                                             <li>
                                                 <label placeholder="React point: "><p id="total">@Point(@idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)</p></label>
                                             </li>
@@ -157,7 +157,7 @@
                                                 <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
                                             </li>
                                             <li>
-                                                <a style="color:green" asp-action="" asp-controller="">
+                                                <a style="color:green">
                                                     <i class="fa-regular fa-comment"></i>
                                                 </a>
                                                 @idea.Comments.Count()
@@ -168,7 +168,7 @@
 
                                 <div class="comment_idea">
                                     <div class="com_idea_avata">
-                                        <a href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
+                                        <a asp-controller="Staff" asp-action="Profile" asp-route-id="@logginnedUser.Id">
                                             <figure class="avata_comment">
                                                 <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@logginnedUser.Avatar"
                                                      alt="avata" />

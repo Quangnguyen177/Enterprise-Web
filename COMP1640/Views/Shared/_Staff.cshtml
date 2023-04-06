@@ -23,7 +23,7 @@
     <div class="app">
         <header class="header">
             <div class="logo">
-                <a href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea">
+                <a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea">
                     <img style="display: inline-block;" src="/images/logo1.png"
                          width="100px" />
                 </a>
@@ -42,7 +42,7 @@
                                         <ul class="dropdown">
                                             @foreach(var e in ViewBag.Event)
                                             {
-                                                <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=evt&id=@e.EventId">@e.EventName</a></li>
+                                                <li><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="evt" asp-route-id="@e.EventId">@e.EventName</a></li>
                                             }
                                         </ul>
                                     </div>
@@ -63,7 +63,7 @@
                                         <ul>
                                             @foreach(var c in ViewBag.Category)
                                             {
-                                                <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=cat&id=@c.CategoryId">@c.category_name</a></li>
+                                                <li><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="cat" asp-route-id="@c.CategoryId">@c.category_name</a></li>
                                             }
                                         </ul>
                                     </div>
@@ -83,7 +83,7 @@
                                         <ul>
                                             @foreach (var d in ViewBag.Department)
                                             {
-                                                <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=dep&id=@d.DepId">@d.Dep_name</a></li>
+                                                <li><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="dep" asp-route-id="@d.DepId">@d.Dep_name</a></li>
                                             }
                                         </ul>
                                     </div>
@@ -101,7 +101,7 @@
             <div class="nav_icon">
                 <ul class="menu icon">
                     <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; font-weight: bold; text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">@ViewBag.LoginedUserName</a></li>
-                    <li class="icon_account"><a style="color: #373b3f; text-decoration: none" href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea"><i class="fa-solid fa-house"></i></a></li> &nbsp &nbsp
+                    <li class="icon_account"><a style="color: #373b3f; text-decoration: none" asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea"><i class="fa-solid fa-house"></i></a></li> &nbsp &nbsp
                     <li class="icon_account">
                         <form asp-area="Identity" asp-page="/Account/Logout" method="post">
                             <button class="btn btn-light" style="color: #373b3f; text-decoration: none" type="submit">
@@ -129,13 +129,13 @@
                 <div class="all_idea_mobile">
                     <h1>Menu</h1>
                     <ul class="shortcuts_mobile">
-                        <li class="nav_bar--item nav_bar--item--separate2"><i class="fa-regular fa-user"></i><a href="/Staff/Profile?id=@ViewBag.LogginedUser.Id&pagenum=1&viewtype=latest">@ViewBag.LogginedUser.Name</a></li>
+                        <li class="nav_bar--item nav_bar--item--separate2"><i class="fa-regular fa-user"></i><a asp-controller="Staff" asp-action="Profile" asp-route-id="@ViewBag.LogginedUser.Id">@ViewBag.LogginedUser.Name</a></li>
                     </ul>
                     <ul class="shortcuts_mobile">
-                        <li class="nav_bar--item "><i class="fa-solid fa-house"></i><a href="/Staff/viewpage?pageNum=1&orderby=lastest&viewtype=idea">Idea List</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/staff/viewpage?pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/staff/viewpage?pageNum=1&viewtype=popular">Most Emotion ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/staff/viewpage?pageNum=1&viewtype=lastest">Latest Ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-house"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea">Idea List</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="mostview">Most Viewed Ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="popular">Most Emotion ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="latest">Latest Ideas</a></li>
                         <li class="nav_bar--item ">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">Account</a>
@@ -160,7 +160,7 @@
                                             <ul class="dropdown">
                                                 @foreach (var e in ViewBag.Event)
                                                 {
-                                                    <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=evt&id=@e.EventId">@e.EventName</a></li>
+                                                    <li><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="evt" asp-route-id="@e.EventId">@e.EventName</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -181,7 +181,7 @@
                                             <ul>
                                                 @foreach (var c in ViewBag.Category)
                                                 {
-                                                    <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=cat&id=@c.CategoryId">@c.category_name</a></li>
+                                                    <li><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="cat" asp-route-id="@c.CategoryId">@c.category_name</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -201,7 +201,7 @@
                                             <ul>
                                                 @foreach (var d in ViewBag.Department)
                                                 {
-                                                    <li><a href="/staff/viewpage?pageNum=1&orderby=lastest&viewtype=dep&id=@d.DepId">@d.Dep_name</a></li>
+                                                    <li><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="dep" asp-route-id="@d.DepId">@d.Dep_name</a></li>
                                                 }
                                             </ul>
                                         </div>

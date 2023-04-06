@@ -12,12 +12,7 @@ namespace COMP1640
             : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableSensitiveDataLogging();
-        }
-        //public DbSet<IdentityUser> IdentityUsers { get; set; }
-        //public DbSet<IUserRoleStore> userRoleStores { get; set; }
+
         public DbSet<Profile> Profile { get; set; }
         public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -34,8 +29,6 @@ namespace COMP1640
         {
             base.OnModelCreating(builder);
 
-            // tam thoi
-
             //1
             SeedProfile(builder);
 
@@ -50,9 +43,6 @@ namespace COMP1640
 
             //5
             SeedCategory(builder);
-
-            //5.5
-            //SeedDocument(builder);
 
             //6
             SeedIdea(builder);
@@ -82,14 +72,13 @@ namespace COMP1640
                 UserName = "Truong",
                 Email = "admin@gmail.com",
                 NormalizedUserName = "admin@gmail.com",
-                //EmailConfirmed = true,
                 Name = "Truong Dep Zai",
                 PhoneNumber = "0983337621",
                 DoB = DateTime.Parse("2002-03-26"),
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
-                Avatar = "",
-                DepId = 1,
+                Avatar = "121678477_2783538908573406_8062103030979451641_n.jpg",
+                DepId = null,
             };
             var staff1 = new Profile
             {
@@ -102,7 +91,7 @@ namespace COMP1640
                 DoB = DateTime.Parse("2002-08-25"),
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
-                Avatar = "",
+                Avatar = "00_1.jpg",
                 DepId = 1,
             };
             var qam1 = new Profile
@@ -116,8 +105,8 @@ namespace COMP1640
                 DoB = DateTime.Parse("2002-08-25"),
                 Gender = "Male",
                 Address = "Somewhere in the big gray sky",
-                Avatar = "",
-                DepId = 1,
+                Avatar = "Galadriel.png",
+                DepId = 2,
             };
             var qac1 = new Profile
             {
@@ -130,28 +119,28 @@ namespace COMP1640
                 DoB = DateTime.Parse("2002-08-25"),
                 Gender = "Female",
                 Address = "Somewhere in the big gray sky",
-                Avatar = "",
-                DepId = 1,
+                Avatar = "122586227_360596095021773_7780351300286907559_n.jpg",
+                DepId = 3,
             };
 
 
-            //Khai báo thư viện để mã hóa mk
+            // library to hash pasword
             var hashed = new PasswordHasher<Profile>();
 
-            //Thiết lập để mã hóa từng tài khoản
+            //Hash password for each account
             admin1.PasswordHash = hashed.HashPassword(admin1, "Admin#1");
             staff1.PasswordHash = hashed.HashPassword(staff1, "Staff#1");
             qam1.PasswordHash = hashed.HashPassword(qam1, "Qamr#1");
             qac1.PasswordHash = hashed.HashPassword(qac1, "Qacr#1");
 
-            //Add tài khoản vào DB
+            //Add account to Db
             builder.Entity<Profile>().HasData(admin1, staff1, qam1, qac1);
         }
 
         //Add Role
         private void SeedRole(ModelBuilder builder)
         {
-            //1. tạo các role cho hệ thống
+            //create Role
             var ADMIN = new IdentityRole
             {
                 Id = "A",
@@ -180,10 +169,11 @@ namespace COMP1640
                 NormalizedName = "Quality Assurance Coordinator"
             };
 
-            //2. add role vào trong DB
+            //Add role to Db
             builder.Entity<IdentityRole>().HasData(ADMIN, STAFF, QAM, QAC);
         }
 
+        // Assign account with role
         private void SeedAccountRole(ModelBuilder builder)
         {
             builder.Entity<IdentityUserRole<string>>().HasData(
@@ -210,53 +200,6 @@ namespace COMP1640
              );
         }
 
-        //4 
-        //private void SeedProfile(ModelBuilder builder)
-        //{
-        //    builder.Entity<Profile>()   
-        //        .HasOne(x => x.Department)
-        //        .WithMany(y => y.Profiles)
-        //        .HasForeignKey(z => z.DepId);
-        //    builder.Entity<Profile>().HasData(
-
-            //    new Account
-            //    {
-            //        Username = "Test@123.com",
-            //        Password = "staff1",
-            //        Role = "STAFF",
-            //        Name = "Test",
-            //        Email = "Test@123.com",
-            //        Phone = "0329226528",
-            //        DoB = DateTime.Parse("2002-08-25"),
-            //        Gender = "Male",
-            //        Address = "Somewhere in the big gray sky",
-            //        Avatar = "",
-            //        DepId = 1,
-            //    },
-            //    new Account
-            //    {
-            //        Username = "qam@gmail.com",
-            //        Password = "qam1",
-            //        Role = "QAM",
-            //        Name = "Duong",
-            //        Email = "qam@gmail.com",
-            //        Phone = "0293872618",
-            //        Gender = "female",
-            //    },
-            //    new Account
-            //    {
-            //        Username = "qac@gmail.com",
-            //        Password = "qac1",
-            //        Role = "QAC",
-            //        Name = "Duc",
-            //        Email = "qac@gmail.com",
-            //        Phone = "0927652226",
-            //        Gender = "male",
-            //    }
-        //    );
-        //}
-
-        //2
         private void SeedDepartment(ModelBuilder builder)
         {
             builder.Entity<Department>()
@@ -292,19 +235,6 @@ namespace COMP1640
             );
         }
 
-        //4
-/*        private void SeedDocument(ModelBuilder builder)
-        {
-            builder.Entity<Document>().HasData(
-                new Document
-                {
-                    DocId = 1,
-                    IdeaId= 1,
-                    doc_content = "This is a word or pdf, it can be a file",
-                    doc_type = "Word"
-                }
-            );
-        }*/
 
         //5
         private void SeedIdea(ModelBuilder builder)
@@ -439,6 +369,13 @@ namespace COMP1640
                     EventName = "The second Test",
                     First_closure_date = null,
                     Last_closure_date = null
+                },
+                new Event
+                {
+                    EventId = 3,
+                    EventName = "The third Test",
+                    First_closure_date = DateTime.Parse("2024-04-30"),
+                    Last_closure_date = DateTime.Parse("2024-05-1")
                 }
             );
         }

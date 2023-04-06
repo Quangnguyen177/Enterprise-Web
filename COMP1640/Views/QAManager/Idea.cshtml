@@ -33,15 +33,14 @@
             }
         </div>
 
-        @* <h1>Evalue Idea</h1>*@
         <div class="dropdown">
             <button class="btn_dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa-solid fa-filter"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/QAManager/Idea?pagenum=1&viewtype=popular">Most Popular Ideas</a>
-                <a class="dropdown-item" href="/QAManager/Idea?pagenum=1&viewtype=mostview">Most Viewed Ideas</a>
-                <a class="dropdown-item" href="/QAManager/Idea?pagenum=1&viewtype=lastest">Latest Ideas</a>
+                <a class="dropdown-item" asp-controller="QAManager" asp-action="Idea" asp-route-pageNum="1" asp-route-viewType="popular">Most Popular Ideas</a>
+                <a class="dropdown-item" asp-controller="QAManager" asp-action="Idea" asp-route-pageNum="1" asp-route-viewType="mostview">Most Viewed Ideas</a>
+                <a class="dropdown-item" asp-controller="QAManager" asp-action="Idea" asp-route-pageNum="1" asp-route-viewType="lastest">Latest Ideas</a>
             </div>
         </div>
 

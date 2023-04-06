@@ -83,6 +83,8 @@ namespace COMP1640.Controllers
 
         }
 
+        [Route("/QAManager")]
+        [Route("/QAManager/Dasboard")]
         public IActionResult Dashboard()
         {
             List<TopContributor> list = new List<TopContributor>();
@@ -98,7 +100,9 @@ namespace COMP1640.Controllers
             ViewBag.Statistic = GetStatistic();
             return View(list);
         }
-        public IActionResult Idea(int pageNum, string viewType)
+
+        [Route("/QAManager/Idea")]
+        public IActionResult Idea(int pageNum = 1, string viewType = "latest")
         {
             if (pageNum == 1) ViewBag.PageNum = 1;
             else ViewBag.PageNum = pageNum;
@@ -109,10 +113,10 @@ namespace COMP1640.Controllers
                 list = context.Ideas.OrderByDescending(i => i.idea_view).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(25).ToList();
                 ViewBag.ViewType = "mostview";
             }
-            else if (viewType.Equals("lastest"))
+            else if (viewType.Equals("latest"))
             {
                 list = context.Ideas.OrderByDescending(i => i.created_date).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Skip(skipPage).Take(25).ToList();
-                ViewBag.ViewType = "lastest";
+                ViewBag.ViewType = "latest";
             }
             else if (viewType.Equals("popular"))
             {

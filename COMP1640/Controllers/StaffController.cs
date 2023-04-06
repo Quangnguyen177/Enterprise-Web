@@ -15,6 +15,7 @@ using COMP1640.ViewModels;
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Routing;
 
 namespace COMP1640.Controllers
 {
@@ -29,8 +30,10 @@ namespace COMP1640.Controllers
             _configuration = configuration;
         }
 
+        [Route("/Staff")]
+        [Route("/Staff/ViewPage")]
         [HttpGet]
-        public IActionResult ViewPage(int pageNum, string orderBy, string viewType, int id)
+        public IActionResult ViewPage(int pageNum = 1, string orderBy = "latest", string viewType = "idea", int id = 1)
         {                   
             int skipPage = 5 * (pageNum - 1);
             var temp = new List<Idea>();
@@ -40,7 +43,7 @@ namespace COMP1640.Controllers
             {               
                 temp = page.OrderByDescending(i => i.idea_view).ToList();         
             }
-            else if (orderBy.Equals("lastest"))
+            else if (orderBy.Equals("latest"))
             {
                 temp = page.OrderByDescending(i => i.created_date).ToList();         
             }
@@ -122,7 +125,7 @@ namespace COMP1640.Controllers
                     HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
                 }             
             } 
-            return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+            return RedirectToAction("ViewPage", "Staff");
         }
 
         public void HandleFile(List<IFormFile> uploadedFiles, int idIdea, string type)
@@ -290,7 +293,7 @@ namespace COMP1640.Controllers
                 var the_react = Db.React.Where(a => a.IdeaId == idea_react.IdeaId).Where(b => b.ProfileId == user_react.ProfileId).Single();
                 ViewBag.UserReact = the_react.Reacted;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ViewBag.UserReact = null;
             }
@@ -326,7 +329,7 @@ namespace COMP1640.Controllers
             Db.Remove(reactpoint);
             Db.Remove(idea);
             Db.SaveChanges();
-            return RedirectToAction("ViewPage", "Staff", new { pageNum = 1, orderby = "lastest", viewtype = "idea", id = 1 });
+            return RedirectToAction("ViewPage", "Staff");
         }
 
         public IActionResult DownloadFile(int id)
@@ -408,7 +411,7 @@ namespace COMP1640.Controllers
             return Json(result);
         }
 
-        public IActionResult Profile(string? id, int pageNum, string viewType)
+        public IActionResult Profile(string? id, int pageNum = 1, string viewType= "latest")
         {
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
@@ -510,6 +513,7 @@ namespace COMP1640.Controllers
             }
             return output;
         }
+
         public void SendEmail(string toEmail, string subject, string content)
         {
             try

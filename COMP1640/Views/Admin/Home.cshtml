@@ -168,7 +168,7 @@
                                             }
                                             else
                                             {
-                                                <a class="text-heading font-semibold" href="#">None</a>
+                                                @*<a class="text-heading font-semibold" href="#">None</a>*@
                                             }
 
                                         </td>
@@ -196,15 +196,15 @@
                     <div class="card-footer row align-items-center border-0 py-5">
                         <span class="text-muted col-sm-6 col-12 mb-4 mb-sm-0 text-sm">Showing @ViewBag.Total post idea out of 100 results found</span>
                         <div class="next_previous col-sm-6 col-12 text-sm-end">
-                            @*                    @if (@pre > 0)
-                        {*@
+                        @if (@pre > 0)
+                        {
                             <a onclick="BtnPre()" class="prev">‹</a>
 
-                            @*}*@
-                            @*                    @if (@next * 25 - ViewBag.Total < 25)
-                        {*@
+                        }
+                        @if (@next * 25 - ViewBag.Total < 25)
+                        {
                             <a onclick="BtnNext()" class="next">›</a>
-                            @*}*@
+                        }
                         </div>
                     </div>
                 </div>
