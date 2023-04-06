@@ -367,7 +367,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "f350f47b-1d3e-489c-bc2e-875d9ad6d47f",
+                            ConcurrencyStamp = "8c1c6291-f6e5-4628-854f-7328397801ae",
                             DepId = 1,
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -376,10 +376,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGNhVCWVa9KKnWAshgpwl/tFspCz2ABMfo1znHylDSa5dpEvg8slLUEDR10GCUFX7A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECX4U5WUO7vwbNpga1yVzk9BxUXscTMgSNaNR4zS9znz3N0ie8Al26/IE2b1/6nEag==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b8edb831-9232-425d-80ea-1434c6a9c1d6",
+                            SecurityStamp = "b67e7a59-5ad5-411d-9d28-e29df750cbb4",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -389,7 +389,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "b6ca9fd1-bb50-435a-a05a-d40311e02ee1",
+                            ConcurrencyStamp = "0ecde7e0-cd5b-4471-b11b-6832e7379bb9",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -398,10 +398,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKZryjWUlqdvMHdgObjbz/cDOo5DQaRQsZnQXwqiIbq8VMbXkMKW8fsUmAO4u/3NjA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENJsfr1rFeSmpTsG9OfN3QnCVzyOM9JSJSy9THJNZUvCFFFyTyI8Q4bpmUC4V77WZA==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "13a6362b-060b-442d-8a08-ca281d867290",
+                            SecurityStamp = "f6e1d994-6006-405a-a8aa-20e46c3bab46",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         },
@@ -411,7 +411,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "92acd70a-86c5-4698-9312-fc8b0d715467",
+                            ConcurrencyStamp = "92cf6c57-fcb9-4b5b-9134-bbf6031862d4",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "qam1@gmail.com",
@@ -420,10 +420,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Mike The Duke",
                             NormalizedUserName = "qam1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIWdsHASZsOPRZ260xGl9vZR/ouW7qjtBvkb73MUquYyCSWdCjwMhF0gblFZd94KGw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFTdemGHze4PKirxqA5C4vdPP4T7+9t+xc06319HtBQfpr7Y5DeVKZzGxMKkkBH6gg==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "00d818ff-8971-4624-aacc-c63fd7495b0f",
+                            SecurityStamp = "78844945-e065-4325-a6ba-678990bd5542",
                             TwoFactorEnabled = false,
                             UserName = "Mike The Duke"
                         },
@@ -433,7 +433,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "",
-                            ConcurrencyStamp = "43e39e9a-a0b3-4b73-b113-305f2ea5df7e",
+                            ConcurrencyStamp = "b6e2349f-4e10-4280-bf68-dfa4fedf9bd3",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "qac1@gmail.com",
@@ -442,10 +442,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Mai The Clone Duke",
                             NormalizedUserName = "qac1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP+FeWJV9g82/ztKudYtZY/MYbJkm3sLEm2kd205gTGvY1Pxda67X5l4oiBAd6cYXw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPNZgCPqoqusF/Rr8cqI/5T3ikbZhPmMeY8AF+UeCmglcsH0AG1i30/GEM3MKzUzqQ==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "abe515bf-f56b-4a68-a20a-03fa7d452da4",
+                            SecurityStamp = "098901c4-1ac6-4719-b148-0d1c86034bae",
                             TwoFactorEnabled = false,
                             UserName = "Mai The Duc"
                         });
@@ -570,28 +570,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "b248eb3d-12f5-416c-a036-b13fab6a0979",
+                            ConcurrencyStamp = "fb141e33-e88d-430b-a59b-9ab0af4cfee9",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "a6398fd5-29f2-4290-95d7-fb0cae9e8327",
+                            ConcurrencyStamp = "9755af6a-c312-4e9c-93e3-d18e79931928",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "229d7f52-a344-44b2-b8c7-9367c182bcb0",
+                            ConcurrencyStamp = "d4b99a05-7a37-4842-9822-4944f2d44821",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "dfaf94e0-fd68-40ba-a984-69adf69fc505",
+                            ConcurrencyStamp = "41209800-d6a8-4f04-ad65-4666ee911b68",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });

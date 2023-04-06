@@ -15,7 +15,7 @@
             <form asp-controller="Admin" asp-action="EditAccount" method="post" enctype="multipart/form-data">
                 <div class="col-xl-4">
                     <!--Profile picture-->
-                    <div class="card mb-4 mb-xl-0">
+                    <div class="card mb-4 mb-xl-0" style="position:relative; right:45px">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center">
                             @if (ViewBag.User.Avatar == null)
