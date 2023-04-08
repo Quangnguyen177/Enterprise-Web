@@ -23,7 +23,7 @@ namespace COMP1640.Controllers
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext Db;
-        private readonly IConfiguration _configuration; 
+        private readonly IConfiguration _configuration;
         public StaffController(ApplicationDbContext context, IConfiguration configuration)
         {
             Db = context;
@@ -34,22 +34,22 @@ namespace COMP1640.Controllers
         [Route("/Staff/ViewPage")]
         [HttpGet]
         public IActionResult ViewPage(int pageNum = 1, string orderBy = "latest", string viewType = "idea", int id = 1)
-        {                   
+        {
             int skipPage = 5 * (pageNum - 1);
             var temp = new List<Idea>();
             List<Idea> page = GetIdeaByType(viewType, id);
             ViewBag.Total = page.Count();
             if (orderBy.Equals("mostview"))
-            {               
-                temp = page.OrderByDescending(i => i.idea_view).ToList();         
+            {
+                temp = page.OrderByDescending(i => i.idea_view).ToList();
             }
             else if (orderBy.Equals("latest"))
             {
-                temp = page.OrderByDescending(i => i.created_date).ToList();         
+                temp = page.OrderByDescending(i => i.created_date).ToList();
             }
             else if (orderBy.Equals("popular"))
             {
-                temp = page.OrderByDescending(i => i.Reacpoint.ThumbUp - i.Reacpoint.ThumbDown).ToList();          
+                temp = page.OrderByDescending(i => i.Reacpoint.ThumbUp - i.Reacpoint.ThumbDown).ToList();
             }
             page = temp.Skip(skipPage).Take(5).ToList();
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -85,9 +85,9 @@ namespace COMP1640.Controllers
         public IActionResult AddIdea(List<IFormFile> uploadedFiles, string title, string content, int eventId, string categoryName, string isAnonymous, string profileId)
         {
             var evt = Db.Events.FirstOrDefault(e => e.EventId == eventId);
-            
+
             if (evt.First_closure_date > DateTime.UtcNow.AddHours(7))
-            {              
+            {
                 ////Create reactpoint entity to relate to Idea entity
                 ReactPoint newReactPoint = new ReactPoint
                 {
@@ -101,7 +101,7 @@ namespace COMP1640.Controllers
                 Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
                 var subject = profile.Name + " has posted a new idea with title \"" + title + "\"";
                 //SendEmail(/*profile.Email*/"dantruong2002tq@gmail.com", subject, content);
-                Boolean anonynous = isAnonymous == null ? false : true;               
+                Boolean anonynous = isAnonymous == null ? false : true;
                 Idea newIdea = new Idea()
                 {
                     idea_title = title,
@@ -115,7 +115,7 @@ namespace COMP1640.Controllers
                     Category = category,
                     ReactPointId = reactPoint.ReactPointId,
                     Reacpoint = reactPoint,
-                    EventId =evt.EventId,
+                    EventId = evt.EventId,
                     Event = evt
                 };
                 Db.Add(newIdea);
@@ -123,8 +123,8 @@ namespace COMP1640.Controllers
                 if (uploadedFiles.Count > 0)
                 {
                     HandleFile(uploadedFiles, Db.Ideas.OrderBy(i => i.IdeaId).Last().IdeaId, "ADD"); //add file
-                }             
-            } 
+                }
+            }
             return RedirectToAction("ViewPage", "Staff");
         }
 
@@ -172,7 +172,7 @@ namespace COMP1640.Controllers
         {
             Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
             if (currentIdea.Event.First_closure_date > DateTime.UtcNow.AddHours(7))
-            {             
+            {
                 string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
                 ViewBag.Category = Db.Categories.ToList();
@@ -186,7 +186,7 @@ namespace COMP1640.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName,int eventId, string isAnonymous)
+        public IActionResult EditIdea(int ideaId, List<IFormFile> uploadedFiles, string title, string content, string categoryName, int eventId, string isAnonymous)
         {
             var evt = Db.Events.FirstOrDefault(i => i.EventId == eventId);
             if (evt.First_closure_date > DateTime.UtcNow.AddHours(7))
@@ -208,13 +208,13 @@ namespace COMP1640.Controllers
                     HandleFile(uploadedFiles, ideaId, "UPDATE"); //edit file
                 }
                 Db.Update(idea);
-                Db.SaveChanges();               
+                Db.SaveChanges();
             }
             return RedirectToAction("DetailIdea", "Staff", new { ideaId });
-            
+
         }
 
-  
+
         [HttpPost]
         public JsonResult Comment(Comment com)
         {
@@ -228,32 +228,32 @@ namespace COMP1640.Controllers
                 var name = (com.com_anonymous) ? "An anonymous user" : profile.Name;
                 var subject = name + " has commented your \"" + idea.idea_title + "\" idea";
                 //SendEmail(/*idea.Profile.Email*/"dantruong2002tq@gmail.com", subject, com.com_content);
-                    Comment newComment = new Comment()
-                    {
-                        com_content = com.com_content,
-                        ProfileId = com.ProfileId,
-                        Profile = profile,
-                        created_date = DateTime.UtcNow.AddHours(7),
-                        com_anonymous = com.com_anonymous,
-                        IdeaId = com.IdeaId,
-                        Idea = idea
-                    };
-                    Db.Add(newComment);
-                    Db.SaveChanges();
-                    var result = new
-                    {
-                        Name = profile.Name,
-                        Avatar = profile.Avatar,
-                        Anonymous = com.com_anonymous,
-                        Content = com.com_content,
-                        Time = String.Format("{0:g}", newComment.created_date),
-                        ComNumber = Db.Comments.Where(c => c.IdeaId == com.IdeaId).Count()
-                    };
-                    var response = JsonConvert.SerializeObject(result);
-                    return Json(response);
+                Comment newComment = new Comment()
+                {
+                    com_content = com.com_content,
+                    ProfileId = com.ProfileId,
+                    Profile = profile,
+                    created_date = DateTime.UtcNow.AddHours(7),
+                    com_anonymous = com.com_anonymous,
+                    IdeaId = com.IdeaId,
+                    Idea = idea
+                };
+                Db.Add(newComment);
+                Db.SaveChanges();
+                var result = new
+                {
+                    Name = profile.Name,
+                    Avatar = profile.Avatar,
+                    Anonymous = com.com_anonymous,
+                    Content = com.com_content,
+                    Time = String.Format("{0:g}", newComment.created_date),
+                    ComNumber = Db.Comments.Where(c => c.IdeaId == com.IdeaId).Count()
+                };
+                var response = JsonConvert.SerializeObject(result);
+                return Json(response);
             }
             return Json(null);
-        }      
+        }
 
         public async Task<IActionResult> DetailIdea(int id)
         {
@@ -287,7 +287,6 @@ namespace COMP1640.Controllers
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(userId));
             var user_react = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == userId);
             var idea_react = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == id);
-
             try
             {
                 var the_react = Db.React.Where(a => a.IdeaId == idea_react.IdeaId).Where(b => b.ProfileId == user_react.ProfileId).Single();
@@ -310,10 +309,10 @@ namespace COMP1640.Controllers
         public IActionResult DeleteIdea(int id)
         {
             Idea idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
-            var docs = Db.Documents.Where(i =>i.IdeaId == id).ToList();
+            var docs = Db.Documents.Where(i => i.IdeaId == id).ToList();
             var reacts = Db.React.Where(i => i.IdeaId == id).ToList();
             var reactpoint = Db.ReactPoints.FirstOrDefault(i => i.ReactPointId == idea.ReactPointId);
-            var coms = Db.Comments.Where(i => i.IdeaId == id).ToList();           
+            var coms = Db.Comments.Where(i => i.IdeaId == id).ToList();
             if (docs.Count() > 0)
             {
                 Db.RemoveRange(docs);
@@ -343,7 +342,7 @@ namespace COMP1640.Controllers
 
             DirectoryInfo dirInfo = new DirectoryInfo(fileSavePath);
 
-            int i = 0; 
+            int i = 0;
 
             foreach (var item in dirInfo.GetFiles())
             {
@@ -411,7 +410,7 @@ namespace COMP1640.Controllers
             return Json(result);
         }
 
-        public IActionResult Profile(string? id, int pageNum = 1, string viewType= "latest")
+        public IActionResult Profile(string? id, int pageNum = 1, string viewType = "latest")
         {
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
@@ -431,22 +430,22 @@ namespace COMP1640.Controllers
             List<Idea> list = null;
             if (viewType.Equals("mostview"))
             {
-                list = Db.Ideas.OrderByDescending(i => i.idea_view).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c=>c.Comments).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.OrderByDescending(i => i.idea_view).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "mostview";
             }
             else if (viewType.Equals("latest"))
             {
-                list = Db.Ideas.OrderByDescending(i => i.created_date).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c=>c.Comments).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.OrderByDescending(i => i.created_date).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "latest";
             }
             else if (viewType.Equals("popular"))
             {
-                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(c=>c.Comments).Where(i=>i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "popular";
             }
             ViewBag.Numberofidea = Db.Ideas.Include(c => c.Comments).Include(p => p.Profile).Include(i => i.Category).Where(ideas => ideas.ProfileId.Equals(id)).ToList();
             ViewBag.Ideas = list;
-            
+
             ViewBag.Total = ViewBag.Numberofidea.Count;
 
             var documents = Db.Documents.Include(d => d.Idea);
@@ -455,14 +454,14 @@ namespace COMP1640.Controllers
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
 
-            return View(Db.Profile.Include(d=>d.Department).FirstOrDefault(p => p.Id.Equals(id)));
+            return View(Db.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(id)));
         }
 
         public IActionResult TermsConditions()
         {
 
             return View();
-        }      
+        }
 
         public JsonResult SearchIdea(string searchString)
         {
@@ -478,26 +477,27 @@ namespace COMP1640.Controllers
                     IdeaTile = result.idea_title,
                     IdeaContent = result.idea_content,
                     View = result.idea_view,
-                    Point = result.Reacpoint.ThumbUp- result.Reacpoint.ThumbUp,
+                    Point = result.Reacpoint.ThumbUp - result.Reacpoint.ThumbUp,
                     CreatedDate = String.Format("{0:g}", result.created_date),
                     OwnerName = result.Profile.Name,
                     OwnerId = result.Profile.Id,
-                    Category = result.Category.category_name, 
+                    Category = result.Category.category_name,
                     Anonymous = result.idea_anonymous,
                     Avatar = result.Profile.Avatar,
                     CommentCount = result.Comments.Count(),
-                    UAvatar =uAvatar,
+                    UAvatar = uAvatar,
                     CateId = result.CategoryId
                 });
             }
-            var res = JsonConvert.SerializeObject(data);          
+            var res = JsonConvert.SerializeObject(data);
             return Json(res);
         }
 
         public List<Idea> GetIdeaByType(string type, int id)
         {
             List<Idea> output = new List<Idea>();
-            switch (type) {
+            switch (type)
+            {
                 case "idea":
                     output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
                     break;
@@ -505,10 +505,11 @@ namespace COMP1640.Controllers
                     output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ThenInclude(d => d.Department).Where(i => i.Profile.Department.DepId == id).ToList();
                     break;
                 case "cat":
-                    output = Db.Ideas.Include(i=>i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).Where(i => i.Category.CategoryId == id).ToList();
+                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
+                                     .Include(i => i.Category).Include(i => i.Profile).Where(i => i.Category.CategoryId == id).ToList();
                     break;
                 case "evt":
-                    output = Db.Ideas.Where(i => i.EventId == id).Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();              
+                    output = Db.Ideas.Where(i => i.EventId == id).Include(i => i.Comments).Include(i => i.Reacpoint.ReactPointId).Include(i => i.Category).Include(i => i.Profile).ToList();
                     break;
             }
             return output;
@@ -531,11 +532,11 @@ namespace COMP1640.Controllers
                 client.Authenticate(_configuration["Email:Username"], _configuration["Email:Password"]);
                 client.Send(message);
                 client.Disconnect(true);
-                client.Dispose();               
+                client.Dispose();
             }
-            catch(Exception ex)
-            {          
-                
+            catch (Exception ex)
+            {
+
             }
         }
 
@@ -583,6 +584,26 @@ namespace COMP1640.Controllers
             }
             string result = JsonConvert.SerializeObject(save);
             return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> CheckReact(int IdeaId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(userId));
+            var user_react = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == userId);
+            var idea_react = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == IdeaId);
+            try
+            {
+                var the_react = Db.React.Where(a => a.IdeaId == idea_react.IdeaId).Where(b => b.ProfileId == user_react.ProfileId).Single();
+                var UserReact = the_react.Reacted;
+                string result = JsonConvert.SerializeObject(UserReact);
+                return Json(result);
+            }
+            catch (Exception)
+            {
+                return Json(null);
+            }
         }
     }
 }
