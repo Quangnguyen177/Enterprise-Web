@@ -1,6 +1,7 @@
 body {
     font-family: 'Raleway', sans-serif;
-    background: linear-gradient(#d6f1f9, #d9efd7);
+    /*   background: linear-gradient(#d6f1f9, #d9efd7);*/
+    background: linear-gradient(#5b5b5b, #91c4a5);
     -webkit-font-smoothing: antialiased;
     height: 100%;
 }
@@ -8,9 +9,9 @@ body {
 .logo_login {
     width: 8em;
     height: 5em;
-    margin-bottom: 9em;
-    margin-left: 1em;
-    margin-top: -4em;
+    margin-bottom: 10em;
+    margin-left: 0.9em;
+    margin-top: -5em;
 }
 
 .login-page {
@@ -29,6 +30,7 @@ body {
     height: 100%;
     text-align: center;
     box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+    border-radius: 10px;
 }
 .logo_login img {
     width: 15em;

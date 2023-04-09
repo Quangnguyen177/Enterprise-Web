@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Open Sans;
+    font-family: Courier New;
     box-sizing: border-box;
 }
 
@@ -42,24 +42,23 @@ body {
     }
 /*logo*/
 .logo img {
-    width: 116px;
-    height: 112px;
+    width: 134px;
+    height: 125px;
     margin-left: 71px;
-    margin-top: -36px;
+    margin-top: -54px;
 }
 /*nav*/
 #nav_bar {
     display: inline-block;
-    transform: translateX(-14%);
-    padding-top: 9px;
+    padding-top: 12px;
 }
 
 .sub_nav li {
     display: inline-block;
-    font-size: 19px;
-    font-weight: bold;
-    letter-spacing: 0.7px;
+    font-size: 18px;
+    font-weight: 600;
     text-decoration: none;
+    margin-left: -0.8em;
 }
 
 .drop_down {
@@ -425,7 +424,7 @@ input[type="text" i] {
 .widget h4 {
     color: #424242;
     display: inline-block;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 500;
     padding: 20px 20px 0px;
     position: relative;
@@ -445,7 +444,7 @@ input[type="text" i] {
     .idea h4 {
         color: #424242;
         display: inline-block;
-        font-size: 20px;
+        font-size: 19px;
         font-weight: 500;
         padding: 20px 20px 0px;
         position: relative;
@@ -462,7 +461,6 @@ input[type="text" i] {
     position: relative;
     font-weight: 400;
     color: #797979;
-    letter-spacing: 1.0px;
     line-height: 60px;
     padding-left: 2.8em;
 }
@@ -625,7 +623,7 @@ input:checked ~ .slider {
 
 .text {
     display: inline-block;
-    letter-spacing: 0.1em;
+    /*   letter-spacing: 0.1em;*/
     padding: 20px 10px;
     cursor: pointer;
     font-size: 1.4em;
@@ -763,6 +761,7 @@ input[type]:checked ~ span.middle {
     opacity: 0;
     transition: transform linear 0.2s, opacity linear 0.3s;
     border-radius: 7px;
+    background-color: var(--text-color);
 }
 
 .all_idea_mobile {
@@ -777,14 +776,14 @@ input[type]:checked ~ span.middle {
     display: inline-block;
     position: relative;
     color: #757575;
-    line-height: 65px;
+    line-height: 55px;
     padding-left: 2.8em;
     top: 1em;
     font-weight: 500;
 }
 
     .shortcuts_mobile a {
-        color: #333;
+        color: black;
         text-decoration: none;
         padding-left: 1.4em;
     }
@@ -803,7 +802,7 @@ input[type]:checked ~ span.middle {
 
     .sub_nav.shortcuts_mobile li {
         margin-left: -1.2em;
-        line-height: 2em;
+        line-height: 1.6em;
         text-decoration: none;
         font-size: 18px;
         font-weight: 530;
@@ -812,21 +811,29 @@ input[type]:checked ~ span.middle {
 .logout_moblie button {
     background: none;
     border: none;
-    color: #333;
+    color: black;
 }
+
+.avatar_mobile {
+    text-align: center;
+}
+
+    .avatar_mobile a {
+        color: black;
+    }
+
+        .avatar_mobile a:hover {
+            text-decoration: none;
+        }
+
+    .avatar_mobile img {
+        width: 7em;
+        border-radius: 10px;
+        box-shadow: 9px 11px 10px #e0e6ec;
+    }
 
 .logout_moblie i {
-    padding-right: 1.1em;
-}
-
-.idea_mobile h1 {
-    color: #424242;
-    display: inline-block;
-    font-size: 25px;
-    font-weight: 600;
-    padding: 20px 20px 0px;
-    position: relative;
-    width: 100%;
+    padding-right: 0.5em;
 }
 
 .input_check:checked ~ .overlay {
@@ -1027,9 +1034,11 @@ span, p {
 
 /*laptop*/
 @media only screen and (min-width: 73em) and (max-width: 81.25em) {
-    .sub_nav li {
-        letter-spacing: 0em;
-        font-size: 16px;
+    .logo img {
+        width: 122px;
+        height: 120px;
+        margin-left: 71px;
+        margin-top: -54px;
     }
 
     #nav_bar {
@@ -1037,8 +1046,18 @@ span, p {
         padding-top: 0.7em;
     }
 
+    .sub_nav li {
+        letter-spacing: 0em;
+        font-size: 16px;
+        margin-left: -2em;
+    }
+
     .header_search {
-        transform: translateX(5%);
+        transform: translateX(1%);
+    }
+
+    .input {
+        width: 13em;
     }
 
     .input-group {
@@ -1057,14 +1076,10 @@ span, p {
         transform: translate(19em, -3.3em);
     }
 
-    .pagination {
-        margin-left: -21em;
-    }
-
-
     .sidebar.static {
         margin-left: -2em;
     }
+
     /*Responsive details */
 
     .commented .appear_idea {

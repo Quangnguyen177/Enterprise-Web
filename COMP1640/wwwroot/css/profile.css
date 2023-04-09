@@ -71,7 +71,11 @@
     }
 
 .widget h4 {
-    font-size: 1.8em;
+    font-size: 1.6em;
+}
+
+.Shortcuts.nav_bar--item--separate2 i {
+    padding-right: 1em;
 }
 
 .wall {
