@@ -7,6 +7,7 @@ namespace COMP1640.Models
 {
     public class Profile : IdentityUser
     {
+        [StringLength(70, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
@@ -14,6 +15,7 @@ namespace COMP1640.Models
 
         public string Gender { get; set; }
 
+        [StringLength(100, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string Address { get; set; }
 
         public string Avatar { get; set; }

@@ -9,10 +9,12 @@ namespace COMP1640.Models
     {
         [Key]
         public int ComId { get; set; }
+
+        [StringLength(1000, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string com_content { get; set; }
 
         [DataType(DataType.Date)]
-        public Nullable<DateTime> created_date { get; set; }
+        public DateTime created_date { get; set; }
 
         public Boolean com_anonymous { get; set; }
 

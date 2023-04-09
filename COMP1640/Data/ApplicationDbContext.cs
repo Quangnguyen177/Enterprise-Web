@@ -317,7 +317,7 @@ namespace COMP1640
                     ProfileId = "1",
                     IdeaId = 1,
                     com_content = "This is a great idea",
-                    //created_date null
+                    created_date = DateTime.UtcNow,
                     com_anonymous = false
                 }
             );
@@ -360,15 +360,15 @@ namespace COMP1640
                 {
                     EventId = 1,
                     EventName = "Test #1",
-                    First_closure_date = null,
-                    Last_closure_date = null
+                    First_closure_date = DateTime.Today,
+                    Last_closure_date = DateTime.Today
                 },
                 new Event
                 {
                     EventId = 2,
                     EventName = "The second Test",
-                    First_closure_date = null,
-                    Last_closure_date = null
+                    First_closure_date = DateTime.Today,
+                    Last_closure_date = DateTime.Today
                 },
                 new Event
                 {

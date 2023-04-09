@@ -8,6 +8,8 @@ namespace COMP1640.Models
         [Key]
         public int CategoryId { get; set; }
 
+        [Required]
+        [StringLength(20, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string category_name { get; set; }
 
         //-------------------------

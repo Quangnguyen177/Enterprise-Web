@@ -11,12 +11,15 @@ namespace COMP1640.Models
         [Key]
         public int IdeaId { get; set; }
 
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string idea_title { get; set; }
 
+        [StringLength(2000, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string idea_content { get; set; }
 
         [DataType(DataType.Date)] 
-        public Nullable<DateTime> created_date { get; set; }
+        public DateTime created_date { get; set; }
 
         public Boolean idea_anonymous { get; set; }
 
