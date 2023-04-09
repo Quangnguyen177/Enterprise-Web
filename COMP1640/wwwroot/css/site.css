@@ -353,10 +353,16 @@ input[type="text" i] {
         text-decoration: none;
     }
 
+.title_idea_info {
+    width: 90%;
+}
 .title_idea h1 {
     display: inline-block;
     transform: translate(1.6em, -0.2em);
     font-size: 1.3em;
+    word-wrap: break-word;
+    width: 80%;
+    text-align: inherit;
 }
 
 .title_idea span {
@@ -370,9 +376,11 @@ input[type="text" i] {
 .content_post {
     font-family: inherit;
     font-size: 1.2em;
-    width: 100%;
+    width: 97%;
     height: 100%;
     margin: 0.4em 0.5em;
+    word-wrap: break-word;
+    text-align: -webkit-left;
 }
 
 /*col-lg-3-left*/

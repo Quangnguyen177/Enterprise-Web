@@ -21,7 +21,16 @@
     position: inherit;
     z-index: 2;
 }
+.col-sm-6.multi-gd-img li, a {
+    list-style: none;
+}
 
+.col-sm-6 .nav_bar--item a{
+    font-weight: 600;
+}
+.dropdown-menu {
+    width: 100%;
+}
 .information_idea {
     width: 100%;
 }
@@ -30,6 +39,7 @@
     font-size: 1.4em;
     font-weight: 600;
     margin-top: 0.2em;
+    color: #515151;
 }
 
 .profile h4 {
@@ -170,14 +180,15 @@
 .comment1_idea {
     border-radius: 7px;
     background: #e8f3e0;
+    width: 62%;
 }
 
-.content_post {
-    width: 30.3em;
-}
+    .comment1_idea span {
+        word-wrap: break-word;
+        font-size: 0.9em;
+        text-align: -webkit-left;
+    }
 
-.appear_idea h4 {
-}
 
 .dropdown_comment {
     padding-top: 4em;
