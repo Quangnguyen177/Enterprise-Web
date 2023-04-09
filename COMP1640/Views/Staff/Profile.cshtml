@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="~/css/profile.css" />
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
     var ideas = ViewBag.Ideas as List<Idea>;
+    int Point(int thumbUp, int thumbDown)
+    {
+        return thumbUp - thumbDown;
+    }
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
@@ -204,7 +208,7 @@
                                                 <ul class="felling_idea">
                                                     <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
                                                     <li>
-                                                        <label placeholder="React point: "><p id="total">#</p></label>
+                                                        <label placeholder="React point: "><p id="total">@Point(@idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)</p></label>
                                                     </li>
                                                     <li>
                                                         <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
