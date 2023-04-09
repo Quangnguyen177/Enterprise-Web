@@ -153,14 +153,14 @@
                                             </li>
                                             <li>
                                                 <i type="button" id="TU-@count" onload="checkUser(@idea.IdeaId)" 
-                                                    onclick="changeTU(this)"
+                                                    @*onclick="changeTU(this)"*@
                                                     onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)" 
                                                     class="fa-regular fa-thumbs-up" style="color: green"></i>
                                             </li>
 
                                             <li>
                                                 <i type="button" id="TD-@idea.IdeaId" onload="checkUser(@idea.IdeaId)"
-                                                    onclick="changeTD(this)"
+                                                    @*onclick="changeTD(this)"*@
                                                     onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)" 
                                                     class="fa-regular fa-thumbs-down" style="color:green"></i>
                                             </li>
