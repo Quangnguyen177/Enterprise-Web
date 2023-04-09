@@ -9,7 +9,6 @@
         return thumbUp - thumbDown;
     }
     ViewPage pageInfor = (ViewPage)ViewBag.Page;
-    var count = 0;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
 {
@@ -78,7 +77,6 @@
                 <div class="block" id="display-idea">
                     @foreach (var idea in Model)
                     {
-                        count += 1;
                         <div class="information_idea">
                             <div class="Infor_idea">
                                 <div class="detail_idea nav_bar--item--separate2">
@@ -152,15 +150,13 @@
                                                 <label placeholder="React point: "><p id="total">@Point(@idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)</p></label>
                                             </li>
                                             <li>
-                                                <i type="button" id="TU-@count" onload="checkUser(@idea.IdeaId)" 
-                                                    @*onclick="changeTU(this)"*@
-                                                    onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)" 
+                                                <i type="button" id="TU-@idea.IdeaId" onload="checkUser(@idea.IdeaId)"
+                                                   onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)" 
                                                     class="fa-regular fa-thumbs-up" style="color: green"></i>
                                             </li>
 
                                             <li>
                                                 <i type="button" id="TD-@idea.IdeaId" onload="checkUser(@idea.IdeaId)"
-                                                    @*onclick="changeTD(this)"*@
                                                     onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)" 
                                                     class="fa-regular fa-thumbs-down" style="color:green"></i>
                                             </li>
@@ -360,10 +356,20 @@
             }
             @*counter Lock 0 #3 --> $("#TD").hasClass("fa-solid") == true / #1 = false*@
 
-            @*TheToggle(this);*@
-            if ($("#TD").hasClass("fa-solid") == true) {
-                $("#TD").removeClass("fa-solid");
-                $("#TD").addClass("fa-regular");
+
+            if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true) {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
+            }
+            else {
+                $(`#TU-${IdeaId}`).removeClass("fa-regular");
+                $(`#TU-${IdeaId}`).addClass("fa-solid");
+            }
+
+
+            if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true) {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
             }
         };
 
@@ -444,10 +450,20 @@
             @*TheToggle(event.target.id);*@
             @*TheToggle(this);*@
 
+            if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true){
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+            }
+            else
+            {
+                $(`#TD-${IdeaId}`).removeClass("fa-regular");
+                $(`#TD-${IdeaId}`).addClass("fa-solid");
+            }
 
-            if ($('[id*=TU-IdeaId]').hasClass("fa-solid") == true) {
-                $('[id*=TU-IdeaId]').removeClass("fa-solid");
-                $('[id*=TU-IdeaId]').addClass("fa-regular");
+
+            if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true) {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
             }
         }
 
