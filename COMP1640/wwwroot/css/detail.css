@@ -41,7 +41,13 @@
     margin-top: 0.2em;
     color: #515151;
 }
-
+.content_post {
+    height: 100%;
+    overflow: inherit;
+    -webkit-line-clamp: none;
+    text-overflow: unset;
+    display: block;
+}
 .profile h4 {
     transform: translate(4.2em, -3em);
 }
@@ -71,8 +77,8 @@
 }
 
     .description_account p {
-        font-size: 1.8em;
-        display: inline-block;
+        font-size: 1.5em;
+        text-align: center;
     }
 
 .friend {
