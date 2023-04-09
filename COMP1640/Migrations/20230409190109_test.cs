@@ -27,7 +27,7 @@ namespace COMP1640.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    category_name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    category_name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace COMP1640.Migrations
                 {
                     DepId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Dep_name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Dep_name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,9 +53,9 @@ namespace COMP1640.Migrations
                 {
                     EventId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EventName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    First_closure_date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Last_closure_date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EventName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    First_closure_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Last_closure_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -103,10 +103,10 @@ namespace COMP1640.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
                     DoB = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -226,9 +226,9 @@ namespace COMP1640.Migrations
                 {
                     IdeaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idea_title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    idea_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    created_date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    idea_title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    idea_content = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    created_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     idea_anonymous = table.Column<bool>(type: "bit", nullable: false),
                     idea_view = table.Column<int>(type: "int", nullable: false),
                     ProfileId = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -291,8 +291,8 @@ namespace COMP1640.Migrations
                 {
                     ComId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    com_content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    created_date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    com_content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    created_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     com_anonymous = table.Column<bool>(type: "bit", nullable: false),
                     ProfileId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     IdeaId = table.Column<int>(type: "int", nullable: false)
@@ -320,8 +320,8 @@ namespace COMP1640.Migrations
                 {
                     DocId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    doc_path = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    doc_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    doc_path = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    doc_name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     IdeaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -367,16 +367,16 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "A", "206c5fcd-c2c1-4482-8f4b-2d16032818c9", "Administrator", "Administrator" },
-                    { "B", "7cd9e75c-ed86-4e26-96e9-8cbf45d42ddf", "Staff", "Staff" },
-                    { "C", "e0480285-cbd0-45a0-919d-6f7868ae302e", "Quality Assurance Manager", "Quality Assurance Manager" },
-                    { "D", "cf7148eb-de41-4025-904a-5f5c0bef6a86", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
+                    { "A", "93a3cab2-11cc-452d-8b13-5fe30ace83ba", "Administrator", "Administrator" },
+                    { "B", "62c9ddfb-208e-41a6-9d82-ecafdea07136", "Staff", "Staff" },
+                    { "C", "6be212ba-f6a0-4a9a-afdb-5880ad0ff110", "Quality Assurance Manager", "Quality Assurance Manager" },
+                    { "D", "0d5adc85-fd14-48eb-9339-ae921960a1e2", "Quality Assurance Coordinator", "Quality Assurance Coordinator" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "Somewhere in the big gray sky", "121678477_2783538908573406_8062103030979451641_n.jpg", "2076d101-3805-4a78-8a28-166b2db5e31f", null, new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAELlJn2tm4v/mAkisruUhRnqvCyYw9yOad2HW/cc73dYH62i0JD2q59bRjRO94drsDg==", "0983337621", false, "bb0fa958-71c7-43c6-b1e9-68a7bb92469a", false, "Truong" });
+                values: new object[] { "1", 0, "Somewhere in the big gray sky", "121678477_2783538908573406_8062103030979451641_n.jpg", "20b62323-ffc9-4649-8918-c1f6fd6fb710", null, new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", false, "Male", false, null, "Truong Dep Zai", null, "admin@gmail.com", "AQAAAAEAACcQAAAAEPZPE4iWfubmEBO7qgzUEnEh5D2dOgxiiYI1+saoSHR6yyzuODSYXB1hpnhgF0Eksg==", "0983337621", false, "c174326f-300d-4c06-9c0f-5b75ad1aba79", false, "Truong" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -398,8 +398,8 @@ namespace COMP1640.Migrations
                 columns: new[] { "EventId", "EventName", "First_closure_date", "Last_closure_date", "Status" },
                 values: new object[,]
                 {
-                    { 1, "Test #1", null, null, false },
-                    { 2, "The second Test", null, null, false },
+                    { 1, "Test #1", new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), false },
+                    { 2, "The second Test", new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), false },
                     { 3, "The third Test", new DateTime(2024, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false }
                 });
 
@@ -424,9 +424,9 @@ namespace COMP1640.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "ConcurrencyStamp", "DepId", "DoB", "Email", "EmailConfirmed", "Gender", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "2", 0, "Somewhere in the big gray sky", "00_1.jpg", "e31c7861-4b15-4e76-9af4-e80d57b99129", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEHk/u6klB/TVRP53DXXADi2jfDhTL90nz3/XzZaUuj15X+n/JRmZOeNcA41oAJjJAQ==", "0329226528", false, "c697b37b-8f0d-4673-bbac-0b0bc44ca0f1", false, "Duke Mike The" },
-                    { "3", 0, "Somewhere in the big gray sky", "Galadriel.png", "b5248f16-ffd7-4493-8d1b-fec97ebc6f83", 2, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qam1@gmail.com", false, "Male", false, null, "Mike The Duke", null, "qam1@gmail.com", "AQAAAAEAACcQAAAAEB15c/PmJAHq/s5inhmcgmIGwimM7DBW/FoNsIV5jmqkJnxAJug8vFxzEbOeMdkWGA==", "0329226528", false, "6512ab1c-f3f0-4228-8a67-5228574ba65f", false, "Mike The Duke" },
-                    { "4", 0, "Somewhere in the big gray sky", "122586227_360596095021773_7780351300286907559_n.jpg", "21bba783-f9b8-473c-b574-1e7141682e24", 3, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qac1@gmail.com", false, "Female", false, null, "Mai The Clone Duke", null, "qac1@gmail.com", "AQAAAAEAACcQAAAAEAUSicsOZ1j4wr/+EU3tXGlAEVGx102iKD4XC5xouKMg/kgOiIXxTinWiIqwvRKa7Q==", "0329226528", false, "33066f1f-7362-4fd8-a555-dee1d3ac5f0a", false, "Mai The Duc" }
+                    { "2", 0, "Somewhere in the big gray sky", "00_1.jpg", "7f3f59b6-1cfb-4629-a47d-14ea6e75e7b3", 1, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff1@gmail.com", false, "Male", false, null, "Duke Mike The", null, "staff1@gmail.com", "AQAAAAEAACcQAAAAEEqKsla8kbXVSVqLHOLE/FL9x035cRW4HF+htGd5E/itCSj6VhIcft+aacCjkn2v3w==", "0329226528", false, "94df4367-38be-44d1-986a-7420c2048951", false, "Duke Mike The" },
+                    { "3", 0, "Somewhere in the big gray sky", "Galadriel.png", "772ff389-0198-4ac8-9c04-e5ed2bc4dece", 2, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qam1@gmail.com", false, "Male", false, null, "Mike The Duke", null, "qam1@gmail.com", "AQAAAAEAACcQAAAAEE0Cxle3to/QkTNU384YVkFmRGYXgOKRror77tHla1nUzJfojjZ7drAETNRRXUjYVg==", "0329226528", false, "bf72f640-e80b-45f9-9363-70ca6206bfd1", false, "Mike The Duke" },
+                    { "4", 0, "Somewhere in the big gray sky", "122586227_360596095021773_7780351300286907559_n.jpg", "b2e3c216-9a6e-492d-a191-5ef6c71eca0a", 3, new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "qac1@gmail.com", false, "Female", false, null, "Mai The Clone Duke", null, "qac1@gmail.com", "AQAAAAEAACcQAAAAEDwSLsw1Uhfi1okrdFTcmTyuPlO4kgkzFZkZy2qiANhXjx5GiOy63e3Daf2Ir5seZw==", "0329226528", false, "b5287783-0c62-4108-a1e3-e47c4686327e", false, "Mai The Duc" }
                 });
 
             migrationBuilder.InsertData(
@@ -451,7 +451,7 @@ namespace COMP1640.Migrations
             migrationBuilder.InsertData(
                 table: "Comments",
                 columns: new[] { "ComId", "IdeaId", "ProfileId", "com_anonymous", "com_content", "created_date" },
-                values: new object[] { 1, 1, "1", false, "This is a great idea", null });
+                values: new object[] { 1, 1, "1", false, "This is a great idea", new DateTime(2023, 4, 9, 19, 1, 8, 856, DateTimeKind.Utc).AddTicks(7880) });
 
             migrationBuilder.InsertData(
                 table: "Ideas",

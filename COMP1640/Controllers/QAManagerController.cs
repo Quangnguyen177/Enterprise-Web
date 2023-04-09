@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System;
 using COMP1640.ViewModels;
 using System.Security.Claims;
+using Org.BouncyCastle.Crypto;
 
 namespace COMP1640.Controllers
 {
@@ -88,7 +89,8 @@ namespace COMP1640.Controllers
         public IActionResult Dashboard()
         {
             List<TopContributor> list = new List<TopContributor>();
-            var ideas = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Include(i => i.Profile.Department).ToList();
+            //var ideas = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Include(i => i.Profile.Department).ToList();
+            var ideas = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month).Include(i => i.Profile.Department).ToList();
             var groupById = ideas.GroupBy(i => i.Profile);
             foreach (var group in groupById)
             {
@@ -221,7 +223,8 @@ namespace COMP1640.Controllers
         {
             var pieChartData = new List<PieChart>();
             var departmentNames = context.Departments.Select(d => d.Dep_name).ToList();
-            var totalIdeas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).ToList();
+            //var totalIdeas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).ToList();
+            var totalIdeas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.created_date.Month == GetCurrentVnTime().Month).ToList();
             var totalContributors = totalIdeas.GroupBy(i => i.Profile.Id).Count();
             foreach (var name in departmentNames)
             {
@@ -241,14 +244,21 @@ namespace COMP1640.Controllers
         public JsonResult GetLineChartData()
         {
             List<LineChart> res = new List<LineChart>();
-            var ideas = context.Ideas.Include(i => i.Profile.Department).ToList();
+            var pro = context.Profile.ToList();
+
+            var ideas = context.Ideas.Include(i => i.Profile.Department).Where(i => i.Profile.Department != null);
+
+            //var ideas = context.Ideas.Include(i => i.Profile.Department).ToList();
             var departments = context.Departments.Select(d => d.Dep_name).ToList();
             int[] totalIdeas = new int[12];
             foreach (var department in departments)
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    totalIdeas[i] = ideas.Where(idea => idea.Profile.Department.Dep_name.Equals(department) && idea.created_date.Value.Month == i + 1).Count();
+                    //totalIdeas[i] = ideas.Where(idea => idea.Profile.Department.Dep_name.Equals(department) && idea.created_date.Value.Month == i + 1).Count();
+                    
+                    totalIdeas[i] = ideas.Where(idea => idea.Profile.Department.Dep_name.Equals(department) && idea.created_date.Month == i + 1).Count();
+                    
                 }
                 LineChart data = new LineChart()
                 {
@@ -280,11 +290,13 @@ namespace COMP1640.Controllers
             List<MixedChart> data = new List<MixedChart>();
             //lay du lieu nhung idea trong vong 7 ngay ke tu idea gan nhat.
             var lastestDate = context.Ideas.OrderByDescending(i => i.created_date).First().created_date;
-            var bound = lastestDate.Value.Date.AddDays(-6);
+            //var bound = lastestDate.Value.Date.AddDays(-6);
+            var bound = lastestDate.Date.AddDays(-6);
             var ideas = context.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.created_date).Where(i => i.created_date >= bound).ToList();
             while (bound <= lastestDate)
             {
-                var selectedIdeas = ideas.Where(i => i.created_date.Value.Day == bound.Day).ToList();
+                //var selectedIdeas = ideas.Where(i => i.created_date.Value.Day == bound.Day).ToList();
+                var selectedIdeas = ideas.Where(i => i.created_date.Day == bound.Day).ToList();
                 var view = selectedIdeas.Sum(i => i.idea_view);
                 var point = selectedIdeas.Sum(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown);
                 data.Add(new MixedChart(point, view, bound.ToString("MM/dd")));
@@ -361,14 +373,22 @@ namespace COMP1640.Controllers
         }
         private Statistic GetStatistic()
         {
-            var totalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
-            var totalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
-            var totalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
-            var totalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
-            var oldTotalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Count();
-            var oldTotalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Count();
-            var oldTotalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).GroupBy(i => i.ProfileId).Count();
-            var oldTotalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.idea_view);
+            //var totalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            //var totalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Count();
+            //var totalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
+            //var totalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
+            //var oldTotalIdea = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Count();
+            //var oldTotalComment = context.Comments.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Count();
+            //var oldTotalContributor = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).GroupBy(i => i.ProfileId).Count();
+            //var oldTotalView = context.Ideas.Where(i => i.created_date.Value.Month == GetCurrentVnTime().Month-1).Sum(i => i.idea_view);
+            var totalIdea = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month).Count();
+            var totalComment = context.Comments.Where(i => i.created_date.Month == GetCurrentVnTime().Month).Count();
+            var totalContributor = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month).GroupBy(i => i.ProfileId).Count();
+            var totalView = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month).Sum(i => i.idea_view);
+            var oldTotalIdea = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month - 1).Count();
+            var oldTotalComment = context.Comments.Where(i => i.created_date.Month == GetCurrentVnTime().Month - 1).Count();
+            var oldTotalContributor = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month - 1).GroupBy(i => i.ProfileId).Count();
+            var oldTotalView = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month - 1).Sum(i => i.idea_view);
             return new Statistic(totalIdea, totalContributor, totalView, totalComment, oldTotalIdea, oldTotalContributor, oldTotalView, oldTotalComment);
         }
     }

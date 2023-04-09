@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COMP1640.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230406235013_test")]
+    [Migration("20230409190109_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,9 @@ namespace COMP1640.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("category_name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("CategoryId");
 
@@ -60,9 +62,10 @@ namespace COMP1640.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("com_content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
-                    b.Property<DateTime?>("created_date")
+                    b.Property<DateTime>("created_date")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ComId");
@@ -80,7 +83,8 @@ namespace COMP1640.Migrations
                             IdeaId = 1,
                             ProfileId = "1",
                             com_anonymous = false,
-                            com_content = "This is a great idea"
+                            com_content = "This is a great idea",
+                            created_date = new DateTime(2023, 4, 9, 19, 1, 8, 856, DateTimeKind.Utc).AddTicks(7880)
                         });
                 });
 
@@ -92,7 +96,9 @@ namespace COMP1640.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Dep_name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("DepId");
 
@@ -127,10 +133,14 @@ namespace COMP1640.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("doc_name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<string>("doc_path")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.HasKey("DocId");
 
@@ -147,12 +157,14 @@ namespace COMP1640.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("EventName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<DateTime?>("First_closure_date")
+                    b.Property<DateTime>("First_closure_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("Last_closure_date")
+                    b.Property<DateTime>("Last_closure_date")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
@@ -167,12 +179,16 @@ namespace COMP1640.Migrations
                         {
                             EventId = 1,
                             EventName = "Test #1",
+                            First_closure_date = new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Last_closure_date = new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Status = false
                         },
                         new
                         {
                             EventId = 2,
                             EventName = "The second Test",
+                            First_closure_date = new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Last_closure_date = new DateTime(2023, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Status = false
                         },
                         new
@@ -204,17 +220,20 @@ namespace COMP1640.Migrations
                     b.Property<int>("ReactPointId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("created_date")
+                    b.Property<DateTime>("created_date")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("idea_anonymous")
                         .HasColumnType("bit");
 
                     b.Property<string>("idea_content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("idea_title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("idea_view")
                         .HasColumnType("int");
@@ -295,7 +314,8 @@ namespace COMP1640.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
@@ -327,7 +347,8 @@ namespace COMP1640.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -377,7 +398,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "121678477_2783538908573406_8062103030979451641_n.jpg",
-                            ConcurrencyStamp = "2076d101-3805-4a78-8a28-166b2db5e31f",
+                            ConcurrencyStamp = "20b62323-ffc9-4649-8918-c1f6fd6fb710",
                             DoB = new DateTime(2002, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
@@ -385,10 +406,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Truong Dep Zai",
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAELlJn2tm4v/mAkisruUhRnqvCyYw9yOad2HW/cc73dYH62i0JD2q59bRjRO94drsDg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPZPE4iWfubmEBO7qgzUEnEh5D2dOgxiiYI1+saoSHR6yyzuODSYXB1hpnhgF0Eksg==",
                             PhoneNumber = "0983337621",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bb0fa958-71c7-43c6-b1e9-68a7bb92469a",
+                            SecurityStamp = "c174326f-300d-4c06-9c0f-5b75ad1aba79",
                             TwoFactorEnabled = false,
                             UserName = "Truong"
                         },
@@ -398,7 +419,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "00_1.jpg",
-                            ConcurrencyStamp = "e31c7861-4b15-4e76-9af4-e80d57b99129",
+                            ConcurrencyStamp = "7f3f59b6-1cfb-4629-a47d-14ea6e75e7b3",
                             DepId = 1,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "staff1@gmail.com",
@@ -407,10 +428,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Duke Mike The",
                             NormalizedUserName = "staff1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHk/u6klB/TVRP53DXXADi2jfDhTL90nz3/XzZaUuj15X+n/JRmZOeNcA41oAJjJAQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEqKsla8kbXVSVqLHOLE/FL9x035cRW4HF+htGd5E/itCSj6VhIcft+aacCjkn2v3w==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c697b37b-8f0d-4673-bbac-0b0bc44ca0f1",
+                            SecurityStamp = "94df4367-38be-44d1-986a-7420c2048951",
                             TwoFactorEnabled = false,
                             UserName = "Duke Mike The"
                         },
@@ -420,7 +441,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "Galadriel.png",
-                            ConcurrencyStamp = "b5248f16-ffd7-4493-8d1b-fec97ebc6f83",
+                            ConcurrencyStamp = "772ff389-0198-4ac8-9c04-e5ed2bc4dece",
                             DepId = 2,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "qam1@gmail.com",
@@ -429,10 +450,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Mike The Duke",
                             NormalizedUserName = "qam1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB15c/PmJAHq/s5inhmcgmIGwimM7DBW/FoNsIV5jmqkJnxAJug8vFxzEbOeMdkWGA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE0Cxle3to/QkTNU384YVkFmRGYXgOKRror77tHla1nUzJfojjZ7drAETNRRXUjYVg==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6512ab1c-f3f0-4228-8a67-5228574ba65f",
+                            SecurityStamp = "bf72f640-e80b-45f9-9363-70ca6206bfd1",
                             TwoFactorEnabled = false,
                             UserName = "Mike The Duke"
                         },
@@ -442,7 +463,7 @@ namespace COMP1640.Migrations
                             AccessFailedCount = 0,
                             Address = "Somewhere in the big gray sky",
                             Avatar = "122586227_360596095021773_7780351300286907559_n.jpg",
-                            ConcurrencyStamp = "21bba783-f9b8-473c-b574-1e7141682e24",
+                            ConcurrencyStamp = "b2e3c216-9a6e-492d-a191-5ef6c71eca0a",
                             DepId = 3,
                             DoB = new DateTime(2002, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "qac1@gmail.com",
@@ -451,10 +472,10 @@ namespace COMP1640.Migrations
                             LockoutEnabled = false,
                             Name = "Mai The Clone Duke",
                             NormalizedUserName = "qac1@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAUSicsOZ1j4wr/+EU3tXGlAEVGx102iKD4XC5xouKMg/kgOiIXxTinWiIqwvRKa7Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDwSLsw1Uhfi1okrdFTcmTyuPlO4kgkzFZkZy2qiANhXjx5GiOy63e3Daf2Ir5seZw==",
                             PhoneNumber = "0329226528",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "33066f1f-7362-4fd8-a555-dee1d3ac5f0a",
+                            SecurityStamp = "b5287783-0c62-4108-a1e3-e47c4686327e",
                             TwoFactorEnabled = false,
                             UserName = "Mai The Duc"
                         });
@@ -579,28 +600,28 @@ namespace COMP1640.Migrations
                         new
                         {
                             Id = "A",
-                            ConcurrencyStamp = "206c5fcd-c2c1-4482-8f4b-2d16032818c9",
+                            ConcurrencyStamp = "93a3cab2-11cc-452d-8b13-5fe30ace83ba",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         },
                         new
                         {
                             Id = "B",
-                            ConcurrencyStamp = "7cd9e75c-ed86-4e26-96e9-8cbf45d42ddf",
+                            ConcurrencyStamp = "62c9ddfb-208e-41a6-9d82-ecafdea07136",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
                             Id = "C",
-                            ConcurrencyStamp = "e0480285-cbd0-45a0-919d-6f7868ae302e",
+                            ConcurrencyStamp = "6be212ba-f6a0-4a9a-afdb-5880ad0ff110",
                             Name = "Quality Assurance Manager",
                             NormalizedName = "Quality Assurance Manager"
                         },
                         new
                         {
                             Id = "D",
-                            ConcurrencyStamp = "cf7148eb-de41-4025-904a-5f5c0bef6a86",
+                            ConcurrencyStamp = "0d5adc85-fd14-48eb-9339-ae921960a1e2",
                             Name = "Quality Assurance Coordinator",
                             NormalizedName = "Quality Assurance Coordinator"
                         });
