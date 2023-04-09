@@ -100,7 +100,7 @@
             </div>
             <div class="nav_icon">
                 <ul class="menu icon">
-                    <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; font-weight: bold; text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">@ViewBag.LoginedUserName</a></li>
+                    <li class="icon_account nav_bar--item--separate"><a style="color: #373b3f; font-weight: bold; text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">@ViewBag.LogginedUser.Name</a></li>
                     <li class="icon_account"><a style="color: #373b3f; text-decoration: none" asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea"><i class="fa-solid fa-house"></i></a></li> &nbsp &nbsp
                     <li class="icon_account">
                         <form asp-area="Identity" asp-page="/Account/Logout" method="post">
