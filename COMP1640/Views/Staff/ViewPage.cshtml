@@ -118,7 +118,7 @@
                                                 </div>
                                                 <div class="title_idea_info">
                                                     <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
-                                                        <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
+                                                        <h1 class="lead">@idea.idea_title</h1>    @*Title*@
                                                     </a>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@
                                                 if (doc.IdeaId == idea.IdeaId)
                                                 {
                                                     <div class="file_idea" style="text-align: center">
-                                                        <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">
+                                                        <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId">Document:
                                                             @doc.doc_name
                                                         </a>
 
