@@ -8,6 +8,10 @@
     {
         return thumbUp - thumbDown;
     }
+    string findLock(int id, int L)
+    {
+        return id + " - " + L;
+    }
     ViewPage pageInfor = (ViewPage)ViewBag.Page;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
@@ -155,6 +159,7 @@
                                             </li>
                                             @if (idea.IsLikedByCurrentUser != null && idea.IsLikedByCurrentUser == true)
                                             {
+                                                var theLock = @findLock(@idea.IdeaId, 1);
                                                 <li>
                                                     <i type="button" id="TU-@idea.IdeaId"
                                                        onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
@@ -169,6 +174,7 @@
                                             }
                                             else if (idea.IsLikedByCurrentUser != null && idea.IsLikedByCurrentUser == false)
                                             {
+                                                var theLock = @findLock(@idea.IdeaId, 2);
                                                 <li>
                                                     <i type="button" id="TU-@idea.IdeaId"
                                                        onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
@@ -183,6 +189,7 @@
                                             }
                                             else
                                             {
+                                                var theLock = @findLock(@idea.IdeaId, 0);
                                                 <li>
                                                     <i type="button" id="TU-@idea.IdeaId"
                                                        onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
@@ -295,8 +302,8 @@
             else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true) {
                 $(`#TD-${IdeaId}`).removeClass("fa-solid");
                 $(`#TD-${IdeaId}`).addClass("fa-regular");
-                $(`#TU-${IdeaId}`).removeClass("fa-solid");
-                $(`#TU-${IdeaId}`).addClass("fa-regular");
+                $(`#TU-${IdeaId}`).removeClass("fa-regular");
+                $(`#TU-${IdeaId}`).addClass("fa-solid");
                         var obj = {
                                 ReactPointId: ReactPointId,
                                 ThumbUp: ThumbUp + 1,
@@ -340,8 +347,8 @@
             else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true) {
                 $(`#TU-${IdeaId}`).removeClass("fa-solid");
                 $(`#TU-${IdeaId}`).addClass("fa-regular");
-                $(`#TD-${IdeaId}`).removeClass("fa-solid");
-                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                $(`#TD-${IdeaId}`).removeClass("fa-regular");
+                $(`#TD-${IdeaId}`).addClass("fa-solid");
                 var obj = {
                     ReactPointId: ReactPointId,
                     ThumbUp: ThumbUp - 1,

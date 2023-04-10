@@ -57,28 +57,28 @@ namespace COMP1640.Controllers
             public bool? IsLikedByCurrentUser { get; set; }
         }
 
-        public class Idea : Models.Idea
-        {
-            public new int IdeaId { get; set; }
-            [Required]
-            public new string idea_title { get; set; }
-            public new string idea_content { get; set; }
-            [DataType(DataType.Date)]
-            public new DateTime created_date { get; set; }
-            public new Boolean idea_anonymous { get; set; }
-            public new int idea_view { get; set; }
-            public new string ProfileId { get; set; }
-            public new int CategoryId { get; set; }
-            public new Category Category { get; set; }
-            public new Profile Profile { get; set; }
-            public new int ReactPointId { get; set; }
-            public new ReactPoint Reacpoint { get; set; }
-            public new int EventId { get; set; }
-            //public new Event Event { get; set; }
-            public new ICollection<Comment> Comments { get; set; }
-            public new ICollection<Document> Documents { get; set; }
-            public new ICollection<React> Reacts { get; set; }
-        }
+        //public class Idea : Models.Idea
+        //{
+        //    public new int IdeaId { get; set; }
+        //    [Required]
+        //    public new string idea_title { get; set; }
+        //    public new string idea_content { get; set; }
+        //    [DataType(DataType.Date)]
+        //    public new DateTime created_date { get; set; }
+        //    public new Boolean idea_anonymous { get; set; }
+        //    public new int idea_view { get; set; }
+        //    public new string ProfileId { get; set; }
+        //    public new int CategoryId { get; set; }
+        //    public new Category Category { get; set; }
+        //    public new Profile Profile { get; set; }
+        //    public new int ReactPointId { get; set; }
+        //    public new ReactPoint Reacpoint { get; set; }
+        //    public new int EventId { get; set; }
+        //    //public new Event Event { get; set; }
+        //    public new ICollection<Comment> Comments { get; set; }
+        //    public new ICollection<Document> Documents { get; set; }
+        //    public new ICollection<React> Reacts { get; set; }
+        //}
 
         [Route("/Staff")]
         [Route("/Staff/ViewPage")]
@@ -277,7 +277,7 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult EditIdea(int id)
         {
-            Models.Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
+            Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
             if (currentIdea.Event.First_closure_date > DateTime.UtcNow.AddHours(7))
             {
                 string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -673,7 +673,7 @@ namespace COMP1640.Controllers
         [HttpPost]
         public async Task<JsonResult> React([FromBody] React save)
         {
-            var check = Db.React.FirstOrDefault(r => r.ProfileId == save.ProfileId);
+            var check = Db.React.Where(r => r.ProfileId == save.ProfileId && r.IdeaId == save.IdeaId).SingleOrDefault();
 
             if (check != null)
             {
