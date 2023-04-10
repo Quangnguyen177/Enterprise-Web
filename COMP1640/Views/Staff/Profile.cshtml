@@ -1,12 +1,40 @@
-@model COMP1640.Models.Profile
+@model List<COMP1640.Controllers.StaffController.PostViewModel>
 @{
     Layout = "_Staff";
     <link rel="stylesheet" href="~/css/profile.css" />
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
     var ideas = ViewBag.Ideas as List<Idea>;
-    int Point(int thumbUp, int thumbDown)
+    var pro = ViewBag.Pro;
+
+    string findTU(int ideaId, bool? isLikedByCurrentUser)
     {
-        return thumbUp - thumbDown;
+        if (isLikedByCurrentUser == true)
+        {
+            return "fa-solid";
+        }
+        else if (isLikedByCurrentUser == false)
+        {
+            return "fa-regular";
+        }
+        else
+        {
+            return "";
+        }
+    }
+    string findTD(int ideaId, bool? isLikedByCurrentUser)
+    {
+        if (isLikedByCurrentUser == false)
+        {
+            return "fa-solid";
+        }
+        else if (isLikedByCurrentUser == true)
+        {
+            return "fa-regular";
+        }
+        else
+        {
+            return "";
+        }
     }
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
@@ -46,13 +74,13 @@
             <div class="avata_profile">
                 <div class="avatar">
                     <figure>
-                        <img src="/Avatars/@Model.Avatar"
+                        <img src="/Avatars/@pro.Avatar"
                          alt="avata" />
                     </figure>
                 </div>
                 <div class="infor_account">
                     <div class="name_profile">
-                        <h4>@Model.Name</h4>
+                        <h4>@pro.Name</h4>
                     </div>
                     <a class="title" href="" title="weekly-likes">Friend..</a>
                     <div class="users-thumb-list">
@@ -92,11 +120,11 @@
                                     <span>Wellcome to my wall &nbsp<i style="color: #d391b2" class="fa-regular fa-face-smile-wink"></i></span>
                                 </div>
                                 <ul class="Shortcuts nav_bar--item--separate2">
-                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i>Address: @Model.Address</li>
-                                    <li class="nav_bar--item "><i class="fa-solid fa-transgender"></i>Gender: @Model.Gender</li>
-                                    <li class="nav_bar--item "><i class="fa-solid fa-phone-volume"></i>Phone: @Model.PhoneNumber</li>
-                                    <li class="nav_bar--item "><i class="fa-solid fa-envelope-open-text"></i>Email: @Model.Email</li>
-                                    <li class="nav_bar--item "><i class="fa-regular fa-building"></i>Department: @Model.Department.Dep_name</li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i>Address: @pro.Address</li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-transgender"></i>Gender: @pro.Gender</li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-phone-volume"></i>Phone: @pro.PhoneNumber</li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-envelope-open-text"></i>Email: @pro.Email</li>
+                                    <li class="nav_bar--item "><i class="fa-regular fa-building"></i>Department: @pro.Department.Dep_name</li>
                                 </ul>
                                 <ul class="Shortcuts">
                                     <li class="nav_bar--item ">
@@ -109,9 +137,9 @@
                             <div class="idea">
                                 <h4 class="widget-title"><b>Most Popular Ideas</b></h4>
                                 <ul class="Shortcuts">
-                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a href="/Staff/Profile?id=@Model.Id&pagenum=1&viewtype=mostview">Most Viewed Ideas</a></li>
-                                    <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a href="/Staff/Profile?id=@Model.Id&pagenum=1&viewtype=popular">Most Popular ideas</a></li>
-                                    <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a href="/Staff/Profile?id=@Model.Id&pagenum=1&viewtype=latest">Latest Ideas</a></li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-controller="Staff" asp-action="Profile" asp-route-id="@pro.Id" asp-route-orderby="mostview">Most Viewed Ideas</a></li>
+                                    <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="Staff" asp-action="Profile" asp-route-id="@pro.Id" asp-route-orderby="popular">Most Popular ideas</a></li>
+                                    <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-controller="Staff" asp-action="Profile" asp-route-id="@pro.Id" asp-route-orderby="latest">Latest Ideas</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -120,13 +148,13 @@
                 <div class="post">*@
 
                     <div class="sub_container col-lg-6">
-                        @if (logginnedUser.Id.Equals(Model.Id))
+                        @if (logginnedUser.Id.Equals(pro.Id))
                         {
                             <div class="new-post">
                                 <div class="avata_post">
                                     <figure>
                                         @*AVATAR*@
-                                        <a style="text-decoration: none" href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
+                                        <a style="text-decoration: none" asp-controller=" Staff" asp-action="Profile" asp-route-id="@logginnedUser.Id">
                                             <img src="/Avatars/@logginnedUser.Avatar"
                                          alt="avata" />
                                         </a>
@@ -148,14 +176,17 @@
 
                         @*A post*@
                         <div class="block">
-                            @foreach (var idea in ideas)
+                            @foreach (var idea in Model)
                             {
+                                var Tu = @findTU(idea.IdeaId, idea.IsLikedByCurrentUser);
+                                var Td = @findTD(idea.IdeaId, idea.IsLikedByCurrentUser);
+                                var point = idea.Reacpoint.ThumbUp - @idea.Reacpoint.ThumbDown;
                                 <div class="information_idea">
                                     <div class="Infor_idea">
                                         <div class="detail_idea nav_bar--item--separate2">
                                             <div class="avata_information_idea">
                                                 <figure>
-                                                    <a style="text-decoration: none" href="/Staff/Profile?id=@idea.Profile.Id&pagenum=1&viewtype=latest">
+                                                    <a style="text-decoration: none" asp-controller="Staff" asp-action="Profile" asp-route-id="@idea.Profile.Id">
                                                         <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@idea.Profile.Avatar" alt="avatar" />
 
                                                         <div class="name_account">
@@ -208,15 +239,36 @@
                                                 <ul class="felling_idea">
                                                     <li><a style="color:green" asp-action="" asp-controller=""><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
                                                     <li>
-                                                        <label placeholder="React point: "><p id="total">@Point(@idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)</p></label>
+                                                        <label placeholder="React point: "><p id="total-@idea.IdeaId">@point</p></label>
                                                     </li>
-                                                    <li>
-                                                        <i type="button" onclick="btnThumbUp(this)" class="fa-regular fa-thumbs-up" style="color: green"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i type="button" onclick="btnThumbDown(this)" class="fa-regular fa-thumbs-down" style="color:green"></i>
-                                                    </li>
+                                                    @if (idea.IsLikedByCurrentUser != null)
+                                                    {
+                                                        <li>
+                                                            <i type="button" id="TU-@idea.IdeaId"
+                                                               onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu' )"
+                                                               class="fa-thumbs-up @Tu" style="color: green">
+                                                            </i>
+                                                        </li>
+                                                        <li>
+                                                            <i type="button" id="TD-@idea.IdeaId"
+                                                               onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
+                                                               class="fa-thumbs-down @Td" style="color:green"></i>
+                                                        </li>
+                                                    }
+                                                    else if (idea.IsLikedByCurrentUser == null)
+                                                    {
+                                                        <li>
+                                                            <i type="button" id="TU-@idea.IdeaId"
+                                                               onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu')"
+                                                               class="fa-thumbs-up fa-regular" style="color: green">
+                                                            </i>
+                                                        </li>
+                                                        <li>
+                                                            <i type="button" id="TD-@idea.IdeaId"
+                                                               onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
+                                                               class="fa-thumbs-down fa-regular" style="color:green"></i>
+                                                        </li>
+                                                    }
                                                     <li>
                                                         <a style="color:green" asp-action="" asp-controller="">
                                                             <i class="fa-regular fa-comment"></i>
@@ -229,7 +281,7 @@
 
                                         <div class="comment_idea">
                                             <div class="com_idea_avata">
-                                                <a href="/Staff/Profile?id=@logginnedUser.Id&pagenum=1&viewtype=latest">
+                                                <a asp-controller="Staff" asp-action="Profile" asp-route-id="@logginnedUser.Id">
                                                     <figure class="avata_comment">
                                                         <img style="width: 60px; height: 60px; border-radius: 50%; display: inline-block" src="/Avatars/@ViewBag.logginedUser.Avatar"
                                                      alt="avata" />
@@ -291,10 +343,217 @@
     </div>
     <script>
         function BtnNext() {
-            window.location.replace('/Staff/Profile?id=@Model.Id&pageNum=@next&viewType=@viewType');
+            window.location.replace('/Staff/Profile?id=@pro.Id&pageNum=@next&viewType=@viewType');
         }
         function BtnPre() {
-            window.location.replace('/Staff/Profile?id=@Model.Id&pageNum=@pre&viewType=@viewType');
+            window.location.replace('/Staff/Profile?id=@pro.Id&pageNum=@pre&viewType=@viewType');
+        }
+    </script>
+    <script type="text/javascript">
+        function btnThumbUp(IdeaId, ReactPointId, ThumbUp, ThumbDown, theLock) {
+            var save = {
+                IdeaId: IdeaId,
+                ProfileId: "@logginnedUser.Id",
+                Reacted: true
+            };
+            $(`#TD-${IdeaId}`).removeClass("fa-solid");
+            $(`#TD-${IdeaId}`).addClass("fa-regular");
+        @*Lock #1*@
+                    if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp - 1,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
+            }
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-solid") {
+                $(`#TU-${IdeaId}`).removeClass("fa-regular");
+                $(`#TU-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Save(save);
+            }
+        @*Lock #2*@
+                    else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
+                $(`#TU-${IdeaId}`).removeClass("fa-regular");
+                $(`#TU-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp + 1,
+                    ThumbDown: ThumbDown - 1
+                };
+                Submit(obj);
+                Save(save);
+            }
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-regular") {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown - 1
+                };
+                Submit(obj);
+                Delete(save);
+            }
+        @*Lock 0*@
+                    else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
+                $(`#TU-${IdeaId}`).removeClass("fa-regular");
+                $(`#TU-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp + 1,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Save(save);
+            }
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "") {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
+            }
+        };
+
+        function btnThumbDown(IdeaId, ReactPointId, ThumbUp, ThumbDown, theLock) {
+            var save = {
+                IdeaId: IdeaId,
+                ProfileId: "@logginnedUser.Id",
+                Reacted: false
+            };
+            $(`#TU-${IdeaId}`).removeClass("fa-solid");
+            $(`#TU-${IdeaId}`).addClass("fa-regular");
+        @*Lock #1*@
+                    if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
+                $(`#TD-${IdeaId}`).removeClass("fa-regular");
+                $(`#TD-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp - 1,
+                    ThumbDown: ThumbDown + 1
+                };
+                Submit(obj);
+                Save(save);
+            }
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-regular") {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp - 1,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
+            }
+        @*Lock 2*@
+                    else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown - 1
+                };
+                Submit(obj);
+                Delete(save);
+            }
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-solid") {
+                $(`#TD-${IdeaId}`).removeClass("fa-regular");
+                $(`#TD-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Save(save);
+            }
+        @*Lock 0*@
+                    else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
+                $(`#TD-${IdeaId}`).removeClass("fa-regular");
+                $(`#TD-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown + 1
+                };
+                Submit(obj);
+                Save(save);
+            }
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "") {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
+            }
+        }
+
+        function Submit(obj) {
+            $.ajax({
+                url: "/Staff/ReactPoint",
+                method: "POST",
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data)
+                    result = JSON.parse(data)
+                    $(`#total-${result.ReactPointId}`).text(result.ThumbUp - result.ThumbDown)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+
+        function Save(save) {
+            $.ajax({
+                url: "/Staff/React",
+                method: "POST",
+                data: JSON.stringify(save),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+
+        function Delete(save) {
+            $.ajax({
+                url: "/Staff/DeleteReact",
+                method: "POST",
+                data: JSON.stringify(save),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function () {
+                },
+                error: function () {
+                }
+            })
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

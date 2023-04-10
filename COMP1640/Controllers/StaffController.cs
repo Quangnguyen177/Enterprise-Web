@@ -540,7 +540,7 @@ namespace COMP1640.Controllers
                 list = Db.Ideas.OrderByDescending(i => i.idea_view)
                         .Include(p => p.Profile).Include(c => c.Category)
                         .Include(r => r.Reacpoint)
-                        .Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                        .Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).ToList();
                 ViewBag.ViewType = "mostview";
             }
             else if (viewType.Equals("latest"))
@@ -548,12 +548,12 @@ namespace COMP1640.Controllers
                 list = Db.Ideas.OrderByDescending(i => i.created_date)
                         .Include(p => p.Profile).Include(c => c.Category)
                         .Include(r => r.Reacpoint)
-                        .Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                        .Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).ToList();
                 ViewBag.ViewType = "latest";
             }
             else if (viewType.Equals("popular"))
             {
-                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.Include(i => i.Reacpoint).OrderByDescending(i => i.Reacpoint.ThumbUp + i.Reacpoint.ThumbDown).Include(e => e.Event).Include(p => p.Profile).Include(c => c.Category).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).ToList();
                 ViewBag.ViewType = "popular";
             }
             ViewBag.Numberofidea = Db.Ideas.Include(c => c.Comments).Include(p => p.Profile).Include(i => i.Category).Where(ideas => ideas.ProfileId.Equals(id)).ToList();
@@ -567,7 +567,62 @@ namespace COMP1640.Controllers
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
 
-            return View(Db.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(id)));
+            ViewBag.Pro = Db.Profile.Include(d => d.Department).FirstOrDefault(p => p.Id.Equals(id));
+
+            var postViewModels = new List<PostViewModel>();
+            foreach (var post in list)
+            {
+                var r = Db.React.Where(x => x.ProfileId == currentUserId && x.IdeaId == post.IdeaId).SingleOrDefault();
+                if (r != null)
+                {
+                    var postViewModel = new PostViewModel
+                    {
+                        IdeaId = post.IdeaId,
+                        idea_title = post.idea_title,
+                        idea_content = post.idea_content,
+                        created_date = post.created_date,
+                        idea_anonymous = post.idea_anonymous,
+                        idea_view = post.idea_view,
+                        ProfileId = post.ProfileId,
+                        Profile = post.Profile,
+                        CategoryId = post.CategoryId,
+                        Category = post.Category,
+                        ReactPointId = post.ReactPointId,
+                        Reacpoint = post.Reacpoint,
+                        EventId = post.EventId,
+                        //Event = post.Event,
+                        Comments = post.Comments,
+                        Documents = post.Documents,
+                        IsLikedByCurrentUser = r.Reacted
+                    };
+                    postViewModels.Add(postViewModel);
+                }
+                else
+                {
+                    var postViewModel = new PostViewModel
+                    {
+                        IdeaId = post.IdeaId,
+                        idea_title = post.idea_title,
+                        idea_content = post.idea_content,
+                        created_date = post.created_date,
+                        idea_anonymous = post.idea_anonymous,
+                        idea_view = post.idea_view,
+                        ProfileId = post.ProfileId,
+                        Profile = post.Profile,
+                        CategoryId = post.CategoryId,
+                        Category = post.Category,
+                        ReactPointId = post.ReactPointId,
+                        Reacpoint = post.Reacpoint,
+                        EventId = post.EventId,
+                        //Event = post.Event,
+                        Comments = post.Comments,
+                        Documents = post.Documents,
+                        IsLikedByCurrentUser = null
+                    };
+                    postViewModels.Add(postViewModel);
+                }
+            }
+            return View(postViewModels.Skip(skipPage).Take(5).ToList());
         }
 
         public IActionResult TermsConditions()
