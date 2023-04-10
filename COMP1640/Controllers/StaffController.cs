@@ -16,6 +16,9 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Hosting;
+using static COMP1640.Controllers.StaffController;
+using System.ComponentModel.DataAnnotations;
 
 namespace COMP1640.Controllers
 {
@@ -30,15 +33,63 @@ namespace COMP1640.Controllers
             _configuration = configuration;
         }
 
+        public class PostViewModel
+        {
+            //public Idea Post { get; set; }
+            public int IdeaId { get; set; }
+            public string idea_title { get; set; }
+            public string idea_content { get; set; }
+            [DataType(DataType.Date)]
+            public DateTime created_date { get; set; }
+            public Boolean idea_anonymous { get; set; }
+            public int idea_view { get; set; }
+            public string ProfileId { get; set; }
+            public Profile Profile { get; set; }
+            public int CategoryId { get; set; }
+            public Category Category { get; set; }
+            public int ReactPointId { get; set; }
+            public ReactPoint Reacpoint { get; set; }
+            public int EventId { get; set; }
+            public Event Event { get; set; }
+            public ICollection<Comment> Comments { get; set; }
+            public ICollection<Document> Documents { get; set; }
+            public ICollection<React> Reacts { get; set; }
+            public bool? IsLikedByCurrentUser { get; set; }
+        }
+
+        public class Idea : Models.Idea
+        {
+            public new int IdeaId { get; set; }
+            [Required]
+            public new string idea_title { get; set; }
+            public new string idea_content { get; set; }
+            [DataType(DataType.Date)]
+            public new DateTime created_date { get; set; }
+            public new Boolean idea_anonymous { get; set; }
+            public new int idea_view { get; set; }
+            public new string ProfileId { get; set; }
+            public new int CategoryId { get; set; }
+            public new Category Category { get; set; }
+            public new Profile Profile { get; set; }
+            public new int ReactPointId { get; set; }
+            public new ReactPoint Reacpoint { get; set; }
+            public new int EventId { get; set; }
+            //public new Event Event { get; set; }
+            public new ICollection<Comment> Comments { get; set; }
+            public new ICollection<Document> Documents { get; set; }
+            public new ICollection<React> Reacts { get; set; }
+        }
+
         [Route("/Staff")]
         [Route("/Staff/ViewPage")]
         [HttpGet]
         public IActionResult ViewPage(int pageNum = 1, string orderBy = "latest", string viewType = "idea", int id = 1)
         {
             int skipPage = 5 * (pageNum - 1);
-            var temp = new List<Idea>();
-            List<Idea> page = GetIdeaByType(viewType, id);
+            var temp = new List<Models.Idea>();
+            List<Models.Idea> page = GetIdeaByType(viewType, id);
             ViewBag.Total = page.Count();
+
             if (orderBy.Equals("mostview"))
             {
                 temp = page.OrderByDescending(i => i.idea_view).ToList();
@@ -51,7 +102,7 @@ namespace COMP1640.Controllers
             {
                 temp = page.OrderByDescending(i => i.Reacpoint.ThumbUp - i.Reacpoint.ThumbDown).ToList();
             }
-            page = temp.Skip(skipPage).Take(5).ToList();
+            //page = temp.Skip(skipPage).Take(5).ToList();
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Category = Db.Categories.ToList();
@@ -68,7 +119,63 @@ namespace COMP1640.Controllers
             ViewBag.Date = d.First_closure_date;
             var documents = Db.Documents.Include(d => d.Idea);
             ViewBag.Documents = Db.Documents.ToList();
-            return View(page);
+
+            var postViewModels = new List<PostViewModel>();
+
+            foreach (var post in temp)
+            {
+                var r = Db.React.Where(x => x.ProfileId == currentUserId && x.IdeaId == post.IdeaId).SingleOrDefault();
+                if (r != null)
+                {
+                    var postViewModel = new PostViewModel
+                    {
+                        IdeaId = post.IdeaId,
+                        idea_title = post.idea_title,
+                        idea_content = post.idea_content,
+                        created_date = post.created_date,
+                        idea_anonymous = post.idea_anonymous,
+                        idea_view = post.idea_view,
+                        ProfileId = post.ProfileId,
+                        Profile = post.Profile,
+                        CategoryId = post.CategoryId,
+                        Category = post.Category,
+                        ReactPointId = post.ReactPointId,
+                        Reacpoint = post.Reacpoint,
+                        EventId = post.EventId,
+                        //Event = post.Event,
+                        Comments = post.Comments,
+                        Documents = post.Documents,
+                        IsLikedByCurrentUser = r.Reacted
+                    };
+                    postViewModels.Add(postViewModel);
+                }    
+                else
+                {
+                    var postViewModel = new PostViewModel
+                    {
+                        IdeaId = post.IdeaId,
+                        idea_title = post.idea_title,
+                        idea_content = post.idea_content,
+                        created_date = post.created_date,
+                        idea_anonymous = post.idea_anonymous,
+                        idea_view = post.idea_view,
+                        ProfileId = post.ProfileId,
+                        Profile = post.Profile,
+                        CategoryId = post.CategoryId,
+                        Category = post.Category,
+                        ReactPointId = post.ReactPointId,
+                        Reacpoint = post.Reacpoint,
+                        EventId = post.EventId,
+                        //Event = post.Event,
+                        Comments = post.Comments,
+                        Documents = post.Documents,
+                        IsLikedByCurrentUser = null
+                    };
+                    postViewModels.Add(postViewModel);
+                }         
+            }
+
+            return View(postViewModels.Skip(skipPage).Take(5).ToList());
         }
 
         [HttpGet]
@@ -170,7 +277,7 @@ namespace COMP1640.Controllers
         [HttpGet]
         public IActionResult EditIdea(int id)
         {
-            Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
+            Models.Idea currentIdea = Db.Ideas.Include(i => i.Event).FirstOrDefault(i => i.IdeaId == id);
             if (currentIdea.Event.First_closure_date > DateTime.UtcNow.AddHours(7))
             {
                 string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -308,7 +415,7 @@ namespace COMP1640.Controllers
 
         public IActionResult DeleteIdea(int id)
         {
-            Idea idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
+            Models.Idea idea = Db.Ideas.FirstOrDefault(i => i.IdeaId == id);
             var docs = Db.Documents.Where(i => i.IdeaId == id).ToList();
             var reacts = Db.React.Where(i => i.IdeaId == id).ToList();
             var reactpoint = Db.ReactPoints.FirstOrDefault(i => i.ReactPointId == idea.ReactPointId);
@@ -427,15 +534,21 @@ namespace COMP1640.Controllers
             if (pageNum == 1) ViewBag.PageNum = 1;
             else ViewBag.PageNum = pageNum;
             int skipPage = 5 * (pageNum - 1);
-            List<Idea> list = null;
+            List<Models.Idea> list = null;
             if (viewType.Equals("mostview"))
             {
-                list = Db.Ideas.OrderByDescending(i => i.idea_view).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.OrderByDescending(i => i.idea_view)
+                        .Include(p => p.Profile).Include(c => c.Category)
+                        .Include(r => r.Reacpoint)
+                        .Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "mostview";
             }
             else if (viewType.Equals("latest"))
             {
-                list = Db.Ideas.OrderByDescending(i => i.created_date).Include(p => p.Profile).Include(c => c.Category).Include(r => r.Reacpoint).Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
+                list = Db.Ideas.OrderByDescending(i => i.created_date)
+                        .Include(p => p.Profile).Include(c => c.Category)
+                        .Include(r => r.Reacpoint)
+                        .Include(c => c.Comments).Where(i => i.ProfileId.Equals(id)).Skip(skipPage).Take(5).ToList();
                 ViewBag.ViewType = "latest";
             }
             else if (viewType.Equals("popular"))
@@ -493,23 +606,30 @@ namespace COMP1640.Controllers
             return Json(res);
         }
 
-        public List<Idea> GetIdeaByType(string type, int id)
+        public List<Models.Idea> GetIdeaByType(string type, int id)
         {
-            List<Idea> output = new List<Idea>();
+            List<Models.Idea> output = new List<Models.Idea>();
             switch (type)
             {
                 case "idea":
-                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
+                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
+                                        .Include(i => i.Reacts)
+                                        .Include(i => i.Category).Include(i => i.Profile).ToList();
                     break;
                 case "dep":
-                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ThenInclude(d => d.Department).Where(i => i.Profile.Department.DepId == id).ToList();
+                    output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
+                                        .Include(i => i.Reacts)
+                                        .Include(i => i.Category).Include(i => i.Profile).ThenInclude(d => d.Department).Where(i => i.Profile.Department.DepId == id).ToList();
                     break;
                 case "cat":
                     output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
-                                     .Include(i => i.Category).Include(i => i.Profile).Where(i => i.Category.CategoryId == id).ToList();
+                                        .Include(i => i.Reacts)
+                                        .Include(i => i.Category).Include(i => i.Profile).Where(i => i.Category.CategoryId == id).ToList();
                     break;
                 case "evt":
-                    output = Db.Ideas.Where(i => i.EventId == id).Include(i => i.Comments).Include(i => i.Reacpoint.ReactPointId).Include(i => i.Category).Include(i => i.Profile).ToList();
+                    output = Db.Ideas.Where(i => i.EventId == id).Include(i => i.Comments)
+                                        .Include(i => i.Reacts)
+                                        .Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
                     break;
             }
             return output;
@@ -584,26 +704,6 @@ namespace COMP1640.Controllers
             }
             string result = JsonConvert.SerializeObject(save);
             return Json(result);
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> CheckReact(int IdeaId)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(userId));
-            var user_react = Db.React.Include(p => p.Profile).FirstOrDefault(p => p.ProfileId == userId);
-            var idea_react = Db.React.Include(i => i.Idea).FirstOrDefault(i => i.IdeaId == IdeaId);
-            try
-            {
-                var the_react = Db.React.Where(a => a.IdeaId == idea_react.IdeaId).Where(b => b.ProfileId == user_react.ProfileId).Single();
-                var UserReact = the_react.Reacted;
-                string result = JsonConvert.SerializeObject(UserReact);
-                return Json(result);
-            }
-            catch (Exception)
-            {
-                return Json(null);
-            }
         }
     }
 }

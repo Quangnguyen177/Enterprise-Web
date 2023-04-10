@@ -26,5 +26,6 @@ namespace COMP1640.Models
 
         //------------------------
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<React> Reacts { get; set; }
     }
 }
