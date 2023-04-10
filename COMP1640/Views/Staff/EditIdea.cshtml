@@ -1,6 +1,7 @@
 @model Idea;
 @{
-    Layout = "_LayoutPostIdea";
+    Layout = "_Staff";
+    <link rel="stylesheet" href="~/css/styleIdea.css">
     ViewData["Title"] = "Edit Idea";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
     var evt = ViewBag.Event;
