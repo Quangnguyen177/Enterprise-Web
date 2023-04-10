@@ -2,9 +2,8 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Courier New;
-  /*  font-family: Open;*/
     box-sizing: border-box;
+    font-family: Open;
 }
 
 :root {
@@ -306,7 +305,7 @@ input[type="text" i] {
     .file_idea a {
         color: #3b4197;
         font-size: 1.0em;
-        font-weight: 600;
+        word-wrap: break-word;
     }
 
 
@@ -352,14 +351,14 @@ input[type="text" i] {
 .tag {
     display: inline-block;
     background-color: white;
-    border: 0.1em dotted green;
+    border: 0.1em dotted gray;
     border-radius: 0.5em;
     transform: translate(1.4em, -0.4em);
-    background: #a4d1ad3b;
+   /* background: #a4d1ad3b;*/
 }
-    .tag span{
-        color: #3b4197;
-        font-weight: 700
+    .tag span {
+        color: #447044;
+        font-weight: 600;
     }
     .tag a:hover {
         text-decoration: none;
@@ -425,8 +424,8 @@ input[type="text" i] {
 
 
 .sidebar.static li {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 100;
 }
 
 .sidebar.static a {
@@ -700,11 +699,11 @@ textarea.form-control {
     display: none;
 }
 
-input[type = "checkbox"] {
+/*input[type = "checkbox"] {
     -webkit-appearance: none;
     display: none;
     visibility: hidden;
-}
+}*/
 
 .bar {
     position: relative;
@@ -989,36 +988,6 @@ input[type]:checked ~ span.middle {
     }
 }
 
-
-/*Terms & condition*/
-.terms_conditions {
-    text-align: justify;
-    color: #4b4b4b;
-    line-height: 1.8em;
-    width: 60%;
-    margin: 0 auto;
-    margin-bottom: 60px;
-}
-
-.title_term {
-    padding-top: 2em;
-    padding-bottom: 1em;
-}
-
-h1 {
-    padding-bottom: 0.5em;
-    text-align: center;
-    font-weight: 500;
-}
-
-span, p {
-    font-size: 1.1em;
-}
-
-.btn_privacy {
-    padding-bottom: 2em;
-    float: right;
-}
 /*laptop*/
 @media only screen and (width: 64em) {
     .sub_nav li {
