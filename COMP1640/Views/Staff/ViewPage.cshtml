@@ -4,13 +4,35 @@
     Layout = "_Staff";
     Profile logginnedUser = (Profile)ViewBag.LogginedUser;
     ViewData["LoginedUserName"] = logginnedUser.Name;
-    int Point(int thumbUp, int thumbDown)
+    string findTU(int ideaId, bool? isLikedByCurrentUser)
     {
-        return thumbUp - thumbDown;
+        if (isLikedByCurrentUser == true)
+        {
+            return "fa-solid";
+        }
+        else if (isLikedByCurrentUser == false)
+        {
+            return "fa-regular";
+        }
+        else
+        {
+            return "";
+        }
     }
-    string findLock(int id, int L)
+    string findTD(int ideaId, bool? isLikedByCurrentUser)
     {
-        return id + " - " + L;
+        if (isLikedByCurrentUser == false)
+        {
+            return "fa-solid";
+        }
+        else if (isLikedByCurrentUser == true)
+        {
+            return "fa-regular";
+        }
+        else
+        {
+            return "";
+        }
     }
     ViewPage pageInfor = (ViewPage)ViewBag.Page;
 }
@@ -81,8 +103,12 @@
                 <div class="block" id="display-idea">
                     @foreach (var idea in Model)
                     {
+                        var Tu = @findTU(idea.IdeaId, idea.IsLikedByCurrentUser);
+                        var Td = @findTD(idea.IdeaId, idea.IsLikedByCurrentUser);
+                        var point = idea.Reacpoint.ThumbUp - @idea.Reacpoint.ThumbDown;
                         <div class="information_idea">
                             <div class="Infor_idea">
+
                                 <div class="detail_idea nav_bar--item--separate2">
                                     <div class="avata_information_idea">
                                         <figure>
@@ -151,55 +177,39 @@
                                 </div>
 
                                 <div class="felling  nav_bar--item--separate3">
+
                                     <div class="more">
                                         <ul class="felling_idea">
                                             <li><a style="color:green"><i class="fa-regular fa-eye"></i></a>@idea.idea_view</li>
                                             <li>
-                                                <label placeholder="React point: "><p id="total">@Point(idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)</p></label>
+                                                <label placeholder="React point: "><p id="total-@idea.IdeaId">@point</p></label>
                                             </li>
-                                            @if (idea.IsLikedByCurrentUser != null && idea.IsLikedByCurrentUser == true)
+                                            @if (idea.IsLikedByCurrentUser != null)
                                             {
-                                                var theLock = @findLock(@idea.IdeaId, 1);
                                                 <li>
                                                     <i type="button" id="TU-@idea.IdeaId"
-                                                       onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
-                                                       class="fa-solid fa-thumbs-up" style="color: green"></i>
+                                                       onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu' )"
+                                                        class="fa-thumbs-up @Tu" style="color: green">
+                                                    </i>
                                                 </li>
-
                                                 <li>
                                                     <i type="button" id="TD-@idea.IdeaId"
-                                                       onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
-                                                       class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                                        onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
+                                                        class="fa-thumbs-down @Td" style="color:green"></i>
                                                 </li>
                                             }
-                                            else if (idea.IsLikedByCurrentUser != null && idea.IsLikedByCurrentUser == false)
+                                            else if (idea.IsLikedByCurrentUser == null)
                                             {
-                                                var theLock = @findLock(@idea.IdeaId, 2);
                                                 <li>
                                                     <i type="button" id="TU-@idea.IdeaId"
-                                                       onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
-                                                       class="fa-regular fa-thumbs-up" style="color: green"></i>
-                                                </li>
-
+                                                        onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu')"
+                                                        class="fa-thumbs-up fa-regular" style="color: green">
+                                                    </i>
+                                                </li>                                                
                                                 <li>
                                                     <i type="button" id="TD-@idea.IdeaId"
-                                                       onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
-                                                       class="fa-solid fa-thumbs-down" style="color:green"></i>
-                                                </li>
-                                            }
-                                            else
-                                            {
-                                                var theLock = @findLock(@idea.IdeaId, 0);
-                                                <li>
-                                                    <i type="button" id="TU-@idea.IdeaId"
-                                                       onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
-                                                       class="fa-regular fa-thumbs-up" style="color: green"></i>
-                                                </li>
-
-                                                <li>
-                                                    <i type="button" id="TD-@idea.IdeaId"
-                                                       onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown)"
-                                                       class="fa-regular fa-thumbs-down" style="color:green"></i>
+                                                        onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
+                                                        class="fa-thumbs-down fa-regular" style="color:green"></i>
                                                 </li>
                                             }
                                             <li>
@@ -281,61 +291,75 @@
         }
     </script>
     <script type="text/javascript">
-        function btnThumbUp(IdeaId, ReactPointId, ThumbUp, ThumbDown) {
+        function btnThumbUp(IdeaId, ReactPointId, ThumbUp, ThumbDown, theLock) {
             var save = {
                 IdeaId: IdeaId,
                 ProfileId: "@logginnedUser.Id",
                 Reacted: true
             };
-
-            if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true) {
+            $(`#TD-${IdeaId}`).removeClass("fa-solid");
+            $(`#TD-${IdeaId}`).addClass("fa-regular");
+            @*Lock #1*@
+            if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
                 $(`#TU-${IdeaId}`).removeClass("fa-solid");
                 $(`#TU-${IdeaId}`).addClass("fa-regular");
-                        var obj = {
-                            ReactPointId: ReactPointId,
-                            ThumbUp: ThumbUp,
-                            ThumbDown: ThumbDown
-                        };
-                        Submit(obj);
-                        Delete(save);
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp - 1,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
             }
-            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true) {
-                $(`#TD-${IdeaId}`).removeClass("fa-solid");
-                $(`#TD-${IdeaId}`).addClass("fa-regular");
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-solid") {
                 $(`#TU-${IdeaId}`).removeClass("fa-regular");
                 $(`#TU-${IdeaId}`).addClass("fa-solid");
-                        var obj = {
-                                ReactPointId: ReactPointId,
-                                ThumbUp: ThumbUp + 1,
-                                ThumbDown: ThumbDown -1
-                            };
-                            Submit(obj);
-                            Save(save);
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Save(save);
             }
-            else 
-            {
+            @*Lock #2*@
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
                 $(`#TU-${IdeaId}`).removeClass("fa-regular");
                 $(`#TU-${IdeaId}`).addClass("fa-solid");
-                        var obj = {
-                                ReactPointId: ReactPointId,
-                                ThumbUp: ThumbUp + 1,
-                                ThumbDown: ThumbDown
-                            };
-                            Submit(obj);
-                            Save(save);
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp + 1,
+                    ThumbDown: ThumbDown - 1
+                };
+                Submit(obj);
+                Save(save);
             }
-        };
-
-        function btnThumbDown(IdeaId, ReactPointId, ThumbUp, ThumbDown) {
-            var save = {
-                IdeaId: IdeaId,
-                ProfileId: "@logginnedUser.Id",
-                Reacted: false
-            };
-
-            if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true) {
-                $(`#TD-${IdeaId}`).removeClass("fa-solid");
-                $(`#TD-${IdeaId}`).addClass("fa-regular");
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-regular") {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown - 1
+                };
+                Submit(obj);
+                Delete(save);
+            }
+            @*Lock 0*@
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
+                $(`#TU-${IdeaId}`).removeClass("fa-regular");
+                $(`#TU-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp + 1,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Save(save);
+            }
+            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "") {
+                $(`#TU-${IdeaId}`).removeClass("fa-solid");
+                $(`#TU-${IdeaId}`).addClass("fa-regular");
                 var obj = {
                     ReactPointId: ReactPointId,
                     ThumbUp: ThumbUp,
@@ -344,9 +368,18 @@
                 Submit(obj);
                 Delete(save);
             }
-            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true) {
-                $(`#TU-${IdeaId}`).removeClass("fa-solid");
-                $(`#TU-${IdeaId}`).addClass("fa-regular");
+        };
+
+        function btnThumbDown(IdeaId, ReactPointId, ThumbUp, ThumbDown, theLock) {
+            var save = {
+                IdeaId: IdeaId,
+                ProfileId: "@logginnedUser.Id",
+                Reacted: false
+            };
+            $(`#TU-${IdeaId}`).removeClass("fa-solid");
+            $(`#TU-${IdeaId}`).addClass("fa-regular");
+            @*Lock #1*@
+            if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
                 $(`#TD-${IdeaId}`).removeClass("fa-regular");
                 $(`#TD-${IdeaId}`).addClass("fa-solid");
                 var obj = {
@@ -357,7 +390,42 @@
                 Submit(obj);
                 Save(save);
             }
-            else {
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-regular") {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp - 1,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
+            }
+            @*Lock 2*@
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown - 1
+                };
+                Submit(obj);
+                Delete(save);
+            }
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-solid") {
+                $(`#TD-${IdeaId}`).removeClass("fa-regular");
+                $(`#TD-${IdeaId}`).addClass("fa-solid");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Save(save);
+            }
+            @*Lock 0*@
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
                 $(`#TD-${IdeaId}`).removeClass("fa-regular");
                 $(`#TD-${IdeaId}`).addClass("fa-solid");
                 var obj = {
@@ -367,6 +435,17 @@
                 };
                 Submit(obj);
                 Save(save);
+            }
+            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "") {
+                $(`#TD-${IdeaId}`).removeClass("fa-solid");
+                $(`#TD-${IdeaId}`).addClass("fa-regular");
+                var obj = {
+                    ReactPointId: ReactPointId,
+                    ThumbUp: ThumbUp,
+                    ThumbDown: ThumbDown
+                };
+                Submit(obj);
+                Delete(save);
             }
         }
 
@@ -380,7 +459,7 @@
                 success: function (data) {
                     console.log(data)
                     result = JSON.parse(data)
-                    $("#total").text(result.ThumbUp - result.ThumbDown)
+                    $(`#total-${result.ReactPointId}`).text(result.ThumbUp - result.ThumbDown)
                 },
                 error: function (err) {
                     console.log(err)
