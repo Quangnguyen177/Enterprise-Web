@@ -53,32 +53,8 @@ namespace COMP1640.Controllers
             public Event Event { get; set; }
             public ICollection<Comment> Comments { get; set; }
             public ICollection<Document> Documents { get; set; }
-            public ICollection<React> Reacts { get; set; }
             public bool? IsLikedByCurrentUser { get; set; }
         }
-
-        //public class Idea : Models.Idea
-        //{
-        //    public new int IdeaId { get; set; }
-        //    [Required]
-        //    public new string idea_title { get; set; }
-        //    public new string idea_content { get; set; }
-        //    [DataType(DataType.Date)]
-        //    public new DateTime created_date { get; set; }
-        //    public new Boolean idea_anonymous { get; set; }
-        //    public new int idea_view { get; set; }
-        //    public new string ProfileId { get; set; }
-        //    public new int CategoryId { get; set; }
-        //    public new Category Category { get; set; }
-        //    public new Profile Profile { get; set; }
-        //    public new int ReactPointId { get; set; }
-        //    public new ReactPoint Reacpoint { get; set; }
-        //    public new int EventId { get; set; }
-        //    //public new Event Event { get; set; }
-        //    public new ICollection<Comment> Comments { get; set; }
-        //    public new ICollection<Document> Documents { get; set; }
-        //    public new ICollection<React> Reacts { get; set; }
-        //}
 
         [Route("/Staff")]
         [Route("/Staff/ViewPage")]
@@ -670,22 +646,18 @@ namespace COMP1640.Controllers
             {
                 case "idea":
                     output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
-                                        .Include(i => i.Reacts)
                                         .Include(i => i.Category).Include(i => i.Profile).ToList();
                     break;
                 case "dep":
                     output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
-                                        .Include(i => i.Reacts)
                                         .Include(i => i.Category).Include(i => i.Profile).ThenInclude(d => d.Department).Where(i => i.Profile.Department.DepId == id).ToList();
                     break;
                 case "cat":
                     output = Db.Ideas.Include(i => i.Comments).Include(i => i.Reacpoint)
-                                        .Include(i => i.Reacts)
                                         .Include(i => i.Category).Include(i => i.Profile).Where(i => i.Category.CategoryId == id).ToList();
                     break;
                 case "evt":
                     output = Db.Ideas.Where(i => i.EventId == id).Include(i => i.Comments)
-                                        .Include(i => i.Reacts)
                                         .Include(i => i.Reacpoint).Include(i => i.Category).Include(i => i.Profile).ToList();
                     break;
             }

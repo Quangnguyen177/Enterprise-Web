@@ -56,8 +56,6 @@ namespace COMP1640
             //9
             SeedEvent(builder);
 
-            //10
-            SeedReact(builder);
         }
 
         //1
@@ -379,20 +377,6 @@ namespace COMP1640
                     Last_closure_date = DateTime.Parse("2024-05-1")
                 }
             );
-        }
-
-        private void SeedReact(ModelBuilder builder)
-        {
-            builder.Entity<React>()
-                .HasOne(x => x.Profile)
-                .WithMany(y => y.Reacts)
-                .HasForeignKey(z => z.ProfileId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-            builder.Entity<React>()
-                .HasOne(x => x.Idea)
-                .WithMany(y => y.Reacts)
-                .HasForeignKey(z => z.IdeaId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }
