@@ -185,7 +185,9 @@ namespace COMP1640.Controllers
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             ViewBag.Event = EvtL;
-            return View(Db.Categories.ToList());
+            ViewBag.Category = Db.Categories.ToList();
+            ViewBag.Department = Db.Departments.ToList();
+            return View();
         }
 
         [HttpPost]

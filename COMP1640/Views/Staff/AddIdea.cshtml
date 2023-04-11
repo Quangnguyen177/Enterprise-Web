@@ -49,7 +49,7 @@
                             <select class="form-select-category" name="categoryName" required>
                                 @*category*@
                                 <option style="color:white" value="">Category</option>
-                                @foreach (var c in Model)
+                                @foreach (var c in ViewBag.Category)
                                 {
                                     <option value="@c.category_name">@c.category_name</option>
                                 }
