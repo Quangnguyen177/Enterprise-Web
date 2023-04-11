@@ -260,6 +260,7 @@ namespace COMP1640.Controllers
             {
                 string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
+                ViewBag.Department = Db.Departments.ToList();
                 ViewBag.Category = Db.Categories.ToList();
                 ViewBag.Event = Db.Events.Where(e => e.Status == false).ToList();
                 return View(currentIdea);
