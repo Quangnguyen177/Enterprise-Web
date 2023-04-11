@@ -158,7 +158,9 @@
 
         .post form .content img {
             cursor: default;
-            max-width: 52px;
+            width: 80px;
+            height: 70px;
+            border-radius: 50%;
         }
 
         .post form .content .details {
@@ -492,6 +494,16 @@ form textarea:valid ~ button {
         font-size: 1.3em;
         font-weight: 600;
     }
+
+/*Terms checkbox*/
+.term_checkbox {
+    position:relative;
+    top:2px 
+}
+
+.modal-footer {
+    flex-flow: row;
+}
 
 .title_term {
     padding-bottom: 1em;
