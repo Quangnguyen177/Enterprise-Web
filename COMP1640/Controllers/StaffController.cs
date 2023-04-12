@@ -296,7 +296,7 @@ namespace COMP1640.Controllers
                 Db.Update(idea);
                 Db.SaveChanges();
             }
-            return RedirectToAction("DetailIdea", "Staff", new { ideaId });
+            return RedirectToAction("DetailIdea", "Staff", new { id=ideaId });
 
         }
 
