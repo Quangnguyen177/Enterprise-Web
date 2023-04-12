@@ -805,6 +805,7 @@ input[type]:checked ~ span.middle {
         color: black;
         text-decoration: none;
         padding-left: 1.4em;
+        padding-right: 1.4em;
     }
 
         .shortcuts_mobile a:hover {

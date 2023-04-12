@@ -1016,7 +1016,24 @@ input[type]:checked ~ span.middle {
     animation: fadeIn linear 0.2s;
     z-index: 1000;
 }
+.avatar_mobile {
+    text-align: center;
+}
 
+    .avatar_mobile a {
+        color: black;
+    }
+
+        .avatar_mobile a:hover {
+            text-decoration: none;
+        }
+
+    .avatar_mobile img {
+        width: 8em;
+        height: 8em;
+        border-radius: 10px;
+        box-shadow: 9px 11px 10px #e0e6ec;
+    }
 .idea_mobile {
     position: fixed;
     z-index: 1000;

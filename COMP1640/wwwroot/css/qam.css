@@ -34,8 +34,13 @@ body {
 thead {
     background-color: #e1ebf4;
 }
-
-.category_table {
+.table {
+    table-layout: fixed;
+}
+    .table td {
+        word-wrap: break-word;
+    }
+    .category_table {
     padding-top: 4em;
     color: var(--text-color);
     padding-bottom: 10em;
@@ -180,49 +185,68 @@ thead {
     padding-left: 2em;
     font-weight: 500;
 }
-/*Search*/
-.form {
-    /*--input-bg: #e2dee0;*/
-    --input-bg: linear-gradient(#d4e5f4, #d7f7e7);
-    /*  background of input */
-    --padding: 1.5em;
-    --rotate: 80deg;
-    /*  rotation degree of input*/
-    --gap: 2em;
-    /*  gap of items in input */
-    --icon-change-color: #15A986;
-    /*  when rotating changed icon color */
-    --height: 40px;
-    /*  height */
-    width: 300px;
-    padding-inline-end: 1em;
-    /*  change this for padding in the end of input */
-    background: var(--input-bg);
-    position: relative;
-    border-radius: 13px;
-    top: 1em;
+
+/*Add reset*/
+.reset_cate {
+    margin-top: -2em;
+    margin-left: 19em;
 }
 
-    .form label {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: var(--height);
+.cta {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+}
+
+    .cta:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        border-radius: 50px;
+        background: #b1dae7;
+        width: 45px;
+        height: 42px;
+        transition: all 0.3s ease;
     }
 
-    .form input {
-        width: 100%;
-        padding-inline-start: calc(var(--padding) + var(--gap));
-        outline: none;
-        background: none;
-        border: 0;
+    .cta span {
+        position: relative;
+        /* font-family: "Ubuntu", sans-serif;*/
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: #234567;
     }
-    /* style for both icons -- search,close */
-    .form svg {
-        color: #111;
-        transition: 0.3s cubic-bezier(.4,0,.2,1);
-        position: absolute;
-        height: 15px;
+
+    .cta svg {
+        position: relative;
+        top: 0;
+        margin-left: 10px;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: #234567;
+        stroke-width: 2;
+        transform: translateX(-5px);
+        transition: all 0.3s ease;
+    }
+
+    .cta:hover:before {
+        width: 100%;
+        background: #b1dae7;
+    }
+
+    .cta:hover svg {
+        transform: translateX(0);
+    }
+
+    .cta:active {
+        transform: scale(0.95);
     }
 
 .nav_bar--item--separate::after {

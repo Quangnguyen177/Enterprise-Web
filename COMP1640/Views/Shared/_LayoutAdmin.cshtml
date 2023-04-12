@@ -144,12 +144,18 @@
 
                             <div class="idea_mobile">
                                 <div class="all_idea_mobile">
-                                    <h1>Menu</h1>
+                                    <div class="avatar_mobile nav_bar--item--separate2">
+                                        <a class="nav-link" asp-controller="Staff" asp-action="Profile" asp-route-id="@ViewBag.LogginedUser.Id">
+                                            <img src="/Avatars/@ViewBag.LogginedUser.Avatar"
+                                                 alt="avata" />
+                                            @ViewBag.LogginedUser.Name
+                                        </a>
+
+                                    </div>
                                     <ul class="shortcuts_mobile">
                                         <li class="nav-item">
-                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
-                                                <i class="fa fa-user-circle-o"></i> Account
-                                            </a>
+                    
+                                            <a class="nav-link" style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fa-solid fa-user"></i>Information</a>
                                         </li>
                                     </ul>
                                     <ul class="shortcuts_mobile">
@@ -170,7 +176,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" method="post">
-                                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer; color: #6b7b93;">
+                                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer; color: #525f7f; font-size: 1.1em;">
                                                     <i class="fa fa-sign-out"></i> Logout
                                                 </button>
                                             </form>
