@@ -10,7 +10,7 @@ namespace COMP1640.Models
         public int DocId { get; set; }
 
         [Required]
-        [StringLength(70, ErrorMessage = "The {0} cannot exceed {1} characters")]
+        [StringLength(500, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string doc_path { get; set; }
 
         [Required]
