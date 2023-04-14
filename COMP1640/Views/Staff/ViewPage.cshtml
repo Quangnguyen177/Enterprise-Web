@@ -389,7 +389,7 @@
             $(`#TU-${IdeaId}`).removeClass("fa-solid");
             $(`#TU-${IdeaId}`).addClass("fa-regular");
         @*Lock #1*@
-                    if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
+                if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
                 $(`#TD-${IdeaId}`).removeClass("fa-regular");
                 $(`#TD-${IdeaId}`).addClass("fa-solid");
                 var obj = {
@@ -467,12 +467,10 @@
                 dataType: "json",
                 contentType: 'application/json',
                 success: function (data) {
-                    console.log(data)
                     result = JSON.parse(data)
                     $(`#total-${result.ReactPointId}`).text(result.ThumbUp - result.ThumbDown)
                 },
-                error: function (err) {
-                    console.log(err)
+                error: function (err) { 
                 }
             })
         }
@@ -485,10 +483,8 @@
                 dataType: "json",
                 contentType: 'application/json',
                 success: function (data) {
-                    console.log(data)
                 },
                 error: function (err) {
-                    console.log(err)
                 }
             })
         }
