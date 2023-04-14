@@ -3,6 +3,10 @@
     .col-xl-3 {
         width: 100%;
     }
+    .reset_cate {
+        margin-top: 2em;
+        margin-left: 0em;
+    }
 
     .mx-n1 {
         display: none;
@@ -14,25 +18,23 @@
     .cssbuttons-io-button {
         font-size: 13px;
     }
-
-    .table {
-        font-size: 0.9em;
-    }
-
-        .table th {
+   /*     .table th {
             display: none;
-        }
+        }*/
 
     table th,
     table td {
         display: flex;
         border-bottom: none;
+        height: 2.7em;
+        white-space: break-spaces;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
     }
-
-    table {
-        margin-bottom: 2em;
-    }
-
         table tr:last-child td {
             border-bottom: 1px solid #ccc;
         }

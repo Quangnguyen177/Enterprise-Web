@@ -18,24 +18,32 @@
     .mx-n1 {
         display: none;
     }
-
+/*
     .table {
         font-size: 0.9em;
     }
 
         .table th {
             display: none;
-        }
+        }*/
 
     table th,
     table td {
         display: flex;
         border-bottom: none;
+        height: 2.7em;
+        white-space: break-spaces;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
     }
 
-    table {
+/*    table {
         margin-bottom: 2em;
-    }
+    }*/
 
         table tr:last-child td {
             border-bottom: 1px solid #ccc;
@@ -248,6 +256,14 @@
     table td {
         display: flex;
         border-bottom: none;
+        height: 2.7em;
+        white-space: break-spaces;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
     }
 
     table {

@@ -19,6 +19,14 @@
     table td {
         display: flex;
         border-bottom: none;
+        height: 2.7em;
+        white-space: break-spaces;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
     }
 
     table {
@@ -143,6 +151,7 @@
     .table {
         font-size: 0.7em;
     }
+
     .header_app {
         font-size: 0.8em;
     }

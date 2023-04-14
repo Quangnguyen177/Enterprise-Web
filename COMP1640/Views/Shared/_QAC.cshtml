@@ -80,29 +80,21 @@
                                 </div>
                                 <input id="check" hidden type="checkbox" class="input_check">
                                 <label for="check" class="overlay"></label>
-
                                 <div class="idea_mobile">
                                     <div class="all_idea_mobile">
-                                        <div class="avatar_mobile">
-                                            <a asp-controller="Staff" asp-action="Profile" asp-route-id="@ViewBag.LogginedUser.Id">
+                                        <div class="avatar_mobile  nav_bar--item--separate2">
+                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
                                                 <img src="/Avatars/@ViewBag.LogginedUser.Avatar"
                                                      alt="avata" />
-                                                @ViewBag.LogginedUser.Name
                                             </a>
-
+                                            <span>@ViewBag.LogginedUser.Name</span>
                                         </div>
-                                        <ul class="shortcuts_mobile nav_bar--item--separate2">
-                                            <li class="nav_bar--item">
-                                                <i class="fa-solid fa-user"></i>
-                                                <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">Information</a>
-                                            </li>
-                                        </ul>
                                         <ul class="shortcuts_mobile">
                                             <li><i class="fa-solid fa-table"></i><a asp-action="Dashboard" asp-controller="QAManager">Dashboard</a></li>
                                             <li><i class="fa-solid fa-filter"></i><a asp-action="CategoryManager" asp-controller="QAManager">Category Manager</a></li>
-                                            <li><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="QACoordinator" asp-action="ListIdea" asp-route-pageNum="1" asp-route-viewType="latest">Ideas</a></li>
+                                            <li><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="QAManager" asp-action="Idea" asp-route-pageNum="1" asp-route-viewType="latest">Ideas</a></li>
                                             <li><i class="fa-regular fa-comments"></i><a asp-action="CommentIdea" asp-controller="QAManager">Latest Comments</a></li>
-                                            <li>
+                                            <li class="nav_bar--item">
                                                 <form class="logout_moblie" asp-area="Identity" asp-page="/Account/Logout" method="post">
                                                     <i class="fa-solid fa-right-from-bracket"></i>
                                                     <button type="submit">Logout</button>

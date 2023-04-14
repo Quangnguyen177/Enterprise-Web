@@ -34,13 +34,21 @@ body {
 thead {
     background-color: #e1ebf4;
 }
+
 .table {
     table-layout: fixed;
+    font-size: 0.9em;
 }
+
+    .table th {
+        width: 5.5em;
+    }
+
     .table td {
         word-wrap: break-word;
     }
-    .category_table {
+
+.category_table {
     padding-top: 4em;
     color: var(--text-color);
     padding-bottom: 10em;
@@ -109,7 +117,6 @@ thead {
 }
 
 .name_account {
-    padding-top: 1.0em;
     width: 8em;
 }
 
@@ -182,8 +189,79 @@ thead {
     border: none;
     color: #525f7f;
     line-height: 65px;
-    padding-left: 2em;
-    font-weight: 500;
+    padding-left: 1.2em;
+}
+/*Search*/
+.form {
+    /*--input-bg: #e2dee0;*/
+    --input-bg: linear-gradient(#d4e5f4, #d7f7e7);
+    /*  background of input */
+    --padding: 1.5em;
+    --rotate: 80deg;
+    /*  rotation degree of input*/
+    --gap: 2em;
+    /*  gap of items in input */
+    --icon-change-color: #15A986;
+    /*  when rotating changed icon color */
+    --height: 40px;
+    /*  height */
+    width: 300px;
+    padding-inline-end: 1em;
+    /*  change this for padding in the end of input */
+    background: var(--input-bg);
+    position: relative;
+    border-radius: 13px;
+    top: 1em;
+}
+
+    .form label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: var(--height);
+    }
+
+    .form input {
+        width: 100%;
+        padding-inline-start: calc(var(--padding) + var(--gap));
+        outline: none;
+        background: none;
+        border: 0;
+    }
+    /* style for both icons -- search,close */
+    .form svg {
+        color: #111;
+        transition: 0.3s cubic-bezier(.4,0,.2,1);
+        position: absolute;
+        height: 15px;
+    }
+
+.nav_bar--item--separate::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #e3e5e8;
+    margin-top: -0.7em;
+    margin-left: 10em;
+}
+
+/* search icon */
+.icon {
+    position: absolute;
+    left: var(--padding);
+    transition: 0.3s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* arrow-icon*/
+.swap-off {
+    transform: rotate(-80deg);
+    opacity: 0;
+    visibility: hidden;
 }
 
 /*Add reset*/
@@ -895,7 +973,7 @@ input[type]:checked ~ span.middle {
     left: 0;
     bottom: 0;
     width: 100%;
-    max-width: 360px;
+    max-width: 320px;
     background-color: #fdfdfd;
     transform: translateX(-100%);
     float: right;
@@ -907,25 +985,24 @@ input[type]:checked ~ span.middle {
 
 
 .all_idea_mobile {
-    margin-top: 3em;
+    margin-top: 4em;
 }
 
 .shortcuts_mobile {
     display: inline-block;
     list-style: outside none none;
-    font-size: 0.95em;
+    font-size: 1.1em;
     text-transform: capitalize;
     display: inline-block;
     position: relative;
     color: #525f7f;
-    line-height: 65px;
-    padding-left: 4em;
-    font-weight: 500;
+    line-height: 80px;
+    margin-top: 1.5em;
 }
 
     .shortcuts_mobile a {
         color: #525f7f;
-        padding-left: 2em;
+        padding-left: 1.5em;
     }
 
     .shortcuts_mobile li {
@@ -952,7 +1029,8 @@ input[type]:checked ~ span.middle {
 }
 
     .avatar_mobile a {
-        color: black;
+        color: #525f7f;
+        font-size: 1.1em;
     }
 
         .avatar_mobile a:hover {
@@ -1025,6 +1103,14 @@ input[type]:checked ~ span.middle {
         font-size: 0.9em;
     }
 
+        .table th {
+            display: none;
+        }
+
+    table {
+        margin-bottom: 2em;
+    }
+
     .text_center {
         display: none;
     }
@@ -1068,10 +1154,11 @@ input[type]:checked ~ span.middle {
     }
 }
 
+
 /*Mobile: width 600px*/
 @media only screen and (width: 37.5em) {
     .col-10 {
-        margin-left: -1.5em;
+        margin-left: -1.2em;
         margin-top: 2em;
     }
 }

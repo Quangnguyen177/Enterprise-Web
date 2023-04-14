@@ -145,19 +145,12 @@
                             <div class="idea_mobile">
                                 <div class="all_idea_mobile">
                                     <div class="avatar_mobile nav_bar--item--separate2">
-                                        <a class="nav-link" asp-controller="Staff" asp-action="Profile" asp-route-id="@ViewBag.LogginedUser.Id">
+                                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
                                             <img src="/Avatars/@ViewBag.LogginedUser.Avatar"
                                                  alt="avata" />
-                                            @ViewBag.LogginedUser.Name
                                         </a>
-
+                                        <span>@ViewBag.LogginedUser.Name</span>
                                     </div>
-                                    <ul class="shortcuts_mobile">
-                                        <li class="nav-item">
-                    
-                                            <a class="nav-link" style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fa-solid fa-user"></i>Information</a>
-                                        </li>
-                                    </ul>
                                     <ul class="shortcuts_mobile">
                                         <li class="nav-item">
                                             <a class="nav-link" asp-controller="Admin" asp-action="Home">
@@ -174,15 +167,38 @@
                                                 <i class="fa fa-cog"></i> Setting event
                                             </a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Admin" asp-action="Home" asp-route-pageNum="1" asp-route-viewType="popular">
+                                                <i class="fa-solid fa-face-laugh-wink"></i>Most popular ideas
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Admin" asp-action="Home" asp-route-pageNum="1" asp-route-viewType="mostview">
+                                                <i class="fa-regular fa-eye"></i>Most Viewed Ideas
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Admin" asp-action="Home" asp-route-pageNum="1" asp-route-viewType="latest">
+                                                <i class="fa-regular fa-lightbulb"></i>Latest Ideas
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-action="LatestComment" asp-controller="Admin">
+                                                <i class="fa-regular fa-comments"></i>Latest Comments
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <ul class="shortcuts_mobile">
                                         <li class="nav-item">
                                             <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" method="post">
-                                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer; color: #525f7f; font-size: 1.1em;">
+                                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer; color: #525f7f; font-size: 1.2em;">
                                                     <i class="fa fa-sign-out"></i> Logout
                                                 </button>
                                             </form>
                                         </li>
                                     </ul>
-
                                 </div>
                             </div>
 
