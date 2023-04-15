@@ -23,7 +23,6 @@
         white-space: break-spaces;
         text-overflow: ellipsis;
         overflow: hidden;
-        text-overflow: ellipsis;
         -webkit-line-clamp: 1;
         display: -webkit-box;
         -webkit-box-orient: vertical;

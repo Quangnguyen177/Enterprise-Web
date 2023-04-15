@@ -1,4 +1,8 @@
-﻿/*Mobile: width<780px*/
+﻿
+table td {
+    white-space: normal;
+}
+/*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
     .col-xl-3 {
         width: 100%;
@@ -18,10 +22,6 @@
     .cssbuttons-io-button {
         font-size: 13px;
     }
-   /*     .table th {
-            display: none;
-        }*/
-
     table th,
     table td {
         display: flex;
