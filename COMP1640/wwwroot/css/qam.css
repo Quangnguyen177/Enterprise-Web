@@ -436,7 +436,7 @@ table td {
     align-items: center;
     font-family: inherit;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 15px;
     padding: 0.4em 1.4em 0.7em 1.0em;
     color: white;
     background: #ad5389;
@@ -445,7 +445,7 @@ table td {
     box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
     letter-spacing: 0.05em;
     border-radius: 20em;
-    transform: translate(57.8em, 3em);
+    transform: translate(59.8em, 3em);
 }
 
     .cssbuttons-io-button svg {
