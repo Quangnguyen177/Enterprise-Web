@@ -1,0 +1,21 @@
+﻿/*Mobile: width<780px*/
+@media only screen and (max-width: 46.25em) {
+    .card.mb-4.mb-xl-0 {
+        width: 20em;
+        margin-left: 4.5em;
+    }
+    form {
+        display: block;
+    }
+}
+/*Tablet: width>=740px and width < 1024px*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .card.mb-4.mb-xl-0 {
+        width: 20em;
+        margin-left: 4.5em;
+    }
+    .card.col-md-8 {
+        width: 21em;
+        margin-left: 24.5em;
+    }
+}

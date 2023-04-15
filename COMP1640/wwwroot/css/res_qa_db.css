@@ -79,7 +79,7 @@
 
         table td:nth-of-type(1):before {
             content: "Profile ID";
-            padding-right: 5em;
+            padding-right: 2em;
             font-weight: 600;
         }
 
@@ -91,20 +91,20 @@
 
         table td:nth-of-type(3):before {
             content: "Dob";
-            padding-right: 8em;
+            padding-right: 4em;
             font-weight: 600;
         }
 
         table td:nth-of-type(4):before {
             content: "Gender";
-            padding-right: 7em;
+            padding-right: 2.5em;
             font-weight: 600;
         }
 
 
         table td:nth-of-type(5):before {
             content: "Address";
-            padding-right: 5em;
+            padding-right: 2em;
             font-weight: 600;
         }
 
@@ -116,7 +116,7 @@
 
         table td:nth-of-type(7):before {
             content: "Posted Ideas";
-            padding-right: 8em;
+            padding-right: 3em;
             font-weight: 600;
         }
 }

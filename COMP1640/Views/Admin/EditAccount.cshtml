@@ -6,6 +6,7 @@
     var Roles = ViewData["Roles"] as List<IdentityRole>;
     var Deps = ViewData["Departments"] as List<COMP1640.Models.Department>;
     ViewData["Title"] = "Edit Account";
+    <link rel="stylesheet" href="~/css/res_admin_editAcount.css"/>
 }
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))

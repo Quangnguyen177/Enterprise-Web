@@ -44,8 +44,18 @@
         padding-right: 2em;
         font-weight: 600;
     }
-
     table td:nth-of-type(3):before {
+        content: "Status";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+    table td:nth-of-type(4):before {
+        content: "Change Status";
+        padding-right: 2em;
+        font-weight: 600;
+    }
+
+    table td:nth-of-type(5):before {
         content: "Aciton";
         padding-right: 2.5em;
         font-weight: 600;
@@ -72,24 +82,6 @@
 
     .col-xl-3 {
         width: 50%;
-    }
-
-    .table_db td:nth-of-type(0):before {
-        content: "Event ID";
-        padding-right: 2.5em;
-        font-weight: 600;
-    }
-
-    table td:nth-of-type(2):before {
-        content: "Event Name";
-        padding-right: 2em;
-        font-weight: 600;
-    }
-
-    table td:nth-of-type(3):before {
-        content: "Aciton";
-        padding-right: 2.5em;
-        font-weight: 600;
     }
 
     #table {

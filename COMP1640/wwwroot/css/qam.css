@@ -43,10 +43,11 @@ thead {
     .table th {
         width: 5.5em;
     }
-
-    .table td {
-        word-wrap: break-word;
-    }
+table td {
+    white-space: break-spaces;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
 .category_table {
     padding-top: 4em;
@@ -1072,6 +1073,10 @@ input[type]:checked ~ span.middle {
 
     .icon_email {
         display: none;
+    }
+
+    .table td {
+        word-wrap: break-word;
     }
 }
 
