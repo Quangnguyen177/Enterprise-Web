@@ -82,8 +82,8 @@
                                 <label for="check" class="overlay"></label>
                                 <div class="idea_mobile">
                                     <div class="all_idea_mobile">
-                                        <div class="avatar_mobile  nav_bar--item--separate2">
-                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
+                                        <div class="avatar_mobile nav_bar--item--separate2">
+                                            <a asp-area="Identity" asp-page="/Account/Manage/Index">
                                                 <img src="/Avatars/@ViewBag.LogginedUser.Avatar"
                                                      alt="avata" />
                                             </a>
@@ -94,6 +94,9 @@
                                             <li><i class="fa-solid fa-filter"></i><a asp-action="CategoryManager" asp-controller="QAManager">Category Manager</a></li>
                                             <li><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="QAManager" asp-action="Idea" asp-route-pageNum="1" asp-route-viewType="latest">Ideas</a></li>
                                             <li><i class="fa-regular fa-comments"></i><a asp-action="CommentIdea" asp-controller="QAManager">Latest Comments</a></li>
+                                            <br>
+                                            <br>
+                                            <br>
                                             <li class="nav_bar--item">
                                                 <form class="logout_moblie" asp-area="Identity" asp-page="/Account/Logout" method="post">
                                                     <i class="fa-solid fa-right-from-bracket"></i>

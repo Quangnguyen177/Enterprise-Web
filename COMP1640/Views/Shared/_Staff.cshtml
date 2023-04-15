@@ -137,6 +137,23 @@
                     <div class="search_mobile">
                         <input class="input" name="keyword" id="form1" placeholder="Search" type="search">
                     </div>
+                    
+                    <ul class="shortcuts_mobile">
+                        <li class="nav_bar--item">
+                            <i class="fa-solid fa-user"></i>
+                            <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">Information</a>
+                        </li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-house"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea">Idea List</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="mostview">Most Viewed Ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="popular">Most Emotion ideas</a></li>
+                        <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="latest">Latest Ideas</a></li>
+                        <li class="nav_bar--item ">
+                            <form class="logout_moblie" asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
                     <ul class="sub_nav shortcuts_mobile">
                         <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -198,22 +215,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                    <ul class="shortcuts_mobile">
-                        <li class="nav_bar--item">
-                            <i class="fa-solid fa-user"></i>
-                            <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Manage/Index">Information</a>
-                        </li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-house"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-viewType="idea">Idea List</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-street-view"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="mostview">Most Viewed Ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-solid fa-face-laugh-wink"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="popular">Most Emotion ideas</a></li>
-                        <li class="nav_bar--item "><i class="fa-regular fa-lightbulb"></i><a asp-controller="Staff" asp-action="ViewPage" asp-route-orderby="latest">Latest Ideas</a></li>
-                        <li class="nav_bar--item">
-                            <form class="logout_moblie" asp-area="Identity" asp-page="/Account/Logout" method="post">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                <button type="submit">Logout</button>
-                            </form>
                         </li>
                     </ul>
                 </div>

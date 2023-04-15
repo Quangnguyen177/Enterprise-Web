@@ -183,14 +183,6 @@ thead {
         .logout button:active {
             transform: scale(0.95);
         }
-
-.logout_moblie button {
-    background: none;
-    border: none;
-    color: #525f7f;
-    line-height: 65px;
-    padding-left: 1.2em;
-}
 /*Search*/
 .form {
     /*--input-bg: #e2dee0;*/
@@ -973,13 +965,13 @@ input[type]:checked ~ span.middle {
     left: 0;
     bottom: 0;
     width: 100%;
-    max-width: 320px;
-    background-color: #fdfdfd;
+    max-width: 300px;
     transform: translateX(-100%);
+    background: #fcfcfc;
     float: right;
     opacity: 0;
     transition: transform linear 0.2s, opacity linear 0.3s;
-    border-radius: 7px;
+    border-radius: 10px;
     letter-spacing: 0.2px;
 }
 
@@ -995,13 +987,14 @@ input[type]:checked ~ span.middle {
     text-transform: capitalize;
     display: inline-block;
     position: relative;
-    color: #525f7f;
-    line-height: 80px;
+    color: black;
+    line-height: 70px;
     margin-top: 1.5em;
+    margin-left: 1em;
 }
 
     .shortcuts_mobile a {
-        color: #525f7f;
+        color: black;
         padding-left: 1.5em;
     }
 
@@ -1012,6 +1005,13 @@ input[type]:checked ~ span.middle {
     .shortcuts_mobile a:hover {
         text-decoration: none;
     }
+.logout_moblie button {
+    background: none;
+    border: none;
+    color: black;
+    line-height: 65px;
+    padding-left: 1.2em;
+}
 /**/
 .idea_mobile h1 {
     color: #525f7f;
@@ -1028,8 +1028,8 @@ input[type]:checked ~ span.middle {
     text-align: center;
 }
 
-    .avatar_mobile a {
-        color: #525f7f;
+    .avatar_mobile span {
+        color: black;
         font-size: 1.1em;
     }
 

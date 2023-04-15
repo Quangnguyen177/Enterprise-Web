@@ -373,7 +373,7 @@ input[type="text" i] {
 
 .title_idea h1 {
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.1em;
     transform: translate(1.9em, -0.2em);
     word-wrap: break-word;
     width: 86%;
@@ -383,7 +383,7 @@ input[type="text" i] {
 .content_post {
     text-align: justify;
     font-family: inherit;
-    font-size: 0.9em;
+    font-size: 1em;
     width: 96%;
     height: 6em;
     margin: 0.4em 0.5em;
@@ -511,7 +511,7 @@ input[type="text" i] {
     display: inline-block;
     width: 3.5em;
     height: 2em;
-    transform: translate(28em, -2.95em);
+    transform: translate(28em, -3.5em);
 }
 
     /* Hide default HTML checkbox */
@@ -673,7 +673,7 @@ input:checked ~ .slider {
 }
 
 .form-group button {
-    transform: translate(25.6em, -3.3em);
+    transform: translate(25.6em, -2.3em);
 }
 
 textarea.form-control {
@@ -776,14 +776,14 @@ input[type]:checked ~ span.middle {
     right: 0;
     left: 0;
     bottom: 0;
-    width: 350px;
+    width: 300px;
     max-width: 100%;
-    background: #efefef;
+    background: #fcfdfd;
     transform: translateX(-100%);
     float: right;
     opacity: 0;
     transition: transform linear 0.2s, opacity linear 0.3s;
-    border-radius: 7px;
+    border-radius: 10px;
 }
 
 .all_idea_mobile {
@@ -791,26 +791,26 @@ input[type]:checked ~ span.middle {
 }
 
 .search_mobile {
-    font-size: 0.8em;
+    font-size: 0.7em;
     margin-left: 3.6em;
 }
 
 .shortcuts_mobile {
     display: inline-block;
     list-style: outside none none;
-    font-size: 17px;
+    font-size: 18px;
     text-transform: capitalize;
     display: inline-block;
     position: relative;
-    color: #757575;
-    line-height: 50px;
+    color: #434242;
+    line-height: 55px;
     padding-left: 2.8em;
     top: 1em;
     font-weight: 500;
 }
 
     .shortcuts_mobile a {
-        color: black;
+        color: #434242;
         text-decoration: none;
         padding-left: 1.4em;
         padding-right: 1.4em;
@@ -822,19 +822,21 @@ input[type]:checked ~ span.middle {
 
 .sub_nav.shortcuts_mobile {
     display: grid;
+    margin-bottom: 1em;
 }
 
     .sub_nav.shortcuts_mobile a {
-        color: #333;
+        color: #434242;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 18px;
     }
 
     .sub_nav.shortcuts_mobile li {
         margin-left: -1.2em;
-        color: #757575;
-        line-height: 1.6em;
+        line-height: 30px;
         text-decoration: none;
         font-size: 18px;
-        font-weight: 500;
     }
 
 .logout_moblie button {
@@ -845,11 +847,15 @@ input[type]:checked ~ span.middle {
 
 .avatar_mobile {
     text-align: center;
+    background-color: #bbcdbb;
+    margin-top: -2em;
+    height: 9em;
+    box-shadow: 0.2px 0.1px 20px #bbbdbb;
 }
 
-    .avatar_mobile a {
+    .avatar_mobile span{
         color: black;
-        font-size: 1.1em;
+        font-size: 18px;
     }
 
         .avatar_mobile a:hover {
@@ -859,7 +865,8 @@ input[type]:checked ~ span.middle {
     .avatar_mobile img {
         width: 7em;
         border-radius: 10px;
-        box-shadow: 9px 11px 10px #e0e6ec;
+        box-shadow: 9px 1px 20px #e0e6ec;
+        padding-top: 0.3em;
     }
 
 .logout_moblie i {
@@ -1069,7 +1076,7 @@ input[type]:checked ~ span.middle {
     }
 
     .switch {
-        transform: translate(20em, -2.95em);
+        transform: translate(20em, -2.9em);
     }
 
     .form-group button {

@@ -1,7 +1,6 @@
 body {
     font-family: 'Raleway', sans-serif;
-    /*   background: linear-gradient(#d6f1f9, #d9efd7);*/
-    background: linear-gradient(#5b5b5b, #91c4a5);
+    background: linear-gradient(#ffffff, #d9efd7);
     -webkit-font-smoothing: antialiased;
     height: 100%;
 }

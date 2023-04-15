@@ -207,9 +207,11 @@
                                                                 <span>@idea.Category.category_name</span>     @*Category*@
                                                             </a>
                                                         </div>
-                                                        <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
-                                                            <h1 class="lead" style="font-size: 1.3em">@idea.idea_title</h1>    @*Title*@
-                                                        </a>
+                                                        <div class="title_idea_info">
+                                                            <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
+                                                                <h1 class="lead">@idea.idea_title</h1>    @*Title*@
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                     @foreach (var doc in ViewBag.Documents)
                                                     {
@@ -219,13 +221,10 @@
                                                                 <a asp-action="" asp-controller="" asp-route-id="@doc.DocId">
                                                                     @doc.doc_name
                                                                 </a>
-
                                                             </div>
                                                         }
-
                                                     }
-
-                                                    <div class="file_idea ">
+                                                    <div class="file_idea">
                                                         <a asp-action="DetailIdea" asp-controller="Staff" asp-route-id="@idea.IdeaId" style="text-decoration:none; color: black;">
                                                             <h2 class="content_post">@idea.idea_content</h2>
                                                         </a> @*Content*@
@@ -245,28 +244,28 @@
                                                     {
                                                         <li>
                                                             <i type="button" id="TU-@idea.IdeaId"
-                                                               onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu' )"
-                                                               class="fa-thumbs-up @Tu" style="color: green">
+                                                   onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu' )"
+                                                   class="fa-thumbs-up @Tu" style="color: green">
                                                             </i>
                                                         </li>
                                                         <li>
                                                             <i type="button" id="TD-@idea.IdeaId"
-                                                               onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
-                                                               class="fa-thumbs-down @Td" style="color:green"></i>
+                                                   onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
+                                                   class="fa-thumbs-down @Td" style="color:green"></i>
                                                         </li>
                                                     }
                                                     else if (idea.IsLikedByCurrentUser == null)
                                                     {
                                                         <li>
                                                             <i type="button" id="TU-@idea.IdeaId"
-                                                               onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu')"
-                                                               class="fa-thumbs-up fa-regular" style="color: green">
+                                                   onclick="btnThumbUp(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Tu')"
+                                                   class="fa-thumbs-up fa-regular" style="color: green">
                                                             </i>
                                                         </li>
                                                         <li>
                                                             <i type="button" id="TD-@idea.IdeaId"
-                                                               onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
-                                                               class="fa-thumbs-down fa-regular" style="color:green"></i>
+                                                   onclick="btnThumbDown(@idea.IdeaId, @idea.ReactPointId, @idea.Reacpoint.ThumbUp, @idea.Reacpoint.ThumbDown, '@Td')"
+                                                   class="fa-thumbs-down fa-regular" style="color:green"></i>
                                                         </li>
                                                     }
                                                     <li>
@@ -359,7 +358,7 @@
             $(`#TD-${IdeaId}`).removeClass("fa-solid");
             $(`#TD-${IdeaId}`).addClass("fa-regular");
         @*Lock #1*@
-                    if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
+                            if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
                 $(`#TU-${IdeaId}`).removeClass("fa-solid");
                 $(`#TU-${IdeaId}`).addClass("fa-regular");
                 var obj = {
@@ -382,7 +381,7 @@
                 Save(save);
             }
         @*Lock #2*@
-                    else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
+                            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
                 $(`#TU-${IdeaId}`).removeClass("fa-regular");
                 $(`#TU-${IdeaId}`).addClass("fa-solid");
                 var obj = {
@@ -405,7 +404,7 @@
                 Delete(save);
             }
         @*Lock 0*@
-                    else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
+                            else if ($(`#TU-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
                 $(`#TU-${IdeaId}`).removeClass("fa-regular");
                 $(`#TU-${IdeaId}`).addClass("fa-solid");
                 var obj = {
@@ -438,7 +437,7 @@
             $(`#TU-${IdeaId}`).removeClass("fa-solid");
             $(`#TU-${IdeaId}`).addClass("fa-regular");
         @*Lock #1*@
-                    if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
+                            if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "fa-regular") {
                 $(`#TD-${IdeaId}`).removeClass("fa-regular");
                 $(`#TD-${IdeaId}`).addClass("fa-solid");
                 var obj = {
@@ -461,7 +460,7 @@
                 Delete(save);
             }
         @*Lock 2*@
-                    else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
+                            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == true && theLock == "fa-solid") {
                 $(`#TD-${IdeaId}`).removeClass("fa-solid");
                 $(`#TD-${IdeaId}`).addClass("fa-regular");
                 var obj = {
@@ -484,7 +483,7 @@
                 Save(save);
             }
         @*Lock 0*@
-                    else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
+                            else if ($(`#TD-${IdeaId}`).hasClass("fa-solid") == false && theLock == "") {
                 $(`#TD-${IdeaId}`).removeClass("fa-regular");
                 $(`#TD-${IdeaId}`).addClass("fa-solid");
                 var obj = {

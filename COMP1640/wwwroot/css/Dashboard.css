@@ -98,7 +98,7 @@ body {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin-right: 0;
-    font-size: 1rem;
+    font-size: 1.1rem;
     white-space: nowrap;
 }
 
@@ -188,7 +188,10 @@ img, svg {
 .me-4 {
     margin-right: 1rem !important;
 }
-
+.position-relative
+{
+    width: 3em;
+}
 .ms-auto {
     margin-left: auto !important;
 }
@@ -514,7 +517,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 0.6rem;
     font-size: 1rem;
     border-radius: 0.375rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
@@ -533,7 +536,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 0.9rem;
     font-size: 1rem;
     border-radius: 0.375rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
@@ -1017,26 +1020,6 @@ input[type]:checked ~ span.middle {
     z-index: 1000;
 }
 
-.avatar_mobile {
-    text-align: center;
-}
-
-    .avatar_mobile a {
-        color: #525f7f;
-        font-size: 1em;
-    }
-
-        .avatar_mobile a:hover {
-            text-decoration: none;
-        }
-
-    .avatar_mobile img {
-        width: 8em;
-        height: 8em;
-        border-radius: 10px;
-        box-shadow: 9px 11px 10px #e0e6ec;
-    }
-
 .idea_mobile {
     position: fixed;
     z-index: 1000;
@@ -1045,8 +1028,8 @@ input[type]:checked ~ span.middle {
     left: 0;
     bottom: 0;
     width: 100%;
-    max-width: 360px;
-    background: white;
+    max-width: 300px;
+    background: #fcfdfd;
     transform: translateX(-100%);
     float: right;
     opacity: 0;
@@ -1070,6 +1053,7 @@ input[type]:checked ~ span.middle {
     line-height: 65px;
     padding-left: 1.3em;
     font-weight: 500;
+    top: 0.5em;
 }
 
     .shortcuts_mobile li {
@@ -1079,7 +1063,6 @@ input[type]:checked ~ span.middle {
     .shortcuts_mobile a:hover {
         text-decoration: none;
     }
-
 .idea_mobile h1 {
     color: #525f7f;
     display: inline-block;
@@ -1090,7 +1073,6 @@ input[type]:checked ~ span.middle {
     width: 100%;
     padding-bottom: 1em;
 }
-
 .input_check:checked ~ .overlay {
     display: block;
 }
@@ -1109,6 +1091,25 @@ input[type]:checked ~ span.middle {
     background-color: #e3e5e8;
     width: 95%;
 }
+.avatar_mobile {
+    text-align: center;
+}
+
+    .avatar_mobile span {
+        color: #525f7f;
+        font-size: 16px;
+    }
+
+    .avatar_mobile a:hover {
+        text-decoration: none;
+    }
+
+    .avatar_mobile img {
+        width: 7em;
+        height: 7em;
+        border-radius: 10px;
+        box-shadow: 9px 1px 10px #e0e6ec;
+    }
 
 /*Search manage closure date*/
 .search {
