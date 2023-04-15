@@ -154,7 +154,12 @@
                                     <ul class="shortcuts_mobile">
                                         <li class="nav-item">
                                             <a class="nav-link" asp-controller="Admin" asp-action="Home">
-                                                <i class="fa fa-home"></i> Dashboard
+                                                <i class="fa-solid fa-house"></i> Home
+                                            </a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">
+                                                <i class="fa-solid fa-plus"></i>Create Account
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -188,8 +193,6 @@
                                                 <i class="fa-regular fa-comments"></i>Latest Comments
                                             </a>
                                         </li>
-                                    </ul>
-                                    <ul class="shortcuts_mobile">
                                         <li class="nav-item">
                                             <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" method="post">
                                                 <button class="logout_mobile" submit" style="background: none; border: none; padding: 0; cursor: pointer; color: #525f7f; font-size: 1.2em;">
