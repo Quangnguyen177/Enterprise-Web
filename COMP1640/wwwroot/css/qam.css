@@ -235,7 +235,7 @@ thead {
     height: 2px;
     background-color: #e3e5e8;
     margin-top: -0.7em;
-    margin-left: 2em;
+    margin-left: 26em;
 }
 
 /* search icon */
@@ -317,17 +317,6 @@ thead {
     .cta:active {
         transform: scale(0.95);
     }
-
-.nav_bar--item--separate::after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 30px;
-    height: 2px;
-    background-color: #e3e5e8;
-    margin-top: -0.7em;
-    margin-left: 10em;
-}
 
 /* search icon */
 .icon {
@@ -1080,6 +1069,10 @@ input[type]:checked ~ span.middle {
     .nav_bar--item--separate::after {
         display: none;
     }
+
+    .icon_email {
+        display: none;
+    }
 }
 
 /*Mobile: width<320px*/
@@ -1139,10 +1132,6 @@ input[type]:checked ~ span.middle {
         display: block;
     }
 
-    .icon_email {
-        display: none;
-    }
-
     .app_qam {
         margin-left: -3.5em;
         margin-right: 0.4em;
@@ -1151,6 +1140,12 @@ input[type]:checked ~ span.middle {
     .account_info {
         display: none;
     }
+    .title {
+        font-size: 1.5em;
+        margin-top: 0.5em;
+        margin-left: 4em;
+    }
+
 }
 
 
@@ -1199,6 +1194,7 @@ input[type]:checked ~ span.middle {
 
     .title {
         font-size: 1.8em;
+        padding-left: 3.7em;
     }
 
     .delete .icon {
@@ -1233,7 +1229,7 @@ input[type]:checked ~ span.middle {
     .edit {
         font-size: 1.1em;
     }
-}
+
 /*laptop*/
 @media only screen and (min-width: 73em) and (max-width: 81.25em) {
     .logo img {

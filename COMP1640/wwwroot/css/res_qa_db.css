@@ -58,10 +58,6 @@
         height: 350px;
     }
 
-/*        .table th {
-            display: none;
-        }*/
-
     table th,
     table td {
         display: flex;
@@ -75,10 +71,6 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
     }
-
-/*    table {
-        margin-bottom: 2em;
-    }*/
 
         table tr:last-child td {
             border-bottom: 1px solid #ccc;
