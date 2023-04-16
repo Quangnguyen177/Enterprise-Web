@@ -39,10 +39,10 @@
                     </div>
                 </div>
                 <div class="box">
-                    <input type="text" name="title" placeholder="Title" value="@Model.idea_title" required />   @*title*@
+                    <input type="text" maxlength="100" name="title" placeholder="Title" value="@Model.idea_title" required />   @*title*@
                 </div>
                 <input type="hidden" name="ideaId" value="@Model.IdeaId"> @*ideaid*@
-                <textarea form="edit" name="content" placeholder="Post content idea here..." required>@Model.idea_content</textarea>   @*content*@
+                <textarea form="edit" name="content" maxlength="4000" placeholder="Post content idea here..." required>@Model.idea_content</textarea>   @*content*@
                 <div class="theme-emoji">
                     <img src="~/fb-icons/theme.svg" alt="theme">
                     <img src="~/fb-icons/smile.svg" alt="smile">
