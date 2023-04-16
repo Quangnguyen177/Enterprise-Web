@@ -163,6 +163,7 @@ namespace COMP1640.Controllers
             ViewBag.Event = EvtL;
             ViewBag.Category = Db.Categories.ToList();
             ViewBag.Department = Db.Departments.ToList();
+            
             return View();
         }
 

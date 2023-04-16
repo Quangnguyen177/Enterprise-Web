@@ -22,6 +22,8 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Title</label>
                         <input class="form-control" asp-for="@Model.category_name">
+                        <span class="text-danger" asp-validation-for="@Model.category_name"></span>
+
                     </div>
                     <a asp-controller="QAManager" asp-action="CategoryManager"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
                     <button type="submit" class="btn btn-success">Add</button>

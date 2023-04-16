@@ -1,4 +1,5 @@
-@model List<Category>;
+@*@model List<Category>;*@
+@model COMP1640.Models.Idea
 @{
     Layout = "_Staff";
     <link rel="stylesheet" href="~/css/styleIdea.css">   
@@ -35,6 +36,7 @@
                 </div>
                 <div class="box">
                     <input type="text" name="title" placeholder="Title" required />   @*title*@
+                    
                 </div>
                 <input type="hidden" name="profileId" value="@logginnedUser.Id"> @*profileid*@
                 <textarea form="add" name="content" placeholder="Post content idea here..." required></textarea>   @*content*@

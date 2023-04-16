@@ -15,7 +15,7 @@ namespace COMP1640.Models
         [StringLength(100, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string idea_title { get; set; }
 
-        [StringLength(2000, ErrorMessage = "The {0} cannot exceed {1} characters")]
+        [StringLength(4000, ErrorMessage = "The {0} cannot exceed {1} characters")]
         public string idea_content { get; set; }
 
         [DataType(DataType.Date)] 

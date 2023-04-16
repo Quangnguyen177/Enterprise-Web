@@ -35,9 +35,10 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult AddCate(Category cate)
         {
-            context.Categories.Add(cate);
-            context.SaveChanges();
-            return RedirectToAction(nameof(CategoryManager));
+                context.Categories.Add(cate);
+                context.SaveChanges();
+                return RedirectToAction(nameof(CategoryManager));
+
         }
 
         public IActionResult DeleteTag(int? id)
@@ -256,9 +257,9 @@ namespace COMP1640.Controllers
                 for (int i = 0; i < 12; i++)
                 {
                     //totalIdeas[i] = ideas.Where(idea => idea.Profile.Department.Dep_name.Equals(department) && idea.created_date.Value.Month == i + 1).Count();
-                    
+
                     totalIdeas[i] = ideas.Where(idea => idea.Profile.Department.Dep_name.Equals(department) && idea.created_date.Month == i + 1).Count();
-                    
+
                 }
                 LineChart data = new LineChart()
                 {
