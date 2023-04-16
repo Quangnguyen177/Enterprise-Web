@@ -45,8 +45,6 @@ thead {
     }
 table td {
     white-space: break-spaces;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 .category_table {
