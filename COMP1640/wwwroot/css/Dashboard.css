@@ -1029,7 +1029,7 @@ input[type]:checked ~ span.middle {
     bottom: 0;
     width: 100%;
     max-width: 300px;
-    background: #fcfdfd;
+    background:   background: linear-gradient(#e8f2e3, #e8f2e3);
     transform: translateX(-100%);
     float: right;
     opacity: 0;
@@ -1049,11 +1049,10 @@ input[type]:checked ~ span.middle {
     text-transform: capitalize;
     display: inline-block;
     position: relative;
-    color: #757575;
-    line-height: 65px;
-    padding-left: 1.3em;
+    line-height: 60px;
     font-weight: 500;
     top: 0.5em;
+    padding-left: 0.5em;
 }
 
     .shortcuts_mobile li {
@@ -1062,6 +1061,29 @@ input[type]:checked ~ span.middle {
 
     .shortcuts_mobile a:hover {
         text-decoration: none;
+    }
+.idea_mobile .nav-link {
+    color: #3b3131;
+}
+.avatar_mobile {
+    text-align: center;
+}
+
+    .avatar_mobile span {
+        color: #3b3131;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .avatar_mobile a:hover {
+        text-decoration: none;
+    }
+
+    .avatar_mobile img {
+        width: 7em;
+        height: 7em;
+        border-radius: 10px;
+        box-shadow: 1px 1px 20px #e0e6ec;
     }
 .idea_mobile h1 {
     color: #525f7f;
@@ -1091,25 +1113,7 @@ input[type]:checked ~ span.middle {
     background-color: #e3e5e8;
     width: 95%;
 }
-.avatar_mobile {
-    text-align: center;
-}
 
-    .avatar_mobile span {
-        color: #525f7f;
-        font-size: 16px;
-    }
-
-    .avatar_mobile a:hover {
-        text-decoration: none;
-    }
-
-    .avatar_mobile img {
-        width: 7em;
-        height: 7em;
-        border-radius: 10px;
-        box-shadow: 9px 1px 10px #e0e6ec;
-    }
 
 /*Search manage closure date*/
 .search {
