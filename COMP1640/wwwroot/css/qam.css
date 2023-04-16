@@ -957,7 +957,7 @@ input[type]:checked ~ span.middle {
     width: 100%;
     max-width: 300px;
     transform: translateX(-100%);
-    background: #fcfcfc;
+    background: linear-gradient(rgb(212, 229, 244), rgb(215, 247, 231));
     float: right;
     opacity: 0;
     transition: transform linear 0.2s, opacity linear 0.3s;
@@ -977,14 +977,14 @@ input[type]:checked ~ span.middle {
     text-transform: capitalize;
     display: inline-block;
     position: relative;
-    color: black;
+    color: #3d4752;
     line-height: 70px;
     margin-top: 1.5em;
     margin-left: 1em;
 }
 
     .shortcuts_mobile a {
-        color: black;
+        color: #334a62;
         padding-left: 1.5em;
     }
 
@@ -998,13 +998,13 @@ input[type]:checked ~ span.middle {
 .logout_moblie button {
     background: none;
     border: none;
-    color: black;
+    color: #3d4752;
     line-height: 65px;
     padding-left: 1.2em;
 }
 /**/
 .idea_mobile h1 {
-    color: #525f7f;
+    color: white;
     display: inline-block;
     font-size: 2em;
     font-weight: 600;
@@ -1019,8 +1019,8 @@ input[type]:checked ~ span.middle {
 }
 
     .avatar_mobile span {
-        color: black;
         font-size: 1.1em;
+        font-weight: 600;
     }
 
         .avatar_mobile a:hover {
@@ -1030,7 +1030,7 @@ input[type]:checked ~ span.middle {
     .avatar_mobile img {
         width: 7em;
         border-radius: 10px;
-        box-shadow: 9px 11px 10px #e0e6ec;
+        box-shadow: 1px 1px 20px #e0e6ec;
     }
 
 /*hien thi overlay var idea_mobile*/
