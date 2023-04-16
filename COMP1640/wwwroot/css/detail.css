@@ -1,4 +1,4 @@
-﻿/*Css details*/
+
 .col-lg-12 {
     display: flex;
     height: 100%;
@@ -187,11 +187,12 @@
 .comment1_idea {
     border-radius: 7px;
     background: #e8f3e0;
-    width: 62%;
+    width: 94%;
 }
 
     .comment1_idea span {
         word-wrap: break-word;
+        white-space: break-spaces;
         font-size: 0.9em;
         text-align: -webkit-left;
     }
@@ -209,9 +210,6 @@
     top: 0.5em;
 }
 
-/*Mobile & tablet: width<1024px*/
-@media only screen and (max-width: 63.9375em) {
-}
 /*Mobile: width<780px*/
 @media only screen and (max-width: 46.25em) {
     .profile.col-lg-4 {
