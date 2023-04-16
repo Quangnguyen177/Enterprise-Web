@@ -355,7 +355,6 @@ input[type="text" i] {
     border: 0.1em dotted gray;
     border-radius: 0.5em;
     transform: translate(1.4em, -0.4em);
-    /* background: #a4d1ad3b;*/
 }
 
     .tag span {
@@ -385,15 +384,14 @@ input[type="text" i] {
     font-family: inherit;
     font-size: 1em;
     width: 96%;
-    height: 5em;
+    height: 2.7em;
     margin: 0.4em 0.5em;
     word-wrap: break-word;
     white-space: break-spaces;
     line-height: 21px;
-    text-overflow: ellipsis;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
@@ -778,7 +776,7 @@ input[type]:checked ~ span.middle {
     bottom: 0;
     width: 300px;
     max-width: 100%;
-    background: #fcfdfd;
+    background:#829f85;
     transform: translateX(-100%);
     float: right;
     opacity: 0;
@@ -802,7 +800,7 @@ input[type]:checked ~ span.middle {
     text-transform: capitalize;
     display: inline-block;
     position: relative;
-    color: #434242;
+    color: white;
     line-height: 55px;
     padding-left: 2.8em;
     top: 1em;
@@ -810,7 +808,7 @@ input[type]:checked ~ span.middle {
 }
 
     .shortcuts_mobile a {
-        color: #434242;
+        color: white;
         text-decoration: none;
         padding-left: 1.4em;
         padding-right: 1.4em;
@@ -826,7 +824,7 @@ input[type]:checked ~ span.middle {
 }
 
     .sub_nav.shortcuts_mobile a {
-        color: #434242;
+        color: white;
         font-weight: 500;
         line-height: 20px;
         font-size: 18px;
@@ -839,23 +837,26 @@ input[type]:checked ~ span.middle {
         font-size: 18px;
     }
 
+
 .logout_moblie button {
     background: none;
     border: none;
-    color: black;
+    color: white;
 }
 
 .avatar_mobile {
     text-align: center;
-    background-color: #bbcdbb;
+   /* background-color: #bbcdbb;*/
     margin-top: -2em;
     height: 9em;
-    box-shadow: 0.2px 0.1px 20px #bbbdbb;
+/*    box-shadow: 0.2px 0.1px 20px #bbbdbb;*/
 }
 
-    .avatar_mobile span{
-        color: black;
+    .avatar_mobile span {
+        color: white;
         font-size: 18px;
+        font-weight: 600;
+        -webkit-text-stroke: 0.05px black;
     }
 
         .avatar_mobile a:hover {
@@ -865,7 +866,7 @@ input[type]:checked ~ span.middle {
     .avatar_mobile img {
         width: 7em;
         border-radius: 10px;
-        box-shadow: 9px 1px 20px #e0e6ec;
+        box-shadow: 1px 1px 20px #e0e6ec;
         padding-top: 0.3em;
     }
 
