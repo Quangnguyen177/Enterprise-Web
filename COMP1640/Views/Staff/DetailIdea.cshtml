@@ -43,9 +43,7 @@
                                     }
                                 </figure>
                             </div>
-                            @* <div>
-                        <img src="~/fb-icons/more.svg" alt="gallery">
-                        </div>*@
+                          
                             <div class="drop_down">
                                 @if (Model.ProfileId.ToString().Equals(@logginnedUser.Id))
                                 {
@@ -85,7 +83,6 @@
                                 }
                             </div>
                             <div class="content">
-                                @*   <div class="img_idea">*@
                                 <div class="title_idea">
                                     <div class="tag">
                                         <a asp-action="" asp-controller="">
@@ -97,19 +94,12 @@
                                 @foreach (var doc in ViewBag.Documents)
                                 {
                                     <div class="file_idea" style="text-align: center">
-                                        @*<a asp-action="Detail" asp-controller="Home">
-                                <img style="width: 550px; height: 400px; padding-left: -50px; transform: translateX(-44.3%)" src="https://diachishophoa.com/uploads/noidung/images/hoasinhnhatmauxanh-1530218652.jpg"
-                                title="Image_idea" />
-                                </a>*@
                                         <a asp-action="DownloadFile" asp-controller="Staff" asp-route-id="@doc.DocId">
                                             @doc.doc_name
                                         </a>
-
                                     </div>
                                 }
-
                                 <h2 class="content_post">@Model.idea_content</h2>
-                                @*  </div>*@
                             </div>
                         </div>
                         <div class="felling nav_bar--item--separate3">
@@ -272,7 +262,6 @@
                         <div class="page-likes">
                             <div class="tab-content">
                                 <div class="tab-pane active fade show " id="link1">
-                                    @* <span><i class="ti-heart"></i>884</span>*@
                                     <a class="title" href="" title="weekly-likes">35 new likes this week</a>
                                     <div class="users-thumb-list">
                                         <a href="#" title="Anderw" data-toggle="tooltip">
@@ -305,7 +294,6 @@
             </div>
         </div>
     </div>
-    @*<button id="btn" onclick="myFunction()">Click vào đây</button>*@
 
     @*28/2/2023*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
