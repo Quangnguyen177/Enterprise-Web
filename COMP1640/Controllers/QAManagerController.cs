@@ -278,7 +278,7 @@ namespace COMP1640.Controllers
             var categories = context.Categories.ToList();
             foreach (var cate in categories)
             {
-                var total = context.Ideas.Where(i => i.CategoryId == cate.CategoryId).Count();
+                var total = context.Ideas.Where(i => i.CategoryId == cate.CategoryId && i.created_date.Month == GetCurrentVnTime().Month).Count();
                 data.Add(new BarChart(cate.category_name, total));
             }
             data = data.OrderByDescending(d => d.NumOfUses).Take(5).ToList();

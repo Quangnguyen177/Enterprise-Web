@@ -63,17 +63,19 @@
                                                             <li class="nav_bar--item "><a style="color: #797979; text-decoration: none" asp-action="EditIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId">Edit</a></li>
                                                             <li class="nav_bar--item ">
                                                                 <a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId"
-                                                       onclick="alert('Are you sure to remove this idea?')">
+                                                             onclick="return confirm('Are you sure to remove this idea?')">
                                                                     Delete
                                                                 </a>
                                                             </li>
                                                         }
                                                         else if (@Model.ProfileId.Equals(@logginnedUser.Id))
                                                         {
-                                                            <a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId"
-                                                   onclick="alert('Are you sure to remove this idea?')">
-                                                                Delete
-                                                            </a>
+                                                            <li class="nav_bar--item ">
+                                                                <a style="color: #797979; text-decoration: none" asp-action="DeleteIdea" asp-controller="Staff" asp-route-id="@Model.IdeaId"
+                                                             onclick="return confirm('Are you sure to remove this idea?')">
+                                                                    Delete
+                                                                </a>
+                                                            </li>
                                                         }
                                                     </ul>
                                                 </div>

@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Hosting;
 using static COMP1640.Controllers.StaffController;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace COMP1640.Controllers
 {
@@ -27,10 +28,12 @@ namespace COMP1640.Controllers
     {
         private readonly ApplicationDbContext Db;
         private readonly IConfiguration _configuration;
-        public StaffController(ApplicationDbContext context, IConfiguration configuration)
+        private readonly UserManager<Profile> _userManager;
+        public StaffController(ApplicationDbContext context, IConfiguration configuration, UserManager<Profile> userManager)
         {
             Db = context;
             _configuration = configuration;
+            _userManager = userManager;
         }
 
         public class PostViewModel
@@ -186,7 +189,11 @@ namespace COMP1640.Controllers
                 var profile = Db.Profile.FirstOrDefault(p => p.Id == profileId);
                 Category category = Db.Categories.FirstOrDefault(t => t.category_name.Equals(categoryName));
                 var subject = profile.Name + " has posted a new idea with title \"" + title + "\"";
-                //SendEmail(/*profile.Email*/"dantruong2002tq@gmail.com", subject, content);
+                var qacList = _userManager.GetUsersInRoleAsync("Quality Assurance Coordinator").Result;
+                foreach(var qac in qacList)
+                {
+                    SendEmail(qac.Email, subject, content);
+                }
                 Boolean anonynous = isAnonymous == null ? false : true;
                 Idea newIdea = new Idea()
                 {
@@ -314,7 +321,7 @@ namespace COMP1640.Controllers
                 var profile = Db.Profile.FirstOrDefault(u => u.Id == com.ProfileId);
                 var name = (com.com_anonymous) ? "An anonymous user" : profile.Name;
                 var subject = name + " has commented your \"" + idea.idea_title + "\" idea";
-                //SendEmail(/*idea.Profile.Email*/"dantruong2002tq@gmail.com", subject, com.com_content);
+                SendEmail(idea.Profile.Email, subject, com.com_content);
                 Comment newComment = new Comment()
                 {
                     com_content = com.com_content,
