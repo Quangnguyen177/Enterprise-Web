@@ -8,7 +8,7 @@
 }
 
 .col-lg-12 {
-    width: 82%;
+    width: 100%;
     margin-top: 4em;
 }
 
@@ -124,7 +124,7 @@ aside img {
 }
 
 .content_post {
-    width: 100%;
+    width: 94%;
 }
 
 .pagination {
