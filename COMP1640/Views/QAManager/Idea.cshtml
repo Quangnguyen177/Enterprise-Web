@@ -74,9 +74,6 @@
                     <th scope="col">Title</th>
                     <th class="content_table" scope="col">Content</th>
                     <th scope="col">Date</th>
-                    <th scope="col">First Closure</th>
-                    <th scope="col">Last Closure</th>
-                    <th scope="col">Anonymous</th>
                     <th scope="col">View</th>
                     <th scope="col">Name</th>
                     <th scope="col">Category </th>
@@ -93,16 +90,6 @@
                         <td>@i.idea_title</td>
                         <td>@i.idea_content</td>
                         <td>@i.created_date</td>
-                        <td>@i.Event.First_closure_date</td>
-                        <td>@i.Event.Last_closure_date</td>
-                        @if (i.idea_anonymous == true)
-                        {
-                            <td>Yes</td>
-                        }
-                        else
-                        {
-                            <td>No</td>
-                        }
                         <td>@i.idea_view</td>
                         <td>@i.Profile.Name</td>
                         <td>@i.Category.category_name</td>
