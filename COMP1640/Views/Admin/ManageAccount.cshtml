@@ -31,6 +31,7 @@
                             <tbody>
                                 @foreach (var acc in Model)
                                 {
+                                    count = count + 1;
                                     <tr>
                                         <td>@count</td>
                                         <td>@acc.Email</td>
@@ -39,7 +40,6 @@
                                             <a class="btn btn-sm btn-set" asp-controller="Admin" asp-action="EditAccount" asp-route-id="@acc.Id">Edit</a>
                                         </td>
                                     </tr>
-                                    count = count + 1;
                                 }
                             </tbody>
                         </table>

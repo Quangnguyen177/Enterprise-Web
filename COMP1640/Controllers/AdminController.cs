@@ -265,6 +265,8 @@ namespace COMP1640.Controllers
             user.Id = Input.Id;
             user.Name = Input.Name;
             user.Email = Input.Email;
+            user.UserName = Input.Email;
+            user.NormalizedUserName = Input.Email;
             user.PhoneNumber = Input.PhoneNumber;
             user.DoB = Input.DoB;
             user.Gender = Input.Gender;

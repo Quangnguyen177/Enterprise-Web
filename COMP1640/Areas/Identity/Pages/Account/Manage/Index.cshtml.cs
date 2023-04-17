@@ -40,7 +40,8 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
         public string Address { get; set; }
         public string Avatar { get; set; }
 
-        public string Username { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -60,7 +61,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
+            Email = userName;
 
             Input = new InputModel
             {
@@ -87,7 +88,7 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(IFormFile uploadedAva, string Fullname, DateTime DoB, string Gender, string Address)
+        public async Task<IActionResult> OnPostAsync(IFormFile uploadedAva, string Email, string Fullname, DateTime DoB, string Gender, string Address)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -136,6 +137,9 @@ namespace COMP1640.Areas.Identity.Pages.Account.Manage
             //Update the rest
             if (ModelState.IsValid)
             {
+                user.Email = Email;
+                user.UserName = Email;
+                user.NormalizedUserName = Email;
                 user.Name = Fullname;
                 user.DoB = DoB;
                 user.Gender = Gender;
