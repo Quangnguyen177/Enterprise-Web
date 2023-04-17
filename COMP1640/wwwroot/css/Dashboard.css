@@ -1029,7 +1029,7 @@ input[type]:checked ~ span.middle {
     bottom: 0;
     width: 100%;
     max-width: 300px;
-    background:   background: linear-gradient(#e8f2e3, #e8f2e3);
+    background: linear-gradient(#e8f2e3, #e8f2e3);
     transform: translateX(-100%);
     float: right;
     opacity: 0;
