@@ -45,6 +45,15 @@ thead {
     }
 table td {
     white-space: break-spaces;
+     text-align: justify;
+}
+.table thead .content_table {
+    width: 28em;
+    text-align: center;
+}
+.table thead .content_comment, .table thead .title_comment
+{
+    width: 11em;
 }
 
 .category_table {
