@@ -123,6 +123,20 @@ namespace COMP1640
                 Avatar = "122586227_360596095021773_7780351300286907559_n.jpg",
                 DepId = 3,
             };
+            var staff2 = new Profile
+            {
+                Id = "5",
+                UserName = "Robert Pattinson",
+                Email = "staff2@gmail.com",
+                NormalizedUserName = "staff2@gmail.com",
+                Name = "Robert Pattinson",
+                PhoneNumber = "0329226528",
+                DoB = DateTime.Parse("2002-08-25"),
+                Gender = "Male",
+                Address = "Somewhere in the big gray sky",
+                Avatar = "Galadriel.pn",
+                DepId = 3,
+            };
 
 
             // library to hash pasword
@@ -133,9 +147,10 @@ namespace COMP1640
             staff1.PasswordHash = hashed.HashPassword(staff1, "Staff#1");
             qam1.PasswordHash = hashed.HashPassword(qam1, "Qamr#1");
             qac1.PasswordHash = hashed.HashPassword(qac1, "Qacr#1");
+            staff2.PasswordHash = hashed.HashPassword(staff2, "Staff#2");
 
             //Add account to Db
-            builder.Entity<Profile>().HasData(admin1, staff1, qam1, qac1);
+            builder.Entity<Profile>().HasData(admin1, staff1, qam1, qac1, staff2);
         }
 
         //Add Role
@@ -197,6 +212,11 @@ namespace COMP1640
                 {
                     UserId = "4",
                     RoleId = "D"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "5",
+                    RoleId = "B"
                 }
              );
         }
@@ -244,7 +264,7 @@ namespace COMP1640
                 new Idea
                 {
                     IdeaId = 1,
-                    ProfileId = "1",
+                    ProfileId = "5",
                     CategoryId = 1,
                     ReactPointId = 1,
                     EventId = 1,
@@ -270,7 +290,7 @@ namespace COMP1640
                 new Idea
                 {
                     IdeaId = 3,
-                    ProfileId = "1",
+                    ProfileId = "5",
                     CategoryId = 1,
                     ReactPointId = 3,
                     EventId = 1,
