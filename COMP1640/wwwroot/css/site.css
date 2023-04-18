@@ -956,7 +956,7 @@ input[type]:checked ~ span.middle {
     }
 
     .title_idea h1 {
-        font-size: 0.9em;
+        font-size: 1.1em;
     }
 
     .form-control input {
