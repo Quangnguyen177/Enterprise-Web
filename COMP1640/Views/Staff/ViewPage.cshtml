@@ -71,32 +71,16 @@
                             </a>
                         </figure>
                     </div>
-                    @if (ViewBag.Date > DateTime.UtcNow)
-                    {
-                        <div class="form_add_idea">
-                            <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
-                                <input class="form_control" type="text" placeholder="Typing your idea here..." readonly>
-                            </a>
-                        </div>
-                        <div class="btn_add">
-                            <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
-                                <button type="button" class="btn btn-success">Add</button>
-                            </a>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="form_add_idea">
-                            <a style="text-decoration: none; width: 100%">
-                                <input class="form_control" type="text" placeholder="Typing your idea here..." readonly>
-                            </a>
-                        </div>
-                        <div class="btn_add">
-                            <a style="text-decoration: none; width: 100%">
-                                <button type="button" class="btn btn-success">Add</button>
-                            </a>
-                        </div>
-                    }
+                    <div class="form_add_idea">
+                        <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
+                            <input class="form_control" type="text" placeholder="Typing your idea here..." readonly>
+                        </a>
+                    </div>
+                    <div class="btn_add">
+                        <a style="text-decoration: none; width: 100%" asp-action="AddIdea" asp-controller="Staff">
+                            <button type="button" class="btn btn-success">Add</button>
+                        </a>
+                    </div>
                 </div>
 
                 @*A post*@
