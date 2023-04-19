@@ -4,7 +4,6 @@
     Layout = "_QAC";
     ViewData["Title"] = "List Idea";
     <link rel="stylesheet" href="~/css/res_qa_idea.css" />
-    var count = 0;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Coordinator"))
 {
@@ -50,6 +49,7 @@
             <tbody>
                 @foreach (var i in Model)
                 {
+                    var count = 0;
                     <tr>
                         <td>@i.IdeaId</td>
                         <td>@i.idea_title</td>
@@ -65,10 +65,6 @@
                             if(d.IdeaId == i.IdeaId)
                             {
                                  count++; 
-                            }
-                            else
-                            {
-                                count = 0;
                             }
                         }
                         @if(count == 0)

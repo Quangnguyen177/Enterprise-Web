@@ -90,6 +90,7 @@
                         var Tu = @findTU(idea.IdeaId, idea.IsLikedByCurrentUser);
                         var Td = @findTD(idea.IdeaId, idea.IsLikedByCurrentUser);
                         var point = idea.Reacpoint.ThumbUp - @idea.Reacpoint.ThumbDown;
+                        var count = 0;
                         <div class="information_idea">
                             <div class="Infor_idea">
 
@@ -133,18 +134,12 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            @{
-                                                var count = 0;
-                                            }
+                                            
                                             @foreach (var doc in ViewBag.Documents)
                                             {
                                                 if (doc.IdeaId == idea.IdeaId)
                                                 {
                                                     count++;
-                                                }
-                                                else
-                                                {
-                                                    count = 0;
                                                 }
 
                                             }

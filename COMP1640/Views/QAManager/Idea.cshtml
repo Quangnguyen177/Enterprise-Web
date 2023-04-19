@@ -4,7 +4,6 @@
     Layout = "_QAM";
     <link rel="stylesheet" href="~/css/res_qa_idea.css" />
     ViewData["Title"] = "List Idea";
-    var count = 0;
 }
 @if (User.Identity.IsAuthenticated && User.IsInRole("Quality Assurance Manager"))
 {
@@ -85,6 +84,7 @@
             <tbody>
                 @foreach (var i in Model)
                 {
+                    var count = 0;
                     <tr>
                         <td>@i.IdeaId</td>
                         <td>@i.idea_title</td>
@@ -101,15 +101,12 @@
                             {
                                  count++; 
                             }
-                            else
-                            {
-                                count = 0;
-                            }
                         }
                         @if (count == 0)
                         {
                             <td>None</td>
-                        }else{
+                        }
+                        else{
                             <td><a asp-action="DownloadEachFile" asp-controller="QAManager" asp-route-id="@i.IdeaId">@count documents</a></td>
                         }
                     </tr>

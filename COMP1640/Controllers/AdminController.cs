@@ -218,6 +218,8 @@ namespace COMP1640.Controllers
         [HttpPost]
         public IActionResult SearchEvent(string keyword)
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.LogginedUser = Db.Profile.FirstOrDefault(p => p.Id.Equals(currentUserId));
             var events = Db.Events.Where(p => p.EventName.Contains(keyword)).OrderByDescending(e => e.EventId).ToList();
             if (events.Count == 0)
             {
