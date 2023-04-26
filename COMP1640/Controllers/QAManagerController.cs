@@ -1,4 +1,4 @@
-﻿using COMP1640.Models;
+using COMP1640.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -202,10 +202,11 @@ namespace COMP1640.Controllers
             csv.AppendLine(heading);
             foreach (var row in data)
             {
+                
                 var newRow = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
                                 row.IdeaId,
-                                row.idea_title,
-                                row.idea_content,
+                                FormatStr(row.idea_title),
+                                FormatStr(row.idea_content),
                                 row.created_date,
                                 row.idea_anonymous,
                                 row.idea_view,
@@ -216,7 +217,7 @@ namespace COMP1640.Controllers
                               );
                 csv.AppendLine(newRow);
             }
-            byte[] bytes = Encoding.ASCII.GetBytes(csv.ToString());
+            byte[] bytes = Encoding.UTF8.GetBytes(csv.ToString());
             return File(bytes, "text/csv", "Ideas.csv");
         }
 
@@ -391,6 +392,12 @@ namespace COMP1640.Controllers
             var oldTotalContributor = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month - 1).GroupBy(i => i.ProfileId).Count();
             var oldTotalView = context.Ideas.Where(i => i.created_date.Month == GetCurrentVnTime().Month - 1).Sum(i => i.idea_view);
             return new Statistic(totalIdea, totalContributor, totalView, totalComment, oldTotalIdea, oldTotalContributor, oldTotalView, oldTotalComment);
+        }
+
+        private String FormatStr(String str)
+        {
+            str = "\"" + str + "\"";
+            return string.Join(" ", str.Split('\n','\r'));
         }
     }
 }
